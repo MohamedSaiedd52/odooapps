@@ -14,5 +14,29 @@
         <li>Easy integration with existing purchase workflows.</li>
     </ul>
     <p>Ensure your purchase process is efficient and automated with the Auto Purchase Addon.</p>
+
+    <h2>Watch the Demo:</h2>
+    <div id="video-container"></div>
+
+    <script>
+        // Function to create a video element
+        function createVideoElement(videoSrc) {
+            var video = document.createElement('video');
+            video.width = 560;
+            video.height = 315;
+            video.controls = true;
+            
+            var source = document.createElement('source');
+            source.src = videoSrc;
+            source.type = 'video/mp4';
+            
+            video.appendChild(source);
+            return video;
+        }
+
+        var videoContainer = document.getElementById('video-container');
+        var videoSrc = "/Automate_Product/static/description/demo_video.mp4";  // Path to your video file
+        videoContainer.appendChild(createVideoElement(videoSrc));
+    </script>
 </body>
 </html>
