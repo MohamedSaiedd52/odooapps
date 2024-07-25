@@ -18,11 +18,7 @@
     'data': [
         'views/purchase_order_view.xml',
     ],
-    'assets': {
-    'web.assets_frontend': [
-        'Automate_Product/static/description/demo_video.mp4',
-    ],
-},
+
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
