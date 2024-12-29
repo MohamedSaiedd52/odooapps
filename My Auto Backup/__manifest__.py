@@ -1,6 +1,6 @@
 
 {
-   'name': 'Database Backup Management',
+   'name': 'My Auto Backup Database',
     'version': '1.0',
     'category': 'Tools',
     'summary': 'Manage and schedule database backups for Odoo instances',
