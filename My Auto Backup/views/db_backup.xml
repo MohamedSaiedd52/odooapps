@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Tree View for Database Backup Configuration -->
-    <record id="view_db_backup_configure_tree" model="ir.ui.view">
-        <field name="name">db.backup.configure.tree</field>
+    <!-- list View for Database Backup Configuration -->
+    <record id="view_db_backup_configure_list" model="ir.ui.view">
+        <field name="name">db.backup.configure.list</field>
         <field name="model">db.backup.configure</field>
         <field name="arch" type="xml">
-            <tree string="Database Backup Configurations">
+            <list string="Database Backup Configurations">
                 <field name="name"/>
                 <field name="db_name"/>
                 <field name="backup_format"/>
@@ -13,7 +13,7 @@
                 <field name="backup_path"/>
                 <field name="active"/>
                 <field name="last_backup_status" widget="statusbar"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -48,18 +48,18 @@
         </field>
     </record>
 
-    <!-- Tree View for Backup Logs -->
-    <record id="view_db_backup_log_tree" model="ir.ui.view">
-        <field name="name">db.backup.log.tree</field>
+    <!-- list View for Backup Logs -->
+    <record id="view_db_backup_log_list" model="ir.ui.view">
+        <field name="name">db.backup.log.list</field>
         <field name="model">db.backup.log</field>
         <field name="arch" type="xml">
-            <tree string="Backup Logs">
+            <list string="Backup Logs">
                 <field name="db_config_id"/>
                 <field name="backup_date"/>
                 <field name="status" widget="statusbar"/>
                 <field name="file_size" widget="float"/>
                 <field name="details"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -93,7 +93,7 @@
     <record id="action_db_backup_configure" model="ir.actions.act_window">
         <field name="name">Database Backup Configurations</field>
         <field name="res_model">db.backup.configure</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_create">
                 Click to create a new database backup configuration.
@@ -105,7 +105,7 @@
     <record id="action_db_backup_log" model="ir.actions.act_window">
         <field name="name">Backup Logs</field>
         <field name="res_model">db.backup.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_create">
                 No backup logs yet. Configure backups and start the process.
