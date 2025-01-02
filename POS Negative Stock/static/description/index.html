@@ -31,10 +31,10 @@
     <div class="col-lg-12 my-2">
       <h4 class="mt-2"
         style="font-family: 'Roboto', sans-serif !important; font-weight: 600 !important; color: #282F33 !important; font-size: 1.3rem !important;">
-        Database Backup Configuration Menu</h4>
+        POS Prevent Negative Stock Module</h4>
       <p
         style="font-family: 'Roboto', sans-serif !important; font-weight: 400 !important; color: #282F33 !important; font-size: 1rem !important;">
-        Got Setting --> Technical --> Backup Configuration to configure backups</p>
+      POS Prevent Negative Stock Configuration to configure the module settings.</p>
       <img src="assets/screenshots/Capture1.JPG" class="img-responsive img-thumbnail border" width="100%"
         height="auto" />
     </div>
@@ -42,24 +42,20 @@
     <div class="col-lg-12 my-3">
       <h4 class="mt-3"
         style="font-family: 'Roboto', sans-serif !important; font-weight: 600 !important; color: #282F33 !important; font-size: 1.3rem !important;">
-        Steps to Configure Database Backup</h4>
+        Steps to Configure POS Prevent Negative Stock</h4>
       <ol
         style="font-family: 'Roboto', sans-serif !important; font-weight: 400 !important; color: #282F33 !important; font-size: 1rem !important;">
+        <li>Install the <strong>POS Prevent Negative Stock</strong> module in your Odoo instance.</li>
         <li>Enable <strong>Developer Mode</strong> in your Odoo instance.</li>
-        <li>Navigate to <code>Settings</code> --> <code>Technical</code> --> <code>Database Backup</code> under <strong>Configurations</strong>.</li>
-        <li>Click on <strong>Create</strong> to add a new database backup configuration.</li>
-        <li>Fill in the required fields:
+        <li>Navigate to <code>Settings</code> --> <code>Technical</code> --> <code>POS Prevent Negative Stock</code> under <strong>Configurations</strong>.</li>
+        <li>Configure the settings to restrict sales for products with insufficient stock:</li>
           <ul>
-            <li><strong>Host:</strong> Enter the host of your database.</li>
-            <li><strong>Database Name:</strong> Specify the actual database you want to back up.</li>
-            <li><strong>Backup Type:</strong> Choose the type of backup (e.g., full, incremental).</li>
-            <li><strong>Destination:</strong> Enter the directory path for the backup. Ensure the folder permissions are set correctly using <code>chown odoo:odoo</code>.</li>
+            <li><strong>Enable Stock Restrictions:</strong> Toggle to prevent sales of products with negative stock.</li>
+            <li><strong>Notification Options:</strong> Choose how to notify users when stock levels are insufficient.</li>
           </ul>
         </li>
         <li>Save the configuration.</li>
-        <li>Go to <code>Scheduled Actions</code> and locate the cron job named <strong>Backup: Automatic Database Backup</strong>.</li>
-        <li>Adjust the cron job settings to define how often backups should occur (e.g., daily, weekly).</li>
-        <li>Test the backup configuration to ensure it works as expected.</li>
+        <li>Test the configuration by attempting to sell a product with insufficient stock.</li>
       </ol>
     </div>
   </div>
