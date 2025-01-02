@@ -1,0 +1,66 @@
+<div class="container" style="padding: 1rem !important; margin-bottom: 1rem !important;">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-between" style="border-bottom: 1px solid #d5d5d5;">
+      <div class="my-3 d-flex align-items-center">
+        <div
+          style="background-color: #7C7BAD !important; color: #fff !important; font-weight: 600 !important; padding: 5px 15px 8px !important; margin: 0 5px !important;">
+          <i class="fa fa-check mr-1"></i>Community
+        </div>
+        <div
+          style="background-color: #875A7B !important; color: #fff !important; font-weight: 600 !important; padding: 5px 15px 8px !important; margin: 0 5px !important;">
+          <i class="fa fa-check mr-1"></i>Enterprise
+        </div>
+        <div
+          style="background-color: #008080 !important; color: #fff !important; font-weight: 600 !important; padding: 5px 15px 8px !important; margin: 0 5px !important;">
+          <i class="fa fa-check mr-1"></i>Odoo.sh
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding: 0rem 1.5rem 4rem !important">
+  <div class="row" id="screenshots">
+    <div class="col-md-12" style="border-bottom: 1px solid #d5d5d5 !important; margin: 2rem 0 !important">
+      <h2
+        style="font-family: 'Montserrat', sans-serif !important; font-weight: 600 !important; color: #714B67 !important; font-size: 1.5rem !important;">
+        <i class="fa fa-image mr-2"></i>Screenshots
+      </h2>
+    </div>
+
+    <div class="col-lg-12 my-2">
+      <h4 class="mt-2"
+        style="font-family: 'Roboto', sans-serif !important; font-weight: 600 !important; color: #282F33 !important; font-size: 1.3rem !important;">
+        Database Backup Configuration Menu</h4>
+      <p
+        style="font-family: 'Roboto', sans-serif !important; font-weight: 400 !important; color: #282F33 !important; font-size: 1rem !important;">
+        Got Setting --> Technical --> Backup Configuration to configure backups</p>
+      <img src="assets/screenshots/Capture1.JPG" class="img-responsive img-thumbnail border" width="100%"
+        height="auto" />
+    </div>
+
+    <div class="col-lg-12 my-3">
+      <h4 class="mt-3"
+        style="font-family: 'Roboto', sans-serif !important; font-weight: 600 !important; color: #282F33 !important; font-size: 1.3rem !important;">
+        Steps to Configure Database Backup</h4>
+      <ol
+        style="font-family: 'Roboto', sans-serif !important; font-weight: 400 !important; color: #282F33 !important; font-size: 1rem !important;">
+        <li>Enable <strong>Developer Mode</strong> in your Odoo instance.</li>
+        <li>Navigate to <code>Settings</code> --> <code>Technical</code> --> <code>Database Backup</code> under <strong>Configurations</strong>.</li>
+        <li>Click on <strong>Create</strong> to add a new database backup configuration.</li>
+        <li>Fill in the required fields:
+          <ul>
+            <li><strong>Host:</strong> Enter the host of your database.</li>
+            <li><strong>Database Name:</strong> Specify the actual database you want to back up.</li>
+            <li><strong>Backup Type:</strong> Choose the type of backup (e.g., full, incremental).</li>
+            <li><strong>Destination:</strong> Enter the directory path for the backup. Ensure the folder permissions are set correctly using <code>chown odoo:odoo</code>.</li>
+          </ul>
+        </li>
+        <li>Save the configuration.</li>
+        <li>Go to <code>Scheduled Actions</code> and locate the cron job named <strong>Backup: Automatic Database Backup</strong>.</li>
+        <li>Adjust the cron job settings to define how often backups should occur (e.g., daily, weekly).</li>
+        <li>Test the backup configuration to ensure it works as expected.</li>
+      </ol>
+    </div>
+  </div>
+</div>
