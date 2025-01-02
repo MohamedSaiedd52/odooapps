@@ -1,5 +1,5 @@
 {
-    'name': "POS Disallow Negative Stock",
+    'name': "POS Prevent Negative Stock",
     'summary': "Enhance your POS system by preventing sales of products with insufficient stock levels.",
     'description': """
         This module adds a restriction to the Point of Sale (POS) system in Odoo, ensuring that sales cannot proceed if the stock level for any product is below zero. 
@@ -24,7 +24,7 @@
     ],
     'assets': {
         "point_of_sale._assets_pos": [
-            "pos_disallow_negative_stock/static/src/js/models.js",
+            "pos_prevent_negative_stock/static/src/js/models.js",
         ],
     },
     'license': 'LGPL-3',
