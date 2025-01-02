@@ -16,7 +16,7 @@
     'category': 'Point of Sale',
     'version': '17.0.0.1.0',
     'depends': ['point_of_sale'],
-    'price': 25.00,
+    'price': 30.00,
     'currency': 'USD',
     'data': [
         'security/security.xml',
