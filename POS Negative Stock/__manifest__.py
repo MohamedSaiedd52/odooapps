@@ -27,6 +27,7 @@
             "pos_prevent_negative_stock/static/src/js/models.js",
         ],
     },
+    'images': ['static/description/banner.jpg'],
     'license': 'LGPL-3',
     'application': True,
 }
