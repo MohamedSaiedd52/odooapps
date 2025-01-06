@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Odoo Documentation Generator">
+    <title>Stock Card Report 18</title>
+    <style>
+        /* General Reset */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .content {
+            margin-bottom: 40px;
+        }
+
+        .toc {
+            margin-bottom: 20px;
+        }
+
+        .toc ul {
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .toc a {
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        ol {
+            padding-left: 20px;
+            list-style: decimal;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+
+        .button.cancel {
+            background-color: #e74c3c;
+        }
+
+        .button.cancel:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Stock Card Report</h1>
+
+        <div class="content">
+            <p>
+                The <strong>Stock Card Report</strong> module provides a detailed view of product movements 
+                (in/out) within a specified location and date range. This module simplifies inventory reporting, 
+                offering both tabular views and export options in PDF or Excel formats.
+            </p>
+        </div>
+
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#usage">Usage</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="usage">
+            <h2>Usage</h2>
+            <p>To use this module, follow these steps:</p>
+            <ol>
+                <li>Navigate to <strong>Inventory > Reporting > Stock Card</strong>.</li>
+                <li>Specify the <strong>Start Date</strong>, <strong>End Date</strong>, <strong>Products</strong>, and <strong>Location</strong>.</li>
+                <li>Choose one of the following actions:
+                    <ul>
+                        <li><strong>View</strong>: Display the report in the user interface.</li>
+                        <li><strong>Export PDF</strong>: Generate a PDF file for the report.</li>
+                        <li><strong>Export XLSX</strong>: Generate an Excel file for the report.</li>
+                        <li><strong>Cancel</strong>: Exit without taking action.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="button-group">
+            <button class="button">View</button>
+            <button class="button">Export PDF</button>
+            <button class="button">Export XLSX</button>
+            <button class="button cancel">Cancel</button>
+        </div>
+    </div>
+</body>
+</html>
