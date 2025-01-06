@@ -4,7 +4,7 @@
     "category": "Inventory/Warehouse",
     "author": "Mohamed SAied",
     "license": "LGPL-3",
-    "depends": ["base", "web", "stock", "report_xlsx_aa_aa_aa"],
+    "depends": ["base", "web", "stock", "report_xlsx_aa"],
     "data": [
         "security/ir.model.access.csv",
         "data/paper_format.xml",
