@@ -14,4 +14,6 @@
             "report_xlsx_aa/static/src/js/report/action_manager_report.esm.js",
         ],
     },
+    'application': False,  
+
 }

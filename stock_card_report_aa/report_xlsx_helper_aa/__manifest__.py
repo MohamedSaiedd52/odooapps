@@ -8,4 +8,5 @@
     "depends": ["report_xlsx_aa"],
     "development_status": "Mature",
     "installable": True,
+    'application': False,  
 }
