@@ -20,7 +20,7 @@
     },
     'price': "15",
     'currency': 'USD',
-    "images": ["static/description/thumbnail.png"],
+    "images": ["static/description/thumbnail.JPG"],
     "development_status": "Mature",
     "installable": True,
 }
