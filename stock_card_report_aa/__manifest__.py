@@ -2,7 +2,7 @@
     "name": "Stock Card Report 18",
     "summary": "Easily generate detailed stock card reports directly from Inventory Reporting.",
     "category": "Inventory/Warehouse",
-    "author": "Mohamed SAied",
+    "author": "Mohamed Saied",
     "license": "LGPL-3",
     "depends": ["base", "web", "stock", "report_xlsx_aa"],
     "data": [
