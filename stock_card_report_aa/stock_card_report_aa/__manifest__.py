@@ -23,4 +23,5 @@
     "images": ["static/description/thumbnail.png"],
     "development_status": "Mature",
     "installable": True,
+    'application': True,  
 }
