@@ -23,5 +23,5 @@
     'application': False,
     'license': 'LGPL-3',
     'author': 'Mohamed Saied',
-    'images': ['static/description/icon.png']
+    "images": ["static/description/thumbnail.png"],
 }
