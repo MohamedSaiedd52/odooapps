@@ -7,5 +7,5 @@
     "license": "LGPL-3",
     "data": ["views/res_config_view.xml", "views/stock_location_view.xml"],
     "installable": True,
-    'images': ['static/description/banner.jpg'],
+    'images': ['static/description/banner.png'],
 }
