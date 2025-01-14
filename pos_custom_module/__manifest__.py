@@ -14,6 +14,6 @@
     'currency': 'USD',
     'installable': True,
     'application': False,
-    'images': ['static/description/banner.jpg'],
+    'images': ['static/description/banner.png'],
     'license': 'LGPL-3',
 }
