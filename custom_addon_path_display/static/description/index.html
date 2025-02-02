@@ -17,49 +17,48 @@
 </div>
 
 <div class="container" style="padding: 0rem 1.5rem 4rem;">
-  <div class="row" id="steps">
+  <div class="row" id="addon-path">
     <div class="col-lg-12 my-2">
-      <h4 class="mt-2 module-title">POS Prevent Negative Stock Module</h4>
+      <h4 class="mt-2 module-title">Addon Path in Odoo</h4>
       <p class="module-description">
-        Go to <strong>Inventory  Configuration  Settings</strong>.
-      </p>
-
-
-      
-      <div class="col-lg-12 my-4 text-center">
-	
-        <img src="assets/screenshots/34.PNG" alt="POS Prevent Negative Stock Screenshot" class="img-fluid" style="max-width: 100%; height: auto;">
-
-      </div>
-      <p class="module-description">
-        <strong>No Negative Stock</strong>   <i class="fa fa-check mr-1"></i>
+        The <strong>Addon Path</strong> in Odoo refers to the file system directory where an Odoo module (addon) is physically stored. It is essential for locating the source code of a module and verifying its installation.
       </p>
     </div>
+    
     <div class="col-lg-12 my-3">
-
-      <h4 class="mt-3 steps-title">Allow Negative Stock</h4>
+      <h4 class="mt-3 steps-title">How to Check Addon Path</h4>
       <p class="module-description">
-     Important   if you need allow Negative   
-        Go to <strong>Inventory  Configuration  Locations</strong>.
+        To find the <strong>Addon Path</strong> for a specific module, follow these steps:
       </p>
+      <ol class="module-description">
+        <li>Go to the <strong>Apps</strong> menu in your Odoo instance.</li>
+        <li>Locate the module you want to inspect and open its form view.</li>
+        <li>Look for the <strong>Addon Path</strong> field, which will display the directory where the module is stored (e.g., <code>/opt/odoo/addons/sale_management</code>).</li>
+      </ol>
       <p class="module-description">
-        Select a location and enable <strong>Allow Negative Stock</strong>   <i class="fa fa-check mr-1"></i>
+        If the <strong>Addon Path</strong> field is not visible, you can implement it programmatically using a custom Odoo module.
       </p>
     </div>
-
+    
+    <div class="col-lg-12 my-3">
+      <h4 class="mt-3 steps-title">Example of Addon Path</h4>
+      <p class="module-description">
+        Suppose you have installed the <strong>sale_management</strong> module. Its Addon Path might look like this:
+      </p>
+      <p class="module-description">
+        <code>/opt/odoo/addons/sale_management</code>
+      </p>
+      <p class="module-description">
+        This indicates that the <strong>sale_management</strong> module is stored in the <code>/opt/odoo/addons</code> directory on the server.
+      </p>
+    </div>
+    
     <div class="col-lg-12 my-4 text-center">
-	
-      <img src="assets/screenshots/33.PNG" alt="POS Prevent Negative Stock Screenshot" class="img-fluid" style="max-width: 100%; height: auto;">
-   
+      <img src="assets/screenshots/22.jpg" alt="Addon Path Example Screenshot" class="img-fluid" style="max-width: 100%; height: auto;">
     </div>
-  </div>
-
-  <div class="col-lg-12 my-4 text-center">
-	
-    <img src="assets/screenshots/ezgif.com-animated-gif-maker.gif" alt="POS Prevent Negative Stock Screenshot" class="img-fluid" style="max-width: 100%; height: auto;">
-
   </div>
 </div>
+
 
 <style>
   .module-title {
