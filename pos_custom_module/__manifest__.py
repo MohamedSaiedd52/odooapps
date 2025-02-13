@@ -10,8 +10,6 @@
     'data': [
         'views/pos_order_views.xml',
     ],
-    'price': 20.00,
-    'currency': 'USD',
     'installable': True,
     'application': False,
     'images': ['static/description/banner.png'],
