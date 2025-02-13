@@ -16,8 +16,6 @@
     'category': 'Point of Sale',
     'version': '17.0.0.1.0',
     'depends': ['point_of_sale'],
-    'price': 20.00,
-    'currency': 'USD',
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
