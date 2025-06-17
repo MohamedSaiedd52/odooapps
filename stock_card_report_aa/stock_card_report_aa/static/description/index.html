@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,16 +105,36 @@
         .button.cancel:hover {
             background-color: #c0392b;
         }
+
+        /* Images */
+        .image-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .image-description {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1 class="title">Stock Card Report</h1>
 
         <div class="content">
             <p>
-                The <strong>Stock Card Report</strong> module provides a detailed view of product movements 
-                (in/out) within a specified location and date range. This module simplifies inventory reporting, 
+                The <strong>Stock Card Report</strong> module provides a detailed view of product movements
+                (in/out) within a specified location and date range. This module simplifies inventory reporting,
                 offering both tabular views and export options in PDF or Excel formats.
             </p>
         </div>
@@ -122,6 +143,9 @@
             <h2>Table of Contents</h2>
             <ul>
                 <li><a href="#usage">Usage</a></li>
+                <li><a href="#permissions">Permissions</a></li>
+                <li><a href="#addon-process">How the Add-on Works</a></li>
+                <li><a href="#report-example">Sample Report Output</a></li>
             </ul>
         </div>
 
@@ -142,6 +166,33 @@
             </ol>
         </div>
 
+        <div class="section" id="permissions">
+            <h2>Permissions</h2>
+            <div class="image-section">
+                <img src="images/1.png" alt="Permissions Image">
+                <p class="image-description">يجب منح صلاحية الوصول لهذه الشاشة لكي يتمكن المستخدم من استخدام الإضافة وتنفيذ التقارير.</p>
+            </div>
+            <p>لابد من منح صلاحية هذه لكي يتمكن المستخدم من استخدام الإضافة. بدون هذه الصلاحيات، لن يستطيع المستخدم الوصول إلى تقرير كارت الصنف أو تصدير النتائج.</p>
+        </div>
+
+        <div class="section" id="addon-process">
+            <h2>How the Add-on Works</h2>
+            <div class="image-section">
+                <img src="images/2.png" alt="Add-on Process Image">
+                <p class="image-description">هذه الصورة توضح كيفية استخدام الإضافة وعملية التصدير.</p>
+            </div>
+            <p>الصورة توضح الخطوات التي يقوم بها المستخدم لتوليد التقرير سواء للعرض على الشاشة أو تصديره كملف PDF أو Excel.</p>
+        </div>
+
+        <div class="section" id="report-example">
+            <h2>Sample Report Output</h2>
+            <div class="image-section">
+                <img src="images/3.png" alt="Report Output Image">
+                <p class="image-description">مثال على تقرير كارت الصنف النهائي الذي يتم توليده من الإضافة.</p>
+            </div>
+            <p>هذه الصورة تمثل نموذج التقرير الذي يتم تصديره ويعرض حركة المخزون بشكل مفصل حسب التواريخ والمواقع المحددة.</p>
+        </div>
+
         <div class="button-group">
             <button class="button">View</button>
             <button class="button">Export PDF</button>
@@ -150,4 +201,5 @@
         </div>
     </div>
 </body>
+
 </html>
