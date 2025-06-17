@@ -2,7 +2,7 @@
 import logging
 
 from odoo import models
-from .report_xlsx_aa_aa_format import FORMATS, XLS_HEADERS
+from .report_xlsx_format import FORMATS, XLS_HEADERS
 _logger = logging.getLogger(__name__)
 
 

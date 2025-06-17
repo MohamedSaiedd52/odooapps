@@ -1,7 +1,7 @@
 
 from odoo import models
 
-from .report_xlsx_aa_format import FORMATS, XLS_HEADERS
+from .report_xlsx_format import FORMATS, XLS_HEADERS
 
 
 # TODO:

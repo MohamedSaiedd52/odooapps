@@ -8,7 +8,7 @@ from xlsxwriter.utility import xl_rowcol_to_cell
 from odoo import _, fields, models
 from odoo.exceptions import UserError
 from io import BytesIO
-from .report_xlsx_aa_aa_format import FORMATS, XLS_HEADERS
+from .report_xlsx_format import FORMATS, XLS_HEADERS
 try:
     import xlsxwriter
 

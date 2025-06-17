@@ -6,11 +6,12 @@
     "license": "LGPL-3",
     "depends": ["base", "web", "stock", "report_xlsx_aa"],
     "data": [
+        "security/group.xml",
         "security/ir.model.access.csv",
         "data/paper_format.xml",
         "data/report_data.xml",
         "reports/stock_card_report_aa.xml",
-        "wizard/stock_card_report_aa_wizard_view.xml",
+        "wizard/stock_card_report_wizard_view.xml",
     ],
     "assets": {
         "web.assets_backend": [
