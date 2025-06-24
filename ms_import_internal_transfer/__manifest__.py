@@ -1,6 +1,5 @@
 {
-    "name": "Import Internal Transfer of Materials from Excel file MS",
-    "version": "17.0.1.0.0",
+    "name": "Import Internal Transfer of Materials from Excel",
     "category": "Inventory",
     "summary": "Import internal stock transfers from Excel files (.xlsx)",
     "author": "Mohamed Saied",
@@ -22,5 +21,6 @@
     "application": True,
     "auto_install": False,
     "maintainer": "Mohamed Saied",
-    "images": ["static/description/icon.png"]
+    "images": ["static/description/bannar.png"]
+
 }
