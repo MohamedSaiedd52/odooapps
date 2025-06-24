@@ -22,5 +22,5 @@
     "application": True,
     "auto_install": False,
     "maintainer": "Mohamed Saied",
-    "images": ["static/description/icon.png"]
+    "images": ["static/description/thumbnail.png"]
 }
