@@ -95,309 +95,95 @@
 </head>
 
 <body>
-<!-- overview -->
-<div class="container">
-    <div class="my-5">
-
-        <div class="tab-content" id="myTabContent1">
-     <div class="text-center d-flex justify-content-end gap-2 my-3">
-  <span
-    class="px-3 py-1"
-    style="background-color:#28a745; color: #fff; font-size: 0.8rem; font-weight:600; border: 1px solid #28a745; border-radius: 30px;">
-    Community
-  </span>
-  <span
-    class="px-3 py-1"
-    style="background-color:#ffc107; color: #000; font-size: 0.8rem; font-weight:600; border: 1px solid #ffc107; border-radius: 30px;">
-    Enterprise
-  </span>
-</div>
-
-            
-   <!-- Screenshot Section for Stock Picking Type Restriction -->
-<div class="mb-4 bg-white"
-     style="border: 1px solid #EBEEF2; border-radius: 6px; box-shadow: 0px 8px 20px -4px rgba(0, 0, 0, 0.10);">
-    <div>
-        <ul class="nav nav-tabs justify-content-center bg-white py-2"
-            id="myTab" role="tablist" style="border-radius: 6px 6px 0 0;">
-            <li class="nav-item">
-                <a aria-controls="overview"
-                   class="nav-link active" data-bs-toggle="tab"
-                   href="#overview" id="overview-tab" role="tab"
-                   style="color:#121212; font-weight:500; font-size:16px">
-                    Screenshots Picking Type </a>
-            </li>
-
-             <li class="nav-item">
-                <a aria-controls="overview"
-                   class="nav-link active" data-bs-toggle="tab"
-                   href="#oo" id="overview-tab" role="tab"
-                   style="color:#121212; font-weight:500; font-size:16px">
-                    Screenshots User Warehouse Location </a>
-            </li>
-        </ul>
+  <div class="container my-5">
+    <!-- Tags -->
+    <div class="text-center d-flex justify-content-end gap-2 my-3">
+      <span class="px-3 py-1" style="background-color:#28a745; color: #fff; font-size: 0.8rem; font-weight:600; border-radius: 30px;">
+        Community
+      </span>
+      <span class="px-3 py-1" style="background-color:#ffc107; color: #000; font-size: 0.8rem; font-weight:600; border-radius: 30px;">
+        Enterprise
+      </span>
     </div>
 
+    <!-- Tabs -->
+    <div class="bg-white mb-4" style="border: 1px solid #EBEEF2; border-radius: 6px; box-shadow: 0 8px 20px -4px rgba(0,0,0,0.1);">
+      <ul class="nav nav-tabs justify-content-center bg-white py-2" role="tablist" style="border-radius: 6px 6px 0 0;">
+        <li class="nav-item">
+          <a class="nav-link active" id="picking-tab" data-bs-toggle="tab" href="#picking" role="tab" aria-controls="picking" aria-selected="true"
+             style="color:#121212; font-weight:500; font-size:16px;">
+            Screenshots Picking Type
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="location-tab" data-bs-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected="false"
+             style="color:#121212; font-weight:500; font-size:16px;">
+            Screenshots User Warehouse Location
+          </a>
+        </li>
+      </ul>
 
-
-    <div class="tab-content p-md-5 p-2 py-3" id="myTabContent">
-        <div aria-labelledby="overview-tab"
-             class="tab-pane fade show active" id="overview"
-             role="tabpanel">
-
-   <div class="tab-content p-md-5 p-2 py-3" id="myTabContent">
-    <div aria-labelledby="overview-tab" class="tab-pane fade show active" id="overview" role="tabpanel">
-
-        <!-- Section 1: Enable Restriction Option -->
-        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-            <div class="p-md-5 p-3 position-relative">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                            Enable Stock Picking Type Restriction
-                        </h1>
-                    </div>
-                    <div class="col-md-12 mb-4">
-                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                            To apply restrictions per operation type, ensure the user is assigned the **Stock User** role, not **Inventory Manager**. Only then will you be able to control their visible Picking Types.
-                        </p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                            <img alt="Enable Restriction" class="img-fluid" loading="lazy"
-                                 src="images/1.png" style="min-height: 1px;">
-                        </div>
-                    </div>
-                </div>
+      <div class="tab-content p-md-5 p-2 py-3">
+        <!-- Picking Type Tab -->
+        <div class="tab-pane fade show active" id="picking" role="tabpanel" aria-labelledby="picking-tab">
+          <!-- Section 1 -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">Enable Stock Picking Type Restriction</h1>
+            <p class="text-center text-muted">To apply restrictions per operation type, ensure the user is assigned the <strong>Stock User</strong> role, not <strong>Inventory Manager</strong>.</p>
+            <div class="text-center">
+              <img src="images/1.png" class="img-fluid rounded shadow-sm" alt="Enable Restriction">
             </div>
+          </div>
+
+          <!-- Section 2 -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">Assign Specific Picking Types per User</h1>
+            <p class="text-center text-muted">Use the <strong>Stock Picking Type</strong> field in the User form to define visible operations. Each user sees only what is assigned to them.</p>
+            <div class="text-center">
+              <img src="images/2.png" class="img-fluid rounded shadow-sm" alt="Assign Picking Type">
+            </div>
+          </div>
+
+          <!-- Section 3 -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">How Restrictions Are Enforced</h1>
+            <p class="text-center text-muted">Stock Users see only their assigned Picking Types. This is enforced through record rules inside the module.</p>
+            <div class="text-center">
+              <img src="images/3.png" class="img-fluid rounded shadow-sm" alt="Restricted Access">
+            </div>
+          </div>
+
+          <!-- Section 4 -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">Visual Results of Access Control</h1>
+            <p class="text-center text-muted">Users interact only with the operations they’re allowed to. See examples below.</p>
+            <div class="text-center d-flex flex-wrap justify-content-center gap-3">
+              <img src="images/4.png" class="img-fluid rounded shadow-sm" alt="View 1" style="max-width: 300px;">
+              <img src="images/5.png" class="img-fluid rounded shadow-sm" alt="View 2" style="max-width: 300px;">
+              <img src="images/6.png" class="img-fluid rounded shadow-sm" alt="View 3" style="max-width: 300px;">
+            </div>
+          </div>
         </div>
 
-        <!-- Section 2: Assign Picking Types -->
-        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-            <div class="p-md-5 p-3 position-relative">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                            Assign Specific Picking Types per User
-                        </h1>
-                    </div>
-                    <div class="col-md-12 mb-4">
-                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                            Within the User form, use the <strong>Stock Picking Type</strong> field to define which operations the user is allowed to access. For example, you can make "Warehouse Keeper 1" see only their assigned operations, completely hiding "Warehouse 2" types.
-                        </p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                            <img alt="Assign Picking Type" class="img-fluid" loading="lazy"
-                                 src="images/2.png" style="min-height: 1px;">
-                        </div>
-                    </div>
-                </div>
+        <!-- Location Tab -->
+        <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
+          <!-- إعادة استخدام نفس المكونات لتبويب الموقع -->
+          <!-- يمكنك نسخ المحتوى من الأعلى وتعديله كما يلزم -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">User Warehouse Location Control</h1>
+            <p class="text-center text-muted">Control access by defining allowed warehouse locations per user.</p>
+            <div class="text-center">
+              <img src="images/user_location.png" class="img-fluid rounded shadow-sm" alt="User Warehouse Location">
             </div>
+          </div>
         </div>
-
-        <!-- Section 3: Restricted Access Based on Role -->
-        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-            <div class="p-md-5 p-3 position-relative">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                            How Restrictions Are Enforced
-                        </h1>
-                    </div>
-                    <div class="col-md-12 mb-4">
-                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                            Users with the **Stock User** role will only see the Picking Types assigned to them. This behavior is enforced by record rules configured in the module to enhance control and prevent unauthorized access.
-                        </p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                            <img alt="Restricted Access" class="img-fluid" loading="lazy"
-                                 src="images/3.png" style="min-height: 1px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 4: Results in Action -->
-        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-            <div class="p-md-5 p-3 position-relative">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                            Visual Results of Access Control
-                        </h1>
-                    </div>
-                    <div class="col-md-12 mb-4">
-                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                            As shown below, users will only interact with the operations they're allowed to. These screens demonstrate how visibility is tailored based on role and assigned types.
-                        </p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
-                            <img alt="View Example 1" class="img-fluid" loading="lazy" src="images/4.png">
-                        </div>
-                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
-                            <img alt="View Example 2" class="img-fluid" loading="lazy" src="images/5.png">
-                        </div>
-                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
-                            <img alt="View Example 3" class="img-fluid" loading="lazy" src="images/6.png">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
-</div>
-
-        </div>
-    </div>
-
-
-
-
-       
-    <div class="tab-content p-md-5 p-2 py-3" id="myTabContent">
-        <div aria-labelledby="oo-tab"
-             class="tab-pane fade show active" id="oo"
-             role="tabpanel">
-
-   <div class="tab-content p-md-5 p-2 py-3" id="myTabContent">
-    <div aria-labelledby="oo-tab" class="tab-pane fade show active" id="oo" role="tabpanel">
-
-        <!-- Section 1: Enable Restriction Option -->
-        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-            <div class="p-md-5 p-3 position-relative">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                            Enable Stock Picking Type Restriction
-                        </h1>
-                    </div>
-                    <div class="col-md-12 mb-4">
-                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                            To apply restrictions per operation type, ensure the user is assigned the **Stock User** role, not **Inventory Manager**. Only then will you be able to control their visible Picking Types.
-                        </p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                            <img alt="Enable Restriction" class="img-fluid" loading="lazy"
-                                 src="images/1.png" style="min-height: 1px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 2: Assign Picking Types -->
-        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-            <div class="p-md-5 p-3 position-relative">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                            Assign Specific Picking Types per User
-                        </h1>
-                    </div>
-                    <div class="col-md-12 mb-4">
-                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                            Within the User form, use the <strong>Stock Picking Type</strong> field to define which operations the user is allowed to access. For example, you can make "Warehouse Keeper 1" see only their assigned operations, completely hiding "Warehouse 2" types.
-                        </p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                            <img alt="Assign Picking Type" class="img-fluid" loading="lazy"
-                                 src="images/2.png" style="min-height: 1px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 3: Restricted Access Based on Role -->
-        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-            <div class="p-md-5 p-3 position-relative">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                            How Restrictions Are Enforced
-                        </h1>
-                    </div>
-                    <div class="col-md-12 mb-4">
-                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                            Users with the **Stock User** role will only see the Picking Types assigned to them. This behavior is enforced by record rules configured in the module to enhance control and prevent unauthorized access.
-                        </p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                            <img alt="Restricted Access" class="img-fluid" loading="lazy"
-                                 src="images/3.png" style="min-height: 1px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 4: Results in Action -->
-        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-            <div class="p-md-5 p-3 position-relative">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                            Visual Results of Access Control
-                        </h1>
-                    </div>
-                    <div class="col-md-12 mb-4">
-                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                            As shown below, users will only interact with the operations they're allowed to. These screens demonstrate how visibility is tailored based on role and assigned types.
-                        </p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
-                            <img alt="View Example 1" class="img-fluid" loading="lazy" src="images/4.png">
-                        </div>
-                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
-                            <img alt="View Example 2" class="img-fluid" loading="lazy" src="images/5.png">
-                        </div>
-                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
-                            <img alt="View Example 3" class="img-fluid" loading="lazy" src="images/6.png">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-        </div>
-    </div>
-
-</div>
-
-
-                <!--  -->
-
-
-                
-
-
-            </div>
-
-            <!-- licence -->
-            <div class="tab-pane fade" id="profile" role="tabpanel"
-                 aria-labelledby="profile-tab">
-                <div class="px-5">
-                    ....
-                </div>
-            </div>
-            <!--  -->
-        </div>
-        <!--  -->
-    </div>
-</div>
+  </div>
 </body>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
