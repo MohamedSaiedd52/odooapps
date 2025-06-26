@@ -106,101 +106,80 @@
       </span>
     </div>
 
-      <!-- Main Title -->
-  <div class="text-center mb-5">
-    <h1 class="fw-bold" style="font-size: 48px;">Screenshots</h1>
-    <p class="text-muted">Explore visual examples of user access controls by Picking Type and Warehouse Location</p>
-  </div>
+    <!-- Tabs -->
+    <div class="bg-white mb-4" style="border: 1px solid #EBEEF2; border-radius: 6px; box-shadow: 0 8px 20px -4px rgba(0,0,0,0.1);">
+      <ul class="nav nav-tabs justify-content-center bg-white py-2" role="tablist" style="border-radius: 6px 6px 0 0;">
+        <li class="nav-item">
+          <a class="nav-link active" id="picking-tab" data-bs-toggle="tab" href="#picking" role="tab" aria-controls="picking" aria-selected="true"
+             style="color:#121212; font-weight:500; font-size:16px;">
+             Picking Type
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="location-tab" data-bs-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected="false"
+             style="color:#121212; font-weight:500; font-size:16px;">
+             User Warehouse Location
+          </a>
+        </li>
+      </ul>
 
-  <!-- Tabs Navigation -->
-  <div class="screenshot-box">
-    <ul class="nav nav-tabs justify-content-center bg-white" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="picking-tab" data-bs-toggle="tab" data-bs-target="#picking" type="button" role="tab" aria-controls="picking" aria-selected="true">
-          Picking Type
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="location-tab" data-bs-toggle="tab" data-bs-target="#location" type="button" role="tab" aria-controls="location" aria-selected="false">
-          User Warehouse Location
-        </button>
-      </li>
-    </ul>
+      <div class="tab-content p-md-5 p-2 py-3">
+        <!-- Picking Type Tab -->
+        <div class="tab-pane fade show active" id="picking" role="tabpanel" aria-labelledby="picking-tab">
+          <!-- Section 1 -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">Enable Stock Picking Type Restriction</h1>
+            <p class="text-center text-muted">To apply restrictions per operation type, ensure the user is assigned the <strong>Stock User</strong> role, not <strong>Inventory Manager</strong>.</p>
+            <div class="text-center">
+              <img src="images/1.png" class="img-fluid rounded shadow-sm" alt="Enable Restriction">
+            </div>
+          </div>
 
-    <!-- Tabs Content -->
-    <div class="tab-content p-4" id="myTabContent">
+          <!-- Section 2 -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">Assign Specific Picking Types per User</h1>
+            <p class="text-center text-muted">Use the <strong>Stock Picking Type</strong> field in the User form to define visible operations. Each user sees only what is assigned to them.</p>
+            <div class="text-center">
+              <img src="images/2.png" class="img-fluid rounded shadow-sm" alt="Assign Picking Type">
+            </div>
+          </div>
 
-      <!-- Picking Type Tab -->
-      <div class="tab-pane fade show active" id="picking" role="tabpanel" aria-labelledby="picking-tab">
+          <!-- Section 3 -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">How Restrictions Are Enforced</h1>
+            <p class="text-center text-muted">Stock Users see only their assigned Picking Types. This is enforced through record rules inside the module.</p>
+            <div class="text-center">
+              <img src="images/3.png" class="img-fluid rounded shadow-sm" alt="Restricted Access">
+            </div>
+          </div>
 
-        <!-- Section 1 -->
-        <div class="mb-5">
-          <h2 class="section-title">Enable Stock Picking Type Restriction</h2>
-          <p class="section-desc">To apply restrictions per operation type, assign the user the <strong>Stock User</strong> role instead of <strong>Inventory Manager</strong>.</p>
-          <div class="text-center mt-4">
-            <img src="images/1.png" alt="Enable Restriction" class="img-fluid screenshot-img">
+          <!-- Section 4 -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">Visual Results of Access Control</h1>
+            <p class="text-center text-muted">Users interact only with the operations they’re allowed to. See examples below.</p>
+            <div class="text-center d-flex flex-wrap justify-content-center gap-3">
+              <img src="images/4.png" class="img-fluid rounded shadow-sm" alt="View 1" style="max-width: 300px;">
+              <img src="images/5.png" class="img-fluid rounded shadow-sm" alt="View 2" style="max-width: 300px;">
+              <img src="images/6.png" class="img-fluid rounded shadow-sm" alt="View 3" style="max-width: 300px;">
+            </div>
           </div>
         </div>
 
-        <!-- Section 2 -->
-        <div class="mb-5">
-          <h2 class="section-title">Assign Specific Picking Types per User</h2>
-          <p class="section-desc">Use the <strong>Stock Picking Type</strong> field in the User form to assign which operations they can access.</p>
-          <div class="text-center mt-4">
-            <img src="images/2.png" alt="Assign Picking Type" class="img-fluid screenshot-img">
+        <!-- Location Tab -->
+        <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
+          <!-- إعادة استخدام نفس المكونات لتبويب الموقع -->
+          <!-- يمكنك نسخ المحتوى من الأعلى وتعديله كما يلزم -->
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">User Warehouse Location Control</h1>
+            <p class="text-center text-muted">Control access by defining allowed warehouse locations per user.</p>
+            <div class="text-center">
+              <img src="images/user_location.png" class="img-fluid rounded shadow-sm" alt="User Warehouse Location">
+            </div>
           </div>
         </div>
-
-        <!-- Section 3 -->
-        <div class="mb-5">
-          <h2 class="section-title">How Restrictions Are Enforced</h2>
-          <p class="section-desc">Users will only see Picking Types assigned to them. This is enforced through record rules.</p>
-          <div class="text-center mt-4">
-            <img src="images/3.png" alt="Restricted Access" class="img-fluid screenshot-img">
-          </div>
-        </div>
-
-        <!-- Section 4 -->
-        <div class="mb-3">
-          <h2 class="section-title">Visual Results of Access Control</h2>
-          <p class="section-desc">Users interact only with operations they are allowed to. See examples below:</p>
-          <div class="text-center mt-4 d-flex justify-content-center flex-wrap gap-3">
-            <img src="images/4.png" alt="Result 1" class="img-fluid screenshot-img" style="max-width: 300px;">
-            <img src="images/5.png" alt="Result 2" class="img-fluid screenshot-img" style="max-width: 300px;">
-            <img src="images/6.png" alt="Result 3" class="img-fluid screenshot-img" style="max-width: 300px;">
-          </div>
-        </div>
-
       </div>
-
-      <!-- Warehouse Location Tab -->
-      <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
-
-        <!-- Section 1 -->
-        <div class="mb-5">
-          <h2 class="section-title">Enable User Warehouse Location Restriction</h2>
-          <p class="section-desc">From the User form, you can control access to specific warehouse locations using the <strong>Allowed Locations</strong> field.</p>
-          <div class="text-center mt-4">
-            <img src="images/user_loc1.png" alt="User Location 1" class="img-fluid screenshot-img">
-          </div>
-        </div>
-
-        <!-- Section 2 -->
-        <div class="mb-5">
-          <h2 class="section-title">Location-Based Visibility</h2>
-          <p class="section-desc">Users will only see and manage records within the locations assigned to them.</p>
-          <div class="text-center mt-4 d-flex justify-content-center flex-wrap gap-3">
-            <img src="images/user_loc2.png" alt="User Location 2" class="img-fluid screenshot-img" style="max-width: 300px;">
-            <img src="images/user_loc3.png" alt="User Location 3" class="img-fluid screenshot-img" style="max-width: 300px;">
-          </div>
-        </div>
-
-      </div>
-
     </div>
   </div>
-</div>
- </div>
 </body>
 
 
