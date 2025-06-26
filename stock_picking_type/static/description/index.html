@@ -126,6 +126,8 @@
       <div class="tab-content p-md-5 p-2 py-3">
         <!-- Picking Type Tab -->
         <div class="tab-pane fade show active" id="picking" role="tabpanel" aria-labelledby="picking-tab">
+
+
           <!-- Section 1 -->
           <div class="mb-4 p-md-5 p-3 bg-light rounded">
             <h1 class="text-center fw-bold" style="font-size:40px;">Enable Stock Picking Type Restriction</h1>
@@ -167,15 +169,47 @@
 
         <!-- Location Tab -->
         <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
-          <!-- إعادة استخدام نفس المكونات لتبويب الموقع -->
-          <!-- يمكنك نسخ المحتوى من الأعلى وتعديله كما يلزم -->
+         
+
+
           <div class="mb-4 p-md-5 p-3 bg-light rounded">
             <h1 class="text-center fw-bold" style="font-size:40px;">User Warehouse Location Control</h1>
             <p class="text-center text-muted">Control access by defining allowed warehouse locations per user.</p>
             <div class="text-center">
-              <img src="images/user_location.png" class="img-fluid rounded shadow-sm" alt="User Warehouse Location">
+              <img src="images/11.png" class="img-fluid rounded shadow-sm" alt="User Warehouse Location">
             </div>
           </div>
+
+ 
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">Enable Stock Picking Type Restriction</h1>
+            <p class="text-center text-muted">To apply restrictions per operation type, ensure the user is assigned the <strong>Stock User</strong> role, not <strong>Inventory Manager</strong>.</p>
+            <div class="text-center">
+              <img src="images/1.png" class="img-fluid rounded shadow-sm" alt="Enable Restriction">
+            </div>
+          </div>
+
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">Assign Specific Picking Types per User</h1>
+            <p class="text-center text-muted">Use the <strong>Stock Picking Type</strong> field in the User form to define visible operations. Each user sees only what is assigned to them.</p>
+            <div class="text-center">
+              <img src="images/2.png" class="img-fluid rounded shadow-sm" alt="Assign Picking Type">
+            </div>
+          </div>
+
+        
+          <div class="mb-4 p-md-5 p-3 bg-light rounded">
+            <h1 class="text-center fw-bold" style="font-size:40px;">How Restrictions Are Enforced</h1>
+            <p class="text-center text-muted">Stock Users see only their assigned Picking Types. This is enforced through record rules inside the module.</p>
+            <div class="text-center">
+              <img src="images/3.png" class="img-fluid rounded shadow-sm" alt="Restricted Access">
+            </div>
+          </div>
+
+
+
+
+
         </div>
       </div>
     </div>
