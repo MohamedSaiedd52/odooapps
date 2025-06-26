@@ -133,114 +133,113 @@
         <div aria-labelledby="overview-tab"
              class="tab-pane fade show active" id="overview"
              role="tabpanel">
-<!-- Section: Store Keeper Access -->
-<div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-    <div class="p-md-5 p-3 position-relative">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                    Store Keeper Access Setup
-                </h1>
-            </div>
 
-            <!-- Step 1 -->
-            <div class="col-md-12 mb-3">
-                <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                    Step 1 -> Give the store keeper access to warehouses as a warehouse user.
-                </p>
-            </div>
-            <div class="col-md-12 text-center mb-5">
-                <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                    <img alt="Warehouse Access" class="img-fluid" loading="lazy"
-                         src="images/1.png" style="min-height:1px;">
-                </div>
-            </div>
+   <div class="tab-content p-md-5 p-2 py-3" id="myTabContent">
+    <div aria-labelledby="overview-tab" class="tab-pane fade show active" id="overview" role="tabpanel">
 
-            <!-- Step 2 -->
-            <div class="col-md-12 mb-3">
-                <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                    Step 2 -> Choose which warehouse operations (Picking Types) the store keeper can do.
-                </p>
-            </div>
-            <div class="col-md-12 text-center">
-                <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                    <img alt="Picking Types" class="img-fluid" loading="lazy"
-                         src="images/2.png" style="min-height:1px;">
+        <!-- Section 1: Enable Restriction Option -->
+        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
+            <div class="p-md-5 p-3 position-relative">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
+                            Enable Stock Picking Type Restriction
+                        </h1>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
+                            To apply restrictions per operation type, ensure the user is assigned the **Stock User** role, not **Inventory Manager**. Only then will you be able to control their visible Picking Types.
+                        </p>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
+                            <img alt="Enable Restriction" class="img-fluid" loading="lazy"
+                                 src="images/1.PNG" style="min-height: 1px;">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Section 2: Assign Picking Types -->
+        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
+            <div class="p-md-5 p-3 position-relative">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
+                            Assign Specific Picking Types per User
+                        </h1>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
+                            Within the User form, use the <strong>Stock Picking Type</strong> field to define which operations the user is allowed to access. For example, you can make "Warehouse Keeper 1" see only their assigned operations, completely hiding "Warehouse 2" types.
+                        </p>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
+                            <img alt="Assign Picking Type" class="img-fluid" loading="lazy"
+                                 src="images/2.PNG" style="min-height: 1px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Restricted Access Based on Role -->
+        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
+            <div class="p-md-5 p-3 position-relative">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
+                            How Restrictions Are Enforced
+                        </h1>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
+                            Users with the **Stock User** role will only see the Picking Types assigned to them. This behavior is enforced by record rules configured in the module to enhance control and prevent unauthorized access.
+                        </p>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
+                            <img alt="Restricted Access" class="img-fluid" loading="lazy"
+                                 src="images/3.PNG" style="min-height: 1px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Results in Action -->
+        <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
+            <div class="p-md-5 p-3 position-relative">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 style="font-weight:700; font-size:40px; text-align:center;">
+                            Visual Results of Access Control
+                        </h1>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
+                            As shown below, users will only interact with the operations they're allowed to. These screens demonstrate how visibility is tailored based on role and assigned types.
+                        </p>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
+                            <img alt="View Example 1" class="img-fluid" loading="lazy" src="images/4.PNG">
+                        </div>
+                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
+                            <img alt="View Example 2" class="img-fluid" loading="lazy" src="images/5.PNG">
+                        </div>
+                        <div class="d-inline-block p-3 shadow-sm m-2" style="background-color:#fff; border-radius:10px">
+                            <img alt="View Example 3" class="img-fluid" loading="lazy" src="images/6.PNG">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
-
-
-
-            <!-- Section 2: User Access in Action -->
-            <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-                <div class="p-md-5 p-3 position-relative">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                                Restricted Access Based on Role
-                            </h1>
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                                Users with the "Stock User" role will only see Picking Types assigned to them. This behavior is enforced by record rules applied through this module.
-                            </p>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                                <img alt="User Restriction" class="img-fluid" loading="lazy"
-                                     src="images/3.png" style="min-height: 1px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section 3: Manager Full Access -->
-            <div class="position-relative mb-4" style="border-radius:10px; background-color:#f4f4f4">
-                <div class="p-md-5 p-3 position-relative">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 style="font-weight:700; font-size:40px; text-align:center;">
-                                Inventory  See Everything
-                            </h1>
-                        </div>
-                        <!-- <div class="col-md-12 mb-4">
-                            <p style="font-size:16px; text-align:center; color:var(--text-color-light)">
-                                If a user is granted the "Inventory Manager" role, they will automatically bypass restrictions and have access to all Picking Types and Locations, as per Odoo default behavior.
-                            </p>
-                        </div> -->
-                      
-
-                           <div class="col-md-12 text-center">
-                            <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                                <img alt="Manager Access" class="img-fluid" loading="lazy"
-                                     src="images/4.png" style="min-height: 1px;">
-                            </div>
-                        </div>
-
-                           <div class="col-md-12 text-center">
-                            <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                                <img alt="Manager Access" class="img-fluid" loading="lazy"
-                                     src="images/5.png" style="min-height: 1px;">
-                            </div>
-                        </div>
-
-
-                           <div class="col-md-12 text-center">
-                            <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff; border-radius:10px">
-                                <img alt="Manager Access" class="img-fluid" loading="lazy"
-                                     src="images/6.png" style="min-height: 1px;">
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>

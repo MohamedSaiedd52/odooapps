@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="view_warehouse" model="ir.ui.view">
+        <field name="name">stock.warehouse.view.form.inherit.user.warehouse.restriction</field>
+        <field name="model">stock.warehouse</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Warehouse Allowed users"
+                      groups="stock_picking_type.user_warehouse_restriction_group_user"
+                      name="allowed_users" colspan="4">
+                    <group colspan="4">
+                        <field name="user_ids" widget="many2many_tags"/>
+                        <field name="restrict_location"/>
+                    </group>
+                    <button string="Restrict location for User"
+                            class="btn btn-link"
+                            invisible="restrict_location == False"
+                            icon="fa-arrow-right"
+                            type="object" name="action_open_users_view"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
