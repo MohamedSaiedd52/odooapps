@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 {
-    "name": "Stock Picking Product Location Filter",
-    "category": "Extra Tools",
-    "summary": "Filter products in stock picking by available locations",
+    "name": "Filter Products by Stock Location",
+    "category": "Inventory",
+    "summary": "Filter products in stock picking lines based on stock locations",
     "description": """
 This module filters products in stock picking lines based on available stock locations.
 
@@ -23,5 +22,4 @@ Features:
         "views/stock_picking_view.xml",
     ],
     "images": ["static/description/thumbnail.png"],
-
 }
