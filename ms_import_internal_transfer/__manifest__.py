@@ -33,8 +33,14 @@ Ideal for inventory managers and warehouse users who want to save time during st
         "wizard/message_wizard.xml",
         "views/stock.xml"
     ],
-    "images": ["static/description/bannar.png"],
-    "installable": True,
+    'images': [
+
+'static/description/banner.gif',
+
+'static/description/icon.png',
+
+],
+ "installable": True,
     "application": True,
     "auto_install": False
 }
