@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 {
-    "name": "MTO: Manufacture Order  Draft",
-    "summary": "Keep MTO-created Manufacturing Orders in Draft instead of confirming automatically.",
+    "name": "Draft MTO MO",
+    "summary": "Manufacture Orders from MTO stay in Draft state until manually confirmed.",
     "version": "17.0.1.0.0",
     "category": "Manufacturing/Manufacturing",
     "author": "Mohamed Saied",
@@ -9,6 +10,6 @@
     "depends": ["mrp", "stock"],
     "data": [],
     "images": ["static/description/banner.svg"],
-    "installable": true,
-    "application": false
+    "installable": True,
+    "application": False,
 }
