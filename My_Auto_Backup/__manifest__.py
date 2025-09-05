@@ -22,8 +22,11 @@
         'data/ir_cron_data.xml',
         'views/db_backup.xml',
     ],
-    'images': ['static/description/banner.jpg'],
-    'license': 'LGPL-3',
+    'images': [
+ 'static/description/banner.gif',
+'static/description/icon.png'
+],
+'license': 'LGPL-3',
     'installable': True,
     'auto_install': False,
     'application': True,
