@@ -9,7 +9,7 @@
     "license": "LGPL-3",
     "depends": ["mrp", "stock"],
     "data": [],
-    "images": ["static/description/banner.svg"],
+    "images": ["static/description/bac.png"],
     "installable": True,
     "application": False,
 }
