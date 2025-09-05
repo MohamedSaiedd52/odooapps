@@ -21,5 +21,9 @@ Features:
     "data": [
         "views/stock_picking_view.xml",
     ],
-    "images": ["static/description/thumbnail.png"],
+    "images": [
+"static/description/banner.gif",
+"static/description/icon.png",
+
+],
 }
