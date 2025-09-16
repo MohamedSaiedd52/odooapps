@@ -12,7 +12,7 @@
     ],
     'assets': {
         'point_of_sale._assets_pos': [
-            'pos_analytic_tag/static/src/js/PosSession.js',
+            'pos_analytic_tag_custom/static/src/js/PosSession.js',
         ],
     },
      'images': [
