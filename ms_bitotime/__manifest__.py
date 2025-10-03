@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Odoo ZK Biotime",
+    'name': "ZK Biotime",
     'category': 'Hr',
     'author':'Mohamed Saied',
     'depends': ['base', 'hr', 'hr_attendance','mail'],
