@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odoo App 3 Index</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif !important; background-color: #fff !important; }
+        .card-img { width: 100%; height: auto; }
+        .card-box { border: 1px solid #d8d6d6; border-radius: 4px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .caption { margin: .75rem 0 1.25rem; font-weight: 600; color: #282F33; font-size: 1rem; }
+        .container-section { padding: 1rem 4rem; }
+    </style>
+</head>
+
+<body>
+<section>
+    <div class="container">
+        <div class="container rounded">
+            <ul class="nav nav-tabs d-flex"
+                style="width: fit-content;margin: 0 auto;gap: 1rem;">
+                <li class="col text-center py-2 text-nowrap "
+                    style="color: #fff; background-color: #714B67;border-radius: 6px 6px 0px 0px;">
+                    <a class="active show" data-toggle="tab" href="#tab1"
+                       style="color: #fff;font-weight: 500; background-color: #714B67; text-decoration: none;">
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content" style="background-color: rgba(121, 113, 119, 0.04);">
+                <div id="tab1" class="tab-pane fade in active show">
+
+                    <!-- 1 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/1.PNG" class="img-thumbnail card-img" alt="Dashboard screenshot 1">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Dashboard view showing the attendance chart, today's attendances, employees and total devices.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/2.PNG" class="img-thumbnail card-img" alt="Link ZK code to employee">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Explain how to link the ZK device code to an employee record in Odoo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/3.PNG" class="img-thumbnail card-img" alt="Configuration and chatter">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Configuration and chatter: steps to set up the integration and document the setup process.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/4.PNG" class="img-thumbnail card-img" alt="Logs are pulled without affecting users">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    The system fetches device logs without impacting active users in the production environment.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/5.PNG" class="img-thumbnail card-img" alt="Raw transactions">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Raw transactions are stored in the `biotime.transaction` model before being converted to attendance records.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/6.PNG" class="img-thumbnail card-img" alt="Convert transactions to attendances">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Convert raw transactions into `hr.attendance` records; missing punches are detected and late minutes calculated from the employee schedule.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/7.PNG" class="img-thumbnail card-img" alt="Biotime data comparison">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Inspect Biotime data entries to compare and validate raw device logs before import.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+            
+
+                </div> <!-- tab1 -->
+            </div> <!-- tab content -->
+        </div>
+    </div>
+</section>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

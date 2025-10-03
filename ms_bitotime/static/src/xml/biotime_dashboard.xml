@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="ms_bitotime.Template">
+        <div class="container mt-4">
+            <h2 class="text-center mb-4">Biotime Dashboard</h2>
+
+            <!-- Tiles -->
+            <div class="row text-center mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-info text-white p-3 rounded">
+                        <h3><t t-esc="state.devices"/></h3>
+                        <p>Devices</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white p-3 rounded">
+                        <h3><t t-esc="state.employees"/></h3>
+                        <p>Employees</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-warning text-dark p-3 rounded">
+                        <h3><t t-esc="state.attendance"/></h3>
+                        <p>Today Attendance</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="card shadow-sm p-4">
+                <h4 class="mb-3">Weekly Attendance</h4>
+                <canvas t-ref="attendanceChart" height="100"></canvas>
+            </div>
+        </div>
+    </t>
+</templates>
