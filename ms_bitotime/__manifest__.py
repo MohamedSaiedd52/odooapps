@@ -2,7 +2,7 @@
 {
     'name': "Odoo ZK Biotime",
     'category': 'Hr',
-    'author':'MOHAMED SAIED',
+    'author':'Mohamed Saied',
     'depends': ['base', 'hr', 'hr_attendance','mail'],
     'external_dependencies':
         {'python':
