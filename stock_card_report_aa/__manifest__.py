@@ -1,5 +1,5 @@
 {
-    "name": "Stock Card Report 18",
+    "name": "Stock Card Report 19",
     "summary": "Easily generate detailed stock card reports directly from Inventory Reporting.",
     "category": "Inventory/Warehouse",
     "author": "Mohamed Saied",
