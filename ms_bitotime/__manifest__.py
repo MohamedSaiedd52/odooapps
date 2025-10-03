@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "MS Biotime Integration",
+    'name': "Odoo ZKTeco  Biotime Integration ZK",
     'category': 'Hr',
     'author':'MOHAMED SAIED',
     'depends': ['base', 'hr', 'hr_attendance','mail'],
@@ -29,4 +29,13 @@
     'license': 'LGPL-3',
     'price': 100.0,
     'currency': 'USD',
+    'summary': "Sync ZKTeco Biotime (ZK devices, fingerprint, face recognition, RFID) with Odoo Attendance & HR",
+    'description': """
+         Odoo ZKTeco Biotime Integration
+         ===================================
+         - Full integration with ZKTeco Biotime & ZK devices
+         - Supports fingerprint, RFID, face recognition
+         - Models supported: iClock, uFace, MB Series, K Series, UA Series, F Series, LX Series, SpeedFace, ProFace X, SilkBio, ZPad
+         - Automatic attendance & payroll sync
+     """,
 }
