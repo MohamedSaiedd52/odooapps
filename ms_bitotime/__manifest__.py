@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Odoo ZKTeco  Biotime Integration ZK",
+    'name': "Odoo ZK Biotime",
     'category': 'Hr',
     'author':'MOHAMED SAIED',
     'depends': ['base', 'hr', 'hr_attendance','mail'],
