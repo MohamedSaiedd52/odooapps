@@ -27,7 +27,7 @@
         ],
     },
     'license': 'LGPL-3',
-    'price': 100.0,
+    'price': 60,
     'currency': 'USD',
     'summary': "Sync ZKTeco Biotime (ZK devices, fingerprint, face recognition, RFID) with Odoo Attendance & HR",
     'description': """
