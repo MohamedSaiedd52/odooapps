@@ -19,5 +19,6 @@
     'description': """
         This module allows you to manage customer and supplier cheques efficiently.
     """,    
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.png', 'static/description/screenshot_incoming.png'],
+
 }
