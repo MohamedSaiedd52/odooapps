@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from lxml import etree
+from datetime import date
 
 class Msin(models.Model):
     _name = 'ms.in'
@@ -14,13 +15,20 @@ class Msin(models.Model):
     cheque_no = fields.Char(string='Cheque Number', required=True)
     payer_id = fields.Many2one('res.partner', string='Customer', required=True)
 
-    cheque_date = fields.Date(string='Cheque Date')
+
+    cheque_date = fields.Date(
+        string='Cheque Date', 
+        default=fields.Date.context_today
+    )
+
+
     receive_date = fields.Date(string='Receive Date')
     deposit_date = fields.Date(string='Deposit Date', copy=False)
     cashed_date = fields.Date(string='Cashed Date', copy=False)
 
     amount = fields.Monetary(string='Amount', required=True)
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id', readonly=True, store=True)
+    description = fields.Char(string='Description')
     move_count = fields.Integer(
         compute='_compute_move_count',
         string='Journal Entry'

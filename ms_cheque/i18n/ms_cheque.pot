@@ -1,0 +1,922 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ms_cheque
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-30 19:50+0000\n"
+"PO-Revision-Date: 2026-01-30 19:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ms_cheque
+#: model:ir.actions.report,print_report_name:ms_cheque.action_report_payment_voucher
+msgid "'Payment - %s' % (object.name)"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.actions.report,print_report_name:ms_cheque.action_report_receipt_voucher
+msgid "'Receipt - %s' % (object.name)"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+msgid ""
+".................................<br/>\n"
+"                                <strong>العميل</strong><br/>Customer"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid ""
+".................................<br/>\n"
+"                                <strong>المحاسب</strong><br/>Accountant"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid ""
+".................................<br/>\n"
+"                                <strong>المدير</strong><br/>Manager"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid ""
+".................................<br/>\n"
+"                                <strong>المستلم</strong><br/>Receiver"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "<span>Credit Account</span>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+msgid "<span>Debit Account</span>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>Account</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>Cheque No</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>Date:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>For</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>No:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+msgid "<strong>Pay To</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>Received From</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>The Sum Of</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>استلمنا من:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>الحساب:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.voucher_custom_layout
+msgid ""
+"<strong>الصفحة</strong>\n"
+"                    <strong>:</strong>\n"
+"                    <span class=\"page\"/>/\n"
+"                    <span class=\"topage\"/>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.voucher_custom_layout
+msgid ""
+"<strong>زمن إستخراج التقرير</strong>\n"
+"                    <strong>:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>شيك رقم:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.voucher_custom_layout
+msgid ""
+"<strong>طبع بواسطة</strong>\n"
+"                    <strong>:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>مبلغ وقدره:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "<strong>وذلك عن:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+msgid "<strong>يصرف إلى:</strong>"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Accounting"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_needaction
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_ids
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_exception_decoration
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_state
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_type_icon
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__amount
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__amount
+msgid "Amount"
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_in.py:0
+#: code:addons/ms_cheque/models/ms_out.py:0
+msgid "Amount must be greater than zero."
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Are you sure you want to reverse the journal entries for this cheque?"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_attachment_count
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__bank_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__bank_account_id
+msgid "Bank Account"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__cash_bank_account_id
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__cash_bank_account_id
+msgid "Bank account used while cashing the cheque"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Cancel"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_in__state__cancel
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_out__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Cash"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__cash_bank_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__cash_bank_account_id
+msgid "Cash / Bank Account"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_in__state__cashed
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_out__state__cashed
+msgid "Cashed"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__cashed_date
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__cashed_date
+msgid "Cashed Date"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__cheque_date
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__cheque_date
+msgid "Cheque Date"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "Cheque Management"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__cheque_no
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__cheque_no
+msgid "Cheque Number"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.constraint,message:ms_cheque.constraint_ms_in_cheque_in_unique
+#: model:ir.model.constraint,message:ms_cheque.constraint_ms_out_cheque_out_unique
+msgid "Cheque number must be unique per company."
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model,name:ms_cheque.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__company_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__company_id
+msgid "Company"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model,name:ms_cheque.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_cheque_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__create_uid
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__create_date
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__credit_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__credit_account_id
+msgid "Credit Account"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__currency_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__customer_short_name
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__payer_id
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+msgid "Customer"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__customer_name
+msgid "Customer Name"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__debit_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__debit_account_id
+msgid "Debit Account"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "Default Accounts"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "Default credit account used for outgoing cheques"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "Default debit account used for incoming cheques"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "Default journal used for incoming cheques"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "Default journal used for outgoing cheques"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+msgid "Deposit"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__deposit_date
+msgid "Deposit Date"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_in__state__deposit
+msgid "Deposited"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__description
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__description
+msgid "Description"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__display_name
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_in__state__draft
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_out__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_follower_ids
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_partner_ids
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__activity_type_icon
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__has_message
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__id
+msgid "ID"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_exception_icon
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__activity_exception_icon
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__message_needaction
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__message_has_error
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__message_has_sms_error
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__message_has_error
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_in__type__in
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_out__type__in
+msgid "In"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_res_company__in_cheque_debit_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_res_config_settings__in_debit_account_id
+msgid "Incoming Cheque Debit Account"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_incoming_cheques
+msgid "Incoming Cheques"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_res_company__in_cheque_journal_id
+#: model:ir.model.fields,field_description:ms_cheque.field_res_config_settings__in_cheque_journal_id
+msgid "Incoming Cheques Journal"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_is_follower
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__journal_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__journal_id
+msgid "Journal"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__move_count
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Journal Entries"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__move_count
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__move_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__move_id
+msgid "Journal Entry"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model,name:ms_cheque.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__move_line_count
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__move_line_ids
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__move_line_count
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__move_line_ids
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Journal Items"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__write_uid
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__write_date
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.voucher_custom_layout
+msgid "Logo"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.cheque_management_root
+msgid "MS Cheque"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_list
+msgid "MS IN"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.actions.act_window,name:ms_cheque.action_ms_in
+#: model:ir.ui.menu,name:ms_cheque.menu_incoming_cheques_action
+msgid "MS IN "
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "MS IN  Account"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_account_move_line__in_cheque_id
+msgid "MS IN Cheque"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "MS In Journal"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "MS OUT"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_account_move_line__out_cheque_id
+msgid "MS OUT Cheque"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.actions.act_window,name:ms_cheque.action_ms_out
+#: model:ir.ui.menu,name:ms_cheque.menu_outgoing_cheques_action
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_list
+msgid "MS Out"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "MS Out Account"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_cheque_settings_inherit
+msgid "MS Out Journal"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_has_error
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_ids
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__name
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__name
+msgid "Name"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_date_deadline
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_summary
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_type_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_needaction_counter
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_has_error_counter
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__message_needaction_counter
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__message_has_error_counter
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_in.py:0
+#: code:addons/ms_cheque/models/ms_out.py:0
+msgid "Only draft cheques can be submitted."
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_out.py:0
+msgid "Only submitted cheques can be cashed."
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_in.py:0
+msgid "Only submitted cheques can be deposited."
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model,name:ms_cheque.model_ms_out
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_in__type__out
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_out__type__out
+msgid "Out"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_res_company__out_cheque_credit_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_res_config_settings__out_credit_account_id
+msgid "Outgoing Cheque Credit Account"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_outgoing_cheques
+msgid "Outgoing Cheques"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_res_company__out_cheque_journal_id
+#: model:ir.model.fields,field_description:ms_cheque.field_res_config_settings__out_cheque_journal_id
+msgid "Outgoing Cheques Journal"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.actions.report,name:ms_cheque.action_report_payment_voucher
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+msgid "Payment Voucher"
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_in.py:0
+msgid "Please select Bank Account to deposit into."
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_out.py:0
+msgid "Please select Cash / Bank Account before cashing."
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_out.py:0
+msgid "Please set Credit Account (Accounts Payable) before cashing."
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_in.py:0
+msgid "Please set Debit Account on the cheque."
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_in.py:0
+msgid "Please set Debit Account."
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.actions.report,name:ms_cheque.action_report_receipt_voucher
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "Receipt Voucher"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__receive_date
+msgid "Receive Date"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__activity_user_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.actions.server,name:ms_cheque.action_reverse_ms_in
+#: model:ir.actions.server,name:ms_cheque.action_reverse_ms_out
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Reverse Entry"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__message_has_sms_error
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_in.py:0
+msgid "Select Cash / Bank Account first."
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.actions.act_window,name:ms_cheque.action_ms_sequences
+#: model:ir.ui.menu,name:ms_cheque.menu_cheque_sequences
+msgid "Sequences"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_cheque_settings
+msgid "Settings"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__show_credit
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__show_credit
+msgid "Show Credit"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__show_debit
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__show_debit
+msgid "Show Debit"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__state
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__state
+msgid "State"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__activity_state
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Submit"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_in__state__submit
+#: model:ir.model.fields.selection,name:ms_cheque.selection__ms_out__state__submit
+msgid "Submitted"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__type
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__type
+msgid "Type"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__activity_exception_decoration
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__payee_id
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_out_form
+msgid "Vendor"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__vendor_name
+msgid "Vendor Name"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__website_message_ids
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model.fields,help:ms_cheque.field_ms_in__website_message_ids
+#: model:ir.model.fields,help:ms_cheque.field_ms_out__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: ms_cheque
+#. odoo-python
+#: code:addons/ms_cheque/models/ms_in.py:0
+msgid "You must deposit the cheque before cashing i t."
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_list
+msgid "customer"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.view_ms_in_form
+msgid "customer_name"
+msgstr ""
+
+#. module: ms_cheque
+#: model:ir.model,name:ms_cheque.model_ms_in
+msgid "in"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_payment_voucher_template
+msgid "سند صرف"
+msgstr ""
+
+#. module: ms_cheque
+#: model_terms:ir.ui.view,arch_db:ms_cheque.report_receipt_voucher_template
+msgid "سند قبض"
+msgstr ""

@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from lxml import etree
-
+from datetime import date
 class Msout(models.Model):
     _name = 'ms.out'
     _description = 'Out'
@@ -13,12 +13,12 @@ class Msout(models.Model):
     name = fields.Char(default='/', copy=False, readonly=True)
     cheque_no = fields.Char(string='Cheque Number', required=True)
     payee_id = fields.Many2one('res.partner', string='Vendor', required=True)
-
-    cheque_date = fields.Date(string='Cheque Date')
+    cheque_date = fields.Date(string='Cheque Date', default=fields.Date.context_today)
     cashed_date = fields.Date(string='Cashed Date', copy=False)
 
     amount = fields.Monetary(string='Amount', required=True)
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id', readonly=True, store=True)
+    description = fields.Char(string='Description')
     journal_id = fields.Many2one(
         'account.journal',
         string='Journal',
@@ -133,6 +133,8 @@ class Msout(models.Model):
         for rec in self:
             if rec.state != 'draft':
                 raise UserError(_('Only draft cheques can be submitted.'))
+            if rec.amount <= 0:
+                raise UserError(_('Amount must be greater than zero.'))
 
             move = rec._create_move(
                 debit_account=rec.payee_id.property_account_payable_id,

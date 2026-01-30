@@ -11,7 +11,7 @@
                 <list string="MS IN ">
                     <field name="name"/>
                     <field name="cheque_no" />
-                    <field name="payer_id" string="customer"/>
+                    <field name="payer_id" string="Customer"/>
                     <field name="cheque_date"/>
                     <field name="amount"/>
                     <field name="state"/>
@@ -50,6 +50,12 @@
                                     string="Cancel"
                                     class="btn-secondary"
                                     invisible="state in ['cashed','cancel']"/>
+
+                            <button name="action_return" type="object"
+                                    string="Reverse Entry"
+                                    class="btn-danger"
+                                    invisible="state not in ['submit', 'deposit', 'cashed']"
+                                    confirm="Are you sure you want to reverse the journal entries for this cheque?"/>
 
                             <button name="action_set_draft" type="object"
                                     string="Reset to Draft"
@@ -118,6 +124,7 @@
                                     <field name="payer_id" string="Customer"/>
                                     <field name="amount"/>
                                     <field name="journal_id"/>
+                                    <field name="description"/>
                                 </group>
 
                                 <group>
@@ -194,9 +201,15 @@
                                 class="btn-secondary"
                                 invisible="state in ['cashed','cancel']"/>
 
+                        <button name="action_return" type="object"
+                                string="Reverse Entry"
+                                class="btn-danger"
+                                invisible="state not in ['submit', 'cashed']"
+                                confirm="Are you sure you want to reverse the journal entries for this cheque?"/>
+
                         <button name="action_set_draft" type="object"
                                 string="Reset to Draft"
-                                invisible="state not in ['cashed','cancel']"/>
+                                invisible="state not in ['cashed', 'cancel']"/>
 
                         <field name="state"
                                widget="statusbar"
@@ -248,7 +261,8 @@
                                 <field name="payee_id" string="Vendor"/>
                                 <field name="amount"/>
                                 <field name="journal_id"/>
-                                  <field name="cheque_date"/>
+                                <field name="description"/>
+                                <field name="cheque_date"/>
                                 <field name="cashed_date" readonly="1"/>
                             </group>
 
@@ -319,17 +333,20 @@
                                 <field name="out_credit_account_id"/>
                             </setting>
                     <setting id="incoming_cheque_journal"
-                                string="MS IN  Journal"
-                                help="Default journal used for incoming cheques">
-                            <field name="in_cheque_journal_id"/>
-                        </setting>
+                                    string="MS In Journal"
+                                    help="Default journal used for incoming cheques">
+                                <field name="in_cheque_journal_id"/>
+                            </setting>
 
                         <setting id="outgoing_cheque_journal"
-                                string="MS Out Journal"
-                                help="Default journal used for outgoing cheques">
-                            <field name="out_cheque_journal_id"/>
-                        </setting>
-                        </block>
+                                 string="MS Out Journal"
+                                 help="Default journal used for outgoing cheques">
+                             <field name="out_cheque_journal_id"/>
+                         </setting>
+
+                       
+                      
+                         </block>
                     </app>
 
                 </xpath>
@@ -373,6 +390,33 @@
         </record>
 
         <menuitem id="menu_cheque_sequences" name="Sequences" parent="menu_cheque_configuration" action="action_ms_sequences" sequence="2"/>
+
+        <!-- ================================ -->
+        <!-- Server Actions for Reversal -->
+        <!-- ================================ -->
+        <record id="action_reverse_ms_in" model="ir.actions.server">
+            <field name="name">Reverse Entry</field>
+            <field name="model_id" ref="model_ms_in"/>
+            <field name="binding_model_id" ref="model_ms_in"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">
+                for rec in records:
+                    rec.action_return()
+            </field>
+        </record>
+
+        <record id="action_reverse_ms_out" model="ir.actions.server">
+            <field name="name">Reverse Entry</field>
+            <field name="model_id" ref="model_ms_out"/>
+            <field name="binding_model_id" ref="model_ms_out"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">
+                for rec in records:
+                    rec.action_return()
+            </field>
+        </record>
 
 </data>
 </odoo>

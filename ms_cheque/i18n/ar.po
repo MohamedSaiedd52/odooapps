@@ -27,32 +27,38 @@ msgid "Outgoing Cheque"
 msgstr "شيك صادر"
 
 #. module: ms_cheque
-#: field:ms.in,cheque_no:0
-#: field:ms.out,cheque_no:0
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__cheque_no
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__cheque_no
 msgid "Cheque Number"
 msgstr "رقم الشيك"
 
 #. module: ms_cheque
-#: field:ms.in,cheque_date:0
-#: field:ms.out,cheque_date:0
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__cheque_date
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__cheque_date
 msgid "Cheque Date"
 msgstr "تاريخ الشيك"
 
 #. module: ms_cheque
-#: field:ms.in,amount:0
-#: field:ms.out,amount:0
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__amount
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__amount
 msgid "Amount"
 msgstr "المبلغ"
 
 #. module: ms_cheque
-#: field:ms.in,payer_id:0
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__payer_id
 msgid "Customer"
 msgstr "العميل"
 
 #. module: ms_cheque
-#: field:ms.out,payee_id:0
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__payee_id
 msgid "Vendor"
 msgstr "المورد"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__state
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__state
+msgid "Status"
+msgstr "الحالة"
 
 #. module: ms_cheque
 #: selection:ms.in,state:0
@@ -112,3 +118,173 @@ msgstr "الإعدادات العامة"
 #: model:ir.ui.menu,name:ms_cheque.menu_cheque_sequences
 msgid "Sequences"
 msgstr "التسلسلات"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__description
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__description
+msgid "Description"
+msgstr "ملحوظة"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__receive_date
+msgid "Receive Date"
+msgstr "تاريخ الاستلام"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__deposit_date
+msgid "Deposit Date"
+msgstr "تاريخ الإيداع"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__cashed_date
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__cashed_date
+msgid "Cashed Date"
+msgstr "تاريخ التحصيل"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__journal_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__journal_id
+msgid "Journal"
+msgstr "دفتر اليومية"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__bank_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__bank_account_id
+msgid "Bank Account"
+msgstr "الحساب البنكي"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__cash_bank_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__cash_bank_account_id
+msgid "Cash / Bank Account"
+msgstr "حساب الصندوق / البنك"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__debit_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__debit_account_id
+msgid "Debit Account"
+msgstr "الحساب المدين"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__credit_account_id
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__credit_account_id
+msgid "Credit Account"
+msgstr "الحساب الدائن"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__move_line_count
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__move_line_count
+msgid "Journal Items"
+msgstr "قيود اليومية"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_in__move_count
+#: model:ir.model.fields,field_description:ms_cheque.field_ms_out__move_count
+msgid "Journal Entries"
+msgstr "القيود المحاسبية"
+
+#. module: ms_cheque
+#: model:ir.actions.report,name:ms_cheque.action_report_receipt_voucher
+msgid "Receipt Voucher"
+msgstr "إيصال استلام"
+
+#. module: ms_cheque
+#: model:ir.actions.report,name:ms_cheque.action_report_payment_voucher
+msgid "Payment Voucher"
+msgstr "سند صرف"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_res_config_settings__in_debit_account_id
+msgid "MS IN Account"
+msgstr "حساب الشيكات الواردة"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_res_config_settings__out_credit_account_id
+msgid "MS Out Account"
+msgstr "حساب الشيكات الصادرة"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_res_config_settings__in_cheque_journal_id
+msgid "MS In Journal"
+msgstr "دفتر يومية الشيكات الواردة"
+
+#. module: ms_cheque
+#: model:ir.model.fields,field_description:ms_cheque.field_res_config_settings__out_cheque_journal_id
+msgid "MS Out Journal"
+msgstr "دفتر يومية الشيكات الصادرة"
+
+#. module: ms_cheque
+msgid "Submit"
+msgstr "تسجيل"
+
+#. module: ms_cheque
+msgid "Deposit"
+msgstr "إيداع"
+
+#. module: ms_cheque
+msgid "Cash"
+msgstr "تحصيل"
+
+#. module: ms_cheque
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: ms_cheque
+msgid "Reset to Draft"
+msgstr "تعيين كمسودة"
+
+#. module: ms_cheque
+msgid "Reverse Entry"
+msgstr "حركه عكس القيد"
+
+#. module: ms_cheque
+msgid "Are you sure you want to reverse the journal entries for this cheque?"
+msgstr "هل أنت متأكد من رغبتك في عكس القيود المحاسبية لهذا الشيك؟"
+
+#. module: ms_cheque
+msgid "Only draft cheques can be submitted."
+msgstr "يمكن تقديم الشيكات في حالة المسودة فقط."
+
+#. module: ms_cheque
+msgid "Amount must be greater than zero."
+msgstr "يجب أن يكون المبلغ أكبر من صفر."
+
+#. module: ms_cheque
+msgid "Only submitted cheques can be deposited."
+msgstr "يمكن إيداع الشيكات المقدمة فقط."
+
+#. module: ms_cheque
+msgid "Please set Debit Account on the cheque."
+msgstr "يرجى تحديد الحساب المدين على الشيك."
+
+#. module: ms_cheque
+msgid "Please select Bank Account to deposit into."
+msgstr "يرجى اختيار الحساب البنكي للإيداع."
+
+#. module: ms_cheque
+msgid "You must deposit the cheque before cashing it."
+msgstr "يجب إيداع الشيك قبل تحصيله."
+
+#. module: ms_cheque
+msgid "Select Cash / Bank Account first."
+msgstr "اختر حساب الصندوق / البنك أولاً."
+
+#. module: ms_cheque
+msgid "Please set Debit Account."
+msgstr "يرجى تحديد الحساب المدين."
+
+#. module: ms_cheque
+msgid "Please set Credit Account (Accounts Payable) before cashing."
+msgstr "يرجى تحديد الحساب الدائن (حساب المورد) قبل الصرف."
+
+#. module: ms_cheque
+msgid "Accounting"
+msgstr "المحاسبة"
+
+#. module: ms_cheque
+msgid "Default Accounts"
+msgstr "الحسابات الافتراضية"
+
+#. module: ms_cheque
+msgid "Cheque Management"
+msgstr "إدارة الشيكات"
