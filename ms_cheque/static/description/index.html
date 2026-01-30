@@ -8,31 +8,35 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cairo:wght@400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #714B67;
-            /* Odoo Purple */
             --secondary-color: #00A09D;
-            /* Odoo Teal */
             --dark-color: #1a1a1a;
             --light-bg: #f8f9fa;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Cairo', sans-serif;
             color: var(--dark-color);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
         }
 
         .hero-section {
             background: linear-gradient(135deg, var(--primary-color) 0%, #4a3144 100%);
             color: white;
-            padding: 80px 0;
+            padding: 60px 0;
             border-bottom-left-radius: 50px;
             border-bottom-right-radius: 50px;
+        }
+
+        .section-ar {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Cairo', sans-serif;
         }
 
         .feature-card {
@@ -69,39 +73,13 @@
             font-size: 0.9rem;
         }
 
-        .workflow-step {
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 30px;
-        }
-
-        .workflow-step::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: -30px;
-            width: 2px;
-            background: var(--secondary-color);
-        }
-
-        .workflow-step:last-child::before {
-            display: none;
-        }
-
-        .step-number {
-            position: absolute;
-            left: -14px;
-            top: 0;
-            width: 30px;
-            height: 30px;
-            background: var(--secondary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+        .banner-img {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin: -80px auto 40px;
+            display: block;
         }
 
         .section-title {
@@ -121,6 +99,11 @@
             background: var(--secondary-color);
         }
 
+        .section-ar .section-title::after {
+            left: auto;
+            right: 0;
+        }
+
         .btn-premium {
             background-color: var(--secondary-color);
             color: white;
@@ -129,12 +112,6 @@
             font-weight: 600;
             border: none;
             text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-premium:hover {
-            background-color: #00817f;
-            color: white;
         }
     </style>
 </head>
@@ -144,135 +121,120 @@
     <!-- Hero Section -->
     <div class="hero-section text-center">
         <div class="container">
-            <img src="icon.png" alt="MS Management Cheque" width="120" class="mb-4 rounded-3 shadow">
-            <h1 class="display-4 fw-bold">MS Management Cheque</h1>
-            <p class="lead mb-4">The ultimate solution for managing incoming and outgoing cheques in Odoo.</p>
-            <div class="d-flex justify-content-center gap-3">
-                <span class="badge-custom">Full Workflow</span>
-                <span class="badge-custom">Automatic Journal Entries</span>
-                <span class="badge-custom">Odoo 18 Ready</span>
+            <img src="icon.png" alt="Icon" width="100" class="mb-3 rounded Shadow">
+            <h1 class="display-5 fw-bold">MS Management Cheque</h1>
+            <p class="lead">Complete lifecycle management for Incoming & Outgoing cheques.</p>
+            <div class="d-flex justify-content-center gap-2">
+                <span class="badge-custom">Odoo 18.0</span>
+                <span class="badge-custom">Arabic & English</span>
+                <span class="badge-custom">Auto-Accounting</span>
             </div>
         </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="container">
+        <img src="banner.png" alt="Banner" class="banner-img">
     </div>
 
     <!-- Main Content -->
     <div class="container py-5">
 
-        <!-- Overview -->
+        <!-- English Overview -->
         <div class="row mb-5 align-items-center">
-            <div class="col-md-6">
-                <h2 class="section-title">Overview</h2>
-                <p>MS Management Cheque streamlines your accounting operations by providing a dedicated workbench for
-                    cheque handling. No more manual journal entries or confusing tracking – manage everything from a
-                    single interface with full audit trails.</p>
-                <ul class="list-unstyled">
-                    <li><i class="text-success me-2">✓</i> Automated Sequential Numbering</li>
-                    <li><i class="text-success me-2">✓</i> Multi-Company Support</li>
-                    <li><i class="text-success me-2">✓</i> Real-time Accounting Integration</li>
-                    <li><i class="text-success me-2">✓</i> Full History Tracking via Chatter</li>
-                </ul>
-            </div>
-            <div class="col-md-6 text-center">
-                <div class="p-4 bg-light rounded-4">
-                    <img src="https://via.placeholder.com/600x400" alt="Dashboard Preview"
-                        class="img-fluid rounded-3 shadow-sm">
+            <div class="col-md-7">
+                <h2 class="section-title">Professional Cheque Management</h2>
+                <p>MS Management Cheque provides a robust framework to track and manage cheque cycles. From registration
+                    to clearance, every step is automated with corresponding journal entries.</p>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="p-3 border rounded shadow-sm">
+                            <h6 class="fw-bold"><i class="text-primary me-2">📥</i> Incoming</h6>
+                            <small>Full cycle: Submit -> Deposit -> Cash</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 border rounded shadow-sm">
+                            <h6 class="fw-bold"><i class="text-primary me-2">📤</i> Outgoing</h6>
+                            <small>Full cycle: Submit -> Cash</small>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-5">
+                <img src="screenshot1.png" alt="UI Screenshot" class="img-fluid rounded shadow border">
             </div>
         </div>
 
         <hr class="my-5">
 
-        <!-- Key Features -->
-        <h2 class="section-title text-center d-block mx-auto mb-5">Powerful Features</h2>
-        <div class="row g-4 mb-5">
-            <div class="col-md-4">
-                <div class="card feature-card p-4">
-                    <div class="feature-icon">📥</div>
-                    <h4>Incoming Cheques</h4>
-                    <p>Register cheques from customers, track deposit dates, and manage the bank clearance process with
-                        ease.</p>
+        <!-- Arabic Overview -->
+        <div class="row mb-5 align-items-center section-ar">
+            <div class="col-md-7">
+                <h2 class="section-title">إدارة احترافية للشيكات</h2>
+                <p>يوفر نظام "إدارة الشيكات MS" إطاراً قوياً لتتبع وإدارة دورة حياة الشيكات. من التسجيل وحتى التحصيل،
+                    تتم أتمتة كل خطوة مع القيود المحاسبية المقابلة لها.</p>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="p-3 border rounded shadow-sm">
+                            <h6 class="fw-bold">📥 الشيكات الواردة</h6>
+                            <small>الدورة الكاملة: تقديم -> إيداع -> تحصيل</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 border rounded shadow-sm">
+                            <h6 class="fw-bold">📤 الشيكات الصادرة</h6>
+                            <small>الدورة الكاملة: تقديم -> تحصيل</small>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card feature-card p-4">
-                    <div class="feature-icon">📤</div>
-                    <h4>Outgoing Cheques</h4>
-                    <p>Handle payments to vendors via cheques. Manage submission and cashing states automatically.</p>
-                </div>
+            <div class="col-md-5 text-start">
+                <img src="screenshot1.png" alt="UI Screenshot" class="img-fluid rounded shadow border">
             </div>
-            <div class="col-md-4">
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Key Features Bilingual -->
+        <div class="row g-4">
+            <div class="col-md-6">
                 <div class="card feature-card p-4">
                     <div class="feature-icon">⚙️</div>
-                    <h4>Auto Journaling</h4>
-                    <p>Automatically creates Journal Entries for Submission, Deposit, and Cashing, keeping your accounts
-                        balanced.</p>
+                    <h4>Automatic Journaling</h4>
+                    <p>Journal entries are automatically created for each state change (Submission, Deposit, Cash),
+                        keeping your accounts perfectly balanced without manual intervention.</p>
+                    <div class="section-ar mt-3 border-top pt-3">
+                        <h6 class="fw-bold">القيود الآلية</h6>
+                        <p>يتم إنشاء قيود اليومية تلقائياً لكل تغيير في الحالة (تقديم، إيداع، تحصيل)، مما يحافظ على
+                            توازن حساباتك تماماً دون تدخل يدوي.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <hr class="my-5">
-
-        <!-- Workflow -->
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <h2 class="section-title">The Workflow</h2>
-                <div class="ms-3 mt-4">
-                    <div class="workflow-step">
-                        <div class="step-number">1</div>
-                        <h5>Draft Phase</h5>
-                        <p>Fill in cheque details (number, date, amount, partner). Uses automatic sequences for
-                            tracking.</p>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">2</div>
-                        <h5>Submission</h5>
-                        <p>Submitting a cheque triggers the first journal entry, moving funds to a transitional
-                            "Registered" account.</p>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">3</div>
-                        <h5>Deposit & Cashing</h5>
-                        <p>Confirm when a cheque is deposited in the bank or cashed. Odoo handles the account movements
-                            automatically.</p>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">4</div>
-                        <h5>Cancel / Return</h5>
-                        <p>Support for cancelling cheques or handling returns with automatic reversal of journal
-                            entries.</p>
+            <div class="col-md-6">
+                <div class="card feature-card p-4">
+                    <div class="feature-icon">🛡️</div>
+                    <h4>Reversal & Returns</h4>
+                    <p>Easily handle cheque returns or cancellations. The module supports full reversal of journal
+                        entries with a single click, maintaining audit integrity.</p>
+                    <div class="section-ar mt-3 border-top pt-3">
+                        <h6 class="fw-bold">الإلغاء والمرتجعات</h6>
+                        <p>تعامل بسهولة مع مرتجعات الشيكات أو الإلغاءات. يدعم الموديول عكس قيود اليومية بالكامل بنقرة
+                            واحدة، مع الحفاظ على سلامة التدقيق.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <hr class="my-5">
-
-        <!-- Technical Details -->
-        <div class="bg-light p-5 rounded-5 mb-5">
-            <h2 class="section-title">Technical Information</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>Dependencies</h5>
-                    <code>account</code>, <code>mail</code>, <code>account_accountant</code>
-                </div>
-                <div class="col-md-6">
-                    <h5>Architecture</h5>
-                    <p>Clean MVC architecture using Odoo standard mail mixins for messaging and activities.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer / Contact -->
-        <div class="text-center py-5">
-            <h3 class="mb-4">Need Personalized Customization?</h3>
-            <p class="mb-4">Get in touch for support or custom feature development.</p>
-            <a href="mailto:mohamed.saied.odoo@gmail.com" class="btn-premium">Contact Author</a>
+        <!-- Footer -->
+        <div class="text-center py-5 mt-5 bg-light rounded-4">
+            <h3 class="mb-4">Contact for Custom Services | تواصل معنا للتخصيص</h3>
+            <p>Get professional support and custom feature development.</p>
+            <p dir="rtl">احصل على دعم احترافي وتطوير ميزات مخصصة.</p>
+            <a href="mailto:mohamed.saied.odoo@gmail.com" class="btn-premium">Contact Mohamed Saied</a>
         </div>
 
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

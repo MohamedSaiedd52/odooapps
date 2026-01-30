@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ms_cheque
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-30 11:00+0000\n"
+"PO-Revision-Date: 2026-01-30 11:00+0000\n"
+"Last-Translator: Mohamed Saied\n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: ms_cheque
+#: model:ir.model,name:ms_cheque.model_ms_in
+msgid "Incoming Cheque"
+msgstr "شيك وارد"
+
+#. module: ms_cheque
+#: model:ir.model,name:ms_cheque.model_ms_out
+msgid "Outgoing Cheque"
+msgstr "شيك صادر"
+
+#. module: ms_cheque
+#: field:ms.in,cheque_no:0
+#: field:ms.out,cheque_no:0
+msgid "Cheque Number"
+msgstr "رقم الشيك"
+
+#. module: ms_cheque
+#: field:ms.in,cheque_date:0
+#: field:ms.out,cheque_date:0
+msgid "Cheque Date"
+msgstr "تاريخ الشيك"
+
+#. module: ms_cheque
+#: field:ms.in,amount:0
+#: field:ms.out,amount:0
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: ms_cheque
+#: field:ms.in,payer_id:0
+msgid "Customer"
+msgstr "العميل"
+
+#. module: ms_cheque
+#: field:ms.out,payee_id:0
+msgid "Vendor"
+msgstr "المورد"
+
+#. module: ms_cheque
+#: selection:ms.in,state:0
+#: selection:ms.out,state:0
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: ms_cheque
+#: selection:ms.in,state:0
+#: selection:ms.out,state:0
+msgid "Submitted"
+msgstr "تم التقديم"
+
+#. module: ms_cheque
+#: selection:ms.in,state:0
+msgid "Deposited"
+msgstr "تم الإيداع"
+
+#. module: ms_cheque
+#: selection:ms.in,state:0
+#: selection:ms.out,state:0
+msgid "Cashed"
+msgstr "تم التحصيل"
+
+#. module: ms_cheque
+#: selection:ms.in,state:0
+#: selection:ms.out,state:0
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.cheque_management_root
+msgid "MS Cheque"
+msgstr "إدارة الشيكات"
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_incoming_cheques
+msgid "Incoming Cheques"
+msgstr "شيكات واردة"
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_outgoing_cheques
+msgid "Outgoing Cheques"
+msgstr "شيكات صادرة"
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_cheque_configuration
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_cheque_settings
+msgid "Settings"
+msgstr "الإعدادات العامة"
+
+#. module: ms_cheque
+#: model:ir.ui.menu,name:ms_cheque.menu_cheque_sequences
+msgid "Sequences"
+msgstr "التسلسلات"

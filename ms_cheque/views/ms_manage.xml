@@ -345,15 +345,34 @@
         <!-- Menu Item under Settings -->
         <!-- ================================ -->
 
-        <menuitem id="cheque_management_root" name="MS CH" sequence="10"
+        <!-- ================================ -->
+        <!-- Menu Item Structure -->
+        <!-- ================================ -->
+
+        <menuitem id="cheque_management_root" name="MS Cheque" sequence="10"
           web_icon="ms_cheque,static/description/icon.png"
         />
 
-        <menuitem id="menu_incoming_cheques" name="MS IN CH " parent="cheque_management_root" sequence="1"/>
-        <menuitem id="menu_outgoing_cheques" name="MS Out CH" parent="cheque_management_root" sequence="2"/>
+        <!-- Main Operations -->
+        <menuitem id="menu_incoming_cheques" name="Incoming Cheques" parent="cheque_management_root" sequence="1"/>
+        <menuitem id="menu_outgoing_cheques" name="Outgoing Cheques" parent="cheque_management_root" sequence="2"/>
 
-        <menuitem id="menu_incoming_cheques_action" parent="menu_incoming_cheques" action="action_ms_in" />
-        <menuitem id="menu_outgoing_cheques_action" parent="menu_outgoing_cheques" action="action_ms_out"/>
+        <menuitem id="menu_incoming_cheques_action" parent="menu_incoming_cheques" action="action_ms_in" sequence="1"/>
+        <menuitem id="menu_outgoing_cheques_action" parent="menu_outgoing_cheques" action="action_ms_out" sequence="1"/>
+
+        <!-- Configuration Menu -->
+        <menuitem id="menu_cheque_configuration" name="Configuration" parent="cheque_management_root" sequence="100" groups="account.group_account_manager"/>
+        
+        <menuitem id="menu_cheque_settings" name="Settings" parent="menu_cheque_configuration" action="base_setup.action_general_configuration" sequence="1"/>
+        
+        <record id="action_ms_sequences" model="ir.actions.act_window">
+            <field name="name">Sequences</field>
+            <field name="res_model">ir.sequence</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('code', 'in', ['seq.ms.in', 'seq.ms.out'])]</field>
+        </record>
+
+        <menuitem id="menu_cheque_sequences" name="Sequences" parent="menu_cheque_configuration" action="action_ms_sequences" sequence="2"/>
 
 </data>
 </odoo>
