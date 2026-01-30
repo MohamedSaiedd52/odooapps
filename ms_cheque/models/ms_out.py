@@ -10,7 +10,7 @@ class Msout(models.Model):
     type = fields.Selection([('in', 'In'), ('out', 'Out')],
                             default='out', readonly=True, required=True)
 
-    name = fields.Char(string='Sequence', copy=False, readonly=True)
+    name = fields.Char(default='/', copy=False, readonly=True)
     cheque_no = fields.Char(string='Cheque Number', required=True)
     payee_id = fields.Many2one('res.partner', string='Vendor', required=True)
 
@@ -30,20 +30,20 @@ class Msout(models.Model):
     cash_bank_account_id = fields.Many2one('account.account', string='Cash / Bank Account',
                                            help='Bank account used while cashing the cheque')
 
-    debit_account_id = fields.Many2one('account.account',string='Debit Account',default=lambda self: self.env.company.in_cheque_debit_account_id)
-    credit_account_id = fields.Many2one('account.account',string='Credit Account',default=lambda self: self.env.company.out_cheque_credit_account_id)
+    debit_account_id = fields.Many2one('account.account', string='Debit Account', default=lambda self: self.env.company.in_cheque_debit_account_id)
+    credit_account_id = fields.Many2one('account.account', string='Credit Account', default=lambda self: self.env.company.out_cheque_credit_account_id)
     state = fields.Selection([
         ('draft', 'Draft'),
         ('submit', 'Submitted'),
         ('cashed', 'Cashed'),
         ('cancel', 'Cancelled'),
     ], default='draft', tracking=True)
-    company_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
+    company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.company)
     move_id = fields.Many2one('account.move', string='Journal Entry', copy=False)
     move_line_ids = fields.One2many('account.move.line', 'out_cheque_id', string='Journal Items', copy=False)
     show_debit = fields.Boolean(compute='_compute_show_side', store=True)
     show_credit = fields.Boolean(compute='_compute_show_side', store=True)
-    move_line_count = fields.Integer(compute='_compute_move_line_count')
+    move_line_count = fields.Integer(compute='_compute_move_line_count', string='Journal Items')
     vendor_name = fields.Char(compute='_compute_vendor_name')
 
     def _compute_move_line_count(self):
@@ -66,25 +66,29 @@ class Msout(models.Model):
 
     move_count = fields.Integer(
         compute='_compute_move_count',
-        string='Journal Entry'
+        string='Journal Entries'
     )
 
     def _compute_move_count(self):
         for rec in self:
-            rec.move_count = 1 if rec.move_id else 0
+            rec.move_count = len(rec.move_line_ids.mapped('move_id'))
 
     def action_open_journal_entry(self):
         self.ensure_one()
-        if not self.move_id:
-            return False
-
-        return {
+        move_ids = self.move_line_ids.mapped('move_id').ids
+        action = {
             'type': 'ir.actions.act_window',
-            'name': 'Journal Entry',
+            'name': 'Journal Entries',
             'res_model': 'account.move',
-            'res_id': self.move_id.id,
-            'view_mode': 'form',
+            'view_mode': 'list,form',
+            'domain': [('id', 'in', move_ids)],
         }
+        if len(move_ids) == 1:
+            action.update({
+                'view_mode': 'form',
+                'res_id': move_ids[0],
+            })
+        return action
 
     def action_open_vendor(self):
         self.ensure_one()
@@ -107,18 +111,16 @@ class Msout(models.Model):
 
     @api.model
     def create(self, vals):
-        if not vals.get('credit_account_id'):
-            company = self.env['res.company'].browse(
-                vals.get('company_id', self.env.company.id)
-            )
-            vals['credit_account_id'] = (
-                company.out_cheque_credit_account_id.id
-            )
-        return super().create(vals)
-    @api.model
-    def create(self, vals):
-        if not vals.get('name'):
+        company = self.env['res.company'].browse(
+            vals.get('company_id', self.env.company.id)
+        )
+
+        if vals.get('name', '/') == '/':
             vals['name'] = self.env['ir.sequence'].next_by_code('seq.ms.out') or '/'
+
+        if not vals.get('credit_account_id') and company.out_cheque_credit_account_id:
+            vals['credit_account_id'] = company.out_cheque_credit_account_id.id
+
         return super().create(vals)
 
     @api.depends('type')
@@ -185,10 +187,10 @@ class Msout(models.Model):
 
     def action_cancel(self):
         for rec in self:
-            moves = rec.move_line_ids.mapped('move_id')
+            moves = rec.move_line_ids.mapped('move_id').sudo()
             for move in moves:
-                move.sudo().button_draft()
-                move.sudo().unlink()
+                move.button_draft()
+                move.unlink()
 
             rec.sudo().write({
                 'state': 'cancel',
@@ -225,12 +227,13 @@ class Msout(models.Model):
                 )
                 reverse.action_post()
             rec.state = 'draft'
-    def action_reset_to_draft(self):
+
+    def action_set_draft(self):
         for rec in self:
-            moves = rec.move_line_ids.mapped('move_id')
+            moves = rec.move_line_ids.mapped('move_id').sudo()
             for move in moves:
-                if move.state == 'posted':
-                    move.button_draft()
+                move.button_draft()
+                move.unlink()
             rec.state = 'draft'
 
     def _create_move(self, debit_account, credit_account):
@@ -260,3 +263,12 @@ class Msout(models.Model):
             move = Move.create(move_vals)
             move.action_post()
             return move
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        journal = self.env.company.out_cheque_journal_id
+        if journal and journal.default_account_id:
+            res['journal_id'] = journal.id
+            res['bank_account_id'] = journal.default_account_id.id
+        return res

@@ -10,7 +10,7 @@ class Msin(models.Model):
     type = fields.Selection([('in', 'In'), ('out', 'Out')],
                             default='in', readonly=True, required=True)
 
-    name = fields.Char(string='Sequence', copy=False, readonly=True)
+    name = fields.Char(default='/', copy=False, readonly=True)
     cheque_no = fields.Char(string='Cheque Number', required=True)
     payer_id = fields.Many2one('res.partner', string='Customer', required=True)
 
@@ -87,20 +87,24 @@ class Msin(models.Model):
 
     def _compute_move_count(self):
         for rec in self:
-            rec.move_count = 1 if rec.move_id else 0
+            rec.move_count = len(rec.move_line_ids.mapped('move_id'))
 
     def action_open_journal_entry(self):
         self.ensure_one()
-        if not self.move_id:
-            return False
-
-        return {
+        move_ids = self.move_line_ids.mapped('move_id').ids
+        action = {
             'type': 'ir.actions.act_window',
-            'name': 'Journal Entry',
+            'name': 'Journal Entries',
             'res_model': 'account.move',
-            'res_id': self.move_id.id,
-            'view_mode': 'form',
+            'view_mode': 'list,form',
+            'domain': [('id', 'in', move_ids)],
         }
+        if len(move_ids) == 1:
+            action.update({
+                'view_mode': 'form',
+                'res_id': move_ids[0],
+            })
+        return action
 
     def _compute_move_line_count(self):
         for rec in self:
@@ -182,19 +186,19 @@ class Msin(models.Model):
 
     @api.model
     def create(self, vals):
-        if not vals.get('debit_account_id'):
-            company = self.env['res.company'].browse(
-                vals.get('company_id', self.env.company.id)
-            )
-            vals['debit_account_id'] = (
-                company.in_cheque_debit_account_id.id
-            )
-        return super().create(vals)
-    @api.model
-    def create(self, vals):
-        if not vals.get('name'):
+        company = self.env['res.company'].browse(
+            vals.get('company_id', self.env.company.id)
+        )
+
+        if vals.get('name', '/') == '/':
             vals['name'] = self.env['ir.sequence'].next_by_code('seq.ms.in') or '/'
+
+        if not vals.get('debit_account_id') and company.in_cheque_debit_account_id:
+            vals['debit_account_id'] = company.in_cheque_debit_account_id.id
+
         return super().create(vals)
+
+
 
     @api.depends('type')
     def _compute_show_side(self):
@@ -261,8 +265,8 @@ class Msin(models.Model):
 
     def action_cashed(self):
         for rec in self:
-            if rec.state not in ['submit', 'deposit']:
-                raise UserError(_('Cheque must be submitted or deposited first.'))
+            if rec.state != 'deposit':
+                raise UserError(_('You must deposit the cheque before cashing i t.'))
             if not rec.cash_bank_account_id:
                 raise UserError(_('Select Cash / Bank Account first.'))
             if not rec.debit_account_id:
@@ -304,15 +308,16 @@ class Msin(models.Model):
 
     def action_cancel(self):
         for rec in self:
-            moves = rec.move_line_ids.mapped('move_id')
+            moves = rec.move_line_ids.mapped('move_id').sudo()
             for move in moves:
-                move.sudo().button_draft()
-                move.sudo().unlink()
+                move.button_draft()
+                move.unlink()
 
             rec.sudo().write({
                 'state': 'cancel',
                 'move_id': False,
             })
+
 
 
     def _create_move(self, debit_account, credit_account):
@@ -345,8 +350,20 @@ class Msin(models.Model):
     
     def action_set_draft(self):
         for rec in self:
-            moves = rec.move_line_ids.mapped('move_id')
+            moves = rec.move_line_ids.mapped('move_id').sudo()
             for move in moves:
-                if move.state == 'posted':
-                    move.button_draft()
+                move.button_draft()
+                move.unlink()
             rec.state = 'draft'
+
+
+
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        journal = self.env.company.in_cheque_journal_id
+        if journal and journal.default_account_id:
+            res['journal_id'] = journal.id
+            res['bank_account_id'] = journal.default_account_id.id
+        return res

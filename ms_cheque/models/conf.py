@@ -7,34 +7,28 @@ class ChequeSettings(models.TransientModel):
 
     in_debit_account_id = fields.Many2one(
         'account.account',
-        string='Incoming Default Debit Account',
         related='company_id.in_cheque_debit_account_id',
         readonly=False,
-        domain="[('deprecated','=',False), ('company_id','=',company_id)]"
+        domain="[('deprecated', '=', False)]"
     )
 
     out_credit_account_id = fields.Many2one(
         'account.account',
-        string='Outgoing Default Credit Account',
         related='company_id.out_cheque_credit_account_id',
         readonly=False,
-        domain="[('deprecated','=',False), ('company_id','=',company_id)]"
+        domain="[('deprecated', '=', False)]"
     )
 
     in_cheque_journal_id = fields.Many2one(
         'account.journal',
-        string='Incoming Cheques Journal',
         related='company_id.in_cheque_journal_id',
-        readonly=False,
-        domain="[('company_id','=',company_id)]"
+        readonly=False
     )
 
     out_cheque_journal_id = fields.Many2one(
         'account.journal',
-        string='Outgoing Cheques Journal',
         related='company_id.out_cheque_journal_id',
-        readonly=False,
-        domain="[('company_id','=',company_id)]"
+        readonly=False
     )
 
 

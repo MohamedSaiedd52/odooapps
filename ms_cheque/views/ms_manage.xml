@@ -76,37 +76,31 @@
                                 </button>
 
                                 <!-- Customer -->
-                         <button type="object"
+                                <button type="object"
                                         name="action_open_customer"
                                         class="oe_stat_button"
                                         icon="fa-user">
+                                    <field name="customer_short_name"
+                                           widget="statinfo"
+                                           string="Customer"
+                                           title="customer_name"/>
+                                </button>
 
-                        <field name="customer_short_name"
-                                        widget="statinfo"
-                                        string="Customer"
-                                        title="customer_name"/>
-
-
-                    <button type="object"
-                            name="action_open_journal_entry"
-                            class="oe_stat_button"
-                            icon="fa-book">
-                        <field name="move_count" widget="statinfo" string="Journal Entry"/>
-                    </button>
-                        </button>
-
+                                <!-- Journal Entries -->
+                                <button type="object"
+                                        name="action_open_journal_entry"
+                                        class="oe_stat_button"
+                                        icon="fa-book">
+                                    <field name="move_count" widget="statinfo" string="Journal Entries"/>
+                                </button>
 
                                 <!-- Debit Account -->
-                         <button type="object"
-                            name="action_open_debit_account"
-                            class="oe_stat_button"
-                            icon="fa-sign-in">
-                        <span>Debit Account</span>
-                        </button>
-
-
-                                <!-- Credit Account -->
-
+                                <button type="object"
+                                        name="action_open_debit_account"
+                                        class="oe_stat_button"
+                                        icon="fa-sign-in">
+                                    <span>Debit Account</span>
+                                </button>
 
                             </div>
 
@@ -120,8 +114,6 @@
                             <!-- ===== Basic Info ===== -->
                             <group>
                                 <group>
-
-
                                     <field name="cheque_no"/>
                                     <field name="payer_id" string="Customer"/>
                                     <field name="amount"/>
@@ -149,11 +141,7 @@
                             </group>
 
                             <!-- ===== Chatter ===== -->
-                            <div class="oe_chatter">
-                                <field name="message_follower_ids"/>
-                                <field name="activity_ids"/>
-                                <field name="message_ids"/>
-                            </div>
+                            <chatter/>
 
                         </sheet>
                     </form>
@@ -206,9 +194,9 @@
                                 class="btn-secondary"
                                 invisible="state in ['cashed','cancel']"/>
 
-                        <button name="action_reset_to_draft" type="object"
+                        <button name="action_set_draft" type="object"
                                 string="Reset to Draft"
-                                invisible="state not in ['cancel','draft']"/>
+                                invisible="state not in ['cashed','cancel']"/>
 
                         <field name="state"
                                widget="statusbar"
@@ -232,15 +220,13 @@
                                     class="oe_stat_button"
                                     icon="fa-user">
                                 <field name="vendor_name" widget="statinfo" string="Vendor"/>
-
-
                             </button>
 
                             <button type="object"
                                     name="action_open_journal_entry"
                                     class="oe_stat_button"
                                     icon="fa-book">
-                                <field name="move_count" widget="statinfo" string="Journal Entry"/>
+                                <field name="move_count" widget="statinfo" string="Journal Entries"/>
                             </button>
 
                             <button type="object"
@@ -283,12 +269,8 @@
                         </group>
             </group>
                         <!-- Chatter -->
-                        <div class="oe_chatter">
-                            <field name="message_follower_ids"/>
-                            <field name="activity_ids"/>
-                            <field name="message_ids"/>
-                        </div>
-
+                  
+                      <chatter/>
                     </sheet>
                 </form>
             </field>

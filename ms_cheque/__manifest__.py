@@ -1,6 +1,6 @@
 {
     'name': 'MS Management Cheque',
-    'version': '1.0',
+    'version': '2.0',
     'author': 'Mohamed Saied',
     'category': 'Accounting',
     'depends': ['base', 'account','mail','account_accountant'],
