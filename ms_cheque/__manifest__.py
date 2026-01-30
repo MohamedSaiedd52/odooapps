@@ -11,7 +11,7 @@
         'views/reports.xml',
     ],
     "author": "Mohamed Saied",
-    "website": "https://www.odoo.com/apps/modules/18.0/ms_cheque_management/",
+    "website": "https://apps.odoo.com/apps/modules/18.0/ms_cheque",
     'installable': True,
     'auto_install': False,
     'license': 'LGPL-3',
