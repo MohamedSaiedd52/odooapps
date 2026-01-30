@@ -371,6 +371,6 @@ class Msin(models.Model):
         arch, view = super()._get_view(view_id, view_type, **options)
         if view_type == 'form':
             for node in arch.xpath("//field"):
-                if node.get('name') not in ('state', 'name'):
+                if node.get('name') not in ('state', 'name','cash_bank_account_id'):
                     node.set('readonly', "state != 'draft'")
         return arch, view

@@ -140,88 +140,74 @@
     <!-- Main Content -->
     <div class="container py-5">
 
-        <!-- English Overview -->
-        <div class="row mb-5 align-items-center">
-            <div class="col-md-7">
-                <h2 class="section-title">Professional Cheque Management</h2>
-                <p>MS Management Cheque provides a robust framework to track and manage cheque cycles. From registration
-                    to clearance, every step is automated with corresponding journal entries.</p>
-                <div class="row g-3">
-                    <div class="col-6">
-                        <div class="p-3 border rounded shadow-sm">
-                            <h6 class="fw-bold"><i class="text-primary me-2">📥</i> Incoming</h6>
-                            <small>Full cycle: Submit -> Deposit -> Cash</small>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="p-3 border rounded shadow-sm">
-                            <h6 class="fw-bold"><i class="text-primary me-2">📤</i> Outgoing</h6>
-                            <small>Full cycle: Submit -> Cash</small>
-                        </div>
+        <!-- Lifecycle Section -->
+        <div class="container py-5">
+            <h2 class="section-title text-center d-block mx-auto mb-5">Cheque Lifecycle | دورة حياة الشيك</h2>
+
+            <!-- Step 1: Draft -->
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-6">
+                    <div class="badge bg-secondary mb-2">Step 1 | الخطوة الأولى</div>
+                    <h3>Draft State | حالة المسودة</h3>
+                    <p>Easy registration of cheque details including customer, bank, and amount. The system
+                        automatically fetches default accounts for speed.</p>
+                    <div class="section-ar">
+                        <p>تسجيل سهل لتفاصيل الشيك بما في ذلك العميل والبنك والمبلغ. يقوم النظام تلقائيًا بجلب الحسابات
+                            الافتراضية للسرعة.</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-5">
-                <img src="screenshot1.png" alt="UI Screenshot" class="img-fluid rounded shadow border">
-            </div>
-        </div>
-
-        <hr class="my-5">
-
-        <!-- Arabic Overview -->
-        <div class="row mb-5 align-items-center section-ar">
-            <div class="col-md-7">
-                <h2 class="section-title">إدارة احترافية للشيكات</h2>
-                <p>يوفر نظام "إدارة الشيكات MS" إطاراً قوياً لتتبع وإدارة دورة حياة الشيكات. من التسجيل وحتى التحصيل،
-                    تتم أتمتة كل خطوة مع القيود المحاسبية المقابلة لها.</p>
-                <div class="row g-3">
-                    <div class="col-6">
-                        <div class="p-3 border rounded shadow-sm">
-                            <h6 class="fw-bold">📥 الشيكات الواردة</h6>
-                            <small>الدورة الكاملة: تقديم -> إيداع -> تحصيل</small>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="p-3 border rounded shadow-sm">
-                            <h6 class="fw-bold">📤 الشيكات الصادرة</h6>
-                            <small>الدورة الكاملة: تقديم -> تحصيل</small>
-                        </div>
-                    </div>
+                <div class="col-md-6">
+                    <img src="screenshot_draft.png" alt="Draft State" class="img-fluid rounded shadow border">
                 </div>
             </div>
-            <div class="col-md-5 text-start">
-                <img src="screenshot1.png" alt="UI Screenshot" class="img-fluid rounded shadow border">
-            </div>
-        </div>
 
-        <hr class="my-5">
-
-        <!-- Key Features Bilingual -->
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="card feature-card p-4">
-                    <div class="feature-icon">⚙️</div>
-                    <h4>Automatic Journaling</h4>
-                    <p>Journal entries are automatically created for each state change (Submission, Deposit, Cash),
-                        keeping your accounts perfectly balanced without manual intervention.</p>
-                    <div class="section-ar mt-3 border-top pt-3">
-                        <h6 class="fw-bold">القيود الآلية</h6>
-                        <p>يتم إنشاء قيود اليومية تلقائياً لكل تغيير في الحالة (تقديم، إيداع، تحصيل)، مما يحافظ على
-                            توازن حساباتك تماماً دون تدخل يدوي.</p>
+            <!-- Step 2: List View -->
+            <div class="row mb-5 align-items-center flex-row-reverse">
+                <div class="col-md-6">
+                    <div class="badge bg-secondary mb-2">Step 2 | الخطوة الثانية</div>
+                    <h3>Management Dashboard | لوحة التحكم</h3>
+                    <p>A comprehensive list view to track all incoming and outgoing cheques at a glance with color-coded
+                        statuses.</p>
+                    <div class="section-ar">
+                        <p>عرض قائمة شامل لتتبع جميع الشيكات الواردة والصادرة في لمحة مع حالات ملونة.</p>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <img src="screenshot_list.png" alt="List View" class="img-fluid rounded shadow border">
+                </div>
             </div>
-            <div class="col-md-6">
-                <div class="card feature-card p-4">
-                    <div class="feature-icon">🛡️</div>
-                    <h4>Reversal & Returns</h4>
-                    <p>Easily handle cheque returns or cancellations. The module supports full reversal of journal
-                        entries with a single click, maintaining audit integrity.</p>
-                    <div class="section-ar mt-3 border-top pt-3">
-                        <h6 class="fw-bold">الإلغاء والمرتجعات</h6>
-                        <p>تعامل بسهولة مع مرتجعات الشيكات أو الإلغاءات. يدعم الموديول عكس قيود اليومية بالكامل بنقرة
-                            واحدة، مع الحفاظ على سلامة التدقيق.</p>
+
+            <!-- Step 3: Cashed -->
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-6">
+                    <div class="badge bg-secondary mb-2">Step 3 | الخطوة الثالثة</div>
+                    <h3>Validation & Lock | التحقق والقفل</h3>
+                    <p>Once submitted or cashed, fields become readonly automatically using our dynamic logic to ensure
+                        audit integrity.</p>
+                    <div class="section-ar">
+                        <p>بمجرد التحويل أو التحصيل، تصبح الحقول للقراءة فقط تلقائيًا باستخدام منطقنا الديناميكي لضمان
+                            سلامة التدقيق.</p>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="screenshot_cashed.png" alt="Cashed State" class="img-fluid rounded shadow border">
+                </div>
+            </div>
+
+            <!-- Step 4: Accounting -->
+            <div class="row mb-5 align-items-center flex-row-reverse">
+                <div class="col-md-6">
+                    <div class="badge bg-secondary mb-2">Step 4 | الخطوة الرابعة</div>
+                    <h3>Automated Accounting | المحاسبة الآلية</h3>
+                    <p>Access all related journal entries directly through the smart buttons. Every transaction is
+                        transparent and linked.</p>
+                    <div class="section-ar">
+                        <p>الوصول إلى جميع قيود اليومية ذات الصلة مباشرة من خلال الأزرار الذكية. كل عملية شفافة ومرتبطة.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="screenshot_entries.png" alt="Journal Entries" class="img-fluid rounded shadow border">
                 </div>
             </div>
         </div>
