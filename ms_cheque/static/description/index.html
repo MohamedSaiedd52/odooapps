@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         :root {
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
             --primary-gradient: linear-gradient(135deg, #714B67 0%, #a26b94 100%);
             --secondary-gradient: linear-gradient(135deg, #017e84 0%, #00b8bf 100%);
             --dark-bg: #0f172a;
@@ -39,25 +39,8 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        /* Glassmorphism Classes */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Hero Styling */
         .hero-section {
-            padding: 120px 0 80px;
-            position: relative;
+            padding: 100px 0 60px;
         }
 
         .hero-title {
@@ -65,12 +48,12 @@
             background: linear-gradient(to right, #fff, #a26b94);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 4rem;
-            letter-spacing: -1px;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 20px;
         }
 
         .hero-icon {
-            filter: drop-shadow(0 0 20px rgba(162, 107, 148, 0.5));
+            filter: drop-shadow(0 0 20px rgba(162, 107, 148, 0.3));
             animation: float 6s ease-in-out infinite;
         }
 
@@ -82,84 +65,99 @@
             }
 
             50% {
-                transform: translateY(-20px);
+                transform: translateY(-15px);
             }
         }
 
-        /* Feature Icons */
-        .feat-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 20px rgba(113, 75, 103, 0.3);
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 35px;
+            padding: 40px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .feat-icon-wrapper.alt {
-            background: var(--secondary-gradient);
-            box-shadow: 0 10px 20px rgba(1, 126, 132, 0.3);
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
 
-        /* Screenshot Mask */
-        .screenshot-container {
-            position: relative;
-            border-radius: 24px;
+        .workflow-step-container {
+            margin-bottom: 100px;
+        }
+
+        .screenshot-mask {
+            border-radius: 30px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 12px;
+            margin-bottom: 40px;
+            transition: transform 0.6s ease;
         }
 
-        .screenshot-container img {
-            border-radius: 18px;
+        .screenshot-mask img {
+            border-radius: 20px;
             width: 100%;
-            transition: transform 0.8s ease;
+            display: block;
         }
 
-        .screenshot-container:hover img {
-            transform: scale(1.05);
+        .workflow-content {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid var(--glass-border);
         }
 
-        /* Buttons */
-        .btn-futuristic {
+        .step-badge {
             background: var(--primary-gradient);
-            color: white;
-            padding: 15px 40px;
+            padding: 6px 20px;
             border-radius: 50px;
+            font-size: 14px;
             font-weight: 700;
-            border: none;
-            transition: all 0.3s ease;
-            text-decoration: none;
+            margin-bottom: 20px;
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(113, 75, 103, 0.4);
         }
 
-        .btn-futuristic:hover {
-            transform: scale(1.1);
-            color: white;
-            box-shadow: 0 15px 40px rgba(113, 75, 103, 0.6);
-        }
-
-        /* Divider */
         .neon-divider {
             height: 1px;
-            background: linear-gradient(to right, transparent, var(--glass-border), transparent);
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
             margin: 80px 0;
         }
 
-        /* Badge */
-        .badge-neon {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--glass-border);
-            padding: 6px 18px;
+        .feat-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .btn-premium {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 18px 45px;
             border-radius: 100px;
-            font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(113, 75, 103, 0.3);
+        }
+
+        .btn-premium:hover {
+            transform: scale(1.05);
+            color: white;
+            box-shadow: 0 20px 45px rgba(113, 75, 103, 0.5);
+        }
+
+        .badge-neon {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 13px;
             color: #ccc;
         }
     </style>
@@ -167,72 +165,49 @@
 
 <body>
 
-    <!-- Header / Hero -->
+    <!-- Hero Section -->
     <header class="hero-section text-center container">
         <div class="animate__animated animate__fadeInDown">
-            <img src="icon.png" alt="Icon" width="140" class="hero-icon mb-4">
-            <h1 class="hero-title">MS CHEQUE</h1>
-            <p class="lead text-muted mb-5" style="max-width: 600px; margin: 0 auto;">Next-generation automated cheque
-                lifecycle management. <br> Built for precision, security, and elegance.</p>
-            <div class="d-flex justify-content-center gap-3 mb-5">
+            <img src="icon.png" alt="Icon" width="120" class="hero-icon mb-4">
+            <h1 class="hero-title">FINANCIAL PRECISION</h1>
+            <p class="lead text-muted mb-4 mx-auto" style="max-width: 700px;">Experience the next level of bank cheque
+                automation. Fully integrated, bilingual, and audit-ready.</p>
+            <div class="d-flex justify-content-center gap-2 mb-5">
                 <span class="badge-neon">Odoo 18.0</span>
-                <span class="badge-neon">Dual-Language AI</span>
-                <span class="badge-neon">Zero Manual Entry</span>
+                <span class="badge-neon">Bilingual UI</span>
+                <span class="badge-neon">Auto-Sync</span>
             </div>
         </div>
     </header>
 
-    <!-- Main Visual -->
-    <div class="container mb-5 text-center px-4">
-        <div class="screenshot-container animate__animated animate__zoomIn shadow-lg">
-            <img src="banner.png" alt="Hero Banner">
+    <div class="container text-center mb-5 pb-5">
+        <div class="screenshot-mask animate__animated animate__zoomIn">
+            <img src="banner.png" alt="Full Interface Overview">
         </div>
     </div>
 
-    <!-- Features Grid -->
-    <section class="container py-5 mt-5">
-        <h2 class="text-center mb-5 fw-800" style="font-size: 2.5rem;">The Architecture of Automation</h2>
-        <div class="row g-4 justify-content-center">
-            <!-- Feature 1 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="glass-card p-5 h-100">
-                    <div class="feat-icon-wrapper">✨</div>
-                    <h3>Intelligent Journaling</h3>
-                    <p class="text-muted">Real-time financial synchronization. Every state change triggers a perfectly
-                        mapped journal entry.</p>
-                    <div class="text-ar pt-4 mt-4 border-top">
-                        <h3 class="fw-bold">القيود الذكية</h3>
-                        <p class="text-muted">مزامنة مالية في الوقت الحقيقي. كل تغيير في الحالة ينتج عنه قيد يومية
-                            متوافق تماماً.</p>
-                    </div>
+    <!-- Core Grid -->
+    <section class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="glass-card text-center animate__animated animate__fadeInLeft">
+                    <span class="feat-icon">⚡</span>
+                    <h4 class="fw-bold">Ledger Automation</h4>
+                    <p class="text-muted">Zero-manual entries for cheque lifecycle moves.</p>
                 </div>
             </div>
-            <!-- Feature 2 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="glass-card p-5 h-100">
-                    <div class="feat-icon-wrapper alt">🛡️</div>
-                    <h3>Quantum Integrity</h3>
-                    <p class="text-muted">Dynamic record locking. Fields transition to readonly once submitted,
-                        preserving the audit trail.</p>
-                    <div class="text-ar pt-4 mt-4 border-top">
-                        <h3 class="fw-bold">سلامة البيانات</h3>
-                        <p class="text-muted">قفل ديناميكي للسجلات. تنتقل الحقول لحالة القراءة فقط بمجرد التقديم، حفاظاً
-                            على مسار التدقيق.</p>
-                    </div>
+            <div class="col-md-4">
+                <div class="glass-card text-center animate__animated animate__fadeInUp">
+                    <span class="feat-icon">🏢</span>
+                    <h4 class="fw-bold">Multi-Company</h4>
+                    <p class="text-muted">Scale across branches with unique sequences.</p>
                 </div>
             </div>
-            <!-- Feature 3 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="glass-card p-5 h-100">
-                    <div class="feat-icon-wrapper">🚀</div>
-                    <h3>One-Click Setup</h3>
-                    <p class="text-muted">Deploy and configure in seconds. Intuitive account mapping via Odoo's core
-                        settings.</p>
-                    <div class="text-ar pt-4 mt-4 border-top">
-                        <h3 class="fw-bold">إعداد بنقرة واحدة</h3>
-                        <p class="text-muted">النشر والإعداد في ثوانٍ. ربط حسابات بديهي من خلال إعدادات أودو الأساسية.
-                        </p>
-                    </div>
+            <div class="col-md-4">
+                <div class="glass-card text-center animate__animated animate__fadeInRight">
+                    <span class="feat-icon">�</span>
+                    <h4 class="fw-bold">Immutable Audit</h4>
+                    <p class="text-muted">Submit state locks records for financial integrity.</p>
                 </div>
             </div>
         </div>
@@ -240,24 +215,26 @@
 
     <div class="neon-divider"></div>
 
-    <!-- Detailed Workflow Showcase -->
-    <section class="container mb-5">
-        <!-- Configuration -->
-        <div class="row align-items-center mb-5 gx-5">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <div class="screenshot-container shadow-lg animate__animated animate__fadeInLeft">
-                    <img src="screenshot_configuration.png" alt="Config Details">
-                </div>
+    <!-- Vertical Workflow Showcase -->
+    <section class="container">
+
+        <!-- Step 1: Configuration -->
+        <div class="workflow-step-container text-center animate__animated animate__fadeIn">
+            <div class="screenshot-mask mx-auto shadow-lg" style="max-width: 900px;">
+                <img src="screenshot_configuration.png" alt="Setup Console">
             </div>
-            <div class="col-lg-6">
-                <div class="px-lg-5 animate__animated animate__fadeInRight">
-                    <h2 class="fw-800 mb-4">Precision Configuration</h2>
-                    <p class="text-muted lead">Architect your financial flow by defining precise default accounts and
-                        primary journals.</p>
-                    <div class="text-ar mt-4 border-secondary border-end pe-4">
-                        <h2 class="fw-bold">تكوين دقيق</h2>
-                        <p class="text-muted lead">صمم تدفقك المالي من خلال تحديد حسابات افتراضية دقيقة ودفاتر يومية
-                            أساسية.</p>
+            <div class="workflow-content mx-auto" style="max-width: 900px;">
+                <span class="step-badge">Phase 01 | المرحلة ١</span>
+                <div class="row mt-3">
+                    <div class="col-md-6 border-end border-secondary">
+                        <h3 class="fw-800">Global Configuration</h3>
+                        <p class="text-muted">Centralize your accounting flow. Map default journals and accounts for
+                            both income and expense cheques in one unified console.</p>
+                    </div>
+                    <div class="col-md-6 text-ar">
+                        <h3 class="fw-bold">الإعدادات العامة</h3>
+                        <p class="text-muted">قم بمركزة تدفقك المحاسبي. اربط دفاتر اليومية والحسابات الافتراضية لكل من
+                            الشيكات الصادرة والواردة في لوحة تحكم موحدة.</p>
                     </div>
                 </div>
             </div>
@@ -265,59 +242,70 @@
 
         <div class="neon-divider"></div>
 
-        <!-- Incoming Cycle -->
-        <div class="row align-items-center mb-5 flex-lg-row-reverse gx-5">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <div class="screenshot-container shadow-lg animate__animated animate__fadeInRight">
-                    <img src="screenshot_incoming.png" alt="Incoming Cycle">
-                </div>
+        <!-- Step 2: Lifecycle -->
+        <div class="workflow-step-container text-center animate__animated animate__fadeIn">
+            <div class="screenshot-mask mx-auto shadow-lg" style="max-width: 900px;">
+                <img src="screenshot_incoming.png" alt="Management Cycle">
             </div>
-            <div class="col-lg-6">
-                <div class="px-lg-5 animate__animated animate__fadeInLeft">
-                    <h2 class="fw-800 mb-4">Seamless Ledger Flow</h2>
-                    <p class="text-muted lead">Monitor incoming assets as they evolve from draft registrations to fully
-                        reconciled cash assets.</p>
-                    <div class="text-ar mt-4 border-primary border-start ps-4">
-                        <h2 class="fw-bold">تدفق مالي سلس</h2>
-                        <p class="text-muted lead">راقب الأصول الواردة أثناء تطورها من تسجيلات المسودة إلى أصول نقدية
-                            مسواة بالكامل.</p>
+            <div class="workflow-content mx-auto" style="max-width: 900px;">
+                <span class="step-badge" style="background: var(--secondary-gradient);">Phase 02 | المرحلة ٢</span>
+                <div class="row mt-3">
+                    <div class="col-md-6 border-end border-secondary">
+                        <h3 class="fw-800">Dynamic Lifecycle</h3>
+                        <p class="text-muted">Track cheques through every state from Draft to Cashed. Smart validation
+                            prevents errors and ensures data locking after submission.</p>
+                    </div>
+                    <div class="col-md-6 text-ar">
+                        <h3 class="fw-bold">دورة الحياة الديناميكية</h3>
+                        <p class="text-muted">تتبع الشيكات عبر كل حالة من المسودة إلى التحصيل. تمنع التحققات الذكية
+                            الأخطاء وتضمن قفل البيانات بعد التقديم.</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="neon-divider"></div>
+
+        <!-- Step 3: Accounting -->
+        <div class="workflow-step-container text-center animate__animated animate__fadeIn">
+            <div class="screenshot-mask mx-auto shadow-lg" style="max-width: 900px;">
+                <img src="screenshot_accounting.png" alt="Journal View">
+            </div>
+            <div class="workflow-content mx-auto" style="max-width: 900px;">
+                <span class="step-badge">Phase 03 | المرحلة ٣</span>
+                <div class="row mt-3">
+                    <div class="col-md-6 border-end border-secondary">
+                        <h3 class="fw-800">Audit Transparency</h3>
+                        <p class="text-muted">Direct visibility into ledger impacts. Every cheque is linked to
+                            professional journal entries via high-performance smart buttons.</p>
+                    </div>
+                    <div class="col-md-6 text-ar">
+                        <h3 class="fw-bold">شفافية التدقيق</h3>
+                        <p class="text-muted">رؤية مباشرة للتأثيرات المحاسبية. يرتبط كل شيك بقيود يومية احترافية عبر
+                            أزرار إحصائية ذكية وعالية الأداء.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- Final CTA -->
-    <section class="container py-5 text-center">
-        <div class="glass-card p-5 py-5 animate__animated animate__pulse animate__infinite animate__slower">
-            <h2 class="hero-title mb-4" style="font-size: 2.5rem;">Elevate Your Experience</h2>
-            <p class="text-muted mb-5">Premium support and custom financial engineering available upon request.</p>
-            <div class="text-ar mb-5 mt-2">
-                <h3>ارتقِ بتجربتك</h3>
+    <!-- Final Section -->
+    <section class="container py-5 mt-5">
+        <div class="glass-card text-center py-5">
+            <h2 class="hero-title mb-4" style="font-size: 2.5rem;">READY TO SCALE?</h2>
+            <p class="text-muted mb-5">Join hundreds of companies managing their finance with MS Cheque Management.</p>
+            <a href="mailto:mohamed.saied.odoo@gmail.com" class="btn-premium py-3 px-5">GET PROFESSIONAL SUPPORT</a>
+            <div class="text-ar mt-5">
+                <p class="text-muted">نحن هنا لدعم نمو أعمالك بأفضل الحلول التقنية.</p>
             </div>
-            <a href="mailto:mohamed.saied.odoo@gmail.com" class="btn-futuristic">CONNECT WITH THE ARCHITECT</a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-5 text-center mt-5 text-muted opacity-50">
+    <footer class="py-5 text-center text-muted opacity-50">
         <p class="small">&copy; 2026 Architected by Mohamed Saied. All Rights Reserved.</p>
     </footer>
 
-    <!-- Reveal Effect Logic -->
-    <script>
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__animated', 'animate__fadeIn');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.glass-card').forEach(el => observer.observe(el));
-    </script>
 </body>
 
 </html>
