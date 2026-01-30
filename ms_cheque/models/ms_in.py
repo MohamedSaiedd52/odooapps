@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+from lxml import etree
 
 class Msin(models.Model):
     _name = 'ms.in'
@@ -210,7 +210,8 @@ class Msin(models.Model):
         for rec in self:
             if rec.state != 'draft':
                 raise UserError(_('Only draft cheques can be submitted.'))
-
+            if rec.amount <= 0:
+                raise UserError(_('Amount must be greater than zero.'))
             # create initial move (registered) between receivable and debit account
             move = rec._create_move(
                 debit_account=rec.debit_account_id or rec.bank_account_id,
@@ -356,9 +357,6 @@ class Msin(models.Model):
                 move.unlink()
             rec.state = 'draft'
 
-
-
-
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
@@ -367,3 +365,12 @@ class Msin(models.Model):
             res['journal_id'] = journal.id
             res['bank_account_id'] = journal.default_account_id.id
         return res
+
+    @api.model
+    def _get_view(self, view_id=None, view_type='form', **options):
+        arch, view = super()._get_view(view_id, view_type, **options)
+        if view_type == 'form':
+            for node in arch.xpath("//field"):
+                if node.get('name') not in ('state', 'name'):
+                    node.set('readonly', "state != 'draft'")
+        return arch, view
