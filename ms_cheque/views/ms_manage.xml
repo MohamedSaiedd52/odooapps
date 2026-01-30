@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <!-- =============================== -->
+        <!-- MS IN  list / List  View -->
+        <!-- =============================== -->
+        <record id="view_ms_in_list" model="ir.ui.view">
+            <field name="name">ms.in.list</field>
+            <field name="model">ms.in</field>
+            <field name="arch" type="xml">
+                <list string="MS IN ">
+                    <field name="name"/>
+                    <field name="cheque_no" />
+                    <field name="payer_id" string="customer"/>
+                    <field name="cheque_date"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- =============================== -->
+        <!-- MS IN Form View -->
+        <!-- =============================== -->
+        <record id="view_ms_in_form" model="ir.ui.view">
+                <field name="name">ms.in.form</field>
+                <field name="model">ms.in</field>
+                <field name="arch" type="xml">
+
+                    <form string="MS IN  ">
+
+                        <!-- ===== Header ===== -->
+                        <header>
+                            <button name="action_submit" type="object"
+                                    string="Submit"
+                                    class="btn-primary"
+                                    invisible="state != 'draft'"/>
+
+                            <button name="action_deposit" type="object"
+                                    string="Deposit"
+                                    class="btn-success"
+                                    invisible="state != 'submit'"/>
+
+                            <button name="action_cashed" type="object"
+                                    string="Cash"
+                                    class="btn-success"
+                                    invisible="state not in ['submit','deposit']"/>
+
+                            <button name="action_cancel" type="object"
+                                    string="Cancel"
+                                    class="btn-secondary"
+                                    invisible="state in ['cashed','cancel']"/>
+
+                            <button name="action_set_draft" type="object"
+                                    string="Reset to Draft"
+                                    invisible="state not in ['cashed','cancel']"/>
+
+                            <field name="state"
+                                   widget="statusbar"
+                                   statusbar_visible="draft,submit,deposit,cashed,cancel"/>
+                        </header>
+
+                        <sheet>
+
+                            <!-- ===== Button Box ===== -->
+                            <div class="oe_button_box" name="button_box">
+
+                                <!-- Journal Items -->
+                                <button type="object"
+                                        name="action_open_journal_items"
+                                        class="oe_stat_button"
+                                        icon="fa-book">
+                                    <field name="move_line_count"
+                                           widget="statinfo"
+                                           string="Journal Items"/>
+                                </button>
+
+                                <!-- Customer -->
+                         <button type="object"
+                                        name="action_open_customer"
+                                        class="oe_stat_button"
+                                        icon="fa-user">
+
+                        <field name="customer_short_name"
+                                        widget="statinfo"
+                                        string="Customer"
+                                        title="customer_name"/>
+
+
+                    <button type="object"
+                            name="action_open_journal_entry"
+                            class="oe_stat_button"
+                            icon="fa-book">
+                        <field name="move_count" widget="statinfo" string="Journal Entry"/>
+                    </button>
+                        </button>
+
+
+                                <!-- Debit Account -->
+                         <button type="object"
+                            name="action_open_debit_account"
+                            class="oe_stat_button"
+                            icon="fa-sign-in">
+                        <span>Debit Account</span>
+                        </button>
+
+
+                                <!-- Credit Account -->
+
+
+                            </div>
+
+                            <!-- ===== Title ===== -->
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="name" readonly="1"/>
+                                </h1>
+                            </div>
+
+                            <!-- ===== Basic Info ===== -->
+                            <group>
+                                <group>
+
+
+                                    <field name="cheque_no"/>
+                                    <field name="payer_id" string="Customer"/>
+                                    <field name="amount"/>
+                                    <field name="journal_id"/>
+                                </group>
+
+                                <group>
+                                    <field name="cheque_date"/>
+                                    <field name="receive_date"/>
+                                    <field name="deposit_date" readonly="1" invisible="1"/>
+                                    <field name="cashed_date" readonly="1" invisible="1"/>
+
+                                    <field name="show_debit" invisible="1"/>
+                                    <field name="show_credit" invisible="1"/>
+
+                                    <field name="bank_account_id"/>
+                                    <field name="cash_bank_account_id"/>
+
+                                    <field name="debit_account_id"
+                                           invisible="not show_debit"/>
+                                    <field name="credit_account_id"
+                                           invisible="not show_credit"/>
+                                </group>
+                                      
+                            </group>
+
+                            <!-- ===== Chatter ===== -->
+                            <div class="oe_chatter">
+                                <field name="message_follower_ids"/>
+                                <field name="activity_ids"/>
+                                <field name="message_ids"/>
+                            </div>
+
+                        </sheet>
+                    </form>
+
+                </field>
+            </record>
+
+
+    <!-- ========================================================= -->
+    <!-- Outgoing Cheque list View -->
+    <!-- ========================================================= -->
+      <record id="view_ms_out_list" model="ir.ui.view">
+                <field name="name">ms.out.list</field>
+                <field name="model">ms.out</field>
+                <field name="arch" type="xml">
+                    <list string="MS Out">
+                        <field name="name"/>
+                        <field name="cheque_no"/>
+                        <field name="payee_id"/>
+                        <field name="cheque_date"/>
+                        <field name="amount"/>
+                        <field name="state"/>
+                    </list>
+                </field>
+            </record>
+
+        <!-- =============================== -->
+        <!-- Outgoing Cheque Form View -->
+        <!-- =============================== -->
+        <record id="view_ms_out_form" model="ir.ui.view">
+            <field name="name">ms.out.form</field>
+            <field name="model">ms.out</field>
+            <field name="arch" type="xml">
+                <form string="MS OUT">
+
+                    <!-- ===== Header ===== -->
+                    <header>
+                        <button name="action_submit" type="object"
+                                string="Submit"
+                                class="btn-primary"
+                                invisible="state != 'draft'"/>
+
+                        <button name="action_cashed" type="object"
+                                string="Cash"
+                                class="btn-success"
+                                invisible="state != 'submit'"/>
+
+                        <button name="action_cancel" type="object"
+                                string="Cancel"
+                                class="btn-secondary"
+                                invisible="state in ['cashed','cancel']"/>
+
+                        <button name="action_reset_to_draft" type="object"
+                                string="Reset to Draft"
+                                invisible="state not in ['cancel','draft']"/>
+
+                        <field name="state"
+                               widget="statusbar"
+                               statusbar_visible="draft,submit,cashed,cancel"/>
+                    </header>
+
+                    <!-- ===== Sheet ===== -->
+                    <sheet>
+
+                        <div class="oe_button_box" name="button_box">
+
+                            <button type="object"
+                                    name="action_open_journal_items"
+                                    class="oe_stat_button"
+                                    icon="fa-book">
+                                <field name="move_line_count" widget="statinfo" string="Journal Items"/>
+                            </button>
+
+                            <button type="object"
+                                    name="action_open_vendor"
+                                    class="oe_stat_button"
+                                    icon="fa-user">
+                                <field name="vendor_name" widget="statinfo" string="Vendor"/>
+
+
+                            </button>
+
+                            <button type="object"
+                                    name="action_open_journal_entry"
+                                    class="oe_stat_button"
+                                    icon="fa-book">
+                                <field name="move_count" widget="statinfo" string="Journal Entry"/>
+                            </button>
+
+                            <button type="object"
+                                    name="action_open_credit_account"
+                                    class="oe_stat_button"
+                                    icon="fa-sign-out">
+                                <span>Credit Account</span>
+                            </button>
+
+                        </div>
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                        <group>
+                            <group>
+                                <field name="cheque_no"/>
+                                <field name="payee_id" string="Vendor"/>
+                                <field name="amount"/>
+                                <field name="journal_id"/>
+                                  <field name="cheque_date"/>
+                                <field name="cashed_date" readonly="1"/>
+                            </group>
+
+
+
+                        <!-- Accounting -->
+                        <group string="Accounting">
+
+                                  <field name="show_debit" invisible="1" />
+                                <field name="show_credit" invisible="1"/>
+                                <field name="bank_account_id"/>
+                                <field name="cash_bank_account_id"/>
+                                <field name="debit_account_id"
+                                       invisible="not show_debit"/>
+                                <field name="credit_account_id"
+                                       invisible="not show_credit"/>
+
+                        </group>
+            </group>
+                        <!-- Chatter -->
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
+                        </div>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <!-- ========================================================= -->
+    <!-- Menus -->
+    <!-- ========================================================= -->
+         <record id="action_ms_in" model="ir.actions.act_window">
+            <field name="name">MS IN </field>
+            <field name="res_model">ms.in</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="action_ms_out" model="ir.actions.act_window">
+            <field name="name">MS Out</field>
+            <field name="res_model">ms.out</field>
+            <field name="view_mode">list,form</field>
+        </record>
+     <!-- ================================ -->
+        <!-- Settings View for Cheque Accounts -->
+        <!-- ================================ -->
+        <record id="view_cheque_settings_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.cheque.management</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form" position="inside">
+
+                    <app name="cheque_management"
+                        string="Cheque Management"
+                        groups="account.group_account_manager">
+
+                        <block title="Default Accounts">
+
+                            <setting id="incoming_cheque_account"
+                                    string="MS IN  Account"
+                                    help="Default debit account used for incoming cheques">
+                                <field name="in_debit_account_id"/>
+                            </setting>
+
+                            <setting id="outgoing_cheque_account"
+                                    string="MS Out Account"
+                                    help="Default credit account used for outgoing cheques">
+                                <field name="out_credit_account_id"/>
+                            </setting>
+                    <setting id="incoming_cheque_journal"
+                                string="MS IN  Journal"
+                                help="Default journal used for incoming cheques">
+                            <field name="in_cheque_journal_id"/>
+                        </setting>
+
+                        <setting id="outgoing_cheque_journal"
+                                string="MS Out Journal"
+                                help="Default journal used for outgoing cheques">
+                            <field name="out_cheque_journal_id"/>
+                        </setting>
+                        </block>
+                    </app>
+
+                </xpath>
+
+            </field>
+        </record>
+
+
+
+
+
+        <!-- ================================ -->
+        <!-- Menu Item under Settings -->
+        <!-- ================================ -->
+
+        <menuitem id="cheque_management_root" name="MS CH" sequence="10"
+          web_icon="ms_cheque,static/description/icon.png"
+        />
+
+        <menuitem id="menu_incoming_cheques" name="MS IN CH " parent="cheque_management_root" sequence="1"/>
+        <menuitem id="menu_outgoing_cheques" name="MS Out CH" parent="cheque_management_root" sequence="2"/>
+
+        <menuitem id="menu_incoming_cheques_action" parent="menu_incoming_cheques" action="action_ms_in" />
+        <menuitem id="menu_outgoing_cheques_action" parent="menu_outgoing_cheques" action="action_ms_out"/>
+
+</data>
+</odoo>
