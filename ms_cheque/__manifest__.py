@@ -9,6 +9,14 @@
         'data/seq_data.xml',
         'views/ms_manage.xml',
     ],
+    'currency': 'USD',
+    'summary': 'Manage Customer and Supplier Cheques',
+    'description': """
+        This module allows you to manage customer and supplier cheques efficiently.
+    """,    
+    'license': 'LGPL-3',
+    'maintainer': 'Mohamed Saied',
+    'price': 30,
     'installable': True,
     'auto_install': False,
 }
