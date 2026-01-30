@@ -11,7 +11,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cairo:wght@400;600;700&display=swap"
         rel="stylesheet">
-    <style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+   <style>
         :root {
             --primary-color: #714B67;
             --secondary-color: #00A09D;
@@ -113,6 +115,62 @@
             border: none;
             text-decoration: none;
         }
+
+        .contact-footer {
+    animation: fadeUp 1s ease-in-out;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+}
+
+.contact-info i {
+    color: #0d6efd;
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.contact-info p:hover i {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.contact-info a {
+    text-decoration: none;
+    color: #333;
+}
+
+.contact-info a:hover {
+    color: #0d6efd;
+}
+
+.btn-premium {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-premium:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
     </style>
 </head>
 
@@ -213,12 +271,33 @@
         </div>
 
         <!-- Footer -->
-        <div class="text-center py-5 mt-5 bg-light rounded-4">
-            <h3 class="mb-4">Contact for Custom Services | تواصل معنا للتخصيص</h3>
-            <p>Get professional support and custom feature development.</p>
-            <p dir="rtl">احصل على دعم احترافي وتطوير ميزات مخصصة.</p>
-            <a href="mailto:mohamed.saied.odoo@gmail.com" class="btn-premium">Contact Mohamed Saied</a>
-        </div>
+<!-- Footer -->
+<div class="text-center py-5 mt-5 bg-light rounded-4 contact-footer">
+    <h3 class="mb-4">
+        Contact for Custom Services | تواصل معنا للتخصيص
+    </h3>
+
+    <p>Get professional support and custom feature development.</p>
+    <p dir="rtl">احصل على دعم احترافي وتطوير ميزات مخصصة.</p>
+
+    <div class="contact-info mt-4">
+        <p>
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+218931640014">+218 93 164 0014</a>
+        </p>
+        <p>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:MohamedSaiedd53@gmail.com">
+                MohamedSaiedd53@gmail.com
+            </a>
+        </p>
+    </div>
+
+    <a href="mailto:MohamedSaiedd53@gmail.com" class="btn-premium mt-3">
+        Contact Mohamed Saied
+    </a>
+</div>
+
 
     </div>
 </body>
