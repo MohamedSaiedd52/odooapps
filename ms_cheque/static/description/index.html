@@ -16,6 +16,7 @@
             --secondary: #017e84;
             --light: #f8f9fa;
             --dark: #2d2d2d;
+            --accent: #E91E63;
         }
 
         body {
@@ -45,14 +46,15 @@
         .screenshot:hover {
             transform: scale(1.05);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-            filter: brightness(1.1);  /* زيادة سطوع الصورة عند التمرير */
+            filter: brightness(1.1);  /* Increase brightness when hovered */
         }
 
-        /* Main Content */
+        /* Section Titles */
         .section-title {
             font-weight: 700;
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
         }
 
         .section-title span {
@@ -98,6 +100,135 @@
             text-align: center;
         }
 
+        .footer-box h2 {
+            font-weight: 700;
+        }
+
+        .footer-box p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .footer-box a {
+            font-weight: 600;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+        }
+
+        .footer-box a:hover {
+            background-color: var(--primary);
+        }
+
+        /* Responsive Utilities */
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .text-ar {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* Workflow Steps */
+        .workflow {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 18px 18px 0;
+            padding: 26px;
+        }
+
+        .workflow.ar {
+            border-left: none;
+            border-right: 4px solid var(--primary);
+            border-radius: 18px 0 0 18px;
+        }
+
+        /* Button Customizations */
+        .btn-custom {
+            background-color: var(--primary);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--accent);
+        }
+
+        .section-subtitle {
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: var(--secondary);
+        }
+
+        /* Testimonial Section */
+        .testimonial {
+            padding: 60px 0;
+            background: var(--light);
+            border-radius: 18px;
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial .quote {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .testimonial .author {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .testimonial .designation {
+            color: var(--secondary);
+        }
+
+        .testimonial .text {
+            font-size: 16px;
+            color: var(--dark);
+        }
+
+        /* Feature List */
+        .feature-list {
+            padding: 40px 0;
+            background-color: var(--light);
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item {
+            margin-bottom: 25px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-item i {
+            font-size: 26px;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .feature-item h5 {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .feature-item p {
+            color: var(--dark);
+            font-size: 16px;
+        }
     </style>
 </head>
 
@@ -223,6 +354,22 @@
         </div>
         <div class="col-md-6">
             <img src="screenshot_accounting.png" class="screenshot img-fluid" alt="Processing Screenshot">
+        </div>
+    </div>
+
+    <div class="row g-4 align-items-center mb-5">
+        <div class="col-md-6">
+            <div class="workflow">
+                <h5>Step 3 – Financial Transparency</h5>
+                <p>All transactions generate clear journal entries linked to cheques.</p>
+            </div>
+            <div class="workflow ar mt-3">
+                <h5>الخطوة 3 – الشفافية المالية</h5>
+                <p>كل المعاملات تولد قيود يومية واضحة.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="screenshot_accounting.png" class="screenshot img-fluid" alt="Accounting Screenshot">
         </div>
     </div>
 </section>
