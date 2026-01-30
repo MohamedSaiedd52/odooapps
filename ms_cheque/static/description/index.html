@@ -4,129 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS Cheque Management – Odoo Module</title>
+    <title>MS Cheque Management | Futuristic Odoo Solution</title>
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Cairo:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         :root {
-            --primary: #714B67;
-            --secondary: #017e84;
-            --light: #f8f9fa;
-            --dark: #2d2d2d;
-            --accent: #E91E63;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --primary-gradient: linear-gradient(135deg, #714B67 0%, #a26b94 100%);
+            --secondary-gradient: linear-gradient(135deg, #017e84 0%, #00b8bf 100%);
+            --dark-bg: #0f172a;
+            --text-main: #f8fafc;
         }
 
         body {
-            font-family: 'Inter', 'Cairo', sans-serif;
-            background: #ffffff;
-            color: var(--dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), #4a3144);
-            color: #fff;
-            padding: 90px 0;
-            border-radius: 0 0 60px 60px;
-        }
-
-        /* Screenshot Image Styling */
-        .screenshot {
-            border-radius: 18px;
-            border: 6px solid #f1f1f1;
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
-            max-width: 100%;
-            height: auto;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
-        }
-
-        .screenshot:hover {
-            transform: scale(1.05);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-            filter: brightness(1.1);  /* Increase brightness when hovered */
-        }
-
-        /* Section Titles */
-        .section-title {
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .section-title span {
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--secondary);
-            margin: 14px auto 0;
-            border-radius: 4px;
-        }
-
-        /* Cards */
-        .doc-card {
-            background: #fff;
-            border-radius: 22px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
-            padding: 30px;
-            height: 100%;
-            transition: all .3s ease;
-        }
-
-        .doc-card:hover {
-            transform: translateY(-6px);
-        }
-
-        .icon-box {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            background: var(--light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
-
-        .footer-box {
-            background: #212529;
-            color: #fff;
-            padding: 60px;
-            border-radius: 36px;
-            text-align: center;
-        }
-
-        .footer-box h2 {
-            font-weight: 700;
-        }
-
-        .footer-box p {
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
-
-        .footer-box a {
-            font-weight: 600;
-            background-color: var(--accent);
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: background-color 0.3s;
-        }
-
-        .footer-box a:hover {
-            background-color: var(--primary);
-        }
-
-        /* Responsive Utilities */
-        .img-fluid {
-            max-width: 100%;
-            height: auto;
+            font-family: 'Outfit', 'Cairo', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(113, 75, 103, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(1, 126, 132, 0.15) 0%, transparent 40%);
         }
 
         .text-ar {
@@ -135,263 +39,285 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        /* Workflow Steps */
-        .workflow {
-            background: var(--light);
-            border-left: 4px solid var(--primary);
-            border-radius: 0 18px 18px 0;
-            padding: 26px;
-        }
-
-        .workflow.ar {
-            border-left: none;
-            border-right: 4px solid var(--primary);
-            border-radius: 18px 0 0 18px;
-        }
-
-        /* Button Customizations */
-        .btn-custom {
-            background-color: var(--primary);
-            color: #fff;
-            padding: 12px 28px;
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 30px;
-            font-weight: 600;
-            border: none;
-            transition: background-color 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .btn-custom:hover {
-            background-color: var(--accent);
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .section-subtitle {
-            font-weight: 600;
-            margin-bottom: 40px;
-            color: var(--secondary);
+        /* Hero Styling */
+        .hero-section {
+            padding: 120px 0 80px;
+            position: relative;
         }
 
-        /* Testimonial Section */
-        .testimonial {
-            padding: 60px 0;
-            background: var(--light);
-            border-radius: 18px;
-            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.1);
+        .hero-title {
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #a26b94);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 4rem;
+            letter-spacing: -1px;
         }
 
-        .testimonial .quote {
-            font-size: 24px;
-            color: var(--primary);
-            margin-bottom: 30px;
+        .hero-icon {
+            filter: drop-shadow(0 0 20px rgba(162, 107, 148, 0.5));
+            animation: float 6s ease-in-out infinite;
         }
 
-        .testimonial .author {
-            font-weight: 600;
-            font-size: 18px;
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
-        .testimonial .designation {
-            color: var(--secondary);
-        }
-
-        .testimonial .text {
-            font-size: 16px;
-            color: var(--dark);
-        }
-
-        /* Feature List */
-        .feature-list {
-            padding: 40px 0;
-            background-color: var(--light);
-            border-radius: 18px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-item {
+        /* Feature Icons */
+        .feat-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
             margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(113, 75, 103, 0.3);
         }
 
-        .feature-item:last-child {
-            margin-bottom: 0;
+        .feat-icon-wrapper.alt {
+            background: var(--secondary-gradient);
+            box-shadow: 0 10px 20px rgba(1, 126, 132, 0.3);
         }
 
-        .feature-item i {
-            font-size: 26px;
-            color: var(--primary);
-            margin-right: 10px;
+        /* Screenshot Mask */
+        .screenshot-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        .feature-item h5 {
+        .screenshot-container img {
+            border-radius: 18px;
+            width: 100%;
+            transition: transform 0.8s ease;
+        }
+
+        .screenshot-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Buttons */
+        .btn-futuristic {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(113, 75, 103, 0.4);
+        }
+
+        .btn-futuristic:hover {
+            transform: scale(1.1);
+            color: white;
+            box-shadow: 0 15px 40px rgba(113, 75, 103, 0.6);
+        }
+
+        /* Divider */
+        .neon-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--glass-border), transparent);
+            margin: 80px 0;
+        }
+
+        /* Badge */
+        .badge-neon {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 14px;
             font-weight: 600;
-            color: var(--dark);
-        }
-
-        .feature-item p {
-            color: var(--dark);
-            font-size: 16px;
+            color: #ccc;
         }
     </style>
 </head>
 
 <body>
 
-<!-- HERO SECTION -->
-<section class="hero">
-    <div class="container text-center">
-        <img src="icon.png" width="120" class="mb-4 rounded-4 shadow">
-        <h1 class="fw-bold display-4">MS Cheque Management</h1>
-        <p class="lead mt-3">Professional Cheque Automation for Odoo 18</p>
+    <!-- Header / Hero -->
+    <header class="hero-section text-center container">
+        <div class="animate__animated animate__fadeInDown">
+            <img src="icon.png" alt="Icon" width="140" class="hero-icon mb-4">
+            <h1 class="hero-title">MS CHEQUE</h1>
+            <p class="lead text-muted mb-5" style="max-width: 600px; margin: 0 auto;">Next-generation automated cheque
+                lifecycle management. <br> Built for precision, security, and elegance.</p>
+            <div class="d-flex justify-content-center gap-3 mb-5">
+                <span class="badge-neon">Odoo 18.0</span>
+                <span class="badge-neon">Dual-Language AI</span>
+                <span class="badge-neon">Zero Manual Entry</span>
+            </div>
+        </div>
+    </header>
 
-        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-            <span class="badge bg-success px-4 py-2 rounded-pill">Financial 5/5</span>
-            <span class="badge bg-info px-4 py-2 rounded-pill">Arabic Ready</span>
-            <span class="badge bg-dark px-4 py-2 rounded-pill">Odoo 18</span>
+    <!-- Main Visual -->
+    <div class="container mb-5 text-center px-4">
+        <div class="screenshot-container animate__animated animate__zoomIn shadow-lg">
+            <img src="banner.png" alt="Hero Banner">
         </div>
     </div>
-</section>
 
-<!-- CORE FEATURES -->
-<section class="container py-5 mt-4">
-    <h2 class="section-title">
-        Core Features | الميزات الأساسية
-        <span></span>
-    </h2>
+    <!-- Features Grid -->
+    <section class="container py-5 mt-5">
+        <h2 class="text-center mb-5 fw-800" style="font-size: 2.5rem;">The Architecture of Automation</h2>
+        <div class="row g-4 justify-content-center">
+            <!-- Feature 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card p-5 h-100">
+                    <div class="feat-icon-wrapper">✨</div>
+                    <h3>Intelligent Journaling</h3>
+                    <p class="text-muted">Real-time financial synchronization. Every state change triggers a perfectly
+                        mapped journal entry.</p>
+                    <div class="text-ar pt-4 mt-4 border-top">
+                        <h3 class="fw-bold">القيود الذكية</h3>
+                        <p class="text-muted">مزامنة مالية في الوقت الحقيقي. كل تغيير في الحالة ينتج عنه قيد يومية
+                            متوافق تماماً.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card p-5 h-100">
+                    <div class="feat-icon-wrapper alt">🛡️</div>
+                    <h3>Quantum Integrity</h3>
+                    <p class="text-muted">Dynamic record locking. Fields transition to readonly once submitted,
+                        preserving the audit trail.</p>
+                    <div class="text-ar pt-4 mt-4 border-top">
+                        <h3 class="fw-bold">سلامة البيانات</h3>
+                        <p class="text-muted">قفل ديناميكي للسجلات. تنتقل الحقول لحالة القراءة فقط بمجرد التقديم، حفاظاً
+                            على مسار التدقيق.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card p-5 h-100">
+                    <div class="feat-icon-wrapper">🚀</div>
+                    <h3>One-Click Setup</h3>
+                    <p class="text-muted">Deploy and configure in seconds. Intuitive account mapping via Odoo's core
+                        settings.</p>
+                    <div class="text-ar pt-4 mt-4 border-top">
+                        <h3 class="fw-bold">إعداد بنقرة واحدة</h3>
+                        <p class="text-muted">النشر والإعداد في ثوانٍ. ربط حسابات بديهي من خلال إعدادات أودو الأساسية.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="doc-card">
-                <div class="icon-box">📌</div>
-                <h5>Smart Automation</h5>
-                <p>Automatic journal entries for submission, deposit, and cashing.</p>
-                <div class="text-ar border-top pt-3 mt-3">
-                    <strong>أتمتة ذكية</strong>
-                    <p>إنشاء قيود محاسبية تلقائية لكل مرحلة.</p>
+    <div class="neon-divider"></div>
+
+    <!-- Detailed Workflow Showcase -->
+    <section class="container mb-5">
+        <!-- Configuration -->
+        <div class="row align-items-center mb-5 gx-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="screenshot-container shadow-lg animate__animated animate__fadeInLeft">
+                    <img src="screenshot_configuration.png" alt="Config Details">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="px-lg-5 animate__animated animate__fadeInRight">
+                    <h2 class="fw-800 mb-4">Precision Configuration</h2>
+                    <p class="text-muted lead">Architect your financial flow by defining precise default accounts and
+                        primary journals.</p>
+                    <div class="text-ar mt-4 border-secondary border-end pe-4">
+                        <h2 class="fw-bold">تكوين دقيق</h2>
+                        <p class="text-muted lead">صمم تدفقك المالي من خلال تحديد حسابات افتراضية دقيقة ودفاتر يومية
+                            أساسية.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="doc-card">
-                <div class="icon-box">🔒</div>
-                <h5>Security Control</h5>
-                <p>Readonly protection after confirmation to prevent manipulation.</p>
-                <div class="text-ar border-top pt-3 mt-3">
-                    <strong>تحكم أمني</strong>
-                    <p>قفل الحقول بعد التأكيد لمنع التعديل.</p>
+        <div class="neon-divider"></div>
+
+        <!-- Incoming Cycle -->
+        <div class="row align-items-center mb-5 flex-lg-row-reverse gx-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="screenshot-container shadow-lg animate__animated animate__fadeInRight">
+                    <img src="screenshot_incoming.png" alt="Incoming Cycle">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="px-lg-5 animate__animated animate__fadeInLeft">
+                    <h2 class="fw-800 mb-4">Seamless Ledger Flow</h2>
+                    <p class="text-muted lead">Monitor incoming assets as they evolve from draft registrations to fully
+                        reconciled cash assets.</p>
+                    <div class="text-ar mt-4 border-primary border-start ps-4">
+                        <h2 class="fw-bold">تدفق مالي سلس</h2>
+                        <p class="text-muted lead">راقب الأصول الواردة أثناء تطورها من تسجيلات المسودة إلى أصول نقدية
+                            مسواة بالكامل.</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="col-md-4">
-            <div class="doc-card">
-                <div class="icon-box">🌍</div>
-                <h5>Bilingual UI</h5>
-                <p>Fully translated English & Arabic with RTL support.</p>
-                <div class="text-ar border-top pt-3 mt-3">
-                    <strong>واجهة ثنائية اللغة</strong>
-                    <p>دعم كامل للعربية والإنجليزية.</p>
-                </div>
+    <!-- Final CTA -->
+    <section class="container py-5 text-center">
+        <div class="glass-card p-5 py-5 animate__animated animate__pulse animate__infinite animate__slower">
+            <h2 class="hero-title mb-4" style="font-size: 2.5rem;">Elevate Your Experience</h2>
+            <p class="text-muted mb-5">Premium support and custom financial engineering available upon request.</p>
+            <div class="text-ar mb-5 mt-2">
+                <h3>ارتقِ بتجربتك</h3>
             </div>
+            <a href="mailto:mohamed.saied.odoo@gmail.com" class="btn-futuristic">CONNECT WITH THE ARCHITECT</a>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- CONFIGURATION -->
-<section class="container py-5">
-    <div class="doc-card">
-        <div class="row align-items-center g-4">
-            <div class="col-md-6 order-md-2">
-                <img src="screenshot_configuration.png" class="screenshot img-fluid" alt="Configuration Screenshot">
-            </div>
-            <div class="col-md-6">
-                <h3>Centralized Configuration</h3>
-                <p>Configure journals and accounts once and reuse everywhere.</p>
-                <ul>
-                    <li>Default debit & credit accounts</li>
-                    <li>Cheque-specific journals</li>
-                    <li>Automatic numbering</li>
-                </ul>
-                <div class="text-ar mt-4">
-                    <p>إعداد مركزي للحسابات ودفاتر اليومية.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- Footer -->
+    <footer class="py-5 text-center mt-5 text-muted opacity-50">
+        <p class="small">&copy; 2026 Architected by Mohamed Saied. All Rights Reserved.</p>
+    </footer>
 
-<!-- FULL LIFECYCLE -->
-<section class="container py-5">
-    <h2 class="section-title">
-        Cheque Lifecycle | دورة حياة الشيك
-        <span></span>
-    </h2>
+    <!-- Reveal Effect Logic -->
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeIn');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-    <div class="row g-4 align-items-center mb-5">
-        <div class="col-md-6">
-            <div class="workflow">
-                <h5>Step 1 – Draft</h5>
-                <p>Create and review cheque with default values.</p>
-            </div>
-            <div class="workflow ar mt-3">
-                <h5>الخطوة 1 – مسودة</h5>
-                <p>إنشاء الشيك بالقيم الافتراضية.</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <img src="screenshot_incoming.png" class="screenshot img-fluid" alt="Draft Screenshot">
-        </div>
-    </div>
-
-    <div class="row g-4 align-items-center flex-row-reverse">
-        <div class="col-md-6">
-            <div class="workflow">
-                <h5>Step 2 – Processing</h5>
-                <p>Submit, deposit, or cash cheques with full tracking.</p>
-            </div>
-            <div class="workflow ar mt-3">
-                <h5>الخطوة 2 – المعالجة</h5>
-                <p>تتبع الحالات حتى التحصيل.</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <img src="screenshot_accounting.png" class="screenshot img-fluid" alt="Processing Screenshot">
-        </div>
-    </div>
-
-    <div class="row g-4 align-items-center mb-5">
-        <div class="col-md-6">
-            <div class="workflow">
-                <h5>Step 3 – Financial Transparency</h5>
-                <p>All transactions generate clear journal entries linked to cheques.</p>
-            </div>
-            <div class="workflow ar mt-3">
-                <h5>الخطوة 3 – الشفافية المالية</h5>
-                <p>كل المعاملات تولد قيود يومية واضحة.</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <img src="screenshot_accounting.png" class="screenshot img-fluid" alt="Accounting Screenshot">
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER CTA -->
-<section class="container mb-5">
-    <div class="footer-box">
-        <h2>Ready for Professional Cheque Management?</h2>
-        <p class="mt-3">Audit-ready, secure, and easy to use.</p>
-        <div class="text-ar mt-4">
-            <h5>جاهز لإدارة احترافية للشيكات؟</h5>
-        </div>
-        <a href="mailto:mohamed.saied.odoo@gmail.com" class="btn btn-light btn-lg rounded-pill px-5 mt-4">
-            Support & Customization
-        </a>
-    </div>
-</section>
-
-<footer class="text-center py-4 text-muted">
-    © 2026 Mohamed Saied – All Rights Reserved
-</footer>
-
+        document.querySelectorAll('.glass-card').forEach(el => observer.observe(el));
+    </script>
 </body>
 
 </html>
