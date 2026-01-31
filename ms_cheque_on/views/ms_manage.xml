@@ -367,7 +367,7 @@
         <!-- ================================ -->
 
         <menuitem id="cheque_management_root" name="MS Cheque" sequence="10"
-          web_icon="ms_cheque,static/description/icon.png"
+          web_icon="ms_cheque_on,static/description/icon.png"
         />
 
         <!-- Main Operations -->

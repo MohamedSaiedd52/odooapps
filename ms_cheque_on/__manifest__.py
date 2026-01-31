@@ -9,7 +9,7 @@
         'views/ms_manage.xml',
         'views/reports.xml',
     ],
-    'website': 'https://apps.odoo.com/apps/modules/18.0/ms_cheque',
+    'website': 'https://apps.odoo.com/apps/modules/18.0/ms_cheque_on',
     'installable': True,
     'auto_install': False,
     'license': 'LGPL-3',
