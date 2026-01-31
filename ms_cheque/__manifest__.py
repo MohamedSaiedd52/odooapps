@@ -16,7 +16,7 @@
     'price': 30.00,
     'currency': 'USD',
     'images': [
-        'static/description/banner.png',
+        'static/description/banner.gif',
         'static/description/screenshot_incoming.png'
     ],
     'summary': 'Advanced Cheque Management for Odoo 18',
