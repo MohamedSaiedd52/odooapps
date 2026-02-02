@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoS Analytic Tag & Distribution - Complete Workflow - Odoo 19+</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --odoo-purple: #714B67;
+            --odoo-dark: #212529;
+            --odoo-light: #f8f9fa;
+            --accent-blue: #4a90e2;
+            --success-green: #28a745;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #444;
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--odoo-dark);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--odoo-purple) 0%, #a24b77 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
+
+        .hero-section h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-box {
+            padding: 30px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            height: 100%;
+            border-top: 4px solid var(--odoo-purple);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--odoo-purple);
+            margin-bottom: 20px;
+        }
+
+        .screenshot-card {
+            margin-bottom: 50px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .screenshot-img {
+            width: 100%;
+            border-bottom: 1px solid #eee;
+        }
+
+        .screenshot-desc {
+            padding: 25px;
+            background: #fff;
+        }
+
+        .screenshot-step {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: var(--odoo-purple);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: 700;
+            margin-right: 12px;
+        }
+
+        .footer {
+            background-color: var(--odoo-dark);
+            color: #ccc;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--odoo-purple);
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            border-left: 4px solid var(--odoo-purple);
+        }
+
+        .code-comment {
+            color: #6a9955;
+        }
+
+        .cycle-diagram {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .cycle-step {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid var(--odoo-purple);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge-custom {
+            background: var(--odoo-purple);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .tech-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .tech-table th {
+            background: var(--odoo-purple);
+            color: white;
+            font-weight: 600;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            color: var(--odoo-purple);
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero-section">
+        <div class="container text-center">
+            <img src="icon.png" width="100" class="mb-4 shadow rounded" alt="Icon">
+            <h1>PoS Analytic Tag & Distribution</h1>
+            <p class="lead" style="font-size: 1.5rem; font-weight: 300;">Seamless Analytic Integration for Odoo 19 Point
+                of Sale</p>
+            <span class="badge-custom">Odoo 19+</span>
+            <span class="badge-custom">JSON Distribution</span>
+            <span class="badge-custom">Full Analytics Support</span>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-md-12">
+                    <h2 class="mb-3">Why This Module?</h2>
+                    <p class="text-muted">In Odoo 19+, analytics use a modern <span class="highlight">JSON
+                            Distribution</span> system. This module brings full support for this system to your PoS
+                        sessions and orders, ensuring accurate accounting and reporting.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                        <h4>Session Analytics</h4>
+                        <p>Assign analytic accounts directly to your POS sessions for global tracking.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-shopping-cart feature-icon"></i>
+                        <h4>Order Precision</h4>
+                        <p>Each order inherits the correct analytic tags, flowing perfectly into your journal entries.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-file-invoice-dollar feature-icon"></i>
+                        <h4>JSON Distribution</h4>
+                        <p>Full support for Odoo 19's new analytic distribution logic in Journal Items.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW CYCLE SECTION -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2><i class="fas fa-sync-alt" style="color: var(--odoo-purple);"></i> Complete Workflow Cycle</h2>
+                <p class="text-muted">Understanding how data flows from configuration to accounting entries</p>
+            </div>
+
+            <div class="cycle-diagram">
+                <div class="cycle-step">
+                    <h5><i class="fas fa-cog text-primary"></i> Phase 1: Configuration</h5>
+                    <p><strong>POS Config</strong> → Set Default Analytic Account</p>
+                    <small class="text-muted">The analytic account is configured once per POS system</small>
+                </div>
+
+                <div class="flow-arrow">↓</div>
+
+                <div class="cycle-step">
+                    <h5><i class="fas fa-play-circle text-success"></i> Phase 2: Session Start</h5>
+                    <p><strong>POS Session</strong> → Inherits Analytic Account from Config</p>
+                    <small class="text-muted">Each new session automatically receives the analytic account</small>
+                </div>
+
+                <div class="flow-arrow">↓</div>
+
+                <div class="cycle-step">
+                    <h5><i class="fas fa-shopping-bag text-warning"></i> Phase 3: Order Processing</h5>
+                    <p><strong>POS Orders</strong> → Inherit from Session</p>
+                    <small class="text-muted">All orders in the session carry the same analytic data</small>
+                </div>
+
+                <div class="flow-arrow">↓</div>
+
+                <div class="cycle-step">
+                    <h5><i class="fas fa-book text-danger"></i> Phase 4: Accounting Entry</h5>
+                    <p><strong>Journal Items</strong> → JSON Distribution Applied</p>
+                    <small class="text-muted">When session closes, accounting entries are created with analytic
+                        distribution</small>
+                </div>
+
+                <div class="flow-arrow">↓</div>
+
+                <div class="cycle-step">
+                    <h5><i class="fas fa-chart-pie text-info"></i> Phase 5: Reporting</h5>
+                    <p><strong>Analytics Reports</strong> → Full Financial Tracking</p>
+                    <small class="text-muted">Generate reports by department, project, or branch</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CODE EXPLANATION SECTION -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Technical Deep Dive</h2>
+
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <h4><i class="fas fa-code"></i> Core Logic: Creating Account Move</h4>
+                    <div class="code-block">
+                        <pre style="margin: 0; color: #f8f8f2;">
+<span class="code-comment"># File: pos_session.py</span>
+<span style="color: #66d9ef;">def</span> <span style="color: #a6e22e;">_create_account_move</span>(self, balancing_account=<span style="color: #ae81ff;">False</span>, ...):
+    <span class="code-comment"># Call parent method to create the journal entry</span>
+    res = <span style="color: #66d9ef;">super</span>()._create_account_move(...)
+    
+    <span class="code-comment"># Inherit analytic account from POS configuration</span>
+    self.pos_analytic_account_id = self.config_id.analytic_account_id
+    
+    <span style="color: #f92672;">if</span> self.pos_analytic_account_id:
+        <span class="code-comment"># In Odoo 19, analytic_distribution is a JSON field</span>
+        <span class="code-comment"># Format: {&quot;account_id&quot;: percentage}</span>
+        distribution = {
+            <span style="color: #66d9ef;">str</span>(self.pos_analytic_account_id.id): <span style="color: #ae81ff;">100.0</span>
+        }
+        
+        <span class="code-comment"># Apply to all journal item lines</span>
+        self.move_id.line_ids.<span style="color: #a6e22e;">write</span>({
+            <span style="color: #e6db74;">'analytic_distribution'</span>: distribution
+        })
+    
+    <span style="color: #f92672;">return</span> res
+</pre>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-4">
+                    <h4><i class="fas fa-database"></i> Data Inheritance Chain</h4>
+                    <div class="table-responsive tech-table">
+                        <table class="table table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Field</th>
+                                    <th>Source</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>pos.config</code></td>
+                                    <td><code>analytic_account_id</code></td>
+                                    <td>Manual Configuration</td>
+                                    <td>Many2one</td>
+                                </tr>
+                                <tr>
+                                    <td><code>pos.session</code></td>
+                                    <td><code>pos_analytic_account_id</code></td>
+                                    <td>Inherited from config_id</td>
+                                    <td>Many2one</td>
+                                </tr>
+                                <tr>
+                                    <td><code>pos.order</code></td>
+                                    <td><code>pos_analytic_account_id</code></td>
+                                    <td>Related to session_id</td>
+                                    <td>Many2one (related)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>account.move.line</code></td>
+                                    <td><code>analytic_distribution</code></td>
+                                    <td>Written during move creation</td>
+                                    <td>JSON</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-4">
+                    <h4><i class="fas fa-brackets-curly"></i> JSON Distribution Format</h4>
+                    <div class="code-block">
+                        <pre style="margin: 0; color: #f8f8f2;">
+<span class="code-comment">/* Single Account - 100% Distribution */</span>
+{
+    <span style="color: #e6db74;">&quot;45&quot;</span>: <span style="color: #ae81ff;">100.0</span>
+}
+
+<span class="code-comment">/* Multiple Accounts - Split Distribution */</span>
+{
+    <span style="color: #e6db74;">&quot;45&quot;</span>: <span style="color: #ae81ff;">60.0</span>,   <span class="code-comment">// 60% to Department A</span>
+    <span style="color: #e6db74;">&quot;52&quot;</span>: <span style="color: #ae81ff;">40.0</span>    <span class="code-comment">// 40% to Department B</span>
+}
+
+<span class="code-comment">/* Key: Analytic Account ID (as string) */</span>
+<span class="code-comment">/* Value: Distribution percentage (float) */</span>
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP BY STEP SCREENSHOTS -->
+    <section class="py-5 bg-light">
+        <div class="container text-center mb-5">
+            <h2>How it Works - Visual Guide</h2>
+            <p class="text-muted">Step-by-step setup and flow with screenshots</p>
+        </div>
+
+        <div class="container">
+            <!-- Step 1 -->
+            <div class="screenshot-card mx-auto" style="max-width: 900px;">
+                <img src="assets/screenshots/1.png" class="screenshot-img" alt="Step 1">
+                <div class="screenshot-desc">
+                    <h4><span class="screenshot-step">1</span>Enable Analytic Accounting</h4>
+                    <p><strong>Path:</strong> Settings → Accounting → Analytics</p>
+                    <p>Ensure Analytic Accounting is enabled for your users to start tracking costs and revenues across
+                        different dimensions (departments, projects, branches).</p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="screenshot-card mx-auto" style="max-width: 900px;">
+                <img src="assets/screenshots/2.png" class="screenshot-img" alt="Step 2">
+                <div class="screenshot-desc">
+                    <h4><span class="screenshot-step">2</span>Configure POS Session</h4>
+                    <p><strong>Path:</strong> Point of Sale → Configuration → Point of Sale</p>
+                    <p>Select your default Analytic Account directly in the Point of Sale configuration. This account
+                        will be applied to all sessions and orders created from this POS.</p>
+                    <div class="alert alert-info mt-3">
+                        <i class="fas fa-info-circle"></i> <strong>Pro Tip:</strong> Different POS configs can have
+                        different analytic accounts for multi-branch setups.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="screenshot-card mx-auto" style="max-width: 900px;">
+                <img src="assets/screenshots/3.png" class="screenshot-img" alt="Step 3">
+                <div class="screenshot-desc">
+                    <h4><span class="screenshot-step">3</span>Start a Session</h4>
+                    <p><strong>Action:</strong> Open POS → New Session</p>
+                    <p>Open your POS session normally. The module works silently in the background, automatically
+                        loading the analytic account configuration.</p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="screenshot-card mx-auto" style="max-width: 900px;">
+                <img src="assets/screenshots/4.png" class="screenshot-img" alt="Step 4">
+                <div class="screenshot-desc">
+                    <h4><span class="screenshot-step">4</span>Process Orders</h4>
+                    <p><strong>Action:</strong> Add products → Checkout → Payment</p>
+                    <p>Add products and proceed to checkout. The analytic data is attached to the transaction
+                        automatically. No manual intervention needed!</p>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="screenshot-card mx-auto" style="max-width: 900px;">
+                <img src="assets/screenshots/6.png" class="screenshot-img" alt="Step 6">
+                <div class="screenshot-desc">
+                    <h4><span class="screenshot-step">5</span>Order Integration</h4>
+                    <p><strong>Path:</strong> Point of Sale → Orders → Orders</p>
+                    <p>View the Analytic Account directly on the PoS Order record in the backend. This field is
+                        inherited from the session automatically.</p>
+                    <div class="alert alert-success mt-3">
+                        <i class="fas fa-check-circle"></i> <strong>Benefit:</strong> Easy tracking and filtering of
+                        orders by analytic account for reporting.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="screenshot-card mx-auto" style="max-width: 900px;">
+                <img src="assets/screenshots/9.png" class="screenshot-img" alt="Step 9">
+                <div class="screenshot-desc">
+                    <h4><span class="screenshot-step">6</span>Journal Item View</h4>
+                    <p><strong>Path:</strong> Accounting → Accounting → Journal Items</p>
+                    <p>Check your Journal Items to see the <strong>Analytic Distribution</strong> JSON field populated
+                        with your account and 100% distribution.</p>
+                    <div class="code-block mt-3">
+                        <pre style="margin: 0; color: #f8f8f2;">
+<span class="code-comment">// Example JSON in database:</span>
+{
+    <span style="color: #e6db74;">&quot;45&quot;</span>: <span style="color: #ae81ff;">100.0</span>  <span class="code-comment">// 100% to selected analytic account</span>
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USE CASES SECTION -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Real-World Use Cases</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-box">
+                        <h4><i class="fas fa-store"></i> Multi-Branch Retail</h4>
+                        <p><strong>Scenario:</strong> Company with 5 retail branches</p>
+                        <ul>
+                            <li>Each branch has its own POS Config</li>
+                            <li>Each config linked to branch analytic account</li>
+                            <li>All sales automatically tracked by branch</li>
+                            <li>Compare performance across locations</li>
+                        </ul>
+                        <span class="badge badge-success">Profit Center Analysis</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="feature-box">
+                        <h4><i class="fas fa-project-diagram"></i> Project-Based Sales</h4>
+                        <p><strong>Scenario:</strong> Event management company</p>
+                        <ul>
+                            <li>Mobile POS for each event</li>
+                            <li>Sales tracked per event/project</li>
+                            <li>Accurate project profitability</li>
+                            <li>Client billing with proof</li>
+                        </ul>
+                        <span class="badge badge-info">Project Accounting</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="feature-box">
+                        <h4><i class="fas fa-building"></i> Department Tracking</h4>
+                        <p><strong>Scenario:</strong> Hospital cafeteria</p>
+                        <ul>
+                            <li>Track sales by department (Staff, Visitors, Patients)</li>
+                            <li>Different POS or manual selection</li>
+                            <li>Cost allocation to departments</li>
+                            <li>Budget management</li>
+                        </ul>
+                        <span class="badge badge-warning">Cost Center Analysis</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="feature-box">
+                        <h4><i class="fas fa-chart-line"></i> Franchise Management</h4>
+                        <p><strong>Scenario:</strong> Franchise network</p>
+                        <ul>
+                            <li>Each franchisee = analytic account</li>
+                            <li>Centralized POS system</li>
+                            <li>Automatic royalty calculation</li>
+                            <li>Performance benchmarking</li>
+                        </ul>
+                        <span class="badge badge-danger">Franchise Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPATIBILITY SECTION -->
+    <section class="py-5 bg-white text-center">
+        <div class="container">
+            <h2 class="mb-4">Compatible with Odoo 19 Community & Enterprise</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-2 p-3"><i class="fas fa-check-circle text-success"></i> PoS Retail</div>
+                <div class="col-md-2 p-3"><i class="fas fa-check-circle text-success"></i> PoS Bar</div>
+                <div class="col-md-2 p-3"><i class="fas fa-check-circle text-success"></i> Accounting</div>
+                <div class="col-md-2 p-3"><i class="fas fa-check-circle text-success"></i> Analytic Plan</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Developed by Mohamed Saied. All rights reserved.</p>
+            <p class="mt-2">
+                <i class="fas fa-envelope"></i> Support: <a href="mailto:support@example.com"
+                    style="color: #ccc;">support@example.com</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
