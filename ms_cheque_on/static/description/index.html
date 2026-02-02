@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odoo 18 Cheque Management Module | Accounting Automation</title>
+
+<meta name="description" content="Advanced Odoo 18 Cheque Management module for incoming and outgoing cheques with full accounting automation, audit safety, multi-company support, and Arabic/English UI.">
+
+<meta name="keywords" content="Odoo Cheque Management, Odoo 18 Cheques, Post Dated Cheques Odoo, Odoo Accounting Automation, Bank Cheques Odoo">
+
+<meta name="author" content="Mohamed Saied">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://www.odoo.com/apps/modules/18.0/ms_cheque_on_management/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Odoo 18 Cheque Management | Accounting Automation">
+<meta property="og:description" content="Manage incoming and outgoing cheques in Odoo 18 with full accounting automation and audit-ready workflows.">
+<meta property="og:image" content="https://yourdomain.com/banner.png">
+<meta property="og:url" content="https://www.odoo.com/apps/modules/18.0/ms_cheque_on_management/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Odoo 18 Cheque Management | Accounting Automation">
+<meta name="author" content="Mohamed Saied">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Cairo:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary-gradient: linear-gradient(135deg, #714B67 0%, #a26b94 100%);
+            --secondary-gradient: linear-gradient(135deg, #017e84 0%, #00b8bf 100%);
+            --dark-bg: #0f172a;
+            --text-main: #f8fafc;
+        }
+
+        body {
+            font-family: 'Outfit', 'Cairo', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(113, 75, 103, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(1, 126, 132, 0.15) 0%, transparent 40%);
+        }
+
+        .text-ar {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .hero-section {
+            padding: 100px 0 60px;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #a26b94);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        .hero-icon {
+            filter: drop-shadow(0 0 20px rgba(162, 107, 148, 0.3));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 35px;
+            padding: 40px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .workflow-step-container {
+            margin-bottom: 100px;
+        }
+
+        .screenshot-mask {
+            border-radius: 30px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 12px;
+            margin-bottom: 40px;
+            transition: transform 0.6s ease;
+        }
+
+        .screenshot-mask img {
+            border-radius: 20px;
+            width: 100%;
+            display: block;
+        }
+
+        .workflow-content {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .step-badge {
+            background: var(--primary-gradient);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .neon-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+            margin: 80px 0;
+        }
+
+        .feat-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .btn-premium {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(113, 75, 103, 0.3);
+        }
+
+        .btn-premium:hover {
+            transform: scale(1.05);
+            color: white;
+            box-shadow: 0 20px 45px rgba(113, 75, 103, 0.5);
+        }
+
+        .badge-neon {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 13px;
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center container">
+        <div class="animate__animated animate__fadeInDown">
+            <img src="icon.png" alt="Icon" width="120" class="hero-icon mb-4">
+            <h1 class="hero-title">FINANCIAL PRECISION</h1>
+            <p class="lead text-muted mb-4 mx-auto" style="max-width: 700px;">Experience the next level of bank cheque
+                automation. Fully integrated, bilingual, and audit-ready.</p>
+            <div class="d-flex justify-content-center gap-2 mb-5">
+                <span class="badge-neon">Odoo 18.0</span>
+                <span class="badge-neon">Bilingual UI</span>
+                <span class="badge-neon">Auto-Sync</span>
+            </div>
+        </div>
+
+
+        <h1>Odoo  Cheque Management Module</h1>
+
+            <p>
+            MS Cheque Management is a powerful and fully automated cheque management solution for Odoo 18.
+            It allows companies to manage incoming and outgoing bank cheques with complete accounting
+            integration, audit safety, and bilingual support.
+            </p>
+
+            <p>
+            This module is ideal for businesses that rely on post-dated cheques, supplier payments,
+            and customer cheque collection in Odoo.
+            </p>
+
+    </header>
+
+
+    <!-- Core Grid -->
+    <section class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="glass-card text-center animate__animated animate__fadeInLeft">
+                    <span class="feat-icon">⚡</span>
+                    <h4 class="fw-bold">Ledger Automation</h4>
+                    <p class="text-muted">Zero-manual entries for cheque lifecycle moves.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-card text-center animate__animated animate__fadeInUp">
+                    <span class="feat-icon">🏢</span>
+                    <h4 class="fw-bold">Multi-Company</h4>
+                    <p class="text-muted">Scale across branches with unique sequences.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-card text-center animate__animated animate__fadeInRight">
+                    <span class="feat-icon">�</span>
+                    <h4 class="fw-bold">Immutable Audit</h4>
+                    <p class="text-muted">Submit state locks records for financial integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- Vertical Workflow Showcase -->
+    <section class="container">
+
+        <!-- Step 1: Configuration -->
+        <div class="workflow-step-container text-center animate__animated animate__fadeIn">
+            <div class="screenshot-mask mx-auto shadow-lg" style="max-width: 900px;">
+                <img src="screenshot_configuration.png" alt="Setup Console">
+            </div>
+            <div class="workflow-content mx-auto" style="max-width: 900px;">
+                <span class="step-badge">Phase 01 | المرحلة ١</span>
+                <div class="row mt-3">
+                    <div class="col-md-6 border-end border-secondary">
+                        <h3 class="fw-800">Global Configuration</h3>
+                        <p class="text-muted">Centralize your accounting flow. Map default journals and accounts for
+                            both income and expense cheques in one unified console.</p>
+                    </div>
+                    <div class="col-md-6 text-ar">
+                        <h3 class="fw-bold">الإعدادات العامة</h3>
+                        <p class="text-muted">قم بمركزة تدفقك المحاسبي. اربط دفاتر اليومية والحسابات الافتراضية لكل من
+                            الشيكات الصادرة والواردة في لوحة تحكم موحدة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="neon-divider"></div>
+
+        <!-- Step 2: Lifecycle -->
+        <div class="workflow-step-container text-center animate__animated animate__fadeIn">
+            <div class="screenshot-mask mx-auto shadow-lg" style="max-width: 900px;">
+                <img src="screenshot_incoming.png" alt="Management Cycle">
+            </div>
+            <div class="workflow-content mx-auto" style="max-width: 900px;">
+                <span class="step-badge" style="background: var(--secondary-gradient);">Phase 02 | المرحلة ٢</span>
+                <div class="row mt-3">
+                    <div class="col-md-6 border-end border-secondary">
+                        <h3 class="fw-800">Dynamic Lifecycle</h3>
+                        <p class="text-muted">Track cheques through every state from Draft to Cashed. Smart validation
+                            prevents errors and ensures data locking after submission.</p>
+                    </div>
+                    <div class="col-md-6 text-ar">
+                        <h3 class="fw-bold">دورة الحياة الديناميكية</h3>
+                        <p class="text-muted">تتبع الشيكات عبر كل حالة من المسودة إلى التحصيل. تمنع التحققات الذكية
+                            الأخطاء وتضمن قفل البيانات بعد التقديم.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="neon-divider"></div>
+
+        <!-- Step 3: Accounting -->
+        <div class="workflow-step-container text-center animate__animated animate__fadeIn">
+            <div class="screenshot-mask mx-auto shadow-lg" style="max-width: 900px;">
+                <img src="screenshot_accounting.png" alt="Journal View">
+            </div>
+            <div class="workflow-content mx-auto" style="max-width: 900px;">
+                <span class="step-badge">Phase 03 | المرحلة ٣</span>
+                <div class="row mt-3">
+                    <div class="col-md-6 border-end border-secondary">
+                        <h3 class="fw-800">Audit Transparency</h3>
+                        <p class="text-muted">Direct visibility into ledger impacts. Every cheque is linked to
+                            professional journal entries via high-performance smart buttons.</p>
+                    </div>
+                    <div class="col-md-6 text-ar">
+                        <h3 class="fw-bold">شفافية التدقيق</h3>
+                        <p class="text-muted">رؤية مباشرة للتأثيرات المحاسبية. يرتبط كل شيك بقيود يومية احترافية عبر
+                            أزرار إحصائية ذكية وعالية الأداء.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Final Section -->
+    <section class="container py-5 mt-5">
+        <div class="glass-card text-center py-5">
+            <h2 class="hero-title mb-4" style="font-size: 2.5rem;">READY TO SCALE?</h2>
+            <p class="text-muted mb-5">Join hundreds of companies managing their finance with MS Cheque Management.</p>
+            <a href="mailto:mohamed.saied.odoo@gmail.com" class="btn-premium py-3 px-5">GET PROFESSIONAL SUPPORT</a>
+            <div class="text-ar mt-5">
+                <p class="text-muted">نحن هنا لدعم نمو أعمالك بأفضل الحلول التقنية.</p>
+                <p class="text-muted">Email : MohamedSaiedd53@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 text-center text-muted opacity-50">
+        <p class="small">&copy; 2026 Architected by Mohamed Saied. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>
