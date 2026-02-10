@@ -1,396 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Odoo Apps Store Compatible Description -->
+<section style="background-color: #F9F9F9; padding-bottom: 3rem; font-family: 'Inter', 'Roboto', sans-serif;">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>POS Analytic Tag & Distribution - Odoo App</title>
-    <meta name="description" content="Seamless Analytic Distribution for Odoo POS Sessions and Orders. Compliance with Odoo 19+ JSON format.">
-
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome 6 -->
+    <!-- Font Imports -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Internal Styles -->
     <style>
-        :root {
-            --odoo-brand: #714B67;
-            --odoo-brand-light: #9d6c90;
-            --odoo-brand-dark: #52364b;
-            --accent-color: #00A09D; /* Odoo Teal */
-            --bg-light: #F9F9F9;
-            --text-main: #212529;
-            --text-muted: #6c757d;
+        /* General Container Constraints */
+        .pos-analytic-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-main);
-            background-color: #fff;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            color: var(--odoo-brand-dark);
-        }
-
-        .text-odoo {
-            color: var(--odoo-brand);
-        }
-
-        .bg-odoo {
-            background-color: var(--odoo-brand);
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--odoo-brand) 0%, var(--odoo-brand-dark) 100%);
+        .pos-analytic-hero {
+            background: linear-gradient(135deg, #714B67 0%, #52364b 100%);
             color: white;
-            padding: 5rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: #fff;
-            transform: skewY(-2deg);
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        .hero-badges .badge {
-            font-size: 0.9rem;
-            padding: 0.5em 1em;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Features */
-        .feature-card {
-            border: none;
+            padding: 3rem 1rem;
             border-radius: 12px;
-            padding: 2rem;
-            height: 100%;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 3rem;
             text-align: center;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
+        .pos-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
             display: inline-block;
-            background: rgba(0, 160, 157, 0.1);
-            padding: 1rem;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            line-height: 50px;
+            font-size: 0.9rem;
         }
 
-        /* Screenshot Section */
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00A09D;
+            height: 100%;
+        }
+
         .screenshot-container {
-            margin-bottom: 4rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 20px;
+            background: #fff;
             border: 1px solid #eee;
+            border-radius: 8px;
         }
 
         .screenshot-img {
+            max-width: 800px;
+            /* Reduced width as requested */
             width: 100%;
             height: auto;
-            display: block;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
         }
-        
-        .step-badge {
-            background-color: var(--odoo-brand);
+
+        .step-number {
+            background-color: #714B67;
             color: white;
-            width: 32px;
-            height: 32px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
             font-weight: bold;
             margin-right: 10px;
+            font-size: 1.1rem;
         }
 
-        /* Code Block */
-        .code-snippet {
-            background-color: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1.5rem;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            border-left: 4px solid var(--accent-color);
-            overflow-x: auto;
-        }
-        
-        .nav-pills .nav-link.active {
-            background-color: var(--odoo-brand);
-        }
-        
-        .nav-pills .nav-link {
-            color: var(--odoo-brand);
+        .description-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 15px;
+            background-color: #fcfcfc;
+            border-left: 3px solid #714B67;
+            border-radius: 0 4px 4px 0;
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--bg-light);
-            padding: 3rem 0;
-            border-top: 1px solid #eee;
+        /* Odoo App Store Override Fixes */
+        .text-odoo {
+            color: #714B67 !important;
         }
     </style>
-</head>
 
-<body>
+    <div class="pos-analytic-container">
 
-    <!-- Hero Section -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <div class="row justification-content-center">
-                <div class="col-lg-8 mx-auto">
-                    <img src="icon.png" alt="App Icon" class="mb-4 shadow-sm rounded-circle bg-white p-2" width="100">
-                    <h1 class="hero-title">POS Analytic Distribution</h1>
-                    <p class="hero-subtitle mb-4">Seamlessly unite your Point of Sale operations with Odoo's modern Analytic Accounting. Assign, Track, and Analyze with precision.</p>
-                    
-                    <div class="hero-badges">
-                        <span class="badge rounded-pill"><i class="fab fa-odoo"></i> Odoo 19+ Ready</span>
-                        <span class="badge rounded-pill"><i class="fas fa-code"></i> JSON Distribution</span>
-                        <span class="badge rounded-pill"><i class="fas fa-check-circle"></i> Community & Enterprise</span>
-                        <span class="badge rounded-pill"><i class="fas fa-desktop"></i> Multi-Session Support</span>
-                    </div>
+        <!-- Hero Section -->
+        <div class="pos-analytic-hero">
+            <img src="icon.png" class="img-fluid rounded-circle shadow mb-3"
+                style="width: 80px; background: white; padding: 8px;" alt="Icon">
+            <h1 class="font-weight-bold mb-2">POS Analytic Distribution</h1>
+            <p class="lead mb-3" style="font-size: 1.1rem; opacity: 0.9;">Seamless Odoo 19+ Integration</p>
+            <div>
+                <span class="pos-badge"><i class="fab fa-odoo mr-1"></i> Odoo 19+</span>
+                <span class="pos-badge"><i class="fas fa-check mr-1"></i> Community & Enterprise</span>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="text-odoo font-weight-bold mb-3">Overview</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p class="text-muted" style="font-size: 1.1rem;">
+                        Automatically assign analytic accounts to your POS sessions and orders.
+                        Ensure every transaction is correctly tagged in your financial reports using Odoo's modern JSON
+                        analytic distribution.
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Overview Section -->
-    <section class="py-5" id="overview">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h2 class="mb-3 text-odoo">Why This Module?</h2>
-                    <p class="lead text-muted">Bridging the gap between fast-paced POS sales and detailed financial analytics.</p>
-                    <p>Odoo 19 introduced a powerful <strong>JSON-based analytic distribution</strong> system. However, connecting this system to Point of Sale sessions can be complex. </p>
-                    <p>This module automates the entire flow: configure an analytic account on your POS, and every order automatically inherits the correct distribution tags. When the session closes, your Journal Entries are perfectly tagged—no manual work required.</p>
+        <!-- Features -->
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h5 class="text-odoo font-weight-bold"><i class="fas fa-sliders-h mr-2"></i>Configure</h5>
+                    <p class="small text-muted mb-0">Set default analytic accounts per POS config.</p>
                 </div>
-                <div class="col-lg-6">
-                     <div class="alert alert-light border-start border-4 border-info shadow-sm p-4">
-                        <h4 class="alert-heading h5"><i class="fas fa-lightbulb text-info"></i> Solves Common Pain Points:</h4>
-                        <ul class="mb-0 mt-2 list-unstyled">
-                            <li class="mb-2"><i class="fas fa-times text-danger me-2"></i> Untracked POS revenue in analytic reports.</li>
-                            <li class="mb-2"><i class="fas fa-times text-danger me-2"></i> Manual journal entry adjustments after closing sessions.</li>
-                            <li class="mb-2"><i class="fas fa-times text-danger me-2"></i> Inability to separate sales by branch or department automatically.</li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h5 class="text-odoo font-weight-bold"><i class="fas fa-magic mr-2"></i>Automate</h5>
+                    <p class="small text-muted mb-0">Orders inherit tags automatically.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h5 class="text-odoo font-weight-bold"><i class="fas fa-chart-line mr-2"></i>Analyze</h5>
+                    <p class="small text-muted mb-0">Full visibility in Profit & Loss reports.</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Key Features -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="text-odoo">Key Features</h2>
-                <p class="text-muted">Designed for simplicity and power.</p>
+        <!-- Workflow / Screenshots -->
+        <div class="text-center mb-4">
+            <h2 class="text-odoo font-weight-bold">How It Works</h2>
+            <p class="text-muted">Follow these simple steps</p>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="screenshot-container">
+            <div class="mb-3">
+                <span class="step-number">1</span>
+                <h4 class="d-inline-block font-weight-bold text-dark">Configure POS Settings</h4>
             </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-sliders-h"></i>
-                        </div>
-                        <h4>Easy Configuration</h4>
-                        <p class="text-muted">Set a default Analytic Account directly in your POS Settings. Configure once, run forever.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                        <h4>Automatic Inheritance</h4>
-                        <p class="text-muted">Sessions and Orders automatically inherit the configuration. Zero cashier intervention needed.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                        </div>
-                        <h4>Accounting Integration</h4>
-                        <p class="text-muted">Seamlessly writes to the Odoo 19+ <code>analytic_distribution</code> JSON field on Journal Items.</p>
-                    </div>
-                </div>
+
+            <img src="assets/screenshots/2.png" class="screenshot-img" alt="POS Configuration">
+
+            <div class="description-box">
+                <p class="mb-0 text-muted">
+                    <strong>Action:</strong> Navigate to Point of Sale > Configuration > Settings.<br>
+                    Select the <strong>Analytic Account</strong> you wish to bind to this Point of Sale. All future
+                    sessions will use this account.
+                </p>
             </div>
         </div>
-    </section>
 
-    <!-- Workflow / Usage Guide -->
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="text-odoo">How It Works</h2>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                         <p class="text-muted">A simple, linear workflow from setup to reporting.</p>
-                    </div>
-                </div>
+        <!-- Step 2 -->
+        <div class="screenshot-container">
+            <div class="mb-3">
+                <span class="step-number">2</span>
+                <h4 class="d-inline-block font-weight-bold text-dark">Process Orders</h4>
             </div>
 
-            <!-- Tabs for Workflow Stages -->
-            <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-setup-tab" data-bs-toggle="pill" data-bs-target="#pills-setup" type="button" role="tab" aria-selected="true">1. Setup</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-process-tab" data-bs-toggle="pill" data-bs-target="#pills-process" type="button" role="tab" aria-selected="false">2. Process</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-result-tab" data-bs-toggle="pill" data-bs-target="#pills-result" type="button" role="tab" aria-selected="false">3. Results</button>
-                </li>
-            </ul>
+            <img src="assets/screenshots/6.png" class="screenshot-img" alt="POS Order View">
 
-            <div class="tab-content" id="pills-tabContent">
-                
-                <!-- Setup Tab -->
-                <div class="tab-pane fade show active" id="pills-setup" role="tabpanel">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5 order-lg-1 order-2">
-                            <h3><span class="step-badge">1</span> Define Analysis Scope</h3>
-                            <p>Navigate to <strong>Point of Sale > Configuration > Settings</strong>.</p>
-                            <p>Here you can select the specific Analytic Account (e.g., "Branch A", "Retail Department") that should be associated with this Point of Sale.</p>
-                            <div class="alert alert-info small"><i class="fas fa-info-circle"></i> Enables "Profit Center" tracking per terminal.</div>
-                        </div>
-                        <div class="col-lg-7 order-lg-2 order-1 mb-4 mb-lg-0">
-                            <div class="screenshot-container">
-                                <img src="assets/screenshots/2.png" alt="POS Configuration Layout" class="screenshot-img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Process Tab -->
-                <div class="tab-pane fade" id="pills-process" role="tabpanel">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5 order-lg-1 order-2">
-                             <h3><span class="step-badge">2</span> Business as Usual</h3>
-                             <p>Open your POS session and start selling. There are no extra popups or fields for the cashier to fill out.</p>
-                             <p>The system works silently in the background, attaching your pre-configured analytic tags to every order line created.</p>
-                             <p>You can verify this by checking the <strong>POS Order</strong> backend view.</p>
-                        </div>
-                        <div class="col-lg-7 order-lg-2 order-1 mb-4 mb-lg-0">
-                             <div class="screenshot-container">
-                                <img src="assets/screenshots/6.png" alt="POS Order View" class="screenshot-img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Result Tab -->
-                <div class="tab-pane fade" id="pills-result" role="tabpanel">
-                     <div class="row align-items-center">
-                        <div class="col-lg-5 order-lg-1 order-2">
-                             <h3><span class="step-badge">3</span> Automated Accounting</h3>
-                             <p>When the session is closed and posted, the generated <strong>Journal Items</strong> will have the <code>Analytic Distribution</code> field populated.</p>
-                             <p>This data flows directly into your Profit & Loss and Analytic Reports.</p>
-                        </div>
-                        <div class="col-lg-7 order-lg-2 order-1 mb-4 mb-lg-0">
-                             <div class="screenshot-container">
-                                <img src="assets/screenshots/9.png" alt="Journal Item with Analytic Distribution" class="screenshot-img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="description-box">
+                <p class="mb-0 text-muted">
+                    <strong>Action:</strong> Process sales as usual.<br>
+                    The module automatically stamps the <strong>Analytic Account</strong> onto the backend POS Order
+                    record. No manual input is required from the cashier.
+                </p>
             </div>
         </div>
-    </section>
-    
-    <!-- Technical Section (Collapsible) -->
-    <section class="py-5 bg-light">
-        <div class="container">
-             <div class="accordion" id="accordionTechnical">
-                <div class="accordion-item border-0 shadow-sm">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed fw-bold text-odoo" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                            <i class="fas fa-code me-2"></i> For Developers: How Data is Stored
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionTechnical">
-                        <div class="accordion-body">
-                            <p>The module leverages strict inheritance to ensure data integrity.</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                     <h5>Data Flow Model</h5>
-                                     <ul class="list-group list-group-flush mb-3">
-                                         <li class="list-group-item bg-transparent"><i class="fas fa-arrow-right text-muted me-2"></i> <strong>pos.config</strong> (Setup)</li>
-                                         <li class="list-group-item bg-transparent"><i class="fas fa-arrow-right text-muted me-2"></i> <strong>pos.session</strong> (Runtime)</li>
-                                         <li class="list-group-item bg-transparent"><i class="fas fa-arrow-right text-muted me-2"></i> <strong>account.move.line</strong> (Result)</li>
-                                     </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <h5>JSON Distribution Output</h5>
-                                    <div class="code-snippet">
-{
-    // The dict key is the Analytic Account ID (string)
-    // The value is the percentage (float)
-    "42": 100.0
-}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+        <!-- Step 3 -->
+        <div class="screenshot-container">
+            <div class="mb-3">
+                <span class="step-number">3</span>
+                <h4 class="d-inline-block font-weight-bold text-dark">Verify Accounting</h4>
+            </div>
+
+            <img src="assets/screenshots/9.png" class="screenshot-img" alt="Journal Items">
+
+            <div class="description-box">
+                <p class="mb-0 text-muted">
+                    <strong>Result:</strong> Check your Journal Items.<br>
+                    The <strong>Analytic Distribution</strong> (JSON) field is correctly populated with the 100%
+                    distribution for your selected account.
+                </p>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <h5 class="mb-3 text-odoo">Need Help or Customization?</h5>
-            <p class="text-muted mb-4">We are here to support your business growth.</p>
-            <a href="mailto:support@odoo-addons.com" class="btn btn-outline-dark rounded-pill px-4">
-                <i class="fas fa-envelope me-2"></i> Contact Support
-            </a>
-            <hr class="my-5 w-50 mx-auto">
-            <p class="small text-muted">&copy; 2026 Developed by Mohamed Saied. All rights reserved.</p>
+        <!-- Footer -->
+        <div class="text-center mt-5 pt-4 text-muted border-top">
+            <p><small>Developed by Mohamed Saied | Support: <a href="mailto:support@odoo-addons.com"
+                        class="text-odoo">support@odoo-addons.com</a></small></p>
         </div>
-    </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    </div>
+</section>
