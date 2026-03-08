@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="mcp_server_ai.MCPChatbot">
+        <t t-if="state.hasAccess">
+            <!-- Systray Button -->
+            <div class="mcp-chatbot-systray o_mcp_chatbot_systray"
+                 role="button"
+                 title="MCP AI Chat"
+                 t-on-click="toggleChat">
+                <i class="fa fa-commenting-o"/>
+                <span t-if="state.isLoading" class="mcp-chatbot-pulse"/>
+            </div>
+
+            <!-- Chat Panel -->
+            <div t-if="state.isOpen" class="mcp-chatbot-panel">
+                <!-- Header -->
+                <div class="mcp-chatbot-header">
+                    <div class="mcp-chatbot-header-info">
+                        <div class="mcp-chatbot-avatar">
+                            <i class="fa fa-robot"/>
+                        </div>
+                        <div>
+                            <div class="mcp-chatbot-title">MCP AI Assistant</div>
+                            <div class="mcp-chatbot-status">
+                                <span t-if="state.isLoading" class="mcp-chatbot-typing">يكتب...</span>
+                                <span t-else="">متصل</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mcp-chatbot-header-actions">
+                        <button class="mcp-chatbot-btn" title="مسح المحادثة" t-on-click="clearChat">
+                            <i class="fa fa-trash-o"/>
+                        </button>
+                        <button class="mcp-chatbot-btn" title="إغلاق" t-on-click="closeChat">
+                            <i class="fa fa-times"/>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                <div class="mcp-chatbot-messages" t-ref="messagesContainer">
+                    <t t-foreach="state.messages" t-as="msg" t-key="msg_index">
+                        <div t-attf-class="mcp-chatbot-msg mcp-chatbot-msg-#{msg.role}">
+                            <div class="mcp-chatbot-msg-bubble">
+                                <t t-out="formatMessage(msg.content)"/>
+                            </div>
+                            <div class="mcp-chatbot-msg-time">
+                                <t t-esc="msg.timestamp"/>
+                            </div>
+                        </div>
+                    </t>
+                    <div t-if="state.isLoading" class="mcp-chatbot-msg mcp-chatbot-msg-assistant">
+                        <div class="mcp-chatbot-msg-bubble mcp-chatbot-loading">
+                            <span class="mcp-dot"/>
+                            <span class="mcp-dot"/>
+                            <span class="mcp-dot"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input -->
+                <div class="mcp-chatbot-input-area">
+                    <textarea
+                        class="mcp-chatbot-input"
+                        placeholder="اكتب رسالتك هنا..."
+                        t-att-value="state.userInput"
+                        t-on-input="onInputChange"
+                        t-on-keydown="onInputKeydown"
+                        rows="1"
+                        t-att-disabled="state.isLoading"
+                    />
+                    <button
+                        class="mcp-chatbot-send"
+                        t-on-click="sendMessage"
+                        t-att-disabled="state.isLoading or !state.userInput.trim()">
+                        <i class="fa fa-paper-plane"/>
+                    </button>
+                </div>
+            </div>
+        </t>
+    </t>
+</templates>

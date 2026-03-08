@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Server action: open Discuss with MCP AI channel -->
+    <record id="action_mcp_ai_open_discuss" model="ir.actions.server">
+        <field name="name">Open MCP AI in Discuss</field>
+        <field name="model_id" ref="mail.model_discuss_channel"/>
+        <field name="state">code</field>
+        <field name="code">action = env["discuss.channel"].action_open_mcp_ai_discuss()</field>
+    </record>
+
+    <!-- Menu under Discuss -->
+    <menuitem id="menu_mcp_ai_discuss"
+              name="MCP AI Chat"
+              parent="mail.menu_root_discuss"
+              action="action_mcp_ai_open_discuss"
+              sequence="2"
+              groups="mcp_server_ai.group_mcp_user"/>
+</odoo>
