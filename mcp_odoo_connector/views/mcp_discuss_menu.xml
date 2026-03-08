@@ -14,5 +14,5 @@
               parent="mail.menu_root_discuss"
               action="action_mcp_ai_open_discuss"
               sequence="2"
-              groups="mcp_server_ai.group_mcp_user"/>
+              groups="mcp_odoo_connector.group_mcp_user"/>
 </odoo>

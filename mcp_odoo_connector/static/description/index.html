@@ -60,7 +60,7 @@
             <div class="rounded border shadow p-4 mb-4">
                 <h4 class="fw-bold" style="color: #714B67">&#10102; Install the Module</h4>
                 <ol style="font-size: 15px; line-height: 1.8">
-                    <li>Copy the <code>mcp_server_ai</code> folder to your Odoo addons path.</li>
+                    <li>Copy the <code>mcp_odoo_connector</code> folder to your Odoo addons path.</li>
                     <li>Restart Odoo server.</li>
                     <li>Go to <strong>Apps</strong> &rarr; <strong>Update Apps List</strong> &rarr; Search <strong>"MCP
                             Server"</strong> &rarr; Click <strong>Install</strong>.</li>
@@ -330,7 +330,7 @@
   "servers": {
     "odoo": {
       "command": "python3",
-      "args": ["/path/to/mcp_server_ai/mcp_bridge.py"],
+      "args": ["/path/to/mcp_odoo_connector/mcp_bridge.py"],
       "env": {
         "ODOO_URL": "http://localhost:8069",
         "ODOO_API_KEY": "your-api-key-here",
@@ -353,7 +353,7 @@
   "mcpServers": {
     "odoo": {
       "command": "python3",
-      "args": ["/path/to/mcp_server_ai/mcp_bridge.py"],
+      "args": ["/path/to/mcp_odoo_connector/mcp_bridge.py"],
       "env": {
         "ODOO_URL": "http://localhost:8069",
         "ODOO_API_KEY": "your-api-key-here",
@@ -372,7 +372,7 @@
                         <pre
                             style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 12px 16px; font-size: 12px; overflow-x: auto"><code>claude mcp add-json odoo '{
   "command": "python3",
-  "args": ["/path/to/mcp_server_ai/mcp_bridge.py"],
+  "args": ["/path/to/mcp_odoo_connector/mcp_bridge.py"],
   "env": {
     "ODOO_URL": "http://localhost:8069",
     "ODOO_API_KEY": "your-api-key-here",
@@ -391,7 +391,7 @@
   "mcpServers": {
     "odoo": {
       "command": "python3",
-      "args": ["/path/to/mcp_server_ai/mcp_bridge.py"],
+      "args": ["/path/to/mcp_odoo_connector/mcp_bridge.py"],
       "env": {
         "ODOO_URL": "http://localhost:8069",
         "ODOO_API_KEY": "your-api-key-here",
@@ -405,7 +405,7 @@
             </div>
 
             <p class="mt-3" style="font-size: 14px; color: #555; font-style: italic">Replace
-                <code>/path/to/mcp_server_ai/mcp_bridge.py</code> with the actual full path. ODOO_DB is required for
+                <code>/path/to/mcp_odoo_connector/mcp_bridge.py</code> with the actual full path. ODOO_DB is required for
                 multi-database servers.
             </p>
         </div>

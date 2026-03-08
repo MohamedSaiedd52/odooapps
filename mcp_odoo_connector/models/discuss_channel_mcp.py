@@ -74,11 +74,11 @@ class DiscussChannelMCP(models.Model):
         if not requests:
             return _("(MCP AI: requests library not available)")
         icp = self.env["ir.config_parameter"].sudo()
-        if icp.get_param("mcp_server_ai.ai_chat_enabled", "False") != "True":
+        if icp.get_param("mcp_odoo_connector.ai_chat_enabled", "False") != "True":
             return _("(MCP AI chat is disabled in Settings > MCP Server)")
-        base_url = (icp.get_param("mcp_server_ai.ai_chat_endpoint") or "").strip()
-        api_key = (icp.get_param("mcp_server_ai.ai_chat_api_key") or "").strip()
-        provider = (icp.get_param("mcp_server_ai.ai_chat_provider") or "openai").strip() or "openai"
+        base_url = (icp.get_param("mcp_odoo_connector.ai_chat_endpoint") or "").strip()
+        api_key = (icp.get_param("mcp_odoo_connector.ai_chat_api_key") or "").strip()
+        provider = (icp.get_param("mcp_odoo_connector.ai_chat_provider") or "openai").strip() or "openai"
         if not base_url or not api_key:
             return _("(MCP AI: endpoint or API key not configured)")
         # Odoo context

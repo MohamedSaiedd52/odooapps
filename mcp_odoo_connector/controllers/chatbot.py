@@ -27,14 +27,14 @@ class MCPChatbotController(http.Controller):
 
         # Check MCP group
         if not (
-            user.has_group("mcp_server_ai.group_mcp_user")
-            or user.has_group("mcp_server_ai.group_mcp_admin")
+            user.has_group("mcp_odoo_connector.group_mcp_user")
+            or user.has_group("mcp_odoo_connector.group_mcp_admin")
         ):
             return {"success": False, "error": "ليس لديك صلاحية الوصول."}
 
         # Check AI chat enabled
         icp = request.env["ir.config_parameter"].sudo()
-        if icp.get_param("mcp_server_ai.ai_chat_enabled", "False") != "True":
+        if icp.get_param("mcp_odoo_connector.ai_chat_enabled", "False") != "True":
             return {
                 "success": False,
                 "error": "الشات غير مفعل. فعّله من الإعدادات > MCP Server.",
@@ -78,11 +78,11 @@ class MCPChatbotController(http.Controller):
             return _("مكتبة requests غير متاحة على الخادم.")
 
         icp = request.env["ir.config_parameter"].sudo()
-        base_url = (icp.get_param("mcp_server_ai.ai_chat_endpoint") or "").strip()
-        api_key = (icp.get_param("mcp_server_ai.ai_chat_api_key") or "").strip()
-        model = (icp.get_param("mcp_server_ai.ai_chat_model") or "").strip()
+        base_url = (icp.get_param("mcp_odoo_connector.ai_chat_endpoint") or "").strip()
+        api_key = (icp.get_param("mcp_odoo_connector.ai_chat_api_key") or "").strip()
+        model = (icp.get_param("mcp_odoo_connector.ai_chat_model") or "").strip()
         provider = (
-            (icp.get_param("mcp_server_ai.ai_chat_provider") or "openai").strip()
+            (icp.get_param("mcp_odoo_connector.ai_chat_provider") or "openai").strip()
             or "openai"
         )
 

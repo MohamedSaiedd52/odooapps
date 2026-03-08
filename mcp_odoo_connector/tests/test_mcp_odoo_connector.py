@@ -2,7 +2,7 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMCPServerAI(TransactionCase):
-    """Basic sanity tests for mcp_server_ai module.
+    """Basic sanity tests for mcp_odoo_connector module.
 
     These do NOT call external AI APIs; they only verify that:
     - core models and fields load correctly

@@ -58,7 +58,7 @@ pip install "mcp[cli]" httpx
 
 ### On Odoo Server
 
-- Odoo 17.0 with `mcp_server_ai` module installed
+- Odoo 17.0 with `mcp_odoo_connector` module installed
 - Module enabled in Settings
 
 ---
@@ -152,7 +152,7 @@ In **Settings > MCP Server**:
   "mcpServers": {
     "odoo": {
       "command": "python3",
-      "args": ["/full/path/to/mcp_server_ai/mcp_bridge.py"],
+      "args": ["/full/path/to/mcp_odoo_connector/mcp_bridge.py"],
       "env": {
         "ODOO_URL": "http://localhost:8069",
         "ODOO_API_KEY": "your_odoo_api_key_here",
@@ -172,7 +172,7 @@ In **Settings > MCP Server**:
   "mcpServers": {
     "odoo": {
       "command": "python3",
-      "args": ["/full/path/to/mcp_server_ai/mcp_bridge.py"],
+      "args": ["/full/path/to/mcp_odoo_connector/mcp_bridge.py"],
       "env": {
         "ODOO_URL": "http://localhost:8069",
         "ODOO_LOGIN": "admin",
@@ -195,7 +195,7 @@ In **Settings > MCP Server**:
 ```bash
 claude mcp add-json odoo '{
   "command": "python3",
-  "args": ["/full/path/to/mcp_server_ai/mcp_bridge.py"],
+  "args": ["/full/path/to/mcp_odoo_connector/mcp_bridge.py"],
   "env": {
     "ODOO_URL": "http://localhost:8069",
     "ODOO_API_KEY": "your_odoo_api_key_here",
@@ -228,7 +228,7 @@ claude mcp list                   # verify current servers
   "mcpServers": {
     "odoo": {
       "command": "python3",
-      "args": ["/full/path/to/mcp_server_ai/mcp_bridge.py"],
+      "args": ["/full/path/to/mcp_odoo_connector/mcp_bridge.py"],
       "env": {
         "ODOO_URL": "http://localhost:8069",
         "ODOO_API_KEY": "your_odoo_api_key_here",

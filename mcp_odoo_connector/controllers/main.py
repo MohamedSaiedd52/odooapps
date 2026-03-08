@@ -60,7 +60,7 @@ class MCPController(http.Controller):
     def _check_mcp_enabled(self):
         """Check if MCP server is enabled. Returns error response or None."""
         ICP = request.env['ir.config_parameter'].sudo()
-        enabled = ICP.get_param('mcp_server_ai.enabled', 'False')
+        enabled = ICP.get_param('mcp_odoo_connector.enabled', 'False')
         if enabled.lower() not in ('true', '1'):
             return _error_response('MCP_DISABLED', 'MCP Server is disabled.', 503)
         return None
@@ -72,7 +72,7 @@ class MCPController(http.Controller):
     def _check_ip(self):
         """Check IP whitelist. Returns error response or None."""
         ICP = request.env['ir.config_parameter'].sudo()
-        allowed_ips = ICP.get_param('mcp_server_ai.allowed_ips', '')
+        allowed_ips = ICP.get_param('mcp_odoo_connector.allowed_ips', '')
         if not check_ip_whitelist(request, allowed_ips):
             return _error_response(
                 'IP_BLOCKED',
@@ -84,7 +84,7 @@ class MCPController(http.Controller):
     def _check_rate(self, uid):
         """Check rate limit. Returns error response or None."""
         ICP = request.env['ir.config_parameter'].sudo()
-        rate_limit = int(ICP.get_param('mcp_server_ai.rate_limit', '10'))
+        rate_limit = int(ICP.get_param('mcp_odoo_connector.rate_limit', '10'))
         allowed, retry_after = check_rate_limit(uid, rate_limit)
         if not allowed:
             return _error_response(
@@ -98,7 +98,7 @@ class MCPController(http.Controller):
     def _get_model_access(self, model_name, user):
         """Get MCP model access. Returns (access, error_response)."""
         ICP = request.env['ir.config_parameter'].sudo()
-        yolo_mode = ICP.get_param('mcp_server_ai.yolo_mode', 'disabled')
+        yolo_mode = ICP.get_param('mcp_odoo_connector.yolo_mode', 'disabled')
 
         if model_name in BLOCKED_MODELS:
             return None, _error_response(
@@ -122,7 +122,7 @@ class MCPController(http.Controller):
     def _check_operation(self, access, operation, model_name):
         """Check if operation is allowed. Returns error response or None."""
         ICP = request.env['ir.config_parameter'].sudo()
-        yolo_mode = ICP.get_param('mcp_server_ai.yolo_mode', 'disabled')
+        yolo_mode = ICP.get_param('mcp_odoo_connector.yolo_mode', 'disabled')
 
         if yolo_mode == 'full':
             return None
@@ -176,7 +176,7 @@ class MCPController(http.Controller):
                 uid, user, db_name = self._authenticate()
 
                 # Check MCP group membership
-                if not (user.has_group('mcp_server_ai.group_mcp_user') or user.has_group('mcp_server_ai.group_mcp_admin')):
+                if not (user.has_group('mcp_odoo_connector.group_mcp_user') or user.has_group('mcp_odoo_connector.group_mcp_admin')):
                     return _error_response(
                         'ACCESS_DENIED',
                         'User is not a member of MCP User or MCP Administrator group.',
@@ -206,7 +206,7 @@ class MCPController(http.Controller):
         """Log an audit entry if logging is enabled."""
         try:
             ICP = request.env['ir.config_parameter'].sudo()
-            logging_enabled = ICP.get_param('mcp_server_ai.logging_enabled', 'True')
+            logging_enabled = ICP.get_param('mcp_odoo_connector.logging_enabled', 'True')
             if logging_enabled.lower() not in ('true', '1'):
                 return
 
@@ -232,7 +232,7 @@ class MCPController(http.Controller):
     def _get_max_records(self):
         """Get max records per request from settings."""
         ICP = request.env['ir.config_parameter'].sudo()
-        return int(ICP.get_param('mcp_server_ai.max_records_per_request', '1000'))
+        return int(ICP.get_param('mcp_odoo_connector.max_records_per_request', '1000'))
 
     def _validate_domain(self, domain):
         """Validate domain filter structure. Returns error response or None."""
@@ -291,7 +291,7 @@ class MCPController(http.Controller):
     def health(self, **kwargs):
         """Health check endpoint - no auth required."""
         ICP = request.env['ir.config_parameter'].sudo()
-        enabled = ICP.get_param('mcp_server_ai.enabled', 'False')
+        enabled = ICP.get_param('mcp_odoo_connector.enabled', 'False')
         return _json_response({
             'status': 'ok',
             'timestamp': odoo_fields.Datetime.now().isoformat() + 'Z',
@@ -345,8 +345,8 @@ class MCPController(http.Controller):
                     {'id': g.id, 'name': g.full_name}
                     for g in user.group_ids[:20]
                 ],
-                'is_mcp_admin': user.has_group('mcp_server_ai.group_mcp_admin'),
-                'is_mcp_user': user.has_group('mcp_server_ai.group_mcp_user'),
+                'is_mcp_admin': user.has_group('mcp_odoo_connector.group_mcp_admin'),
+                'is_mcp_user': user.has_group('mcp_odoo_connector.group_mcp_user'),
             }
             duration = (time.time() - start) * 1000
             self._log_activity(uid, '', 'auth', 'success', duration_ms=duration)
@@ -361,7 +361,7 @@ class MCPController(http.Controller):
         def _handler(uid, user):
             start = time.time()
             ICP = request.env['ir.config_parameter'].sudo()
-            yolo_mode = ICP.get_param('mcp_server_ai.yolo_mode', 'disabled')
+            yolo_mode = ICP.get_param('mcp_odoo_connector.yolo_mode', 'disabled')
 
             if yolo_mode in ('read_only', 'full'):
                 # In YOLO mode, list all accessible models
@@ -489,12 +489,12 @@ class MCPController(http.Controller):
 
             # Check cache
             ICP = request.env['ir.config_parameter'].sudo()
-            cache_enabled = ICP.get_param('mcp_server_ai.cache_enabled', 'False').lower() in ('true', '1')
+            cache_enabled = ICP.get_param('mcp_odoo_connector.cache_enabled', 'False').lower() in ('true', '1')
             cache_ttl = 0
             if cache_enabled and access and access.cache_ttl > 0:
                 cache_ttl = access.cache_ttl
             elif cache_enabled:
-                cache_ttl = int(ICP.get_param('mcp_server_ai.default_cache_ttl', '300'))
+                cache_ttl = int(ICP.get_param('mcp_odoo_connector.default_cache_ttl', '300'))
 
             cache_key = None
             cache_hit = False

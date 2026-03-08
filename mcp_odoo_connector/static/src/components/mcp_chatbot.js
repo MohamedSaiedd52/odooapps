@@ -5,7 +5,7 @@ import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 
 export class MCPChatbot extends Component {
-    static template = "mcp_server_ai.MCPChatbot";
+    static template = "mcp_odoo_connector.MCPChatbot";
     static props = {};
 
     setup() {
@@ -30,7 +30,7 @@ export class MCPChatbot extends Component {
     async _checkAccess() {
         try {
             const hasGroup = await this.user.hasGroup(
-                "mcp_server_ai.group_mcp_user"
+                "mcp_odoo_connector.group_mcp_user"
             );
             this.state.hasAccess = hasGroup;
         } catch {
@@ -160,7 +160,7 @@ export class MCPChatbot extends Component {
 }
 
 registry.category("systray").add(
-    "mcp_server_ai.chatbot",
+    "mcp_odoo_connector.chatbot",
     { Component: MCPChatbot },
     { sequence: 10 }
 );

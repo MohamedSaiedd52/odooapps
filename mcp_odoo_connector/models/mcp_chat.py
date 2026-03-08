@@ -606,7 +606,7 @@ class MCPChatSession(models.Model):
             )
 
         icp = self.env["ir.config_parameter"].sudo()
-        enabled = icp.get_param("mcp_server_ai.ai_chat_enabled", "False") == "True"
+        enabled = icp.get_param("mcp_odoo_connector.ai_chat_enabled", "False") == "True"
         if not enabled:
             raise UserError(
                 _(
@@ -614,10 +614,10 @@ class MCPChatSession(models.Model):
                 )
             )
 
-        base_url = (icp.get_param("mcp_server_ai.ai_chat_endpoint") or "").strip()
-        api_key = (icp.get_param("mcp_server_ai.ai_chat_api_key") or "").strip()
-        model = (icp.get_param("mcp_server_ai.ai_chat_model") or "").strip()
-        provider = (icp.get_param("mcp_server_ai.ai_chat_provider") or "openai").strip() or "openai"
+        base_url = (icp.get_param("mcp_odoo_connector.ai_chat_endpoint") or "").strip()
+        api_key = (icp.get_param("mcp_odoo_connector.ai_chat_api_key") or "").strip()
+        model = (icp.get_param("mcp_odoo_connector.ai_chat_model") or "").strip()
+        provider = (icp.get_param("mcp_odoo_connector.ai_chat_provider") or "openai").strip() or "openai"
 
         if not base_url:
             raise UserError(

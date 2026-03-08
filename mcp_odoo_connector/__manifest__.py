@@ -44,9 +44,9 @@ Features:
     ],
     'assets': {
         'web.assets_backend': [
-            'mcp_server_ai/static/src/components/mcp_chatbot.css',
-            'mcp_server_ai/static/src/components/mcp_chatbot.js',
-            'mcp_server_ai/static/src/components/mcp_chatbot.xml',
+            'mcp_odoo_connector/static/src/components/mcp_chatbot.css',
+            'mcp_odoo_connector/static/src/components/mcp_chatbot.js',
+            'mcp_odoo_connector/static/src/components/mcp_chatbot.xml',
         ],
     },
     "images": ["static/description/banner.png"],

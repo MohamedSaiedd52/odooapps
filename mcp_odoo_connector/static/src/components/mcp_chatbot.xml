@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates xml:space="preserve">
-    <t t-name="mcp_server_ai.MCPChatbot">
+    <t t-name="mcp_odoo_connector.MCPChatbot">
         <t t-if="state.hasAccess">
             <!-- Systray Button -->
             <div class="mcp-chatbot-systray o_mcp_chatbot_systray"

@@ -134,7 +134,7 @@ class MCPAuditLog(models.Model):
     def _cron_cleanup_old_logs(self):
         """Cron job: delete audit logs older than configured retention days."""
         ICP = self.env['ir.config_parameter'].sudo()
-        retention_days = int(ICP.get_param('mcp_server_ai.log_retention_days', '90'))
+        retention_days = int(ICP.get_param('mcp_odoo_connector.log_retention_days', '90'))
         if retention_days <= 0:
             return
         cutoff = fields.Datetime.subtract(fields.Datetime.now(), days=retention_days)

@@ -8,8 +8,8 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app data-string="MCP Server" string="MCP Server"
-                     name="mcp_server_ai"
-                     groups="mcp_server_ai.group_mcp_admin">
+                     name="mcp_odoo_connector"
+                     groups="mcp_odoo_connector.group_mcp_admin">
 
                     <!-- General Section -->
                     <block title="General" name="mcp_general">

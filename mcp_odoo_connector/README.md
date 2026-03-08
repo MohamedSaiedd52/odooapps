@@ -15,7 +15,7 @@ AI assistants (Claude, Cursor, VS Code, Claude Code) ko Odoo ERP se securely con
 
 ## Installation
 
-1. Copy `mcp_server_ai` folder to your Odoo addons path
+1. Copy `mcp_odoo_connector` folder to your Odoo addons path
 2. Restart Odoo server
 3. Apps > Update Apps List > Search "MCP Server" > Install
 
@@ -161,7 +161,7 @@ partners = models.execute_kw('mydb', uid, 'admin',
   "mcpServers": {
     "odoo": {
       "command": "python3",
-      "args": ["/full/path/to/mcp_server_ai/mcp_bridge.py"],
+      "args": ["/full/path/to/mcp_odoo_connector/mcp_bridge.py"],
       "env": {
         "ODOO_URL": "http://localhost:8069",
         "ODOO_API_KEY": "your-api-key-here",
@@ -180,7 +180,7 @@ After saving, restart Claude Desktop completely.
 ```bash
 claude mcp add-json odoo '{
   "command": "python3",
-  "args": ["/full/path/to/mcp_server_ai/mcp_bridge.py"],
+  "args": ["/full/path/to/mcp_odoo_connector/mcp_bridge.py"],
   "env": {
     "ODOO_URL": "http://localhost:8069",
     "ODOO_API_KEY": "your-api-key-here",
@@ -200,7 +200,7 @@ After running, restart Claude Code and type `/mcp` to verify connection.
   "mcpServers": {
     "odoo": {
       "command": "python3",
-      "args": ["/full/path/to/mcp_server_ai/mcp_bridge.py"],
+      "args": ["/full/path/to/mcp_odoo_connector/mcp_bridge.py"],
       "env": {
         "ODOO_URL": "http://localhost:8069",
         "ODOO_API_KEY": "your-api-key-here",
