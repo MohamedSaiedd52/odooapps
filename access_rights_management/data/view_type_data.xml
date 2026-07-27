@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="view_type_list" model="access.rights.view.type">
+            <field name="name">List</field>
+            <field name="technical_name">tree</field>
+        </record>
+        <record id="view_type_kanban" model="access.rights.view.type">
+            <field name="name">Kanban</field>
+            <field name="technical_name">kanban</field>
+        </record>
+        <record id="view_type_calendar" model="access.rights.view.type">
+            <field name="name">Calendar</field>
+            <field name="technical_name">calendar</field>
+        </record>
+        <record id="view_type_pivot" model="access.rights.view.type">
+            <field name="name">Pivot</field>
+            <field name="technical_name">pivot</field>
+        </record>
+        <record id="view_type_graph" model="access.rights.view.type">
+            <field name="name">Graph</field>
+            <field name="technical_name">graph</field>
+        </record>
+        <record id="view_type_activity" model="access.rights.view.type">
+            <field name="name">Activity</field>
+            <field name="technical_name">activity</field>
+        </record>
+        <record id="view_type_gantt" model="access.rights.view.type">
+            <field name="name">Gantt</field>
+            <field name="technical_name">gantt</field>
+        </record>
+        <record id="view_type_cohort" model="access.rights.view.type">
+            <field name="name">Cohort</field>
+            <field name="technical_name">cohort</field>
+        </record>
+        <record id="view_type_map" model="access.rights.view.type">
+            <field name="name">Map</field>
+            <field name="technical_name">map</field>
+        </record>
+        <record id="view_type_grid" model="access.rights.view.type">
+            <field name="name">Grid</field>
+            <field name="technical_name">grid</field>
+        </record>
+        <record id="view_type_dashboard" model="access.rights.view.type">
+            <field name="name">Dashboard</field>
+            <field name="technical_name">dashboard</field>
+        </record>
+    </data>
+</odoo>

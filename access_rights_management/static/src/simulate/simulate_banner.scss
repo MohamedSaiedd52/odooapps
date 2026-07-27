@@ -1,0 +1,49 @@
+.o_arm_simulate_banner {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 1090; // above the webclient, below modals (1050 backdrop is lower than dialogs' 1055 — keep banner clickable but not over dialogs)
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(90deg, #7c2d12, #b45309);
+    color: #fff;
+    font-size: 0.95rem;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.35);
+
+    > .fa-eye {
+        animation: o-arm-sim-pulse 2s ease-in-out infinite;
+    }
+
+    .o_arm_sim_login {
+        opacity: 0.75;
+        margin-inline-start: 0.25rem;
+    }
+
+    .o_arm_sim_exit {
+        background: #fff;
+        color: #7c2d12;
+        font-weight: 600;
+        border: none;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus {
+            background: #fde68a;
+            color: #7c2d12;
+        }
+    }
+}
+
+@keyframes o-arm-sim-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}

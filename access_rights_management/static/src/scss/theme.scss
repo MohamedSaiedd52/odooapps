@@ -1,0 +1,675 @@
+// ============================================================
+// Shared theme for all Access Rights OWL screens.
+// Every screen root carries .o_arm_app; .o_arm_dark is added
+// when Odoo's dark mode is active (color_scheme cookie).
+// ============================================================
+
+.o_arm_app {
+    --arm-bg: #f4f5f9;
+    --arm-card-bg: #ffffff;
+    --arm-card-bg-alt: rgba(0, 0, 0, 0.018);
+    --arm-text: #1f2329;
+    --arm-muted: #6c757d;
+    --arm-faint: #a5adb5;
+    --arm-border: rgba(15, 20, 30, 0.09);
+    --arm-hover: rgba(15, 20, 30, 0.045);
+    --arm-badge-bg: rgba(15, 20, 30, 0.045);
+    --arm-primary: #714b67;
+    --arm-primary-soft: rgba(113, 75, 103, 0.1);
+    --arm-success: #23a56d;
+    --arm-danger: #e5533f;
+    --arm-warning: #b98416;
+    --arm-info: #2e7cb8;
+    --arm-radius: 0.8rem;
+    --arm-radius-sm: 0.5rem;
+    --arm-shadow: 0 1px 2px rgba(15, 20, 30, 0.05), 0 2px 8px rgba(15, 20, 30, 0.04);
+    --arm-shadow-hover: 0 4px 10px rgba(15, 20, 30, 0.08), 0 10px 24px rgba(15, 20, 30, 0.1);
+    --arm-focus-ring: 0 0 0 3px rgba(113, 75, 103, 0.25);
+
+    background: var(--arm-bg);
+    color: var(--arm-text);
+    padding: 1rem 1.25rem 2rem;
+
+    &.o_arm_dark {
+        --arm-bg: #16161d;
+        --arm-card-bg: #21212b;
+        --arm-card-bg-alt: rgba(255, 255, 255, 0.028);
+        --arm-text: #e6e6ec;
+        --arm-muted: #a0a0ac;
+        --arm-faint: #6e6e7a;
+        --arm-border: rgba(255, 255, 255, 0.1);
+        --arm-hover: rgba(255, 255, 255, 0.06);
+        --arm-badge-bg: rgba(255, 255, 255, 0.07);
+        --arm-primary: #a5749a;
+        --arm-primary-soft: rgba(165, 116, 154, 0.16);
+        --arm-success: #34c98b;
+        --arm-danger: #f0705e;
+        --arm-warning: #d8a13a;
+        --arm-info: #5aa2d8;
+        --arm-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+        --arm-shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.6);
+        --arm-focus-ring: 0 0 0 3px rgba(165, 116, 154, 0.35);
+    }
+
+    h1, h2, h3, h4, h5, .o_arm_title {
+        color: var(--arm-text);
+    }
+
+    // gentle entry animation for cards and tables
+    @keyframes arm-fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .o_arm_card,
+    .o_arm_table_wrap {
+        animation: arm-fade-in 0.2s ease-out;
+    }
+
+    // visible keyboard focus everywhere
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    [role="button"]:focus-visible {
+        outline: none;
+        box-shadow: var(--arm-focus-ring);
+    }
+
+    // ---------------- top bar ----------------
+    .o_arm_topbar {
+        margin-bottom: 1.1rem;
+
+        .o_arm_topbar_icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: var(--arm-radius-sm);
+            background: linear-gradient(135deg, var(--arm-primary), #4f3448);
+            color: #fff;
+            font-size: 1.15rem;
+            box-shadow: var(--arm-shadow);
+        }
+
+        h4 {
+            line-height: 1.15;
+        }
+
+        .btn {
+            border-radius: 2rem;
+            font-weight: 600;
+
+            &.btn-secondary {
+                background: var(--arm-card-bg);
+                border: 1px solid var(--arm-border);
+                color: var(--arm-muted);
+
+                &:hover {
+                    color: var(--arm-text);
+                    border-color: var(--arm-faint);
+                    background: var(--arm-hover);
+                }
+            }
+
+            &.btn-light {
+                background: var(--arm-badge-bg);
+                border: 1px solid var(--arm-border);
+                color: var(--arm-muted);
+
+                &:hover {
+                    color: var(--arm-text);
+                    background: var(--arm-hover);
+                }
+            }
+        }
+
+        .o_arm_search {
+            position: relative;
+            max-width: 18rem;
+
+            &::before {
+                content: "\f002"; // fa-search
+                font-family: FontAwesome;
+                position: absolute;
+                inset-inline-start: 0.7rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--arm-faint);
+                font-size: 0.85rem;
+                pointer-events: none;
+            }
+
+            input {
+                background: var(--arm-card-bg);
+                color: var(--arm-text);
+                border: 1px solid var(--arm-border);
+                border-radius: 2rem;
+                padding-inline-start: 2.1rem;
+                transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+                &::placeholder {
+                    color: var(--arm-faint);
+                }
+
+                &:focus {
+                    border-color: var(--arm-primary);
+                    box-shadow: var(--arm-focus-ring);
+                }
+            }
+        }
+    }
+
+    // screen purpose line under the title
+    .o_arm_subtitle {
+        font-size: 0.8rem;
+        color: var(--arm-muted);
+        line-height: 1.2;
+        margin-top: 0.1rem;
+    }
+
+    // primary buttons keep the brand colour in both themes
+    .btn-primary {
+        --bs-btn-bg: var(--arm-primary);
+        --bs-btn-border-color: var(--arm-primary);
+        --bs-btn-hover-bg: #5d3e55;
+        --bs-btn-hover-border-color: #5d3e55;
+        --bs-btn-active-bg: #4f3448;
+        --bs-btn-active-border-color: #4f3448;
+        border-radius: 2rem;
+        font-weight: 600;
+    }
+
+    // themed info / warning hints (replaces raw bootstrap alert look)
+    .alert {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        border: 1px solid var(--arm-border);
+        border-inline-start: 4px solid var(--arm-info);
+        border-radius: var(--arm-radius-sm);
+        background: var(--arm-card-bg);
+        color: var(--arm-muted);
+        box-shadow: var(--arm-shadow);
+
+        &::before {
+            font-family: FontAwesome;
+            color: var(--arm-info);
+        }
+
+        &.alert-info::before {
+            content: "\f05a"; // fa-info-circle
+        }
+
+        &.alert-warning {
+            border-inline-start-color: var(--arm-warning);
+
+            &::before {
+                content: "\f071"; // fa-exclamation-triangle
+                color: var(--arm-warning);
+            }
+        }
+    }
+
+    // ---------------- generic card ----------------
+    .o_arm_card {
+        display: flex;
+        flex-direction: column;
+        background: var(--arm-card-bg);
+        border: 1px solid var(--arm-border);
+        border-radius: var(--arm-radius);
+        box-shadow: var(--arm-shadow);
+        overflow: hidden;
+        transition: box-shadow 0.15s ease, transform 0.12s ease, border-color 0.15s ease;
+
+        &:hover {
+            box-shadow: var(--arm-shadow-hover);
+        }
+    }
+
+    // ---------------- badges & chips ----------------
+    .o_arm_badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.15rem 0.45rem;
+        border-radius: 0.4rem;
+        border: 1px solid var(--arm-border);
+        background: var(--arm-badge-bg);
+        color: var(--arm-muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .o_arm_chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.3rem 0.65rem;
+        border-radius: 2rem;
+        border: 1px solid var(--arm-border);
+        background: var(--arm-card-bg);
+        box-shadow: var(--arm-shadow);
+        cursor: pointer;
+        max-width: 100%;
+        transition: border-color 0.12s ease, background 0.12s ease;
+
+        &:hover {
+            background: var(--arm-hover);
+            border-color: var(--arm-faint);
+        }
+    }
+
+    .o_arm_muted {
+        color: var(--arm-muted);
+    }
+
+    .o_arm_faint {
+        color: var(--arm-faint);
+    }
+
+    .o_arm_section_title {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 1.02rem;
+        margin: 1.5rem 0 0.8rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--arm-border);
+        color: var(--arm-text);
+
+        > i:first-child {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.7rem;
+            height: 1.7rem;
+            border-radius: 0.45rem;
+            background: var(--arm-primary-soft);
+            color: var(--arm-primary);
+            font-size: 0.85rem;
+        }
+    }
+
+    // ---------------- data tables (ACL / record rules) ----------------
+    .o_arm_table_wrap {
+        overflow-x: auto;
+        border: 1px solid var(--arm-border);
+        border-radius: var(--arm-radius);
+        background: var(--arm-card-bg);
+        box-shadow: var(--arm-shadow);
+    }
+
+    .o_arm_table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th {
+            padding: 0.6rem 0.75rem;
+            background: var(--arm-card-bg-alt);
+            color: var(--arm-muted);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--arm-border);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 0.55rem 0.75rem;
+            border-bottom: 1px solid var(--arm-border);
+            color: var(--arm-text);
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover td {
+            background: var(--arm-hover);
+        }
+
+        .o_arm_row_off td {
+            opacity: 0.55;
+        }
+    }
+
+    // clickable permission dots — big enough to tap
+    .o_arm_perm {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.9rem;
+        height: 1.9rem;
+        border-radius: 50%;
+        font-size: 1.05rem;
+        cursor: pointer;
+        transition: transform 0.1s ease, background 0.1s ease;
+
+        &.o_arm_perm_on {
+            color: var(--arm-success);
+        }
+
+        &.o_arm_perm_off {
+            color: var(--arm-faint);
+        }
+
+        &:hover {
+            transform: scale(1.15);
+            background: var(--arm-hover);
+        }
+    }
+
+    .o_arm_delete {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.6rem;
+        min-height: 1.6rem;
+        border-radius: 0.35rem;
+        color: var(--arm-faint);
+        cursor: pointer;
+        font-size: 1rem;
+        transition: color 0.12s ease, background 0.12s ease;
+
+        &:hover {
+            color: var(--arm-danger);
+            background: rgba(229, 83, 63, 0.1);
+        }
+    }
+
+    .o_arm_edit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.6rem;
+        min-height: 1.6rem;
+        border-radius: 0.35rem;
+        color: var(--arm-faint);
+        cursor: pointer;
+        font-size: 1rem;
+        transition: color 0.12s ease, background 0.12s ease;
+
+        &:hover {
+            color: var(--arm-primary);
+            background: var(--arm-primary-soft);
+        }
+    }
+
+    .o_arm_badge_warn {
+        color: var(--arm-warning);
+        border-color: rgba(244, 164, 96, 0.5);
+        background: rgba(244, 164, 96, 0.12);
+    }
+
+    .o_arm_domain_cell code {
+        color: var(--arm-muted);
+        background: var(--arm-badge-bg);
+        padding: 0.1rem 0.35rem;
+        border-radius: 0.3rem;
+        font-size: 0.75rem;
+    }
+
+    // ---------------- inline create panel ----------------
+    .o_arm_create_panel {
+        background: var(--arm-card-bg);
+        border: 1px dashed var(--arm-primary);
+        border-radius: var(--arm-radius);
+        padding: 0.85rem 1rem;
+        margin-bottom: 1rem;
+        animation: arm-fade-in 0.2s ease-out;
+
+        .o_arm_create_title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        input.form-control {
+            background: var(--arm-bg);
+            color: var(--arm-text);
+            border: 1px solid var(--arm-border);
+            min-width: 15rem;
+        }
+
+        .o_arm_perm_check {
+            color: var(--arm-text);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+
+            input {
+                margin-inline-end: 0.25rem;
+            }
+        }
+    }
+
+    // ---------------- loading / empty ----------------
+    .o_arm_loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40vh;
+        color: var(--arm-faint);
+
+        // empty-state block ("no match" screens)
+        .text-center > .fa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background: var(--arm-badge-bg);
+            color: var(--arm-faint);
+            font-size: 1.5rem !important;
+        }
+
+        .text-center > div {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--arm-muted);
+        }
+    }
+
+    // ---------------- switches (profiles + sessions) ----------------
+    .o_arm_switch {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        color: var(--arm-text);
+        font-size: 0.88rem;
+        cursor: pointer;
+        margin: 0;
+
+        input {
+            cursor: pointer;
+        }
+    }
+
+    // ---------------- filter pills (all screens) ----------------
+    .o_arm_filter {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.32rem 0.8rem;
+        border-radius: 2rem;
+        border: 1px solid var(--arm-border);
+        background: var(--arm-card-bg);
+        color: var(--arm-muted);
+        font-size: 0.83rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+
+        &:hover {
+            background: var(--arm-hover);
+            color: var(--arm-text);
+        }
+
+        &.o_arm_filter_active {
+            background: var(--arm-primary);
+            border-color: var(--arm-primary);
+            color: #fff;
+            box-shadow: var(--arm-shadow);
+        }
+    }
+
+    // ---------------- chip zones (all screens) ----------------
+    .o_arm_chipzone {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.35rem;
+
+        &.o_arm_chipzone_sm {
+            gap: 0.25rem;
+        }
+    }
+
+    .o_arm_chip_sm {
+        font-size: 0.76rem;
+        padding: 0.15rem 0.45rem;
+        box-shadow: none;
+        cursor: default;
+
+        &:hover {
+            background: var(--arm-card-bg);
+            border-color: var(--arm-border);
+        }
+    }
+
+    .o_arm_chip_x {
+        color: var(--arm-faint);
+        cursor: pointer;
+        margin-inline-start: 0.15rem;
+
+        &:hover {
+            color: var(--arm-danger);
+        }
+    }
+
+    .o_arm_add_btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.15rem 0.55rem;
+        border-radius: 2rem;
+        border: 1px dashed var(--arm-primary);
+        background: transparent;
+        color: var(--arm-primary);
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.12s ease;
+
+        &:hover {
+            background: var(--arm-primary-soft);
+        }
+    }
+
+    // ---------------- record picker overlay (all screens) ----------------
+    @keyframes arm-picker-in {
+        from {
+            opacity: 0;
+            transform: translateY(-0.6rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .o_arm_picker_overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 12, 18, 0.4);
+        backdrop-filter: blur(2px);
+        z-index: 1050;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 12vh;
+    }
+
+    .o_arm_picker {
+        width: 34rem;
+        max-width: 92vw;
+        background: var(--arm-card-bg);
+        border: 1px solid var(--arm-border);
+        border-radius: var(--arm-radius);
+        box-shadow: var(--arm-shadow-hover);
+        overflow: hidden;
+        animation: arm-picker-in 0.16s ease-out;
+
+        .o_arm_picker_head {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid var(--arm-border);
+            background: var(--arm-card-bg-alt);
+
+            input {
+                background: var(--arm-card-bg);
+                color: var(--arm-text);
+                border: 1px solid var(--arm-border);
+                border-radius: 2rem;
+
+                &:focus {
+                    border-color: var(--arm-primary);
+                    box-shadow: var(--arm-focus-ring);
+                }
+            }
+        }
+
+        .o_arm_picker_list {
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        .o_arm_picker_option {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.9rem;
+            color: var(--arm-text);
+            font-size: 0.87rem;
+            cursor: pointer;
+            border-inline-start: 3px solid transparent;
+            border-bottom: 1px solid var(--arm-border);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover {
+                background: var(--arm-hover);
+                border-inline-start-color: var(--arm-primary);
+            }
+        }
+    }
+
+    .o_arm_empty {
+        padding: 0.75rem 0.5rem;
+        color: var(--arm-faint);
+        font-style: italic;
+        font-size: 0.85rem;
+    }
+
+    // ---------------- subtle scrollbars in lists ----------------
+    .o_arm_picker_list,
+    .o_arm_history,
+    .o_arm_inspect_body {
+        scrollbar-width: thin;
+        scrollbar-color: var(--arm-faint) transparent;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--arm-border);
+            border-radius: 4px;
+        }
+    }
+}

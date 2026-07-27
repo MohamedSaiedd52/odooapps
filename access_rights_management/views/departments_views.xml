@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Dashboard (OWL client action) ============ -->
+    <record id="action_access_rights_dashboard_client" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">access_rights_dashboard</field>
+    </record>
+
+    <!-- ============ hr.department: access roles extension ============ -->
+    <record id="hr_department_view_form_arm" model="ir.ui.view">
+        <field name="name">hr.department.form.access.rights</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object" name="action_view_access_profiles"
+                        class="oe_stat_button" icon="fa-id-badge"
+                        groups="access_rights_management.group_access_rights_manager">
+                    <field name="arm_profile_count" widget="statinfo" string="Access Roles"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='color']" position="after">
+                <field name="arm_icon"
+                       groups="access_rights_management.group_access_rights_manager"
+                       placeholder="e.g. fa-calculator"/>
+            </xpath>
+            <xpath expr="//sheet/group" position="after">
+                <notebook groups="access_rights_management.group_access_rights_manager">
+                    <page string="Access Roles" name="access_roles">
+                        <field name="access_profile_ids" context="{'default_department_id': id}">
+                            <tree>
+                                <field name="name"/>
+                                <field name="user_ids" widget="many2many_tags"/>
+                                <field name="readonly" optional="show"/>
+                                <field name="total_rules"/>
+                                <field name="active" widget="boolean_toggle"/>
+                            </tree>
+                        </field>
+                        <div class="text-muted">
+                            Each role is an access profile: it bundles all the
+                            restrictions of one job position (e.g. Accounting Manager,
+                            Accountant, Auditor) and is assigned to its users.
+                        </div>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_department_view_tree_arm" model="ir.ui.view">
+        <field name="name">hr.department.tree.access.rights</field>
+        <field name="model">hr.department</field>
+        <field name="arch" type="xml">
+            <tree string="Departments" create="false" decoration-muted="not active">
+                <field name="complete_name" string="Department"/>
+                <field name="manager_id" widget="many2one_avatar_user" optional="show"/>
+                <field name="arm_profile_count" string="Roles"/>
+                <field name="arm_user_count" string="Users"/>
+                <field name="arm_rule_count" string="Rules"/>
+                <field name="color" widget="color_picker" optional="hide"/>
+                <field name="active" column_invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_arm_departments" model="ir.actions.act_window">
+        <field name="name">Departments</field>
+        <field name="res_model">hr.department</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="hr_department_view_tree_arm"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No departments yet</p>
+            <p>
+                Access roles are grouped by the company's real departments
+                (managed in the Employees app). Open a department to see the
+                access roles assigned to it, or add roles from the
+                <b>Access Profiles</b> screen.
+            </p>
+        </field>
+    </record>
+
+    <!-- ============ Menus ============ -->
+    <menuitem id="menu_access_rights_dashboard"
+              name="Dashboard"
+              parent="menu_access_rights_root"
+              action="action_access_rights_dashboard_client"
+              sequence="1"/>
+
+    <menuitem id="menu_access_rights_configuration"
+              name="Configuration"
+              parent="menu_access_rights_root"
+              sequence="90"/>
+
+    <menuitem id="menu_arm_departments"
+              name="Departments"
+              parent="menu_access_rights_configuration"
+              action="action_arm_departments"
+              sequence="10"/>
+
+</odoo>

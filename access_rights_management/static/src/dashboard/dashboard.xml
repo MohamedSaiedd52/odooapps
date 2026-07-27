@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="access_rights_management.Dashboard">
+    <div t-att-class="rootClass">
+        <div t-if="!state.data" class="o_arm_loading">
+            <i class="fa fa-circle-o-notch fa-spin fa-2x"/>
+        </div>
+        <t t-else="">
+
+            <!-- ============ Top bar ============ -->
+            <div class="o_arm_topbar">
+                <div class="o_arm_topbar_title">
+                    <span class="o_arm_app_badge"><i class="fa fa-shield"/></span>
+                    <div>
+                        <h4 class="m-0">Access Rights</h4>
+                        <small t-if="riskCount"
+                               class="o_arm_subtitle o_arm_subtitle_warn">
+                            <i class="fa fa-exclamation-triangle me-1"/>
+                            <t t-esc="riskCount"/> security checks need attention
+                        </small>
+                        <small t-else="" class="o_arm_subtitle o_arm_subtitle_ok">
+                            <i class="fa fa-check-circle me-1"/>All security checks pass
+                        </small>
+                    </div>
+                </div>
+                <div class="o_arm_topbar_actions">
+                    <button t-if="state.data.hygiene.no_profile.length"
+                            class="btn btn-sm btn-primary" t-on-click="openRollout">
+                        <i class="fa fa-magic me-1"/>Roll Out Profiles
+                        (<t t-esc="state.data.hygiene.no_profile.length"/>)
+                    </button>
+                    <button class="btn btn-sm o_arm_btn_ghost" t-on-click="() => this.newRole()">
+                        <i class="fa fa-plus me-1"/>New Profile
+                    </button>
+                    <button class="btn btn-sm o_arm_btn_ghost" t-on-click="refresh">
+                        <i class="fa fa-refresh me-1"/>Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- ============ KPI band ============ -->
+            <div class="o_arm_kpis">
+                <div t-foreach="kpis" t-as="kpi" t-key="kpi_index"
+                     t-attf-class="o_arm_kpi o_arm_tone_{{ kpi.tone }}"
+                     role="button" t-on-click="kpi.onClick">
+                    <span class="o_arm_kpi_icon"><i t-attf-class="fa {{ kpi.icon }}"/></span>
+                    <div class="o_arm_kpi_body">
+                        <div class="o_arm_kpi_value" t-esc="kpi.value"/>
+                        <div class="o_arm_kpi_label" t-esc="kpi.label"/>
+                        <div t-if="kpi.sub" class="o_arm_kpi_sub" t-esc="kpi.sub"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ Charts row ============ -->
+            <div class="o_arm_charts">
+
+                <!-- Login activity -->
+                <div class="o_arm_card o_arm_chart_card o_arm_chart_wide">
+                    <div class="o_arm_card_head">
+                        <h6><i class="fa fa-line-chart me-2"/>Login Activity (14 days)</h6>
+                        <div class="o_arm_legend">
+                            <span><i class="o_arm_dot o_arm_dot_activity"/>Successful</span>
+                            <span><i class="o_arm_dot o_arm_dot_denied"/>Denied</span>
+                        </div>
+                    </div>
+                    <div class="o_arm_chart_box">
+                        <svg viewBox="0 0 640 200" preserveAspectRatio="none"
+                             class="o_arm_linechart"
+                             t-on-mousemove="onLineMove" t-on-mouseleave="onLineLeave">
+                            <t t-set="chart" t-value="lineChart"/>
+                            <t t-foreach="chart.gridYs" t-as="grid" t-key="grid_index">
+                                <line x1="34" x2="626" t-att-y1="grid.y" t-att-y2="grid.y"
+                                      class="o_arm_gridline"/>
+                                <text x="28" t-att-y="grid.y + 3" class="o_arm_axis_label"
+                                      text-anchor="end" t-esc="grid.value"/>
+                            </t>
+                            <t t-foreach="chart.xLabels" t-as="pt" t-key="pt.date">
+                                <text t-att-x="pt.x" y="196" class="o_arm_axis_label"
+                                      text-anchor="middle" t-esc="pt.label"/>
+                            </t>
+                            <path t-att-d="chart.area" class="o_arm_area_activity"/>
+                            <path t-att-d="chart.successPath" class="o_arm_line_activity"/>
+                            <path t-att-d="chart.deniedPath" class="o_arm_line_denied"/>
+                            <t t-if="state.hoverDay &gt;= 0 and chart.points[state.hoverDay]">
+                                <t t-set="hp" t-value="chart.points[state.hoverDay]"/>
+                                <line t-att-x1="hp.x" t-att-x2="hp.x" y1="14"
+                                      t-att-y2="chart.baseline" class="o_arm_crosshair"/>
+                                <circle t-att-cx="hp.x" t-att-cy="hp.ySuccess" r="4"
+                                        class="o_arm_marker_activity"/>
+                                <circle t-att-cx="hp.x" t-att-cy="hp.yDenied" r="4"
+                                        class="o_arm_marker_denied"/>
+                            </t>
+                        </svg>
+                        <div t-if="state.tooltip" class="o_arm_tooltip"
+                             t-attf-style="left: {{ state.tooltip.x + 12 }}px; top: {{ state.tooltip.y - 10 }}px;">
+                            <div t-foreach="state.tooltip.lines" t-as="line" t-key="line_index"
+                                 t-attf-class="o_arm_tooltip_line {{ line.cls || '' }}">
+                                <i t-if="line.dot" t-attf-class="o_arm_dot o_arm_dot_{{ line.dot }}"/>
+                                <span t-esc="line.label"/>
+                                <b t-if="line.value !== undefined" t-esc="line.value"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Denied reasons -->
+                <div class="o_arm_card o_arm_chart_card">
+                    <div class="o_arm_card_head">
+                        <h6><i class="fa fa-ban me-2"/>Denied Logins by Reason (30d)</h6>
+                    </div>
+                    <div t-if="!deniedBars.length" class="o_arm_empty">
+                        <i class="fa fa-check-circle me-1"/>No denied logins
+                    </div>
+                    <div t-else="" class="o_arm_bars">
+                        <div t-foreach="deniedBars" t-as="bar" t-key="bar.key"
+                             class="o_arm_bar_row" role="button"
+                             t-on-click="openLoginAudit"
+                             t-att-title="bar.label">
+                            <span class="o_arm_bar_label" t-esc="bar.label"/>
+                            <div class="o_arm_bar_track">
+                                <div class="o_arm_bar_fill" t-attf-style="width: {{ bar.pct }}%"/>
+                            </div>
+                            <span class="o_arm_bar_value" t-esc="bar.count"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coverage donut -->
+                <div class="o_arm_card o_arm_chart_card">
+                    <div class="o_arm_card_head">
+                        <h6><i class="fa fa-users me-2"/>Profile Coverage</h6>
+                    </div>
+                    <t t-set="dn" t-value="donut"/>
+                    <div class="o_arm_donut_box">
+                        <svg viewBox="0 0 140 140" class="o_arm_donut">
+                            <circle cx="70" cy="70" t-att-r="dn.r" class="o_arm_donut_rest"
+                                    t-att-stroke-dasharray="dn.uncoveredDash"
+                                    t-att-stroke-dashoffset="dn.uncoveredOffset"/>
+                            <circle cx="70" cy="70" t-att-r="dn.r" class="o_arm_donut_main"
+                                    t-att-stroke-dasharray="dn.coveredDash"/>
+                            <text x="70" y="66" text-anchor="middle" class="o_arm_donut_pct">
+                                <t t-esc="dn.pct"/>%
+                            </text>
+                            <text x="70" y="84" text-anchor="middle" class="o_arm_donut_sub">covered</text>
+                        </svg>
+                        <div class="o_arm_donut_legend">
+                            <div role="button" t-on-click="() => this.openUsers()">
+                                <i class="o_arm_dot o_arm_dot_activity"/>
+                                <span>Covered users</span>
+                                <b t-esc="dn.covered"/>
+                            </div>
+                            <div role="button" t-on-click="() => this.openUsers()">
+                                <i class="o_arm_dot o_arm_dot_rest"/>
+                                <span>Without profile</span>
+                                <b t-esc="dn.uncovered"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ Security hygiene ============ -->
+            <div class="o_arm_section_head">
+                <h5><i class="fa fa-heartbeat me-2"/>Security Hygiene</h5>
+            </div>
+            <div class="o_arm_hygiene">
+                <div t-foreach="hygieneRisks" t-as="risk" t-key="risk.key"
+                     t-attf-class="o_arm_risk o_arm_risk_{{ risk.tone }} {{ state.openRisk === risk.key ? 'open' : '' }}">
+                    <div class="o_arm_risk_head" role="button"
+                         t-on-click="() => risk.onClick ? risk.onClick() : this.toggleRisk(risk.key)">
+                        <span class="o_arm_risk_icon"><i t-attf-class="fa {{ risk.icon }}"/></span>
+                        <div class="o_arm_risk_text">
+                            <div class="o_arm_risk_label" t-esc="risk.label"/>
+                            <div class="o_arm_risk_hint" t-esc="risk.hint"/>
+                        </div>
+                        <span class="o_arm_risk_count" t-esc="risk.count"/>
+                        <button t-if="risk.action and risk.count"
+                                class="btn btn-sm btn-primary o_arm_risk_action"
+                                t-on-click.stop="risk.action.run"
+                                t-esc="risk.action.label"/>
+                        <i t-if="risk.users.length"
+                           t-attf-class="fa fa-chevron-{{ state.openRisk === risk.key ? 'up' : 'down' }} o_arm_risk_chev"/>
+                    </div>
+                    <div t-if="state.openRisk === risk.key and risk.users.length" class="o_arm_risk_users">
+                        <div t-foreach="risk.users" t-as="user" t-key="user.id"
+                             class="o_arm_risk_user" role="button"
+                             t-on-click="() => this.openUserForm(user.id)">
+                            <i class="fa fa-user-o me-2"/>
+                            <span t-esc="user.name"/>
+                            <small class="o_arm_muted ms-2" t-esc="user.login"/>
+                            <small t-if="user.login_date" class="o_arm_muted ms-auto" t-esc="user.login_date"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ Departments & roles ============ -->
+            <div class="o_arm_section_head">
+                <h5><i class="fa fa-sitemap me-2"/>Departments &amp; Roles</h5>
+                <button class="btn btn-sm o_arm_btn_ghost" t-on-click="openDepartments">
+                    All departments
+                </button>
+            </div>
+            <div class="o_arm_departments">
+                <div t-foreach="state.data.departments" t-as="dept" t-key="dept.id" class="o_arm_card o_arm_dept">
+                    <div class="o_arm_dept_head" role="button" t-on-click="() => this.openDepartment(dept)">
+                        <span t-attf-class="o_arm_dept_icon o_arm_color_{{ dept.color }}">
+                            <i t-attf-class="fa {{ dept.icon }}"/>
+                        </span>
+                        <div>
+                            <div class="o_arm_dept_name" t-esc="dept.name"/>
+                            <small class="o_arm_muted">
+                                <t t-esc="dept.user_count"/> users ·
+                                <t t-esc="dept.rule_count"/> rules
+                            </small>
+                        </div>
+                        <button class="btn btn-sm o_arm_btn_ghost ms-auto"
+                                t-on-click.stop="() => this.newRole(dept.id)"
+                                title="New role in this department">
+                            <i class="fa fa-plus"/>
+                        </button>
+                    </div>
+                    <div class="o_arm_dept_roles">
+                        <div t-foreach="dept.roles" t-as="role" t-key="role.id"
+                             class="o_arm_role" role="button"
+                             t-on-click="() => this.openProfiles(role.id)">
+                            <span class="o_arm_role_name" t-esc="role.name"/>
+                            <span t-if="role.readonly" class="o_arm_chip o_arm_chip_warn">read-only</span>
+                            <span t-if="role.is_global" class="o_arm_chip o_arm_chip_info">global</span>
+                            <span class="o_arm_muted ms-auto">
+                                <i class="fa fa-user-o me-1"/><t t-esc="role.user_count"/>
+                                <i class="fa fa-list-ol ms-2 me-1"/><t t-esc="role.total_rules"/>
+                            </span>
+                        </div>
+                        <div t-if="!dept.roles.length" class="o_arm_empty_sm">No roles yet</div>
+                    </div>
+                </div>
+                <div t-if="state.data.unassigned.length" class="o_arm_card o_arm_dept">
+                    <div class="o_arm_dept_head">
+                        <span class="o_arm_dept_icon o_arm_color_0"><i class="fa fa-inbox"/></span>
+                        <div>
+                            <div class="o_arm_dept_name">Unassigned Roles</div>
+                            <small class="o_arm_muted">Not linked to a department</small>
+                        </div>
+                    </div>
+                    <div class="o_arm_dept_roles">
+                        <div t-foreach="state.data.unassigned" t-as="role" t-key="role.id"
+                             class="o_arm_role" role="button"
+                             t-on-click="() => this.openProfiles(role.id)">
+                            <span class="o_arm_role_name" t-esc="role.name"/>
+                            <span t-if="role.readonly" class="o_arm_chip o_arm_chip_warn">read-only</span>
+                            <span t-if="role.is_global" class="o_arm_chip o_arm_chip_info">global</span>
+                            <span class="o_arm_muted ms-auto">
+                                <i class="fa fa-user-o me-1"/><t t-esc="role.user_count"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ Recent denied logins ============ -->
+            <div class="o_arm_section_head">
+                <h5><i class="fa fa-ban me-2"/>Recent Denied Logins</h5>
+                <button class="btn btn-sm o_arm_btn_ghost" t-on-click="openLoginAudit">
+                    Full audit
+                </button>
+            </div>
+            <div class="o_arm_card o_arm_denied">
+                <div t-if="!state.data.recent_denied.length" class="o_arm_empty">
+                    <i class="fa fa-check-circle me-1"/>No denied logins recorded
+                </div>
+                <div t-foreach="state.data.recent_denied" t-as="log" t-key="log.id"
+                     class="o_arm_denied_row" role="button" t-on-click="openLoginAudit">
+                    <span t-attf-class="o_arm_chip o_arm_chip_{{ deniedTone(log) }}" t-esc="log.status"/>
+                    <b t-esc="log.login"/>
+                    <span class="o_arm_muted" t-esc="log.ip"/>
+                    <span t-if="log.device" class="o_arm_muted" t-esc="log.device"/>
+                    <span class="o_arm_muted ms-auto" t-esc="log.date"/>
+                </div>
+            </div>
+
+        </t>
+    </div>
+</t>
+
+</templates>

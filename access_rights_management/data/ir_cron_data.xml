@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Re-evaluate profile validity dates for the new day (the rule lookups
+         are ormcached, so a date boundary needs one cache flush) and leave an
+         audit note on profiles that just started/expired. -->
+    <record id="ir_cron_arm_daily_refresh" model="ir.cron">
+        <field name="name">Access Rights: refresh profile validity</field>
+        <field name="model_id" ref="model_access_rights_profile"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_daily_refresh()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 00:05:00')"/>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="True"/>
+    </record>
+
+</odoo>

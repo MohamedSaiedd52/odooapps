@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دليل استخدام Access Rights Management — أودو 17</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#14161a; --muted:#5d6470;
+    --line:#e3e6ea; --brand:#7a1f45; --accent:#d81b4a;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#111317; --card:#181b21; --ink:#eef0f3; --muted:#9aa2ae;
+           --line:#282d36; --brand:#e2799f; --accent:#ff5b86; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:400 16px/1.85 "Segoe UI",Tahoma,"Noto Naskh Arabic",sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px 80px}
+  header.top{background:linear-gradient(135deg,var(--brand),#3d1026);color:#fff;
+             padding:52px 22px 44px;margin-bottom:34px}
+  header.top .wrap{padding-bottom:0}
+  header.top h1{margin:0 0 10px;font-size:34px;line-height:1.4}
+  header.top p{margin:0;opacity:.9;font-size:17px;max-width:760px}
+  .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+  .meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);
+             border-radius:999px;padding:4px 14px;font-size:13.5px}
+  nav.toc{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--line);
+          border-radius:14px;padding:12px 16px;margin-bottom:34px;display:flex;
+          flex-wrap:wrap;gap:8px 18px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+  nav.toc a{color:var(--muted);text-decoration:none;font-size:14.5px;font-weight:600}
+  nav.toc a:hover{color:var(--accent)}
+  h2{font-size:25px;margin:46px 0 6px;padding-bottom:10px;border-bottom:2px solid var(--line)}
+  .lead{color:var(--muted);margin:0 0 26px;font-size:16px}
+  .shot{margin:0 0 34px;background:var(--card);border:1px solid var(--line);
+        border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .shot-head{display:flex;align-items:center;gap:11px;padding:14px 18px;
+             font-weight:700;font-size:17px;border-bottom:1px solid var(--line)}
+  .num{flex:0 0 auto;width:27px;height:27px;border-radius:50%;background:var(--accent);
+       color:#fff;font:700 14px/27px "Segoe UI",sans-serif;text-align:center}
+  .shot img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+  .cap{margin:0;padding:14px 18px;color:var(--muted);font-size:15.5px}
+  .video-box{background:var(--card);border:1px solid var(--line);border-radius:14px;
+             padding:18px;margin-bottom:14px}
+  .video-box video{width:100%;border-radius:9px;display:block;background:#000}
+  .callout{background:var(--card);border:1px solid var(--line);border-right:5px solid var(--accent);
+           border-radius:12px;padding:16px 20px;margin:22px 0}
+  .callout h3{margin:0 0 8px;font-size:17px}
+  .callout ol,.callout ul{margin:0;padding-inline-start:22px}
+  .callout li{margin:5px 0}
+  table{width:100%;border-collapse:collapse;background:var(--card);
+        border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:18px 0}
+  th,td{padding:11px 15px;text-align:right;border-bottom:1px solid var(--line);font-size:15px}
+  th{background:rgba(216,27,74,.07);font-weight:700}
+  tr:last-child td{border-bottom:0}
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:14px}
+  code{background:rgba(127,127,127,.14);padding:1px 6px;border-radius:5px;font-size:14px;
+       direction:ltr;display:inline-block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>دليل استخدام Access Rights Management</h1>
+    <p>موديول واحد بيحدد مين يشوف إيه ومين يعمل إيه في أودو، ويسجّل كل حاجة اتعملت — بروفايلات صلاحيات، قيود على السجلات، أمان تسجيل الدخول، وسجل تدقيق كامل.</p>
+    <div class="meta">
+      <span>أودو 17</span><span>الإصدار 17.0.2.2.0</span>
+      <span>الشاشات مصوَّرة من داخل النظام</span><span>يوليو 2026</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <nav class="toc"><a href="#video">الفيديو</a><a href="#a">الدخول والتعرّف على الشاشات</a><a href="#b">إنشاء بروفايل صلاحيات</a><a href="#c">تبويبات القيود — قلب الموديول</a><a href="#d">التطبيق على أعداد كبيرة</a><a href="#e">التدقيق والأمان</a></nav>
+
+  <div class="callout">
+    <h3>الفكرة في ٥ سطور</h3>
+    <ol>
+      <li>تعمل <b>بروفايل</b> وتحدد يطبّق على مين (قسم كامل أو مستخدمين بأسمائهم).</li>
+      <li>تحدد القيود في التبويبات: قوائم، موديلات، حقول، سجلات، أزرار، فلاتر، شاتر.</li>
+      <li>تبويب <b>Records</b> هو الوحيد اللي بيمنع البيانات فعلًا (واجهة و API)، الباقي إخفاء واجهة.</li>
+      <li>تبويب <b>Login Security</b> بيحصر الدخول على شبكات ومواعيد، والمديرون مستثنون دائمًا.</li>
+      <li>شاشات الأمان بتسجّل كل دخول وكل تغيير صلاحية وكل تصدير ملف.</li>
+    </ol>
+  </div>
+
+  <section id="video">
+    <h2>الفيديو: من الصفر لبروفايل شغّال</h2>
+    <p class="lead">تسجيل حقيقي من داخل النظام: إنشاء بروفايل «Warehouse — Read Only»، ربطه بقسم، تقييد القوائم والموديلات، حصر الدخول على شبكة الشركة، ثم جولة على شاشات التدقيق.</p>
+    <div class="video-box">
+      <video src="video/walkthrough.webm" controls preload="metadata" playsinline></video>
+    </div>
+    <p class="cap">لو الفيديو مافتحش، افتح الملف <code>doc/video/walkthrough.webm</code> بمتصفح Chrome أو Edge أو Firefox.</p>
+  </section>
+
+    <section id="a">
+      <h2>أولًا: الدخول والتعرّف على الشاشات</h2>
+      <p class="lead">الموديول كله تحت تطبيق واحد اسمه <b>Access Rights</b>. ابدأ من لوحة المتابعة عشان تعرف وضعك الحالي، وبعدها اتحرك على قائمة البروفايلات.</p>
+      
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">1</span>الدخول إلى التطبيق</figcaption>
+        <a href="screens/01-app-menu.png" target="_blank"><img src="screens/01-app-menu.png" alt="الدخول إلى التطبيق" loading="lazy"></a>
+        <p class="cap">كل شاشات الموديول تحت تطبيق واحد اسمه Access Rights في الشريط العلوي.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">2</span>لوحة المتابعة (Dashboard)</figcaption>
+        <a href="screens/02-dashboard.png" target="_blank"><img src="screens/02-dashboard.png" alt="لوحة المتابعة (Dashboard)" loading="lazy"></a>
+        <p class="cap">نظرة سريعة: كام مستخدم متغطي ببروفايل، وكام قاعدة شغالة، وكام محاولة دخول مرفوضة.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">3</span>لوحة المخاطر (Security Hygiene)</figcaption>
+        <a href="screens/03-hygiene.png" target="_blank"><img src="screens/03-hygiene.png" alt="لوحة المخاطر (Security Hygiene)" loading="lazy"></a>
+        <p class="cap">مخاطر جاهزة للتصرف: مستخدمين بدون بروفايل، حسابات خاملة، وعدد المديرين الكاملين.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">4</span>قائمة البروفايلات</figcaption>
+        <a href="screens/04-profiles-list.png" target="_blank"><img src="screens/04-profiles-list.png" alt="قائمة البروفايلات" loading="lazy"></a>
+        <p class="cap">كل بروفايل سطر واحد: القسم، المستخدمون، عدد القواعد، ومدة الصلاحية.</p>
+      </figure>
+    </section>
+    <section id="b">
+      <h2>ثانيًا: إنشاء بروفايل صلاحيات</h2>
+      <p class="lead">البروفايل هو وحدة العمل في الموديول: بتحدد فيه <b>مين</b> يتأثر، وبعدين <b>إيه</b> اللي يتقيّد. الجزء العلوي من الشاشة للـ«مين» والمفاتيح العامة.</p>
+      
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">5</span>الخطوة ١ — البروفايل يطبّق على مين</figcaption>
+        <a href="screens/05-profile-who.png" target="_blank"><img src="screens/05-profile-who.png" alt="الخطوة ١ — البروفايل يطبّق على مين" loading="lazy"></a>
+        <p class="cap">تختار قسم كامل أو مستخدمين بأسمائهم، وتحدد الشركات اللي القيود تسري فيها.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">6</span>الخطوة ٢ — المفاتيح العامة والمدة</figcaption>
+        <a href="screens/06-profile-switches.png" target="_blank"><img src="screens/06-profile-switches.png" alt="الخطوة ٢ — المفاتيح العامة والمدة" loading="lazy"></a>
+        <p class="cap">مفاتيح تسري على البروفايل كله، ومدة صلاحية تنتهي وحدها للوصول المؤقت.</p>
+      </figure>
+    </section>
+    <section id="c">
+      <h2>ثالثًا: تبويبات القيود — قلب الموديول</h2>
+      <p class="lead">كل تبويب بيقيّد طبقة مختلفة. القاعدة العملية: <b>Records</b> هو اللي بيمنع البيانات فعلًا، وباقي التبويبات بتنضّف الواجهة وتمنع الأخطاء.</p>
+      
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">7</span>تبويب Menus — إخفاء القوائم</figcaption>
+        <a href="screens/07-tab-menus.png" target="_blank"><img src="screens/07-tab-menus.png" alt="تبويب Menus — إخفاء القوائم" loading="lazy"></a>
+        <p class="cap">تختار قوائم فتختفي من شاشة المستخدم — إخفاء شكلي لازم تسنده بقاعدة على البيانات.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">8</span>تبويب Models — أزرار كل موديل</figcaption>
+        <a href="screens/08-tab-models.png" target="_blank"><img src="screens/08-tab-models.png" alt="تبويب Models — أزرار كل موديل" loading="lazy"></a>
+        <p class="cap">لكل موديل تقفل إنشاء/تعديل/حذف/تصدير وتخفي التقارير وأنواع العرض.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">9</span>تبويب Fields — الحقول</figcaption>
+        <a href="screens/09-tab-fields.png" target="_blank"><img src="screens/09-tab-fields.png" alt="تبويب Fields — الحقول" loading="lazy"></a>
+        <p class="cap">تخفي حقل أو تخليه للقراءة فقط، والحقل المخفي بيختفي كمان من التصدير والفلاتر.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">10</span>تبويب Records — أقوى تبويب</figcaption>
+        <a href="screens/10-tab-records.png" target="_blank"><img src="screens/10-tab-records.png" alt="تبويب Records — أقوى تبويب" loading="lazy"></a>
+        <p class="cap">قيود على السجلات نفسها تتنفّذ في الواجهة وفي الـ API، وما تقدرش توسّع صلاحية أصلية.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">11</span>تبويب Buttons & Tabs</figcaption>
+        <a href="screens/11-tab-nodes.png" target="_blank"><img src="screens/11-tab-nodes.png" alt="تبويب Buttons & Tabs" loading="lazy"></a>
+        <p class="cap">إخفاء أزرار وتبويبات بعينها: النظام بيفحص شاشات الموديل ويعرضها لك كقائمة اختيار.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">12</span>تبويب Search — الفلاتر</figcaption>
+        <a href="screens/12-tab-search.png" target="_blank"><img src="screens/12-tab-search.png" alt="تبويب Search — الفلاتر" loading="lazy"></a>
+        <p class="cap">إخفاء فلاتر جاهزة أو خيارات التجميع من شريط البحث للموديلات المختارة.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">13</span>تبويب Chatter</figcaption>
+        <a href="screens/13-tab-chatter.png" target="_blank"><img src="screens/13-tab-chatter.png" alt="تبويب Chatter" loading="lazy"></a>
+        <p class="cap">إخفاء الشاتر كله أو أزراره (رسالة / ملاحظة / نشاط) لكل موديل على حدة.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">14</span>تبويب Login Security</figcaption>
+        <a href="screens/14-tab-login-security.png" target="_blank"><img src="screens/14-tab-login-security.png" alt="تبويب Login Security" loading="lazy"></a>
+        <p class="cap">تحصر الدخول على شبكات ومواعيد محددة، والمخالفة بتوقف الجلسة فورًا مش عند الدخول الجاي.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">15</span>تبويب Global</figcaption>
+        <a href="screens/15-tab-global.png" target="_blank"><img src="screens/15-tab-global.png" alt="تبويب Global" loading="lazy"></a>
+        <p class="cap">مفاتيح تسري على كل الموديلات مرة واحدة بدل ما تكررها موديل موديل.</p>
+      </figure>
+    </section>
+    <section id="d">
+      <h2>رابعًا: التطبيق على أعداد كبيرة</h2>
+      <p class="lead">بدل ما تعمل بروفايل لكل موظف، غطِّ قسم كامل من قالب جاهز، أو انسخ صلاحيات موظف موجود لموظف جديد.</p>
+      
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">16</span>Roll Out Profiles — التطبيق الجماعي</figcaption>
+        <a href="screens/16-rollout.png" target="_blank"><img src="screens/16-rollout.png" alt="Roll Out Profiles — التطبيق الجماعي" loading="lazy"></a>
+        <p class="cap">تبدأ من قالب جاهز وتغطي قسم كامل بضغطة، مع تخطي المديرين والمغطّى فعلًا.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">17</span>Manage Users — المستخدمون</figcaption>
+        <a href="screens/17-users.png" target="_blank"><img src="screens/17-users.png" alt="Manage Users — المستخدمون" loading="lazy"></a>
+        <p class="cap">شاشة المستخدمين الداخليين لمراجعة صلاحياتهم وربطهم بالبروفايلات.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">18</span>Copy User Access — نسخ الصلاحيات</figcaption>
+        <a href="screens/18-copy-access.png" target="_blank"><img src="screens/18-copy-access.png" alt="Copy User Access — نسخ الصلاحيات" loading="lazy"></a>
+        <p class="cap">تنسخ مجموعات وبروفايلات مستخدم لمستخدمين آخرين: إضافة فوق الحالي أو استبدال كامل.</p>
+      </figure>
+    </section>
+    <section id="e">
+      <h2>خامسًا: التدقيق والأمان</h2>
+      <p class="lead">الجزء ده بيجاوب على أسئلة المراجعة: مين دخل؟ من فين؟ مين شاف البيانات الحساسة؟ ومين صدّر ملف؟</p>
+      
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">19</span>Login Audit — سجل الدخول</figcaption>
+        <a href="screens/19-login-audit.png" target="_blank"><img src="screens/19-login-audit.png" alt="Login Audit — سجل الدخول" loading="lazy"></a>
+        <p class="cap">كل محاولة دخول: ناجحة، كلمة سر غلط، أو مرفوضة بسبب IP أو ميعاد أو جهاز.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">20</span>Unusual Logins — الدخول غير المعتاد</figcaption>
+        <a href="screens/20-anomalies.png" target="_blank"><img src="screens/20-anomalies.png" alt="Unusual Logins — الدخول غير المعتاد" loading="lazy"></a>
+        <p class="cap">جهاز جديد أو IP جديد أو ساعة غريبة أو محاولات فاشلة متتالية، مع إخطار للمديرين.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">21</span>Login Devices — الأجهزة</figcaption>
+        <a href="screens/21-devices.png" target="_blank"><img src="screens/21-devices.png" alt="Login Devices — الأجهزة" loading="lazy"></a>
+        <p class="cap">كل جهاز يدخل منه المستخدم: سمّيه أو وثّقه أو امنعه فلا يدخل ولو بكلمة السر الصحيحة.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">22</span>Sensitive Data — البيانات الحساسة</figcaption>
+        <a href="screens/22-sensitive.png" target="_blank"><img src="screens/22-sensitive.png" alt="Sensitive Data — البيانات الحساسة" loading="lazy"></a>
+        <p class="cap">تعلّم الحقول الحساسة (راتب، تكلفة، حد ائتمان) وتشوف مين يقدر يقراها دلوقتي.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">23</span>Permission Changes — تغييرات الصلاحيات</figcaption>
+        <a href="screens/23-changes.png" target="_blank"><img src="screens/23-changes.png" alt="Permission Changes — تغييرات الصلاحيات" loading="lazy"></a>
+        <p class="cap">مين أعطى أو سحب صلاحية، لمين، وإمتى — ومنح صلاحيات المدير يظهر بالأحمر.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">24</span>Export Audit — تدقيق التصدير</figcaption>
+        <a href="screens/24-export-audit.png" target="_blank"><img src="screens/24-export-audit.png" alt="Export Audit — تدقيق التصدير" loading="lazy"></a>
+        <p class="cap">كل ملف CSV/Excel اتسحب: مين، من أي شاشة، وأي أعمدة بالضبط.</p>
+      </figure>
+      <figure class="shot">
+        <figcaption class="shot-head"><span class="num">25</span>Configuration — الأقسام</figcaption>
+        <a href="screens/25-departments.png" target="_blank"><img src="screens/25-departments.png" alt="Configuration — الأقسام" loading="lazy"></a>
+        <p class="cap">الأقسام أساس التغطية: البروفايل المربوط بقسم يتبع موظفيه تلقائيًا.</p>
+      </figure>
+    </section>
+
+  <section id="tips">
+    <h2>خلاصة عملية قبل ما تبدأ</h2>
+    <table>
+      <tr><th>لو عايز</th><th>استخدم</th></tr>
+      <tr><td>تنضّف الواجهة وتقلل أخطاء المستخدم</td><td>تبويبات Menus / Models / Buttons &amp; Tabs</td></tr>
+      <tr><td>تمنع بيانات فعليًا (حتى من الـ API والاستيراد)</td><td>تبويب <b>Records</b></td></tr>
+      <tr><td>تخفي حقل من الشاشة والتصدير والفلاتر</td><td>تبويب Fields + خيار Invisible</td></tr>
+      <tr><td>وصول مؤقت لمراجع أو بديل إجازة</td><td>حقول Valid From / Valid Until</td></tr>
+      <tr><td>تغطي قسم كامل بسرعة</td><td>Roll Out Profiles من قالب جاهز</td></tr>
+      <tr><td>تجهّز مستخدم جديد زي زميله</td><td>Copy User Access</td></tr>
+      <tr><td>تجاوب على «مين شاف البيانات دي؟»</td><td>Sensitive Data + Export Audit</td></tr>
+    </table>
+    <div class="callout">
+      <h3>تحذيرات مهمة</h3>
+      <ul>
+        <li>الإخفاء من القوائم <b>شكلي فقط</b> — لو البيانات حسّاسة لازم تسنده بقاعدة في تبويب Records.</li>
+        <li>قواعد Records <b>تضيّق ولا توسّع أبدًا</b>: لو مجموعات المستخدم أصلًا مامنحتوش الصلاحية، البروفايل مش هيمنحها.</li>
+        <li>مدير النظام مستثنى دائمًا من قيود IP والمواعيد وإيقاف الدخول — قاعدة غلط ما تقدرش تقفل النظام على الكل.</li>
+        <li>قيود الدخول بتتطبّق على <b>الجلسات المفتوحة</b> عند أول طلب تالي، مش عند الدخول الجاي.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    الشاشات في هذا الدليل مأخوذة من قاعدة بيانات <code>17</code> على <code>localhost:8069</code>،
+    باستخدام بروفايل تجريبي اسمه <code>Sales Team — Restricted</code> ومستخدمين تجريبيين
+    (<code>*.demo</code>) اتعملوا خصيصًا للتصوير.
+  </footer>
+</div>
+</body>
+</html>

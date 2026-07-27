@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_arm_users" model="ir.actions.act_window">
+        <field name="name">Manage Users</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'search_default_no_share': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a user</p>
+            <p>Manage users, their groups and their access profiles from one place.</p>
+        </field>
+    </record>
+
+    <record id="action_arm_groups" model="ir.actions.act_window">
+        <field name="name">Groups</field>
+        <field name="res_model">res.groups</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No groups</p>
+            <p>Odoo security groups: who belongs to what, and which rights each group grants.</p>
+        </field>
+    </record>
+
+    <record id="action_arm_model_access" model="ir.actions.act_window">
+        <field name="name">Access Rights</field>
+        <field name="res_model">ir.model.access</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No access rights</p>
+            <p>The raw create/read/update/delete matrix per model and group (ACL).</p>
+        </field>
+    </record>
+
+    <record id="action_arm_record_rules" model="ir.actions.act_window">
+        <field name="name">Record Rules</field>
+        <field name="res_model">ir.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No record rules</p>
+            <p>Domain-based record-level security rules (native Odoo).</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_access_rights_users_groups"
+              name="Users &amp; Groups"
+              parent="menu_access_rights_root"
+              sequence="50"/>
+
+    <menuitem id="menu_arm_users"
+              name="Manage Users"
+              parent="menu_access_rights_users_groups"
+              action="action_arm_users"
+              sequence="10"/>
+
+    <menuitem id="menu_arm_groups"
+              name="Groups"
+              parent="menu_access_rights_users_groups"
+              action="action_arm_groups"
+              sequence="20"/>
+
+    <menuitem id="menu_arm_model_access"
+              name="Access Rights"
+              parent="menu_access_rights_users_groups"
+              action="action_arm_model_access"
+              sequence="30"/>
+
+    <menuitem id="menu_arm_record_rules"
+              name="Record Rules"
+              parent="menu_access_rights_users_groups"
+              action="action_arm_record_rules"
+              sequence="40"/>
+
+</odoo>
