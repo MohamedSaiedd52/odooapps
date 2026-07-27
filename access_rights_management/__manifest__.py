@@ -6,7 +6,7 @@
     'author': 'Mohamed Saied',
     'maintainer': 'MS — IT Department',
     'license': 'LGPL-3',
-    'price': 30.0,
+    'price': 60.0,
     'currency': 'USD',
     'category': 'Extra Tools',
     'summary': "One screen to decide who sees what — profiles, record rules, "
