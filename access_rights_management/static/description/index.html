@@ -1,242 +1,570 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>دليل استخدام Access Rights Management — أودو 17</title>
-<style>
-  :root{
-    --bg:#f6f7f9; --card:#fff; --ink:#14161a; --muted:#5d6470;
-    --line:#e3e6ea; --brand:#7a1f45; --accent:#d81b4a;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --bg:#111317; --card:#181b21; --ink:#eef0f3; --muted:#9aa2ae;
-           --line:#282d36; --brand:#e2799f; --accent:#ff5b86; }
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
-       font:400 16px/1.85 "Segoe UI",Tahoma,"Noto Naskh Arabic",sans-serif}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 22px 80px}
-  header.top{background:linear-gradient(135deg,var(--brand),#3d1026);color:#fff;
-             padding:52px 22px 44px;margin-bottom:34px}
-  header.top .wrap{padding-bottom:0}
-  header.top h1{margin:0 0 10px;font-size:34px;line-height:1.4}
-  header.top p{margin:0;opacity:.9;font-size:17px;max-width:760px}
-  .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
-  .meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);
-             border-radius:999px;padding:4px 14px;font-size:13.5px}
-  nav.toc{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--line);
-          border-radius:14px;padding:12px 16px;margin-bottom:34px;display:flex;
-          flex-wrap:wrap;gap:8px 18px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-  nav.toc a{color:var(--muted);text-decoration:none;font-size:14.5px;font-weight:600}
-  nav.toc a:hover{color:var(--accent)}
-  h2{font-size:25px;margin:46px 0 6px;padding-bottom:10px;border-bottom:2px solid var(--line)}
-  .lead{color:var(--muted);margin:0 0 26px;font-size:16px}
-  .shot{margin:0 0 34px;background:var(--card);border:1px solid var(--line);
-        border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
-  .shot-head{display:flex;align-items:center;gap:11px;padding:14px 18px;
-             font-weight:700;font-size:17px;border-bottom:1px solid var(--line)}
-  .num{flex:0 0 auto;width:27px;height:27px;border-radius:50%;background:var(--accent);
-       color:#fff;font:700 14px/27px "Segoe UI",sans-serif;text-align:center}
-  .shot img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
-  .cap{margin:0;padding:14px 18px;color:var(--muted);font-size:15.5px}
-  .video-box{background:var(--card);border:1px solid var(--line);border-radius:14px;
-             padding:18px;margin-bottom:14px}
-  .video-box video{width:100%;border-radius:9px;display:block;background:#000}
-  .callout{background:var(--card);border:1px solid var(--line);border-right:5px solid var(--accent);
-           border-radius:12px;padding:16px 20px;margin:22px 0}
-  .callout h3{margin:0 0 8px;font-size:17px}
-  .callout ol,.callout ul{margin:0;padding-inline-start:22px}
-  .callout li{margin:5px 0}
-  table{width:100%;border-collapse:collapse;background:var(--card);
-        border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:18px 0}
-  th,td{padding:11px 15px;text-align:right;border-bottom:1px solid var(--line);font-size:15px}
-  th{background:rgba(216,27,74,.07);font-weight:700}
-  tr:last-child td{border-bottom:0}
-  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
-         color:var(--muted);font-size:14px}
-  code{background:rgba(127,127,127,.14);padding:1px 6px;border-radius:5px;font-size:14px;
-       direction:ltr;display:inline-block}
+<section style="font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #333; max-width: 900px; margin: 0 auto;">
 
-
-</style>
-</head>
-<body>
-
-    <section id="a">
-      <h2>أولًا: الدخول والتعرّف على الشاشات</h2>
-      <p class="lead">الموديول كله تحت تطبيق واحد اسمه <b>Access Rights</b>. ابدأ من لوحة المتابعة عشان تعرف وضعك الحالي، وبعدها اتحرك على قائمة البروفايلات.</p>
-      
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">1</span>الدخول إلى التطبيق</figcaption>
-        <a href="screens/01-app-menu.png" target="_blank"><img src="screens/01-app-menu.png" alt="الدخول إلى التطبيق" loading="lazy"></a>
-        <p class="cap">كل شاشات الموديول تحت تطبيق واحد اسمه Access Rights في الشريط العلوي.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">2</span>لوحة المتابعة (Dashboard)</figcaption>
-        <a href="screens/02-dashboard.png" target="_blank"><img src="screens/02-dashboard.png" alt="لوحة المتابعة (Dashboard)" loading="lazy"></a>
-        <p class="cap">نظرة سريعة: كام مستخدم متغطي ببروفايل، وكام قاعدة شغالة، وكام محاولة دخول مرفوضة.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">3</span>لوحة المخاطر (Security Hygiene)</figcaption>
-        <a href="screens/03-hygiene.png" target="_blank"><img src="screens/03-hygiene.png" alt="لوحة المخاطر (Security Hygiene)" loading="lazy"></a>
-        <p class="cap">مخاطر جاهزة للتصرف: مستخدمين بدون بروفايل، حسابات خاملة، وعدد المديرين الكاملين.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">4</span>قائمة البروفايلات</figcaption>
-        <a href="screens/04-profiles-list.png" target="_blank"><img src="screens/04-profiles-list.png" alt="قائمة البروفايلات" loading="lazy"></a>
-        <p class="cap">كل بروفايل سطر واحد: القسم، المستخدمون، عدد القواعد، ومدة الصلاحية.</p>
-      </figure>
-    </section>
-    <section id="b">
-      <h2>ثانيًا: إنشاء بروفايل صلاحيات</h2>
-      <p class="lead">البروفايل هو وحدة العمل في الموديول: بتحدد فيه <b>مين</b> يتأثر، وبعدين <b>إيه</b> اللي يتقيّد. الجزء العلوي من الشاشة للـ«مين» والمفاتيح العامة.</p>
-      
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">5</span>الخطوة ١ — البروفايل يطبّق على مين</figcaption>
-        <a href="screens/05-profile-who.png" target="_blank"><img src="screens/05-profile-who.png" alt="الخطوة ١ — البروفايل يطبّق على مين" loading="lazy"></a>
-        <p class="cap">تختار قسم كامل أو مستخدمين بأسمائهم، وتحدد الشركات اللي القيود تسري فيها.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">6</span>الخطوة ٢ — المفاتيح العامة والمدة</figcaption>
-        <a href="screens/06-profile-switches.png" target="_blank"><img src="screens/06-profile-switches.png" alt="الخطوة ٢ — المفاتيح العامة والمدة" loading="lazy"></a>
-        <p class="cap">مفاتيح تسري على البروفايل كله، ومدة صلاحية تنتهي وحدها للوصول المؤقت.</p>
-      </figure>
-    </section>
-    <section id="c">
-      <h2>ثالثًا: تبويبات القيود — قلب الموديول</h2>
-      <p class="lead">كل تبويب بيقيّد طبقة مختلفة. القاعدة العملية: <b>Records</b> هو اللي بيمنع البيانات فعلًا، وباقي التبويبات بتنضّف الواجهة وتمنع الأخطاء.</p>
-      
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">7</span>تبويب Menus — إخفاء القوائم</figcaption>
-        <a href="screens/07-tab-menus.png" target="_blank"><img src="screens/07-tab-menus.png" alt="تبويب Menus — إخفاء القوائم" loading="lazy"></a>
-        <p class="cap">تختار قوائم فتختفي من شاشة المستخدم — إخفاء شكلي لازم تسنده بقاعدة على البيانات.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">8</span>تبويب Models — أزرار كل موديل</figcaption>
-        <a href="screens/08-tab-models.png" target="_blank"><img src="screens/08-tab-models.png" alt="تبويب Models — أزرار كل موديل" loading="lazy"></a>
-        <p class="cap">لكل موديل تقفل إنشاء/تعديل/حذف/تصدير وتخفي التقارير وأنواع العرض.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">9</span>تبويب Fields — الحقول</figcaption>
-        <a href="screens/09-tab-fields.png" target="_blank"><img src="screens/09-tab-fields.png" alt="تبويب Fields — الحقول" loading="lazy"></a>
-        <p class="cap">تخفي حقل أو تخليه للقراءة فقط، والحقل المخفي بيختفي كمان من التصدير والفلاتر.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">10</span>تبويب Records — أقوى تبويب</figcaption>
-        <a href="screens/10-tab-records.png" target="_blank"><img src="screens/10-tab-records.png" alt="تبويب Records — أقوى تبويب" loading="lazy"></a>
-        <p class="cap">قيود على السجلات نفسها تتنفّذ في الواجهة وفي الـ API، وما تقدرش توسّع صلاحية أصلية.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">11</span>تبويب Buttons & Tabs</figcaption>
-        <a href="screens/11-tab-nodes.png" target="_blank"><img src="screens/11-tab-nodes.png" alt="تبويب Buttons & Tabs" loading="lazy"></a>
-        <p class="cap">إخفاء أزرار وتبويبات بعينها: النظام بيفحص شاشات الموديل ويعرضها لك كقائمة اختيار.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">12</span>تبويب Search — الفلاتر</figcaption>
-        <a href="screens/12-tab-search.png" target="_blank"><img src="screens/12-tab-search.png" alt="تبويب Search — الفلاتر" loading="lazy"></a>
-        <p class="cap">إخفاء فلاتر جاهزة أو خيارات التجميع من شريط البحث للموديلات المختارة.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">13</span>تبويب Chatter</figcaption>
-        <a href="screens/13-tab-chatter.png" target="_blank"><img src="screens/13-tab-chatter.png" alt="تبويب Chatter" loading="lazy"></a>
-        <p class="cap">إخفاء الشاتر كله أو أزراره (رسالة / ملاحظة / نشاط) لكل موديل على حدة.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">14</span>تبويب Login Security</figcaption>
-        <a href="screens/14-tab-login-security.png" target="_blank"><img src="screens/14-tab-login-security.png" alt="تبويب Login Security" loading="lazy"></a>
-        <p class="cap">تحصر الدخول على شبكات ومواعيد محددة، والمخالفة بتوقف الجلسة فورًا مش عند الدخول الجاي.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">15</span>تبويب Global</figcaption>
-        <a href="screens/15-tab-global.png" target="_blank"><img src="screens/15-tab-global.png" alt="تبويب Global" loading="lazy"></a>
-        <p class="cap">مفاتيح تسري على كل الموديلات مرة واحدة بدل ما تكررها موديل موديل.</p>
-      </figure>
-    </section>
-    <section id="d">
-      <h2>رابعًا: التطبيق على أعداد كبيرة</h2>
-      <p class="lead">بدل ما تعمل بروفايل لكل موظف، غطِّ قسم كامل من قالب جاهز، أو انسخ صلاحيات موظف موجود لموظف جديد.</p>
-      
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">16</span>Roll Out Profiles — التطبيق الجماعي</figcaption>
-        <a href="screens/16-rollout.png" target="_blank"><img src="screens/16-rollout.png" alt="Roll Out Profiles — التطبيق الجماعي" loading="lazy"></a>
-        <p class="cap">تبدأ من قالب جاهز وتغطي قسم كامل بضغطة، مع تخطي المديرين والمغطّى فعلًا.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">17</span>Manage Users — المستخدمون</figcaption>
-        <a href="screens/17-users.png" target="_blank"><img src="screens/17-users.png" alt="Manage Users — المستخدمون" loading="lazy"></a>
-        <p class="cap">شاشة المستخدمين الداخليين لمراجعة صلاحياتهم وربطهم بالبروفايلات.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">18</span>Copy User Access — نسخ الصلاحيات</figcaption>
-        <a href="screens/18-copy-access.png" target="_blank"><img src="screens/18-copy-access.png" alt="Copy User Access — نسخ الصلاحيات" loading="lazy"></a>
-        <p class="cap">تنسخ مجموعات وبروفايلات مستخدم لمستخدمين آخرين: إضافة فوق الحالي أو استبدال كامل.</p>
-      </figure>
-    </section>
-    <section id="e">
-      <h2>خامسًا: التدقيق والأمان</h2>
-      <p class="lead">الجزء ده بيجاوب على أسئلة المراجعة: مين دخل؟ من فين؟ مين شاف البيانات الحساسة؟ ومين صدّر ملف؟</p>
-      
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">19</span>Login Audit — سجل الدخول</figcaption>
-        <a href="screens/19-login-audit.png" target="_blank"><img src="screens/19-login-audit.png" alt="Login Audit — سجل الدخول" loading="lazy"></a>
-        <p class="cap">كل محاولة دخول: ناجحة، كلمة سر غلط، أو مرفوضة بسبب IP أو ميعاد أو جهاز.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">20</span>Unusual Logins — الدخول غير المعتاد</figcaption>
-        <a href="screens/20-anomalies.png" target="_blank"><img src="screens/20-anomalies.png" alt="Unusual Logins — الدخول غير المعتاد" loading="lazy"></a>
-        <p class="cap">جهاز جديد أو IP جديد أو ساعة غريبة أو محاولات فاشلة متتالية، مع إخطار للمديرين.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">21</span>Login Devices — الأجهزة</figcaption>
-        <a href="screens/21-devices.png" target="_blank"><img src="screens/21-devices.png" alt="Login Devices — الأجهزة" loading="lazy"></a>
-        <p class="cap">كل جهاز يدخل منه المستخدم: سمّيه أو وثّقه أو امنعه فلا يدخل ولو بكلمة السر الصحيحة.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">22</span>Sensitive Data — البيانات الحساسة</figcaption>
-        <a href="screens/22-sensitive.png" target="_blank"><img src="screens/22-sensitive.png" alt="Sensitive Data — البيانات الحساسة" loading="lazy"></a>
-        <p class="cap">تعلّم الحقول الحساسة (راتب، تكلفة، حد ائتمان) وتشوف مين يقدر يقراها دلوقتي.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">23</span>Permission Changes — تغييرات الصلاحيات</figcaption>
-        <a href="screens/23-changes.png" target="_blank"><img src="screens/23-changes.png" alt="Permission Changes — تغييرات الصلاحيات" loading="lazy"></a>
-        <p class="cap">مين أعطى أو سحب صلاحية، لمين، وإمتى — ومنح صلاحيات المدير يظهر بالأحمر.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">24</span>Export Audit — تدقيق التصدير</figcaption>
-        <a href="screens/24-export-audit.png" target="_blank"><img src="screens/24-export-audit.png" alt="Export Audit — تدقيق التصدير" loading="lazy"></a>
-        <p class="cap">كل ملف CSV/Excel اتسحب: مين، من أي شاشة، وأي أعمدة بالضبط.</p>
-      </figure>
-      <figure class="shot">
-        <figcaption class="shot-head"><span class="num">25</span>Configuration — الأقسام</figcaption>
-        <a href="screens/25-departments.png" target="_blank"><img src="screens/25-departments.png" alt="Configuration — الأقسام" loading="lazy"></a>
-        <p class="cap">الأقسام أساس التغطية: البروفايل المربوط بقسم يتبع موظفيه تلقائيًا.</p>
-      </figure>
-    </section>
-
-  <section id="tips">
-    <h2>خلاصة عملية قبل ما تبدأ</h2>
-    <table>
-      <tr><th>لو عايز</th><th>استخدم</th></tr>
-      <tr><td>تنضّف الواجهة وتقلل أخطاء المستخدم</td><td>تبويبات Menus / Models / Buttons &amp; Tabs</td></tr>
-      <tr><td>تمنع بيانات فعليًا (حتى من الـ API والاستيراد)</td><td>تبويب <b>Records</b></td></tr>
-      <tr><td>تخفي حقل من الشاشة والتصدير والفلاتر</td><td>تبويب Fields + خيار Invisible</td></tr>
-      <tr><td>وصول مؤقت لمراجع أو بديل إجازة</td><td>حقول Valid From / Valid Until</td></tr>
-      <tr><td>تغطي قسم كامل بسرعة</td><td>Roll Out Profiles من قالب جاهز</td></tr>
-      <tr><td>تجهّز مستخدم جديد زي زميله</td><td>Copy User Access</td></tr>
-      <tr><td>تجاوب على «مين شاف البيانات دي؟»</td><td>Sensitive Data + Export Audit</td></tr>
-    </table>
-    <div class="callout">
-      <h3>تحذيرات مهمة</h3>
-      <ul>
-        <li>الإخفاء من القوائم <b>شكلي فقط</b> — لو البيانات حسّاسة لازم تسنده بقاعدة في تبويب Records.</li>
-        <li>قواعد Records <b>تضيّق ولا توسّع أبدًا</b>: لو مجموعات المستخدم أصلًا مامنحتوش الصلاحية، البروفايل مش هيمنحها.</li>
-        <li>مدير النظام مستثنى دائمًا من قيود IP والمواعيد وإيقاف الدخول — قاعدة غلط ما تقدرش تقفل النظام على الكل.</li>
-        <li>قيود الدخول بتتطبّق على <b>الجلسات المفتوحة</b> عند أول طلب تالي، مش عند الدخول الجاي.</li>
-      </ul>
+    <!-- ═══════════════════════════════════════════════════════════════
+         BANNER
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="text-align: center; margin-bottom: 30px;">
+        <img src="banner.png" alt="Access Rights Management" style="width: 100%; border-radius: 8px;">
     </div>
-  </section>
 
-</div>
-</body>
-</html>
+    <!-- ═══════════════════════════════════════════════════════════════
+         HEADLINE + TAGLINE
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h1 style="font-size: 32px; font-weight: 800; color: #714B67; margin: 0 0 10px;">
+            Access Rights Management
+        </h1>
+        <p style="font-size: 18px; color: #666; margin: 0 0 18px; line-height: 1.6;">
+            One screen to decide <b>who sees what</b> — profiles, record rules,
+            login security, device control and a full audit trail.
+        </p>
+        <!-- Badges -->
+        <span style="display: inline-block; background: #714B67; color: #fff; padding: 5px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 3px;">Odoo 17</span>
+        <span style="display: inline-block; background: #2c3e6b; color: #fff; padding: 5px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 3px;">Community &amp; Enterprise</span>
+        <span style="display: inline-block; background: #27ae60; color: #fff; padding: 5px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 3px;">LGPL-3</span>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         KEY FEATURES (3 columns)
+         ═══════════════════════════════════════════════════════════════ -->
+    <div class="container">
+        <div class="row" style="margin-bottom: 40px;">
+            <!-- Feature 1 -->
+            <div class="col-md-4" style="padding: 10px;">
+                <div style="background: #f5f0f4; border: 1px solid #e8dce5; border-radius: 10px; padding: 24px 18px; text-align: center; min-height: 200px;">
+                    <div style="font-size: 36px; margin-bottom: 10px;">🛡️</div>
+                    <h3 style="font-size: 17px; font-weight: 700; color: #714B67; margin: 0 0 8px;">Access Profiles</h3>
+                    <p style="font-size: 14px; color: #666; margin: 0; line-height: 1.6;">
+                        Hide menus, lock model buttons, restrict fields,
+                        enforce record-level rules, hide chatter &amp; search filters — all from one profile.
+                    </p>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="col-md-4" style="padding: 10px;">
+                <div style="background: #f0f2f8; border: 1px solid #dce0ed; border-radius: 10px; padding: 24px 18px; text-align: center; min-height: 200px;">
+                    <div style="font-size: 36px; margin-bottom: 10px;">🔐</div>
+                    <h3 style="font-size: 17px; font-weight: 700; color: #2c3e6b; margin: 0 0 8px;">Login Security</h3>
+                    <p style="font-size: 14px; color: #666; margin: 0; line-height: 1.6;">
+                        Allowed IPs, working hours, device whitelist, 2FA enforcement —
+                        policies applied live, not at next login.
+                    </p>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="col-md-4" style="padding: 10px;">
+                <div style="background: #eef7f1; border: 1px solid #d4eadb; border-radius: 10px; padding: 24px 18px; text-align: center; min-height: 200px;">
+                    <div style="font-size: 36px; margin-bottom: 10px;">📋</div>
+                    <h3 style="font-size: 17px; font-weight: 700; color: #1e7e45; margin: 0 0 8px;">Full Audit Trail</h3>
+                    <p style="font-size: 14px; color: #666; margin: 0; line-height: 1.6;">
+                        Login attempts, permission changes, sensitive data access
+                        and every CSV/Excel export — with exact columns.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 1: GETTING STARTED
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="margin-bottom: 50px;">
+        <h2 style="font-size: 24px; font-weight: 700; color: #714B67; border-bottom: 2px solid #e8dce5; padding-bottom: 10px; margin-bottom: 8px;">
+            🚀 Getting Started — App &amp; Dashboard
+        </h2>
+        <p style="font-size: 15px; color: #888; margin: 0 0 24px;">
+            Everything lives under one app called <b>Access Rights</b>. Start from the dashboard to see your current posture, then move to profiles.
+        </p>
+
+        <!-- Screenshot 1 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ① Open the App
+            </div>
+            <a href="screens/01-app-menu.png" target="_blank">
+                <img src="screens/01-app-menu.png" alt="Open the App" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                All module screens live under a single app called <b>Access Rights</b> in the top navigation bar.
+            </p>
+        </div>
+
+        <!-- Screenshot 2 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ② Dashboard Overview
+            </div>
+            <a href="screens/02-dashboard.png" target="_blank">
+                <img src="screens/02-dashboard.png" alt="Dashboard Overview" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Quick glance: covered users, active rules, login activity, denied reasons and profile coverage percentage.
+            </p>
+        </div>
+
+        <!-- Screenshot 3 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ③ Security Hygiene Panel
+            </div>
+            <a href="screens/03-hygiene.png" target="_blank">
+                <img src="screens/03-hygiene.png" alt="Security Hygiene Panel" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Actionable risks: uncovered users, inactive accounts, admin count, blocked devices and large sensitive exports.
+            </p>
+        </div>
+
+        <!-- Screenshot 4 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ④ Profiles List
+            </div>
+            <a href="screens/04-profiles-list.png" target="_blank">
+                <img src="screens/04-profiles-list.png" alt="Profiles List" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                One row per profile: department, assigned users, rule count and validity period at a glance.
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2: BUILDING A PROFILE
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="margin-bottom: 50px;">
+        <h2 style="font-size: 24px; font-weight: 700; color: #714B67; border-bottom: 2px solid #e8dce5; padding-bottom: 10px; margin-bottom: 8px;">
+            👤 Building an Access Profile
+        </h2>
+        <p style="font-size: 15px; color: #888; margin: 0 0 24px;">
+            A profile is the building block: define <b>who</b> is affected, then configure <b>what</b> gets restricted.
+        </p>
+
+        <!-- Screenshot 5 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑤ Step 1 — Who does it apply to?
+            </div>
+            <a href="screens/05-profile-who.png" target="_blank">
+                <img src="screens/05-profile-who.png" alt="Profile - Who" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Pick a whole department or individual users, and choose which companies the restrictions apply to.
+            </p>
+        </div>
+
+        <!-- Screenshot 6 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑥ Step 2 — Global switches &amp; validity
+            </div>
+            <a href="screens/06-profile-switches.png" target="_blank">
+                <img src="screens/06-profile-switches.png" alt="Profile - Switches" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Profile-wide switches (read-only, no developer mode, disable login) and an optional expiry date for temporary access.
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3: RESTRICTION TABS
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="margin-bottom: 50px;">
+        <h2 style="font-size: 24px; font-weight: 700; color: #714B67; border-bottom: 2px solid #e8dce5; padding-bottom: 10px; margin-bottom: 8px;">
+            ⚙️ Restriction Tabs — The Heart of the Module
+        </h2>
+        <p style="font-size: 15px; color: #888; margin: 0 0 24px;">
+            Each tab restricts a different layer. <b>Records</b> is the one that truly blocks data; the other tabs clean up the UI and prevent mistakes.
+        </p>
+
+        <!-- Screenshot 7 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #2c3e6b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑦ Menus Tab — Hide menu items
+            </div>
+            <a href="screens/07-tab-menus.png" target="_blank">
+                <img src="screens/07-tab-menus.png" alt="Menus Tab" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Select menus to hide from the user's view — cosmetic hiding that should be backed by a data-level rule.
+            </p>
+        </div>
+
+        <!-- Screenshot 8 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #2c3e6b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑧ Models Tab — Lock model actions
+            </div>
+            <a href="screens/08-tab-models.png" target="_blank">
+                <img src="screens/08-tab-models.png" alt="Models Tab" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Per-model control: lock create/edit/delete/export, hide reports and specific view types.
+            </p>
+        </div>
+
+        <!-- Screenshot 9 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #2c3e6b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑨ Fields Tab — Control field visibility
+            </div>
+            <a href="screens/09-tab-fields.png" target="_blank">
+                <img src="screens/09-tab-fields.png" alt="Fields Tab" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Hide a field or make it read-only. Hidden fields also disappear from exports, filters and group-by.
+            </p>
+        </div>
+
+        <!-- Screenshot 10 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #c0392b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑩ Records Tab — The most powerful tab ⚡
+            </div>
+            <a href="screens/10-tab-records.png" target="_blank">
+                <img src="screens/10-tab-records.png" alt="Records Tab" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                ORM-level record rules enforced in the UI <b>and</b> the API. Rules can only restrict — they never widen what the user's groups already allow.
+            </p>
+        </div>
+
+        <!-- Screenshot 11 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #2c3e6b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑪ Buttons &amp; Tabs — Hide UI elements
+            </div>
+            <a href="screens/11-tab-nodes.png" target="_blank">
+                <img src="screens/11-tab-nodes.png" alt="Buttons and Tabs" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Hide specific buttons, smart buttons and notebook tabs — the system scans the model's views and shows them as a checklist.
+            </p>
+        </div>
+
+        <!-- Screenshot 12 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #2c3e6b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑫ Search Tab — Control filters
+            </div>
+            <a href="screens/12-tab-search.png" target="_blank">
+                <img src="screens/12-tab-search.png" alt="Search Tab" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Hide predefined filters and group-by options from the search bar for selected models.
+            </p>
+        </div>
+
+        <!-- Screenshot 13 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #2c3e6b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑬ Chatter Tab — Control the chatter
+            </div>
+            <a href="screens/13-tab-chatter.png" target="_blank">
+                <img src="screens/13-tab-chatter.png" alt="Chatter Tab" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Hide the entire chatter or individual buttons (Message / Note / Activity) per model.
+            </p>
+        </div>
+
+        <!-- Screenshot 14 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #2c3e6b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑭ Login Security Tab
+            </div>
+            <a href="screens/14-tab-login-security.png" target="_blank">
+                <img src="screens/14-tab-login-security.png" alt="Login Security Tab" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Restrict login by IP/network, weekdays and hours. Violations terminate the session immediately — not at next login.
+            </p>
+        </div>
+
+        <!-- Screenshot 15 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #2c3e6b; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑮ Global Tab — Apply everywhere
+            </div>
+            <a href="screens/15-tab-global.png" target="_blank">
+                <img src="screens/15-tab-global.png" alt="Global Tab" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Switches that apply to all models at once instead of configuring them model by model.
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4: MASS DEPLOYMENT
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="margin-bottom: 50px;">
+        <h2 style="font-size: 24px; font-weight: 700; color: #714B67; border-bottom: 2px solid #e8dce5; padding-bottom: 10px; margin-bottom: 8px;">
+            🚀 Roll Out at Scale
+        </h2>
+        <p style="font-size: 15px; color: #888; margin: 0 0 24px;">
+            Cover a whole department from a ready-made template, or clone one user's access to new hires — no per-user setup needed.
+        </p>
+
+        <!-- Screenshot 16 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑯ Roll Out Profiles — Mass deployment
+            </div>
+            <a href="screens/16-rollout.png" target="_blank">
+                <img src="screens/16-rollout.png" alt="Roll Out Profiles" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Start from a safe template and cover an entire department in one click — admins and already-covered users are skipped.
+            </p>
+        </div>
+
+        <!-- Screenshot 17 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑰ Manage Users
+            </div>
+            <a href="screens/17-users.png" target="_blank">
+                <img src="screens/17-users.png" alt="Manage Users" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Internal users screen to review their permissions and link them to access profiles.
+            </p>
+        </div>
+
+        <!-- Screenshot 18 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #714B67; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑱ Copy User Access
+            </div>
+            <a href="screens/18-copy-access.png" target="_blank">
+                <img src="screens/18-copy-access.png" alt="Copy User Access" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Clone groups and profiles from one user to others: add on top of existing access or full replacement.
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5: AUDIT & SECURITY
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="margin-bottom: 50px;">
+        <h2 style="font-size: 24px; font-weight: 700; color: #714B67; border-bottom: 2px solid #e8dce5; padding-bottom: 10px; margin-bottom: 8px;">
+            🔍 Audit &amp; Security
+        </h2>
+        <p style="font-size: 15px; color: #888; margin: 0 0 24px;">
+            Answer every compliance question: Who logged in? From where? Who accessed sensitive data? Who exported a file?
+        </p>
+
+        <!-- Screenshot 19 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #1e7e45; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑲ Login Audit
+            </div>
+            <a href="screens/19-login-audit.png" target="_blank">
+                <img src="screens/19-login-audit.png" alt="Login Audit" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Every login attempt: success, wrong password, or denied (IP / hours / device / disabled login) — with full device and browser details.
+            </p>
+        </div>
+
+        <!-- Screenshot 20 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #1e7e45; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ⑳ Unusual Logins
+            </div>
+            <a href="screens/20-anomalies.png" target="_blank">
+                <img src="screens/20-anomalies.png" alt="Unusual Logins" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                New device, new IP, odd hours, or burst of failed attempts — managers are notified automatically.
+            </p>
+        </div>
+
+        <!-- Screenshot 21 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #1e7e45; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ㉑ Login Devices
+            </div>
+            <a href="screens/21-devices.png" target="_blank">
+                <img src="screens/21-devices.png" alt="Login Devices" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Every device a user connects from — name it, trust it, or block it. A blocked device cannot log in even with the correct password.
+            </p>
+        </div>
+
+        <!-- Screenshot 22 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #1e7e45; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ㉒ Sensitive Data
+            </div>
+            <a href="screens/22-sensitive.png" target="_blank">
+                <img src="screens/22-sensitive.png" alt="Sensitive Data" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Tag sensitive fields (salary, cost, credit limit) and see who can read each one right now.
+            </p>
+        </div>
+
+        <!-- Screenshot 23 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #1e7e45; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ㉓ Permission Changes
+            </div>
+            <a href="screens/23-changes.png" target="_blank">
+                <img src="screens/23-changes.png" alt="Permission Changes" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Who granted or revoked what, to whom, and when — admin grants are flagged in red.
+            </p>
+        </div>
+
+        <!-- Screenshot 24 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #1e7e45; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ㉔ Export Audit
+            </div>
+            <a href="screens/24-export-audit.png" target="_blank">
+                <img src="screens/24-export-audit.png" alt="Export Audit" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Every CSV/Excel download: who, from which screen, and exactly which columns were included.
+            </p>
+        </div>
+
+        <!-- Screenshot 25 -->
+        <div style="background: #fafafa; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: #1e7e45; color: #fff; padding: 12px 18px; font-weight: 700; font-size: 15px;">
+                ㉕ Configuration — Departments
+            </div>
+            <a href="screens/25-departments.png" target="_blank">
+                <img src="screens/25-departments.png" alt="Configuration - Departments" style="width: 100%; display: block; border-bottom: 1px solid #eee;" loading="lazy">
+            </a>
+            <p style="padding: 12px 18px; margin: 0; font-size: 14px; color: #888;">
+                Departments are the coverage foundation: a profile linked to a department automatically follows its employees.
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         PERFORMANCE NOTE
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="background: #f5f0f4; border: 1px solid #e8dce5; border-radius: 10px; padding: 22px 24px; margin-bottom: 40px;">
+        <h3 style="font-size: 17px; font-weight: 700; color: #714B67; margin: 0 0 8px;">
+            ⚡ Built for Performance
+        </h3>
+        <p style="font-size: 14px; color: #666; margin: 0; line-height: 1.7;">
+            Profiled users get their own <b>view-cache key</b> instead of the global cache flush-on-every-page-load that similar apps do.
+            Every rule lookup is <b>ORM-cached</b>, so the module adds negligible overhead to page loads.
+        </p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FEATURE TABLE
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="margin-bottom: 40px;">
+        <h2 style="font-size: 24px; font-weight: 700; color: #714B67; border-bottom: 2px solid #e8dce5; padding-bottom: 10px; margin-bottom: 18px;">
+            📋 Full Feature List
+        </h2>
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #eee; border-radius: 8px; overflow: hidden;">
+            <thead>
+                <tr style="background: #714B67; color: #fff;">
+                    <th style="padding: 10px 16px; text-align: left; font-size: 14px;">Category</th>
+                    <th style="padding: 10px 16px; text-align: left; font-size: 14px;">Feature</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #fafafa;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee; font-weight: 600;">Profiles</td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Hide menus &amp; sub-menus</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Lock create / edit / delete / duplicate / archive / import / export per model</td>
+                </tr>
+                <tr style="background: #fafafa;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Fields: invisible, read-only, required, no external link</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">ORM-level record rules with domain filters</td>
+                </tr>
+                <tr style="background: #fafafa;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Hide buttons, smart buttons, notebook tabs</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Hide search filters &amp; group-by options</td>
+                </tr>
+                <tr style="background: #fafafa;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Hide chatter or individual chatter buttons per model</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Validity period for temporary access (auditors, holiday cover)</td>
+                </tr>
+                <tr style="background: #fafafa; border-top: 2px solid #e8dce5;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee; font-weight: 600;">Deployment</td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Roll Out Profiles — cover a department in one click</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Copy User Access — clone groups &amp; profiles to other users</td>
+                </tr>
+                <tr style="background: #fafafa; border-top: 2px solid #e8dce5;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee; font-weight: 600;">Login Security</td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Allowed IPs / networks, weekdays &amp; hours per timezone</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">2FA enforcement, device whitelist / blocklist</td>
+                </tr>
+                <tr style="background: #fafafa;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Live enforcement — takes effect on next request, not next login</td>
+                </tr>
+                <tr style="border-top: 2px solid #e8dce5;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee; font-weight: 600;">Audit</td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Login Audit — every attempt with device, IP, browser, OS</td>
+                </tr>
+                <tr style="background: #fafafa;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Unusual Logins — anomaly detection with manager notifications</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Permission Changes — who granted/revoked what, to whom, when</td>
+                </tr>
+                <tr style="background: #fafafa;">
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #eee;">Sensitive Data — tag fields &amp; see who can read them</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 16px; font-size: 14px;"></td>
+                    <td style="padding: 10px 16px; font-size: 14px;">Export Audit — every download with exact columns &amp; source screen</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SUPPORT
+         ═══════════════════════════════════════════════════════════════ -->
+    <div style="background: #f0f2f8; border: 1px solid #dce0ed; border-radius: 10px; padding: 22px 24px; margin-bottom: 20px; text-align: center;">
+        <h3 style="font-size: 18px; font-weight: 700; color: #2c3e6b; margin: 0 0 8px;">
+            Need Help?
+        </h3>
+        <p style="font-size: 14px; color: #666; margin: 0; line-height: 1.7;">
+            For support, feature requests or custom development —
+            please use the <b>Support</b> tab on this app's page or contact us directly.
+        </p>
+    </div>
+
+</section>
