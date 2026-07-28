@@ -120,7 +120,7 @@ ORM-cached.
             'access_rights_management/static/src/js/pivot_header_patch.js',
         ],
     },
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.gif'],
     'post_init_hook': 'post_init_hook',
     'application': True,
     'installable': True,
