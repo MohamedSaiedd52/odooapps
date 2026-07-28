@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="access_rights_profile_view_form" model="ir.ui.view">
+        <field name="name">access.rights.profile.view.form</field>
+        <field name="model">access.rights.profile</field>
+        <field name="arch" type="xml">
+            <form string="Access Profile">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Warehouse Staff — Limited"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Who">
+                            <field name="department_id" options="{'no_open': True}"
+                                   placeholder="e.g. Accounting"/>
+                            <field name="apply_to_all_users"/>
+                            <field name="user_ids" widget="many2many_tags"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   domain="[('share', '=', False)]"
+                                   invisible="apply_to_all_users"/>
+                            <field name="excluded_user_ids" widget="many2many_tags"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   domain="[('share', '=', False)]"
+                                   invisible="not apply_to_all_users"/>
+                            <field name="apply_all_companies"/>
+                            <field name="company_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   invisible="apply_all_companies"
+                                   required="not apply_all_companies"/>
+                        </group>
+                        <group string="Restrictions">
+                            <field name="readonly"/>
+                            <field name="disable_debug_mode"/>
+                            <field name="disable_login"/>
+                            <field name="total_rules"/>
+                        </group>
+                        <group string="Validity">
+                            <field name="validity_state" widget="badge"
+                                   decoration-success="validity_state == 'valid'"
+                                   decoration-info="validity_state == 'scheduled'"
+                                   decoration-danger="validity_state == 'expired'"
+                                   invisible="not date_from and not date_to"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Menus" name="menus">
+                            <field name="hide_menu_ids"
+                                   domain="[('name', 'not in', ['Access Rights'])]"
+                                   options="{'no_create': True}">
+                                <list>
+                                    <field name="complete_name"/>
+                                </list>
+                            </field>
+                            <div class="text-muted">
+                                The selected menus (and everything under them) disappear for the
+                                profile users. This is cosmetic — combine it with Model or Record
+                                rules to actually block the data.
+                            </div>
+                        </page>
+                        <page string="Models" name="models">
+                            <field name="model_line_ids" context="{'arm_technical_names': 1}">
+                                <list editable="bottom">
+                                    <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="view_type_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <field name="report_action_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <field name="server_action_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <field name="restrict_create" optional="show"/>
+                                    <field name="restrict_edit" optional="show"/>
+                                    <field name="restrict_delete" optional="show"/>
+                                    <field name="restrict_archive" optional="show"/>
+                                    <field name="restrict_duplicate" optional="show"/>
+                                    <field name="restrict_import" optional="hide"/>
+                                    <field name="restrict_export" optional="hide"/>
+                                    <field name="restrict_chatter" optional="hide"/>
+                                    <field name="restrict_spreadsheet" optional="hide"/>
+                                </list>
+                            </field>
+                            <div class="text-muted">
+                                Hides UI elements (buttons, views, reports, actions) per model.
+                                These are interface restrictions: to also block the API, use the
+                                <b>Records</b> tab.
+                            </div>
+                        </page>
+                        <page string="Fields" name="fields">
+                            <field name="field_line_ids" context="{'arm_technical_names': 1}">
+                                <list editable="bottom">
+                                    <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="field_ids" widget="many2many_tags"
+                                           options="{'no_create': True}"
+                                           domain="[('model_id', '=', model_id)]"/>
+                                    <field name="invisible"/>
+                                    <field name="readonly"/>
+                                    <field name="required"/>
+                                    <field name="remove_external_link"/>
+                                </list>
+                            </field>
+                            <div class="text-muted">
+                                Invisible fields are also removed from export, filters,
+                                group-by and the field selector.
+                            </div>
+                        </page>
+                        <page string="Records" name="records">
+                            <field name="domain_line_ids" context="{'arm_technical_names': 1}">
+                                <list>
+                                    <field name="model_id"/>
+                                    <field name="perm_read"/>
+                                    <field name="perm_create"/>
+                                    <field name="perm_write"/>
+                                    <field name="perm_unlink"/>
+                                    <field name="apply_domain"/>
+                                    <field name="domain" optional="show"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
+                                            <field name="model_name" invisible="1"/>
+                                        </group>
+                                        <group>
+                                            <field name="perm_read"/>
+                                            <field name="perm_create"/>
+                                            <field name="perm_write"/>
+                                            <field name="perm_unlink"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <field name="apply_domain" invisible="not perm_read"/>
+                                        <field name="domain" widget="domain"
+                                               options="{'model': 'model_name', 'in_dialog': True}"
+                                               invisible="not apply_domain or not perm_read"/>
+                                    </group>
+                                </form>
+                            </field>
+                            <div class="alert alert-warning" role="alert">
+                                <b>Strict enforcement.</b> These rules apply at the ORM level
+                                (interface <i>and</i> API/imports). An unticked right is fully
+                                blocked; a filter limits the granted rights to matching records.
+                                Rules here can only restrict — they never widen what the user's
+                                groups already allow.
+                            </div>
+                        </page>
+                        <page string="Buttons &amp; Tabs" name="nodes">
+                            <field name="node_line_ids" context="{'arm_technical_names': 1}">
+                                <list editable="bottom">
+                                    <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="button_node_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <field name="page_node_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <field name="link_node_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                </list>
+                            </field>
+                            <div class="text-muted">
+                                Pick a model first: its views are scanned automatically so every
+                                button, smart button, tab and kanban link becomes selectable.
+                            </div>
+                        </page>
+                        <page string="Search" name="search">
+                            <field name="search_line_ids" context="{'arm_technical_names': 1}">
+                                <list editable="bottom">
+                                    <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="filter_node_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <field name="group_node_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                </list>
+                            </field>
+                            <div class="text-muted">
+                                Hide predefined filters and group-by options from the search bar
+                                of the selected models.
+                            </div>
+                        </page>
+                        <page string="Chatter" name="chatter">
+                            <field name="chatter_line_ids" context="{'arm_technical_names': 1}">
+                                <list editable="bottom">
+                                    <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="hide_chatter"/>
+                                    <field name="hide_send_mail"/>
+                                    <field name="hide_log_notes"/>
+                                    <field name="hide_schedule_activity"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Login Security" name="login_security">
+                            <group>
+                                <group string="Allowed IP Addresses">
+                                    <field name="restrict_ip"/>
+                                    <field name="allowed_ip_list"
+                                           invisible="not restrict_ip"
+                                           required="restrict_ip"
+                                           placeholder="192.168.1.0/24, 41.208.70.5"/>
+                                </group>
+                                <group string="Allowed Login Hours">
+                                    <field name="restrict_login_hours"/>
+                                    <field name="login_tz"
+                                           invisible="not restrict_login_hours"
+                                           required="restrict_login_hours"/>
+                                    <label for="login_hour_from" string="Hours"
+                                           invisible="not restrict_login_hours"/>
+                                    <div invisible="not restrict_login_hours" class="o_row">
+                                        <field name="login_hour_from" widget="float_time"/>
+                                        <span> → </span>
+                                        <field name="login_hour_to" widget="float_time"/>
+                                    </div>
+                                    <label for="login_mon" string="Days"
+                                           invisible="not restrict_login_hours"/>
+                                    <div invisible="not restrict_login_hours" class="o_row flex-wrap">
+                                        <field name="login_mon"/><span>Mon</span>
+                                        <field name="login_tue"/><span>Tue</span>
+                                        <field name="login_wed"/><span>Wed</span>
+                                        <field name="login_thu"/><span>Thu</span>
+                                        <field name="login_fri"/><span>Fri</span>
+                                        <field name="login_sat"/><span>Sat</span>
+                                        <field name="login_sun"/><span>Sun</span>
+                                    </div>
+                                </group>
+                            </group>
+                            <div class="alert alert-info" role="alert">
+                                Login attempts from a non-allowed IP or outside the allowed
+                                hours are rejected, and already-open sessions are terminated
+                                on the next request. System administrators are always exempt,
+                                so a wrong rule can never lock the admins out. Every attempt
+                                is recorded in the <b>Login Audit</b> menu.
+                            </div>
+                        </page>
+                        <page string="Global" name="global">
+                            <group>
+                                <group string="Chatter (everywhere)">
+                                    <field name="hide_chatter"/>
+                                    <field name="hide_send_mail"/>
+                                    <field name="hide_log_notes"/>
+                                    <field name="hide_schedule_activity"/>
+                                </group>
+                                <group string="Data (everywhere)">
+                                    <field name="hide_import"/>
+                                    <field name="hide_export"/>
+                                    <field name="hide_spreadsheet"/>
+                                    <field name="hide_add_property"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="access_rights_profile_view_tree" model="ir.ui.view">
+        <field name="name">access.rights.profile.view.tree</field>
+        <field name="model">access.rights.profile</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="name"/>
+                <field name="department_id" optional="show"/>
+                <field name="apply_to_all_users" optional="show"/>
+                <field name="user_ids" widget="many2many_tags"/>
+                <field name="company_ids" widget="many2many_tags" optional="hide" groups="base.group_multi_company"/>
+                <field name="apply_all_companies" optional="hide"/>
+                <field name="readonly" optional="show"/>
+                <field name="date_from" optional="hide"/>
+                <field name="date_to" optional="show"/>
+                <field name="validity_state" optional="show" widget="badge"
+                       decoration-success="validity_state == 'valid'"
+                       decoration-info="validity_state == 'scheduled'"
+                       decoration-danger="validity_state == 'expired'"/>
+                <field name="total_rules"/>
+                <field name="write_uid" optional="hide"/>
+                <field name="write_date" optional="hide"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="access_rights_profile_view_search" model="ir.ui.view">
+        <field name="name">access.rights.profile.view.search</field>
+        <field name="model">access.rights.profile</field>
+        <field name="arch" type="xml">
+            <search string="Access Profiles">
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="user_ids"/>
+                <filter string="Global Profiles" name="global_profiles" domain="[('apply_to_all_users', '=', True)]"/>
+                <filter string="Read-Only Profiles" name="readonly" domain="[('readonly', '=', True)]"/>
+                <separator/>
+                <filter string="Temporary (has validity)" name="temporary"
+                        domain="['|', ('date_from', '!=', False), ('date_to', '!=', False)]"/>
+                <filter string="Expired" name="expired"
+                        domain="[('date_to', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Login Restricted (IP/Hours)" name="login_restricted"
+                        domain="['|', ('restrict_ip', '=', True), ('restrict_login_hours', '=', True)]"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Department" name="group_department" context="{'group_by': 'department_id'}"/>
+                    <filter string="Created By" name="group_create_uid" context="{'group_by': 'create_uid'}"/>
+                </group>
+                <searchpanel>
+                    <field name="department_id" string="Departments" enable_counters="1"/>
+                    <field name="user_ids" select="multi" string="Users" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_access_rights_profile" model="ir.actions.act_window">
+        <field name="name">Access Profiles</field>
+        <field name="res_model">access.rights.profile</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first access profile</p>
+            <p>
+                An access profile bundles every restriction (menus, models, fields,
+                records, buttons, chatter...) for a set of users in one place.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_access_rights_root"
+              name="Access Rights"
+              groups="group_access_rights_manager"
+              web_icon="access_rights_management,static/description/icon.png"
+              sequence="500"/>
+
+    <menuitem id="menu_access_rights_profiles"
+              name="Access Profiles"
+              parent="menu_access_rights_root"
+              action="action_access_rights_profile"
+              sequence="10"/>
+
+</odoo>

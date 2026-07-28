@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="access_rights_management.SimulateBanner">
+    <div t-if="info" class="o_arm_simulate_banner" role="alert">
+        <i class="fa fa-eye"/>
+        <span class="o_arm_sim_text">
+            Simulation mode — you are viewing the system as
+            <b t-out="info.target_name"/>
+            <span class="o_arm_sim_login">(<t t-out="info.target_login"/>)</span>
+        </span>
+        <button class="btn btn-sm o_arm_sim_exit" t-att-disabled="state.busy" t-on-click="exit">
+            <i t-attf-class="fa {{ state.busy ? 'fa-spinner fa-spin' : 'fa-sign-out' }} me-1"/>
+            Back to my account
+            (<t t-out="info.origin_name"/>)
+        </button>
+    </div>
+</t>
+
+</templates>

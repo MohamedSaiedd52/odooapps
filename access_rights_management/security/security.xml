@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_access_rights" model="ir.module.category">
+        <field name="name">Access Rights Management</field>
+        <field name="description">Manage access rights profiles</field>
+        <field name="sequence">25</field>
+    </record>
+
+    <record id="group_access_rights_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_access_rights"/>
+        <field name="comment">Can create and manage access rights profiles.</field>
+    </record>
+
+    <!-- Administrators (Settings) automatically get the manager group -->
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_access_rights_manager'))]"/>
+    </record>
+</odoo>

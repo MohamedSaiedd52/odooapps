@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="access_rights_copy_wizard_view_form" model="ir.ui.view">
+        <field name="name">access.rights.copy.wizard.view.form</field>
+        <field name="model">access.rights.copy.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Copy User Access">
+                <group>
+                    <group>
+                        <field name="source_user_id" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="source_summary" invisible="not source_user_id" string=" "/>
+                        <field name="target_user_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="copy_groups"/>
+                        <field name="copy_profiles"/>
+                        <field name="mode" widget="radio"/>
+                    </group>
+                </group>
+                <div class="alert alert-warning" role="alert" invisible="mode != 'replace'">
+                    <b>Replace</b> makes the target users an exact copy of the source:
+                    groups/profiles they had before (and the source doesn't) are removed.
+                </div>
+                <footer>
+                    <button name="action_apply" type="object" string="Copy Access" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_access_rights_copy_wizard" model="ir.actions.act_window">
+        <field name="name">Copy User Access</field>
+        <field name="res_model">access.rights.copy.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(4, ref('group_access_rights_manager'))]"/>
+    </record>
+
+    <!-- Also reachable from the Action menu of a user list/form:
+         the selected user becomes the source. -->
+    <record id="action_access_rights_copy_wizard_from_user" model="ir.actions.act_window">
+        <field name="name">Copy Access to Other Users…</field>
+        <field name="res_model">access.rights.copy.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_source_user_id': active_id}</field>
+        <field name="binding_model_id" ref="base.model_res_users"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="groups_id" eval="[(4, ref('group_access_rights_manager'))]"/>
+    </record>
+
+    <menuitem id="menu_access_rights_copy_wizard"
+              name="Copy User Access"
+              parent="menu_access_rights_users_groups"
+              action="action_access_rights_copy_wizard"
+              sequence="45"/>
+
+</odoo>
