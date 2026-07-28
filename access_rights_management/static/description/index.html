@@ -1,67 +1,204 @@
 <section style="font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #333; max-width: 900px; margin: 0 auto;">
 
     <!-- ═══════════════════════════════════════════════════════════════
-         BANNER
+         ANIMATED BANNER
          ═══════════════════════════════════════════════════════════════ -->
-    <!-- <div style="text-align: center; margin-bottom: 30px;">
-        <img src="banner.png" alt="Access Rights Management" style="width: 100%; border-radius: 8px;">
-    </div> -->
+    <style>
+        /* ── Keyframes ─────────────────────────────────── */
+        @keyframes arm-slideUp {
+            0%   { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes arm-fadeInScale {
+            0%   { opacity: 0; transform: scale(0.5) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes arm-versionScroll {
+            0%   { transform: translateY(0); }
+            16%  { transform: translateY(0); }
+            20%  { transform: translateY(-30px); }
+            36%  { transform: translateY(-30px); }
+            40%  { transform: translateY(-60px); }
+            56%  { transform: translateY(-60px); }
+            60%  { transform: translateY(-90px); }
+            76%  { transform: translateY(-90px); }
+            80%  { transform: translateY(-120px); }
+            96%  { transform: translateY(-120px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes arm-shimmer {
+            0%   { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes arm-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(113, 75, 103, 0.4); }
+            50%      { box-shadow: 0 0 0 8px rgba(113, 75, 103, 0); }
+        }
+        @keyframes arm-float {
+            0%, 100% { transform: translateY(0px); }
+            50%      { transform: translateY(-6px); }
+        }
+        @keyframes arm-ribbonDrop {
+            0%   { opacity: 0; transform: rotate(-45deg) translateY(-20px) scale(0.8); }
+            60%  { opacity: 1; transform: rotate(-45deg) translateY(3px) scale(1.05); }
+            100% { opacity: 1; transform: rotate(-45deg) translateY(0) scale(1); }
+        }
+        @keyframes arm-gradientMove {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes arm-borderGlow {
+            0%, 100% { border-color: rgba(255,255,255,0.15); }
+            50%      { border-color: rgba(255,255,255,0.35); }
+        }
+    </style>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-         HEADLINE + TAGLINE
-         ═══════════════════════════════════════════════════════════════ -->
-    <div style="text-align: center; margin-bottom: 40px;">
-        <h1 style="font-size: 32px; font-weight: 800; color: #714B67; margin: 0 0 10px;">
-            Access Rights Management
-        </h1>
-        <p style="font-size: 18px; color: #666; margin: 0 0 18px; line-height: 1.6;">
-            One screen to decide <b>who sees what</b> / profiles, record rules,
-            login security, device control and a full audit trail.
-        </p>
-        <!-- Badges -->
-        <span style="display: inline-block; background: #714B67; color: #fff; padding: 5px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 3px;">Odoo 17</span>
-        <span style="display: inline-block; background: #2c3e6b; color: #fff; padding: 5px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 3px;">Community &amp; Enterprise</span>
-        <span style="display: inline-block; background: #27ae60; color: #fff; padding: 5px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 3px;">LGPL-3</span>
-    </div>
+    <div style="
+        position: relative;
+        background: linear-gradient(135deg, #1a1a2e 0%, #2c3e6b 35%, #714B67 70%, #9b59b6 100%);
+        background-size: 200% 200%;
+        animation: arm-gradientMove 8s ease infinite;
+        border-radius: 16px;
+        padding: 40px 30px 34px;
+        margin-bottom: 36px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(26, 26, 46, 0.35);
+    ">
+        <!-- ── Decorative dots ──────────────────────────── -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.04; background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px; pointer-events: none;"></div>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-         KEY FEATURES (3 columns)
-         ═══════════════════════════════════════════════════════════════ -->
-    <div class="container">
-        <div class="row" style="margin-bottom: 40px;">
-            <!-- Feature 1 -->
-            <div class="col-md-4" style="padding: 10px;">
-                <div style="background: #f5f0f4; border: 1px solid #e8dce5; border-radius: 10px; padding: 24px 18px; text-align: center; min-height: 200px;">
-                    <h3 style="font-size: 17px; font-weight: 700; color: #714B67; margin: 0 0 8px;">Access Profiles</h3>
-                    <p style="font-size: 14px; color: #666; margin: 0; line-height: 1.6;">
-                        Hide menus, lock model buttons, restrict fields,
-                        enforce record-level rules, hide chatter &amp; search filters / all from one profile.
-                    </p>
-                </div>
-            </div>
-            <!-- Feature 2 -->
-            <div class="col-md-4" style="padding: 10px;">
-                <div style="background: #f0f2f8; border: 1px solid #dce0ed; border-radius: 10px; padding: 24px 18px; text-align: center; min-height: 200px;">
-                    <h3 style="font-size: 17px; font-weight: 700; color: #2c3e6b; margin: 0 0 8px;">Login Security</h3>
-                    <p style="font-size: 14px; color: #666; margin: 0; line-height: 1.6;">
-                        Allowed IPs, working hours, device whitelist, 2FA enforcement —
-                        policies applied live, not at next login.
-                    </p>
-                </div>
-            </div>
-            <!-- Feature 3 -->
-            <div class="col-md-4" style="padding: 10px;">
-                <div style="background: #eef7f1; border: 1px solid #d4eadb; border-radius: 10px; padding: 24px 18px; text-align: center; min-height: 200px;">
-                    <div style="font-size: 36px; margin-bottom: 10px;"> </div>
-                    <h3 style="font-size: 17px; font-weight: 700; color: #1e7e45; margin: 0 0 8px;">Full Audit Trail</h3>
-                    <p style="font-size: 14px; color: #666; margin: 0; line-height: 1.6;">
-                        Login attempts, permission changes, sensitive data access
-                        and every CSV/Excel export / with exact columns.
-                    </p>
+        <!-- ── MS-Style Ribbon Badge ────────────────────── -->
+        <div style="
+            position: absolute;
+            top: 22px;
+            right: -34px;
+            width: 150px;
+            text-align: center;
+            padding: 7px 0;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transform: rotate(45deg);
+            box-shadow: 0 3px 12px rgba(231, 76, 60, 0.5);
+            animation: arm-ribbonDrop 0.8s ease-out both;
+            animation-delay: 1.5s;
+            z-index: 10;
+        ">★ NEW ★</div>
+
+        <!-- ── Title ────────────────────────────────────── -->
+        <div style="text-align: center; animation: arm-slideUp 0.8s ease-out both;">
+            <h1 style="
+                font-size: 36px;
+                font-weight: 900;
+                color: #fff;
+                margin: 0 0 6px;
+                letter-spacing: -0.5px;
+                text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            ">🛡️ Access Rights Management</h1>
+            <p style="
+                font-size: 16px;
+                color: rgba(255,255,255,0.75);
+                margin: 0 0 8px;
+                line-height: 1.6;
+            ">
+                Who sees what — decided in one place, proven by an audit trail.
+            </p>
+        </div>
+
+        <!-- ── Scrolling Version Ticker ─────────────────── -->
+        <div style="
+            display: flex;
+            justify-content: center;
+            margin: 18px 0 28px;
+            animation: arm-slideUp 0.8s ease-out both;
+            animation-delay: 0.3s;
+        ">
+            <div style="
+                display: inline-flex;
+                align-items: center;
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.2);
+                border-radius: 30px;
+                padding: 6px 22px;
+                gap: 10px;
+            ">
+                <span style="color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Supported</span>
+                <div style="width: 1px; height: 18px; background: rgba(255,255,255,0.25);"></div>
+                <!-- scrolling window -->
+                <div style="
+                    height: 30px;
+                    overflow: hidden;
+                    width: 90px;
+                    position: relative;
+                ">
+                    <div style="
+                        animation: arm-versionScroll 10s ease-in-out infinite;
+                    ">
+                        <div style="height: 30px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 15px; letter-spacing: 0.5px;">Odoo 19</div>
+                        <div style="height: 30px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 15px; letter-spacing: 0.5px;">Odoo 18</div>
+                        <div style="height: 30px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 15px; letter-spacing: 0.5px;">Odoo 17</div>
+                   
+                    </div>
                 </div>
             </div>
         </div>
+
+    
+
+        <!-- ── Bottom Badges ────────────────────────────── -->
+        <div style="
+            text-align: center;
+            margin-top: 24px;
+            animation: arm-slideUp 0.8s ease-out both;
+            animation-delay: 1.4s;
+        ">
+            <span style="
+                display: inline-block;
+                background: rgba(255,255,255,0.15);
+                color: #fff;
+                padding: 5px 18px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 700;
+                margin: 3px;
+                border: 1px solid rgba(255,255,255,0.2);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+            ">Community &amp; Enterprise</span>
+            <span style="
+                display: inline-block;
+                background: rgba(39, 174, 96, 0.25);
+                color: #6fcf97;
+                padding: 5px 18px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 700;
+                margin: 3px;
+                border: 1px solid rgba(39, 174, 96, 0.35);
+            ">LGPL-3</span>
+            <span style="
+                display: inline-block;
+                background: linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05), rgba(255,255,255,0.15));
+                background-size: 200% 100%;
+                animation: arm-shimmer 3s linear infinite;
+                color: #ffd700;
+                padding: 5px 18px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 700;
+                margin: 3px;
+                border: 1px solid rgba(255, 215, 0, 0.3);
+            ">⭐ Top Rated</span>
+        </div>
     </div>
+
+   
 
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 1: GETTING STARTED
