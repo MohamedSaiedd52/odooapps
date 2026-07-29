@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="access_rights_login_log_view_tree" model="ir.ui.view">
+        <field name="name">access.rights.login.log.view.tree</field>
+        <field name="model">access.rights.login.log</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false"
+                  decoration-success="status == 'success'"
+                  decoration-danger="status in ('blocked_disabled', 'blocked_ip', 'blocked_hours', 'blocked_device')"
+                  decoration-warning="status == 'kicked'"
+                  decoration-info="status in ('simulate_start', 'simulate_stop')"
+                  decoration-muted="status == 'failed'">
+                <field name="create_date" string="When"/>
+                <field name="login"/>
+                <field name="user_id" optional="show"/>
+                <field name="status" widget="badge"
+                       decoration-success="status == 'success'"
+                       decoration-danger="status in ('blocked_disabled', 'blocked_ip', 'blocked_hours', 'blocked_device')"
+                       decoration-info="status in ('simulate_start', 'simulate_stop')"
+                       decoration-warning="status == 'kicked'"/>
+                <field name="note" optional="show"/>
+                <field name="ip_address"/>
+                <field name="device_id" optional="show"/>
+                <field name="browser" optional="show"/>
+                <field name="os" optional="show"/>
+                <field name="user_agent" optional="hide"/>
+                <button name="action_open_device" type="object"
+                        string="Device" icon="fa-laptop"
+                        invisible="not device_id"/>
+                <button name="action_block_device" type="object"
+                        string="Block Device" icon="fa-ban"
+                        invisible="not device_id"
+                        confirm="Block the device this login came from? The user's open sessions will be terminated."/>
+            </list>
+        </field>
+    </record>
+
+    <record id="access_rights_login_log_view_search" model="ir.ui.view">
+        <field name="name">access.rights.login.log.view.search</field>
+        <field name="model">access.rights.login.log</field>
+        <field name="arch" type="xml">
+            <search string="Login Audit">
+                <field name="login"/>
+                <field name="user_id"/>
+                <field name="ip_address"/>
+                <field name="device_id"/>
+                <filter string="Successful" name="success" domain="[('status', '=', 'success')]"/>
+                <filter string="Wrong Credentials" name="failed" domain="[('status', '=', 'failed')]"/>
+                <filter string="Blocked" name="blocked" domain="[('status', 'in', ('blocked_disabled', 'blocked_ip', 'blocked_hours', 'blocked_device'))]"/>
+                <filter string="Terminated Sessions" name="kicked" domain="[('status', '=', 'kicked')]"/>
+                <filter string="Simulations" name="simulations" domain="[('status', 'in', ('simulate_start', 'simulate_stop'))]"/>
+                <separator/>
+                <filter string="Today" name="today"
+                        domain="[('create_date', '&gt;=', 'today')]"/>
+                <filter string="Last 7 Days" name="last_week"
+                        domain="[('create_date', '&gt;=', 'today -7d')]"/>
+                <group name="group_by">
+                    <filter string="User" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Status" name="group_status" context="{'group_by': 'status'}"/>
+                    <filter string="Device" name="group_device" context="{'group_by': 'device_id'}"/>
+                    <filter string="Day" name="group_day" context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="access_rights_login_log_view_pivot" model="ir.ui.view">
+        <field name="name">access.rights.login.log.view.pivot</field>
+        <field name="model">access.rights.login.log</field>
+        <field name="arch" type="xml">
+            <pivot string="Login Audit">
+                <field name="create_date" interval="day" type="row"/>
+                <field name="status" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_access_rights_login_log" model="ir.actions.act_window">
+        <field name="name">Login Audit</field>
+        <field name="res_model">access.rights.login.log</field>
+        <field name="view_mode">list,pivot</field>
+        <field name="context">{'search_default_last_week': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No login activity yet</p>
+            <p>
+                Every login attempt is recorded here with its device, IP,
+                browser and OS: successful, wrong password, blocked by a
+                profile (disabled login / IP / hours / device) and terminated
+                sessions. Old lines are vacuumed automatically after
+                180 days (system parameter
+                <code>access_rights_management.login_log_retention_days</code>).
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_access_rights_login_log"
+              name="Login Audit"
+              parent="menu_access_rights_root"
+              action="action_access_rights_login_log"
+              sequence="60"/>
+
+</odoo>

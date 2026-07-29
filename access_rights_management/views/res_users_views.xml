@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_inherit_access_rights" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.access.rights</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_arm_simulate" type="object"
+                        string="Simulate User" icon="fa-eye"
+                        groups="base.group_system"
+                        invisible="id == uid"
+                        confirm="Open this session as this user? Both the start and the end are written to the login audit."/>
+                <button name="action_arm_kick" type="object"
+                        string="End Sessions" icon="fa-sign-out"
+                        groups="access_rights_management.group_access_rights_manager"
+                        invisible="id == uid"
+                        confirm="Terminate this user's open sessions on their next request?"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" icon="fa-laptop"
+                        name="action_arm_view_devices"
+                        groups="access_rights_management.group_access_rights_manager">
+                    <field string="Devices" name="arm_device_count" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" type="object" icon="fa-key"
+                        name="action_arm_view_logins"
+                        groups="access_rights_management.group_access_rights_manager">
+                    <field string="Logins" name="arm_login_count" widget="statinfo"/>
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Access Profiles" name="access_profiles"
+                      groups="access_rights_management.group_access_rights_manager">
+                    <field name="access_profile_ids">
+                        <list>
+                            <field name="name"/>
+                            <field name="readonly"/>
+                            <field name="total_rules"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Export Audit (list) ============ -->
+    <record id="access_rights_export_log_view_tree" model="ir.ui.view">
+        <field name="name">access.rights.export.log.view.tree</field>
+        <field name="model">access.rights.export.log</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false"
+                  decoration-danger="is_sensitive and is_large"
+                  decoration-warning="is_sensitive and not is_large">
+                <field name="create_date" string="When"/>
+                <field name="user_id"/>
+                <field name="model_name" string="Document"/>
+                <field name="model" optional="hide"/>
+                <field name="screen_name" string="Screen"/>
+                <field name="template_name" string="Template"/>
+                <field name="record_count" sum="Records"/>
+                <field name="field_count" string="Fields"/>
+                <field name="field_labels" string="Columns" optional="show"/>
+                <field name="sensitive_fields" optional="hide"/>
+                <field name="export_format" widget="badge"/>
+                <field name="is_sensitive" widget="boolean_toggle" readonly="1"/>
+                <field name="is_large" optional="hide"/>
+                <field name="scope" optional="hide"/>
+                <field name="import_compat" optional="hide"/>
+                <field name="view_type" optional="hide"/>
+                <field name="ip_address" optional="show"/>
+                <field name="fields_preview" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="access_rights_export_log_view_search" model="ir.ui.view">
+        <field name="name">access.rights.export.log.view.search</field>
+        <field name="model">access.rights.export.log</field>
+        <field name="arch" type="xml">
+            <search string="Export Audit">
+                <field name="user_id"/>
+                <field name="model_name" string="Document"/>
+                <field name="model"/>
+                <field name="screen_name" string="Screen"/>
+                <field name="template_name" string="Template"/>
+                <field name="field_labels" string="Column"
+                       filter_domain="['|', ('field_labels', 'ilike', self), ('fields_preview', 'ilike', self)]"/>
+                <filter string="Sensitive" name="sensitive" domain="[('is_sensitive', '=', True)]"/>
+                <filter string="Large" name="large" domain="[('is_large', '=', True)]"/>
+                <filter string="From a Template" name="templated"
+                        domain="[('export_template_id', '!=', False)]"/>
+                <filter string="Import-Compatible" name="import_compat"
+                        domain="[('import_compat', '=', True)]"/>
+                <separator/>
+                <filter string="Today" name="today"
+                        domain="[('create_date', '&gt;=', 'today')]"/>
+                <filter string="Last 7 Days" name="last_week"
+                        domain="[('create_date', '&gt;=', 'today -7d')]"/>
+                <group name="group_by">
+                    <filter string="User" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Document" name="group_model" context="{'group_by': 'model_name'}"/>
+                    <filter string="Screen" name="group_screen" context="{'group_by': 'screen_name'}"/>
+                    <filter string="Template" name="group_template" context="{'group_by': 'template_name'}"/>
+                    <filter string="Day" name="group_day" context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="access_rights_export_log_view_form" model="ir.ui.view">
+        <field name="name">access.rights.export.log.view.form</field>
+        <field name="model">access.rights.export.log</field>
+        <field name="arch" type="xml">
+            <form string="Export" create="false" edit="false">
+                <sheet>
+                    <widget name="web_ribbon" title="Sensitive" bg_color="text-bg-danger"
+                            invisible="not is_sensitive"/>
+                    <div class="oe_title">
+                        <h1><field name="model_name" readonly="1"/></h1>
+                        <h3 class="text-muted">
+                            <field name="record_count" readonly="1"/> records ·
+                            <field name="field_count" readonly="1"/> columns ·
+                            <field name="export_format" readonly="1"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <group string="Who">
+                            <field name="user_id" readonly="1"/>
+                            <field name="create_date" string="When" readonly="1"/>
+                            <field name="ip_address" readonly="1"/>
+                        </group>
+                        <group string="From Which Screen">
+                            <field name="screen_name" readonly="1"/>
+                            <!-- the link needs read access on ir.actions.act_window,
+                                 which only Settings administrators have -->
+                            <field name="action_id" string="Screen Action" readonly="1"
+                                   groups="base.group_system"
+                                   invisible="not action_id"/>
+                            <field name="view_type" readonly="1"/>
+                            <field name="scope" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Which Template">
+                            <field name="template_name" string="Export Template"
+                                   readonly="1" placeholder="Fields picked by hand"/>
+                            <!-- the link needs read access on ir.exports, which
+                                 only "Access to export feature" grants -->
+                            <field name="export_template_id" string="Open Template"
+                                   readonly="1" groups="base.group_allow_export"
+                                   invisible="not export_template_id"/>
+                            <field name="import_compat" readonly="1"/>
+                        </group>
+                        <group string="Flags">
+                            <field name="is_sensitive" readonly="1"/>
+                            <field name="is_large" readonly="1"/>
+                            <field name="sensitive_fields" readonly="1"
+                                   invisible="not sensitive_fields"/>
+                            <field name="model" readonly="1" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Exported Fields" name="fields">
+                            <field name="line_ids" readonly="1">
+                                <list create="false" delete="false" edit="false"
+                                      decoration-danger="is_sensitive">
+                                    <field name="sequence" string="#"/>
+                                    <field name="field_label" string="Column"/>
+                                    <field name="field_path" string="Field"/>
+                                    <field name="field_type" string="Type"/>
+                                    <field name="is_sensitive" string="Sensitive"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="access_rights_export_log_view_pivot" model="ir.ui.view">
+        <field name="name">access.rights.export.log.view.pivot</field>
+        <field name="model">access.rights.export.log</field>
+        <field name="arch" type="xml">
+            <pivot string="Export Audit">
+                <field name="user_id" type="row"/>
+                <field name="model_name" type="col"/>
+                <field name="record_count" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_access_rights_export_log" model="ir.actions.act_window">
+        <field name="name">Export Audit</field>
+        <field name="res_model">access.rights.export.log</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="context">{'search_default_last_week': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No exports recorded yet</p>
+            <p>
+                Every CSV/Excel export is recorded here: who exported what, how
+                many records, <b>which columns</b> (open a line to see the exact
+                field list), <b>from which screen</b> and with <b>which saved
+                export template</b>. Exports of sensitive models or sensitive
+                fields are flagged; a large sensitive export also
+                notifies the access-rights managers. Configure the alert with
+                the system parameters
+                <code>access_rights_management.sensitive_models</code> and
+                <code>access_rights_management.export_alert_threshold</code>.
+            </p>
+        </field>
+    </record>
+
+    <!-- ============ Sensitive Data (Python views) ============ -->
+    <record id="access_rights_sensitive_field_view_tree" model="ir.ui.view">
+        <field name="name">access.rights.sensitive.field.view.tree</field>
+        <field name="model">access.rights.sensitive.field</field>
+        <field name="arch" type="xml">
+            <list edit="false" decoration-danger="audience_count &gt; 20"
+                  decoration-warning="audience_count &gt; 5 and audience_count &lt;= 20">
+                <field name="model_display" string="Document"/>
+                <field name="model_name" optional="hide"/>
+                <field name="field_label" string="Field"/>
+                <field name="field_name" optional="show"/>
+                <field name="field_groups_display" string="Field Groups" optional="show"/>
+                <field name="audience_count" string="Users Who Can Read It"/>
+                <field name="audience_preview" string="Audience" optional="show"/>
+                <button name="action_view_audience" type="object"
+                        string="Who Can See It?" icon="fa-users"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="access_rights_sensitive_field_view_form" model="ir.ui.view">
+        <field name="name">access.rights.sensitive.field.view.form</field>
+        <field name="model">access.rights.sensitive.field</field>
+        <field name="arch" type="xml">
+            <form string="Sensitive Field">
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_view_audience" icon="fa-users">
+                            <field string="Can Read It" name="audience_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="field_id"
+                               options="{'no_create': True}"
+                               readonly="id"/>
+                        <field name="model_display" string="Document"/>
+                        <field name="field_groups_display" string="Field Groups"/>
+                        <field name="audience_preview" string="Audience"/>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        The audience is computed live: users whose groups grant read
+                        access on the model, narrowed by the field's own group
+                        restriction, minus users whose access profile hides the field.
+                        To shrink the audience, hide the field in a profile
+                        (<b>Fields</b> tab) or restrict the field's groups.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="access_rights_sensitive_field_view_search" model="ir.ui.view">
+        <field name="name">access.rights.sensitive.field.view.search</field>
+        <field name="model">access.rights.sensitive.field</field>
+        <field name="arch" type="xml">
+            <search string="Sensitive Data">
+                <field name="model_name"/>
+                <field name="field_name"/>
+                <group name="group_by">
+                    <filter string="Document" name="group_model" context="{'group_by': 'model_name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_arm_sensitive_fields" model="ir.actions.act_window">
+        <field name="name">Sensitive Data</field>
+        <field name="res_model">access.rights.sensitive.field</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No sensitive fields flagged yet</p>
+            <p>
+                Flag business-sensitive fields (salaries, costs, margins...) to
+                track exactly who can read each one, and to have their exports
+                flagged in the Export Audit.
+            </p>
+        </field>
+    </record>
+
+    <!-- ============ Login Devices ============ -->
+    <record id="access_rights_device_view_tree" model="ir.ui.view">
+        <field name="name">access.rights.device.view.tree</field>
+        <field name="model">access.rights.device</field>
+        <field name="arch" type="xml">
+            <list create="false"
+                  decoration-danger="state == 'blocked'"
+                  decoration-success="state == 'trusted'">
+                <field name="user_id"/>
+                <field name="label" string="Device Name"/>
+                <field name="browser"/>
+                <field name="os"/>
+                <field name="ip_address" string="Last IP"/>
+                <field name="login_count" sum="Logins"/>
+                <field name="first_seen" optional="hide"/>
+                <field name="last_seen"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'trusted'"
+                       decoration-danger="state == 'blocked'"/>
+                <button name="action_view_logins" type="object" string="Logins"
+                        icon="fa-list"/>
+                <button name="action_trust" type="object" string="Trust"
+                        icon="fa-check" invisible="state == 'trusted'"/>
+                <button name="action_block" type="object" string="Block"
+                        icon="fa-ban" invisible="state == 'blocked'"/>
+                <button name="action_reset" type="object" string="Reset"
+                        icon="fa-undo" invisible="state == 'normal'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="access_rights_device_view_form" model="ir.ui.view">
+        <field name="name">access.rights.device.view.form</field>
+        <field name="model">access.rights.device</field>
+        <field name="arch" type="xml">
+            <form string="Login Device" create="false">
+                <header>
+                    <button name="action_trust" type="object" string="Trust Device"
+                            class="btn-success" invisible="state == 'trusted'"/>
+                    <button name="action_block" type="object" string="Block Device"
+                            class="btn-danger" invisible="state == 'blocked'"
+                            confirm="Block this device? The user's open sessions will also be terminated."/>
+                    <button name="action_reset" type="object" string="Reset to Normal"
+                            invisible="state == 'normal'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_logins" type="object"
+                                class="oe_stat_button" icon="fa-sign-in">
+                            <field name="login_count" widget="statinfo" string="Logins"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="label" string="Device Name"/>
+                        <h1><field name="label" placeholder="e.g. Reception PC"/></h1>
+                    </div>
+                    <group>
+                        <group string="Device">
+                            <field name="user_id" readonly="1"/>
+                            <field name="browser" readonly="1"/>
+                            <field name="os" readonly="1"/>
+                            <field name="ip_address" readonly="1" string="Last IP"/>
+                        </group>
+                        <group string="Activity">
+                            <field name="first_seen" readonly="1"/>
+                            <field name="last_seen" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note" placeholder="Why is this device trusted / blocked?"/>
+                    </group>
+                    <group string="Technical" groups="base.group_no_one">
+                        <field name="device_token" readonly="1"/>
+                        <field name="fingerprint" readonly="1"/>
+                        <field name="user_agent" readonly="1"/>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        A device is recognised by a long-lived identifier stored in
+                        its browser, so it keeps the same record when its IP address
+                        changes. A <b>blocked</b> device cannot log in at all — even
+                        with the right password — and blocking also terminates the
+                        user's open sessions. Clearing the browser's cookies does not
+                        lift the block: the same browser on the same address is still
+                        recognised by its fingerprint.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="access_rights_device_view_search" model="ir.ui.view">
+        <field name="name">access.rights.device.view.search</field>
+        <field name="model">access.rights.device</field>
+        <field name="arch" type="xml">
+            <search string="Login Devices">
+                <field name="user_id"/>
+                <field name="label" string="Device Name"/>
+                <field name="ip_address"/>
+                <filter string="Trusted" name="trusted" domain="[('state', '=', 'trusted')]"/>
+                <filter string="Blocked" name="blocked" domain="[('state', '=', 'blocked')]"/>
+                <separator/>
+                <filter string="Unnamed" name="unnamed" domain="[('label', '=', False)]"/>
+                <filter string="Seen Last 7 Days" name="recent"
+                        domain="[('last_seen', '&gt;=', 'today -7d')]"/>
+                <group name="group_by">
+                    <filter string="User" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Browser" name="group_browser" context="{'group_by': 'browser'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_arm_devices" model="ir.actions.act_window">
+        <field name="name">Login Devices</field>
+        <field name="res_model">access.rights.device</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No devices recorded yet</p>
+            <p>
+                Every successful login registers the device it came from —
+                browser, operating system and last IP. Give the usual devices
+                a name, trust them, and block the suspicious ones: a blocked
+                device cannot log in even with the right password.
+            </p>
+        </field>
+    </record>
+
+    <!-- ============ Menus (Security section) ============ -->
+    <menuitem id="menu_access_rights_security"
+              name="Security"
+              parent="menu_access_rights_root"
+              sequence="55"/>
+
+    <menuitem id="menu_arm_devices"
+              name="Login Devices"
+              parent="menu_access_rights_security"
+              action="action_arm_devices"
+              sequence="10"/>
+
+    <menuitem id="menu_arm_sensitive"
+              name="Sensitive Data"
+              parent="menu_access_rights_security"
+              action="action_arm_sensitive_fields"
+              sequence="20"/>
+
+    <menuitem id="menu_arm_export_log"
+              name="Export Audit"
+              parent="menu_access_rights_security"
+              action="action_access_rights_export_log"
+              sequence="30"/>
+
+</odoo>
