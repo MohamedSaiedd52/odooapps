@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- ================== Config Views ================== -->
+        <record id="view_biotime_config_form" model="ir.ui.view">
+            <field name="name">view.biotime_config.form</field>
+            <field name="model">biotime.config</field>
+            <field name="arch" type="xml">
+                <form string="Configuration">
+                    <header>
+                        <button name="action_test_connection" type="object"
+                                string="Test Connection" class="btn-primary"
+                                icon="fa-plug"/>
+                        <button name="action_open_pull_wizard" type="object"
+                                string="Pull (Advanced)" icon="fa-filter"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button class="oe_stat_button" type="object"
+                                    name="action_get_terminals_record"
+                                    icon="fa-microchip">
+                                <field string="Devices" name="terminal_count" widget="statinfo"/>
+                            </button>
+
+                            <button class="oe_stat_button" type="object"
+                                    name="action_get_emp_record"
+                                    icon="fa-users">
+                                <field string="Employees" name="emp_count" widget="statinfo"/>
+                            </button>
+
+                            <button name="action_view_transactions"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-database">
+                                <field name="transaction_count" widget="statinfo" string="Transactions"/>
+                            </button>
+
+                            <button name="action_open_logs"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-exclamation-triangle">
+                                <field name="log_count" widget="statinfo" string="Logs"/>
+                            </button>
+                        </div>
+
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+
+                        <group string="Quick Actions">
+                            <div class="o_row" style="display:flex; justify-content:center; gap:8px; white-space:nowrap; align-items:center;">
+                                <button class="btn btn-primary px-4 py-2" name="action_get_all_terminals" type="object">
+                                    Get Devices
+                                </button>
+                                <button class="btn btn-success px-4 py-2" name="action_get_all_employees" type="object">
+                                    Pull Employees
+                                </button>
+                                <button name="action_transfer_transition"
+                                        type="object"
+                                        string="Transfer to Attendance"
+                                        class="btn btn-info px-4 py-2"/>
+                                <button name="action_pull_raw_transactions_button"
+                                        type="object"
+                                        string="Pull Raw Transactions"
+                                        class="btn btn-warning px-4 py-2"/>
+                            </div>
+                        </group>
+
+                        <group string="Server Information">
+                            <field name="server_host"/>
+                            <field name="port"/>
+                            <field name="username"/>
+                            <field name="password" password="True"/>
+                            <field name="company_id" readonly="1" force_save="1"/>
+                        </group>
+
+                        <group string="Pull Raw Transactions Date">
+                            <field name="tz" readonly="1"/>
+                            <field name="pull_from_date"/>
+                            <field name="pull_to_date"/>
+                        </group>
+
+                        <group string="Sync Options">
+                            <group>
+                                <field name="pull_overlap_days"/>
+                                <field name="max_shift_hours"/>
+                                <field name="auto_transfer"/>
+                            </group>
+                            <group>
+                                <field name="last_pull_date"/>
+                                <field name="last_transfer_date"/>
+                            </group>
+                        </group>
+
+                        <group string="Real-time Push (Webhook)">
+                            <field name="webhook_enabled"/>
+                            <field name="webhook_token" invisible="not webhook_enabled"
+                                   readonly="1" force_save="1"/>
+                            <div colspan="2" class="text-muted" invisible="not webhook_enabled">
+                                POST punches to <code>/biotime/webhook</code> with header
+                                <code>X-Biotime-Token</code> = the token above.
+                                Body: <code>{"punches": [{"emp_code": "7", "punch_time": "2026-08-01 09:00:00", "terminal_sn": "..."}]}</code>
+                            </div>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_biotime_config_list" model="ir.ui.view">
+            <field name="name">view.biotime_config.list</field>
+            <field name="model">biotime.config</field>
+            <field name="arch" type="xml">
+                <tree string="Configuration">
+                    <field name="name"/>
+                    <field name="server_url"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_biotime_config_view" model="ir.actions.act_window">
+            <field name="name">Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">biotime.config</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ================== Device Views ================== -->
+        <record id="view_biotime_device_form" model="ir.ui.view">
+            <field name="name">view.biotime_device.form</field>
+            <field name="model">biotime.terminal</field>
+            <field name="arch" type="xml">
+                <form string="Device">
+                    <header>
+                        <button name="action_refresh_status" type="object"
+                                string="Refresh Status" icon="fa-refresh"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Online" bg_color="text-bg-success"
+                                invisible="not is_online"/>
+                        <widget name="web_ribbon" title="Offline" bg_color="text-bg-danger"
+                                invisible="is_online"/>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <field name="terminal_id" string="Device ID"/>
+                            <field name="terminal_sn" string="Device Serial Number"/>
+                            <field name="ip_address" string="IP Address"/>
+                            <field name="alias" string="Alias"/>
+                            <field name="terminal_tz" string="Device Timezone"/>
+                            <field name="last_activity"/>
+                            <field name="is_online" invisible="1"/>
+                            <field name="company_id" readonly="1" force_save="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_biotime_device_list" model="ir.ui.view">
+            <field name="name">view.biotime_device.list</field>
+            <field name="model">biotime.terminal</field>
+            <field name="arch" type="xml">
+                <tree string="Devices" decoration-danger="not is_online" decoration-success="is_online">
+                    <field name="name"/>
+                    <field name="terminal_id" string="Device ID"/>
+                    <field name="terminal_sn" string="Device Serial Number"/>
+                    <field name="ip_address" string="IP Address"/>
+                    <field name="alias" string="Alias"/>
+                    <field name="terminal_tz" string="Device Timezone"/>
+                    <field name="last_activity"/>
+                    <field name="is_online" widget="boolean_toggle" readonly="1" string="Online"/>
+                    <field name="company_id"/>
+                    <button name="action_refresh_status" type="object"
+                            icon="fa-refresh" title="Refresh Status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_biotime_device_view" model="ir.actions.act_window">
+            <field name="name">Devices</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">biotime.terminal</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ================== Employee Views ================== -->
+        <record id="view_biotime_employee_form" model="ir.ui.view">
+            <field name="name">view.biotime_employee.form</field>
+            <field name="model">biotime.employee</field>
+            <field name="arch" type="xml">
+                <form string="Employee">
+                    <header>
+                        <button name="action_pull_my_transactions" type="object"
+                                string="Pull This Employee's Punches"
+                                class="btn-primary" icon="fa-download"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <field name="employee_id" string="Biotime Employee ID" readonly="1" force_save="1"/>
+                            <field name="emp_code" string="Employee Code ZK" readonly="1" force_save="1"/>
+                            <field name="odoo_employee_id" string="Odoo Employee"/>
+                            <field name="company_id" readonly="1" force_save="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_biotime_employee_list" model="ir.ui.view">
+            <field name="name">view.biotime_employee.list</field>
+            <field name="model">biotime.employee</field>
+            <field name="arch" type="xml">
+                <tree string="Employees">
+                    <field name="name"/>
+                    <field name="emp_code" string="Employee Code"/>
+                    <field name="odoo_employee_id" string="Odoo Employee"/>
+                    <field name="company_id"/>
+                    <button name="action_pull_my_transactions" type="object"
+                            icon="fa-download" title="Pull this employee's punches"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_biotime_employee_view" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">biotime.employee</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ================== HR Employee Inherit ================== -->
+        <record id="view_employee_form_inherit_biotime" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit.biotime</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pin']" position="after">
+                    <field name="zk_emp_code"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ================== Transaction Views ================== -->
+        <record id="view_biotime_transaction_list" model="ir.ui.view">
+            <field name="name">biotime.transaction.list</field>
+            <field name="model">biotime.transaction</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="transaction_id"/>
+                    <field name="employee_id"/>
+                    <field name="department"/>
+                    <field name="punch_time"/>
+                    <field name="punch_state_display"/>
+                    <field name="device_id"/>
+                    <field name="server_id"/>
+                    <field name="is_transferred"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_biotime_transaction_search" model="ir.ui.view">
+            <field name="name">biotime.transaction.search</field>
+            <field name="model">biotime.transaction</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="employee_id" string="Employee"/>
+                    <field name="department" string="Department"/>
+                    <field name="device_id" string="Device"/>
+                    <field name="server_id" string="Server"/>
+                    <field name="punch_state_display" string="Punch Type"/>
+                    <filter string="Transferred" name="is_transferred_true" domain="[('is_transferred','=',True)]"/>
+                    <filter string="Not Transferred" name="is_transferred_false" domain="[('is_transferred','=',False)]"/>
+                    <field name="punch_time" string="Punch Date"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_biotime_transaction_log_list" model="ir.ui.view">
+            <field name="name">biotime.transaction.log.list</field>
+            <field name="model">biotime.transaction.log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="transaction_id"/>
+                    <field name="emp_code"/>
+                    <field name="emp_name"/>
+                    <field name="department"/>
+                    <field name="punch_time"/>
+                    <field name="punch_state_display"/>
+                    <field name="device_id"/>
+                    <field name="server_id"/>
+                    <field name="note"/>
+                    <button name="action_link_employee" type="object"
+                            icon="fa-link" title="Link to an existing employee"/>
+                    <button name="action_create_employee" type="object"
+                            icon="fa-user-plus" title="Create this employee in Odoo"
+                            confirm="Create a new Odoo employee with this ZK code and recover all their punches?"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ================== Working Calendar: Grace Period ================== -->
+        <record id="view_resource_calendar_form_inherit_biotime" model="ir.ui.view">
+            <field name="name">resource.calendar.form.inherit.biotime</field>
+            <field name="model">resource.calendar</field>
+            <field name="inherit_id" ref="resource.resource_calendar_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tz']" position="after">
+                    <field name="late_grace_minutes"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ================== Bulk Actions ================== -->
+        <record id="action_link_employee_wizard_bulk" model="ir.actions.act_window">
+            <field name="name">Link to Employee</field>
+            <field name="res_model">biotime.link.employee.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_biotime_transaction_log"/>
+            <field name="binding_view_types">list</field>
+            <field name="context">{'default_log_ids': active_ids}</field>
+        </record>
+
+        <record id="action_push_employee_wizard_bulk" model="ir.actions.act_window">
+            <field name="name">Send to BioTime</field>
+            <field name="res_model">biotime.push.employee.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="hr.model_hr_employee"/>
+            <field name="binding_view_types">tree,form</field>
+            <field name="context">{'default_employee_ids': active_ids}</field>
+        </record>
+
+        <!-- ================== Attendance Inherit ================== -->
+        <record id="action_hr_attendance_overview" model="ir.actions.act_window">
+            <field name="name">Attendance</field>
+            <field name="res_model">hr.attendance</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record id="view_attendance_search_inherit_biotime" model="ir.ui.view">
+            <field name="name">hr.attendance.search.inherit.biotime</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <separator/>
+                    <filter string="Late In" name="late_in" domain="[('state', '=', 'late_in')]"/>
+                    <filter string="On Time" name="on_time" domain="[('state', '=', 'on_time')]"/>
+                    <filter string="Missing Check" name="missing_check" domain="[('missing_check', '=', 'missing')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_attendance_list_inherit" model="ir.ui.view">
+            <field name="name">hr.attendance.list.inherit.missing.check</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">missing_check == 'missing' or state == 'late_in'</attribute>
+                    <attribute name="decoration-success">missing_check == 'ok' and state == 'on_time'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='worked_hours']" position="after">
+                    <field name="missing_check" widget="badge"
+                           decoration-success="missing_check == 'ok'"
+                           decoration-danger="missing_check == 'missing'"/>
+                    <field name="state"
+                           widget="badge"
+                           decoration-success="state == 'on_time'"
+                           decoration-danger="state == 'late_in'"/>
+                    <field name="late_minutes"
+                           string="Late Minutes"
+                           invisible="state != 'late_in'"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ================== Main Menu ================== -->
+        <menuitem id="ms_biotime_root_menu" name="Biotime" sequence="1"
+                  web_icon="ms_bitotime,static/icon.png"/>
+
+        <menuitem id="menu_hr_attendance_overview"
+                  name="Attendance"
+                  parent="ms_biotime_root_menu"
+                  action="action_hr_attendance_overview"
+                  sequence="2"/>
+
+        <menuitem id="ms_biotime_employee_menu" name="Employees"
+                  parent="ms_biotime_root_menu" action="action_biotime_employee_view" sequence="3"/>
+
+        <menuitem id="ms_biotime_config_menu" name="Configuration"
+                  parent="ms_biotime_root_menu" action="action_biotime_config_view" sequence="5"/>
+
+    </data>
+</odoo>
