@@ -11,13 +11,13 @@ class ResUsers(models.Model):
     allowed_warehouse_ids = fields.Many2many(comodel_name='stock.warehouse', string='Allowed Warehouse')
     check_user = fields.Boolean(string="Check", compute='_compute_check_user')
 
-    @api.model
-    def create(self, vals):
-        self.clear_caches()
-        return super(ResUsers, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        self.env.registry.clear_cache()
+        return super(ResUsers, self).create(vals_list)
 
     def write(self, vals):
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return super(ResUsers, self).write(vals)
 
     def _compute_check_user(self):

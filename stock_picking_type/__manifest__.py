@@ -17,7 +17,7 @@
     'author': 'Mohamed Saied',
     'maintainer': 'Mohamed Saied <mohamedsaiedd53@gmail.com>',
     'license': 'LGPL-3',
-    'version': '1.0',
+    'version': '18.0.1.0.0',
     'price': 13.99,
     'currency': 'USD',
     'category': 'Inventory',
@@ -32,10 +32,7 @@
     'installable': True,
     'auto_install': False,
     'images': [
-
-'static/description/banner.gif',
-
-'static/description/icon.png',
-
-],
+        'static/description/banner.gif',
+        'static/description/icon.png',
+    ],
 }

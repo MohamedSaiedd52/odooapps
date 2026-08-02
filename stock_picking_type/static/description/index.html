@@ -133,8 +133,8 @@
 
           <!-- Section 1 -->
           <div class="mb-4 p-md-5 p-3 bg-light rounded">
-            <h1 class="text-center fw-bold" style="font-size:40px;">Enable Stock Picking Type Restriction</h1>
-            <p class="text-center text-muted">To apply restrictions per operation type, ensure the user is assigned the <strong>Stock User</strong> role, not <strong>Inventory Manager</strong>.</p>
+            <h1 class="text-center fw-bold" style="font-size:40px;">Step 1 — Enable Warehouse Restriction</h1>
+            <p class="text-center text-muted">Go to <strong>Inventory → Configuration → Settings</strong>, enable <strong>Restrict Stock Warehouse</strong> and click <strong>Save</strong>. Restrictions apply to users with the <strong>Stock User</strong> role, not <strong>Inventory Manager</strong>.</p>
             <div class="text-center">
               <img src="images/1.png" class="img-fluid rounded shadow-sm" alt="Enable Restriction">
             </div>
@@ -142,8 +142,8 @@
 
           <!-- Section 2 -->
           <div class="mb-4 p-md-5 p-3 bg-light rounded">
-            <h1 class="text-center fw-bold" style="font-size:40px;">Assign Specific Picking Types per User</h1>
-            <p class="text-center text-muted">Use the <strong>Stock Picking Type</strong> field in the User form to define visible operations. Each user sees only what is assigned to them.</p>
+            <h1 class="text-center fw-bold" style="font-size:40px;">Step 2 — Assign Allowed Users per Warehouse</h1>
+            <p class="text-center text-muted">Open each warehouse and use the <strong>Warehouse Allowed users</strong> tab to define who can access it. Users see only the warehouses they are assigned to.</p>
             <div class="text-center">
               <img src="images/2.png" class="img-fluid rounded shadow-sm" alt="Assign Picking Type">
             </div>
@@ -151,8 +151,8 @@
 
           <!-- Section 3 -->
           <div class="mb-4 p-md-5 p-3 bg-light rounded">
-            <h1 class="text-center fw-bold" style="font-size:40px;">How Restrictions Are Enforced</h1>
-            <p class="text-center text-muted">Stock Users see only their assigned Picking Types. This is enforced through record rules inside the module.</p>
+            <h1 class="text-center fw-bold" style="font-size:40px;">Step 3 — Allowed Warehouses &amp; Restricted Locations per User</h1>
+            <p class="text-center text-muted">On the user form, the <strong>Restricted Location</strong> tab defines the warehouses the user may work in and the stock locations that will be completely hidden from them. Enforced through record rules inside the module.</p>
             <div class="text-center">
               <img src="images/3.png" class="img-fluid rounded shadow-sm" alt="Restricted Access">
             </div>
@@ -161,7 +161,7 @@
           <!-- Section 4 -->
           <div class="mb-4 p-md-5 p-3 bg-light rounded">
             <h1 class="text-center fw-bold" style="font-size:40px;">Visual Results of Access Control</h1>
-            <p class="text-center text-muted">Users interact only with the operations they’re allowed to. See examples below.</p>
+            <p class="text-center text-muted">Allowed Operation Types per user, the restricted user's Inventory overview, and automatically filtered location lists. Click to enlarge.</p>
             <div class="text-center d-flex flex-wrap justify-content-center gap-3">
               <img src="images/4.png" class="img-fluid rounded shadow-sm" alt="View 1" style="max-width: 300px;">
               <img src="images/5.png" class="img-fluid rounded shadow-sm" alt="View 2" style="max-width: 300px;">
@@ -183,11 +183,11 @@
 </div>
 
 <div class="mb-4 p-md-5 p-3 bg-light rounded">
-  <h1 class="text-center fw-bold" style="font-size:40px;">Enable User Location Restriction</h1>
-  <p class="text-center text-muted">Assign the user to specific warehouses, and activate the <strong>Restrict Location</strong> option to limit their access.</p>
+  <h1 class="text-center fw-bold" style="font-size:40px;">Enable the Restriction from Inventory Settings</h1>
+  <p class="text-center text-muted">Activate <strong>Restrict Stock Warehouse</strong> in Inventory settings to turn on warehouse &amp; location restriction for users.</p>
   <div class="text-center">
     <img src="images/22.png" class="img-fluid rounded shadow-sm" alt="Enable Restriction">
-    <p class="text-muted mt-3">From here, you assign access to specific warehouses and enable location restriction, so the user only sees permitted warehouse locations.</p>
+    <p class="text-muted mt-3">Once enabled, users only see permitted warehouses and their locations.</p>
   </div>
 </div>
 
