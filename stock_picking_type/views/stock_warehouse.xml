@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Warehouse Allowed users"
-
+                      groups="stock_picking_type.user_warehouse_restriction_group_user"
                       name="allowed_users" colspan="4">
                     <group colspan="4">
                         <field name="user_ids" widget="many2many_tags"/>

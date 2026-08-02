@@ -6,8 +6,8 @@ class StockWarehouse(models.Model):
     _inherit = "stock.warehouse"
 
     user_ids = fields.Many2many(
-        comodel_name='res.users', string='Allowed Users')
-
+        comodel_name='res.users', string='Allowed Users',
+        domain=lambda self: [('all_group_ids', 'in', self.env.ref('stock.group_stock_user').id)])
     restrict_location = fields.Boolean(string='Restrict Stock Location for this Warehouse')
 
     @api.onchange('restrict_location', 'user_ids')
@@ -24,4 +24,4 @@ class StockWarehouse(models.Model):
             'name': 'Users',
             'view_mode': 'list,form',
             'res_model': 'res.users',
-            'domain': [('id', 'in', [user.id for user in self.user_ids])]}
+            'domain': [('id', 'in', [user.id for user in self.user_ids]),('all_group_ids', 'not in',[self.env.ref('base.group_system').id])]}
