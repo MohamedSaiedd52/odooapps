@@ -8,6 +8,11 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+# (connect timeout, read timeout) in seconds, so a dead server fails fast
+# instead of blocking on the OS default TCP timeout.
+REQUEST_TIMEOUT = (10, 60)
+
+
 def get_server_ip(domain):
     """
     Get Ip address from domain name
@@ -37,7 +42,8 @@ def get_general_api_token_auth(url, username, password):
         "password": password
     }
     try:
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(
+            url, headers=headers, json=payload, timeout=REQUEST_TIMEOUT)
     except:
         res = Response()
         _logger.info(
@@ -51,16 +57,19 @@ def get_general_api_token_auth(url, username, password):
     return response
 
 
-def get_transactions(url, token, last_transaction, device_sn=None):
+def get_transactions(url, token, last_transaction, device_sn=None, end_time=None,
+                     emp_code=None):
     device_sn = "&terminal_sn=" + str(device_sn) if device_sn else ""
+    end_time = "&end_time=" + str(end_time) if end_time else ""
+    emp_code = "&emp_code=" + str(emp_code) if emp_code else ""
     url = url + "/iclock/api/transactions/?page_size=1000&start_time=" + \
-        str(last_transaction) + device_sn
+        str(last_transaction) + end_time + device_sn + emp_code
     headers = {
         "Content-Type": "application/json",
         "Authorization": "Token " + str(token)
     }
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
     except:
         res = Response()
         res.code = "connectionError"
@@ -79,7 +88,7 @@ def get_devices(url, token):
         "Authorization": "Token " + str(token)
     }
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
     except:
         res = Response()
         res.code = "connectionError"
@@ -97,7 +106,7 @@ def get_next_page(url, token):
     }
 
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
     except:
         res = Response()
         res.code = "connectionError"

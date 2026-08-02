@@ -1,23 +1,11 @@
-   # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import logging
+
 from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
-import requests, json
+
+_logger = logging.getLogger(__name__)
 
 
-
-# ==============================
-# HrEmployee Extension
-# ==============================
-class HrEmployee(models.Model):
-    _inherit = 'hr.employee'
-
-    zk_emp_code = fields.Char(string="ZK Employee Code", help="Employee code from ZK/BioTime")
-
-
-# ==============================
-# BioTime Employee
-# ==============================
 class BioTimeEmployee(models.Model):
     _name = 'biotime.employee'
     _description = "Biotime Employee"
@@ -29,7 +17,9 @@ class BioTimeEmployee(models.Model):
         'hr.employee',
         string="Employee",
         compute="_compute_odoo_employee_id",
-        store=True
+        inverse="_inverse_odoo_employee_id",
+        store=True,
+        readonly=False,
     )
     biotime_id = fields.Many2one('biotime.config', string="Biotime")
     company_id = fields.Many2one(
@@ -48,3 +38,27 @@ class BioTimeEmployee(models.Model):
                 rec.odoo_employee_id = employee.id if employee else False
             else:
                 rec.odoo_employee_id = False
+
+    def _inverse_odoo_employee_id(self):
+        """Picking an employee manually writes the ZK code onto them, which
+        also recovers any unmatched punches waiting for that code
+        (see HrEmployeeZk._biotime_relink)."""
+        for rec in self:
+            if rec.odoo_employee_id and rec.emp_code and \
+                    rec.odoo_employee_id.zk_emp_code != rec.emp_code:
+                rec.odoo_employee_id.sudo().write({'zk_emp_code': rec.emp_code})
+
+    def action_pull_my_transactions(self):
+        """Open the pull wizard pre-filtered on this employee only."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Pull Punches — %s') % (self.name or self.emp_code),
+            'res_model': 'biotime.pull.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_server_id': self.biotime_id.id,
+                'default_bio_employee_id': self.id,
+            },
+        }

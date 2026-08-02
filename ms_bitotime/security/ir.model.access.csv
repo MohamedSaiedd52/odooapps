@@ -2,6 +2,12 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_biotime_config,access_biotime_config,ms_bitotime.model_biotime_config,,1,1,1,1
 access_biotime_device,access_biotime_terminal,ms_bitotime.model_biotime_terminal,,1,1,1,1
 access_biotime_employee,access_biotime_employee,ms_bitotime.model_biotime_employee,,1,1,1,1
-access_biotime_dashboard,access_biotime_dashboard,ms_bitotime.model_biotime_dashboard,,1,1,1,1
 access_biotime_transaction,access_biotime_transaction,ms_bitotime.model_biotime_transaction,,1,1,1,1
 access_biotime_transaction_log,access_biotime_transaction_log,ms_bitotime.model_biotime_transaction_log,,1,1,1,1
+access_biotime_pull_wizard,access_biotime_pull_wizard,ms_bitotime.model_biotime_pull_wizard,base.group_user,1,1,1,1
+access_biotime_link_employee_wizard,access_biotime_link_employee_wizard,ms_bitotime.model_biotime_link_employee_wizard,base.group_user,1,1,1,1
+access_biotime_push_employee_wizard,access_biotime_push_employee_wizard,ms_bitotime.model_biotime_push_employee_wizard,base.group_user,1,1,1,1
+access_queue_job_manager,queue job manager,ms_bitotime.model_queue_job,ms_bitotime.group_queue_job_manager,1,1,0,0
+access_queue_job_lock_manager,queue job lock manager,ms_bitotime.model_queue_job_lock,ms_bitotime.group_queue_job_manager,1,0,0,0
+access_queue_job_function_manager,queue job functions manager,ms_bitotime.model_queue_job_function,ms_bitotime.group_queue_job_manager,1,1,1,1
+access_queue_job_channel_manager,queue job channel manager,ms_bitotime.model_queue_job_channel,ms_bitotime.group_queue_job_manager,1,1,1,1

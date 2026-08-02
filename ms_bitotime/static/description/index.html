@@ -63,11 +63,11 @@
                     <div class="col-lg-12 py-2 container-section">
                         <div class="card-box">
                             <div class="row justify-content-center p-3 w-100 m-0">
-                                <img src="assets/screenshots/1.PNG" class="img-thumbnail card-img" alt="Dashboard screenshot 1">
+                                <img src="assets/screenshots/c1_schedule.png" class="img-thumbnail card-img" alt="Working schedule used for late calculation">
                             </div>
                             <div class="px-3">
                                 <p class="caption">
-                                    Dashboard view showing the attendance chart, today's attendances, employees and total devices.
+                                    The employee working schedule is the baseline for attendance status: changing hours or the grace period automatically re-evaluates already-imported punches.
                                 </p>
                             </div>
                         </div>
@@ -77,11 +77,11 @@
                     <div class="col-lg-12 py-2 container-section">
                         <div class="card-box">
                             <div class="row justify-content-center p-3 w-100 m-0">
-                                <img src="assets/screenshots/2.PNG" class="img-thumbnail card-img" alt="Link ZK code to employee">
+                                <img src="assets/screenshots/c2_employee_tz.png" class="img-thumbnail card-img" alt="Employee working hours and timezone">
                             </div>
                             <div class="px-3">
                                 <p class="caption">
-                                    Explain how to link the ZK device code to an employee record in Odoo.
+                                    Each employee carries a working schedule and a timezone — punches are always evaluated in the right timezone, so a mismatched device clock never produces fake "Late In" records.
                                 </p>
                             </div>
                         </div>
@@ -91,11 +91,11 @@
                     <div class="col-lg-12 py-2 container-section">
                         <div class="card-box">
                             <div class="row justify-content-center p-3 w-100 m-0">
-                                <img src="assets/screenshots/3.PNG" class="img-thumbnail card-img" alt="Configuration and chatter">
+                                <img src="assets/screenshots/c3_test_connection.png" class="img-thumbnail card-img" alt="Server configuration and test connection">
                             </div>
                             <div class="px-3">
                                 <p class="caption">
-                                    Configuration and chatter: steps to set up the integration and document the setup process.
+                                    Server configuration with one-click Test Connection and quick actions (Devices → Employees → Transactions → Attendance), live counters, re-pull overlap window and max shift length options.
                                 </p>
                             </div>
                         </div>
@@ -105,11 +105,11 @@
                     <div class="col-lg-12 py-2 container-section">
                         <div class="card-box">
                             <div class="row justify-content-center p-3 w-100 m-0">
-                                <img src="assets/screenshots/4.PNG" class="img-thumbnail card-img" alt="Logs are pulled without affecting users">
+                                <img src="assets/screenshots/c4_pull_wizard_july.png" class="img-thumbnail card-img" alt="Advanced pull wizard">
                             </div>
                             <div class="px-3">
                                 <p class="caption">
-                                    The system fetches device logs without impacting active users in the production environment.
+                                    Pull Transactions (Advanced) wizard: pick a date range, filter by device or a single employee, and optionally transfer straight to attendance after the pull.
                                 </p>
                             </div>
                         </div>
@@ -119,11 +119,11 @@
                     <div class="col-lg-12 py-2 container-section">
                         <div class="card-box">
                             <div class="row justify-content-center p-3 w-100 m-0">
-                                <img src="assets/screenshots/5.PNG" class="img-thumbnail card-img" alt="Raw transactions">
+                                <img src="assets/screenshots/c5_pull_result.png" class="img-thumbnail card-img" alt="Pull finished without duplicates">
                             </div>
                             <div class="px-3">
                                 <p class="caption">
-                                    Raw transactions are stored in the `biotime.transaction` model before being converted to attendance records.
+                                    Pull + transfer in one step, fully idempotent: re-pulling an already-synced period imports 0 duplicates — punches are deduplicated by BioTime id, so you can safely re-run anytime.
                                 </p>
                             </div>
                         </div>
@@ -133,11 +133,11 @@
                     <div class="col-lg-12 py-2 container-section">
                         <div class="card-box">
                             <div class="row justify-content-center p-3 w-100 m-0">
-                                <img src="assets/screenshots/6.PNG" class="img-thumbnail card-img" alt="Convert transactions to attendances">
+                                <img src="assets/screenshots/c6_transactions.png" class="img-thumbnail card-img" alt="Raw transactions list">
                             </div>
                             <div class="px-3">
                                 <p class="caption">
-                                    Convert raw transactions into `hr.attendance` records; missing punches are detected and late minutes calculated from the employee schedule.
+                                    Raw transactions: every punch is stored with its real device time, check in/out state, source device and server — the "Is Transferred" flag shows which punches made it into an attendance.
                                 </p>
                             </div>
                         </div>
@@ -147,17 +147,85 @@
                     <div class="col-lg-12 py-2 container-section">
                         <div class="card-box">
                             <div class="row justify-content-center p-3 w-100 m-0">
-                                <img src="assets/screenshots/7.PNG" class="img-thumbnail card-img" alt="Biotime data comparison">
+                                <img src="assets/screenshots/c7_attendance.png" class="img-thumbnail card-img" alt="Final attendance with status and late minutes">
                             </div>
                             <div class="px-3">
                                 <p class="caption">
-                                    Inspect Biotime data entries to compare and validate raw device logs before import.
+                                    Transfer to Attendance builds hr.attendance with Late In / On Time status and exact late minutes counted from the real shift start, flags missing checkouts for HR review, and keeps night shifts as one record across midnight.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-            
+                    <!-- 8: embedded job queue -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/queue_01_menu.png" class="img-thumbnail card-img" alt="Job Queue menu inside Biotime">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Built-in background Job Queue — fully embedded in the module, no external queue_job addon needed. The Job Queue menu lives inside the Biotime app: Jobs, Channels and Job Functions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/queue_02_jobs.png" class="img-thumbnail card-img" alt="Jobs list">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Every nightly BioTime pull runs as a background job: one row per server with its state (Pending → Started → Done / Failed), execution time and channel — the UI never freezes during a pull.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/queue_03_job_form.png" class="img-thumbnail card-img" alt="Job detail form">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Job detail: status bar with the full lifecycle, UUID, function and channel, retry counter and a Results tab — failed jobs show the complete error trace and a one-click Requeue button.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 11 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/queue_04_channels.png" class="img-thumbnail card-img" alt="Job channels">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Dedicated root.biotime channel runs one job at a time, so the BioTime server is never hammered by parallel pulls.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12 -->
+                    <div class="col-lg-12 py-2 container-section">
+                        <div class="card-box">
+                            <div class="row justify-content-center p-3 w-100 m-0">
+                                <img src="assets/screenshots/queue_05_function.png" class="img-thumbnail card-img" alt="Job function retry pattern">
+                            </div>
+                            <div class="px-3">
+                                <p class="caption">
+                                    Automatic retries: if the BioTime server is unreachable the pull retries after 1, 5, 10 and 30 minutes — configurable per job function.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
                 </div> <!-- tab1 -->
             </div> <!-- tab content -->

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import logging
-import requests
-from datetime import datetime, timedelta
+from datetime import timedelta
+
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
+
+# a device that reported activity within this window is considered online
+ONLINE_WINDOW_MINUTES = 30
 
 
 class BioTimeTerminal(models.Model):
@@ -20,45 +22,22 @@ class BioTimeTerminal(models.Model):
     terminal_tz = fields.Char(string="Terminal TZ")
     biotime_id = fields.Many2one('biotime.config', string="Biotime")
     company_id = fields.Many2one('res.company', string="Company", default=lambda self: self.env.company.id)
+    last_activity = fields.Datetime(
+        string="Last Activity", readonly=True,
+        help="Last time the device talked to the BioTime server. "
+             "Refreshed by the 'Get Devices' button.")
+    device_state = fields.Char(string="Raw State", readonly=True)
+    is_online = fields.Boolean(
+        string="Online", compute="_compute_is_online",
+        help="True when the device reported activity in the last %s minutes "
+             "(as of the last device refresh)." % ONLINE_WINDOW_MINUTES)
 
-    def action_get_transactions(self, page=1, from_date=None, to_date=None):
-        """Fetch transactions from BioTime device"""
+    def _compute_is_online(self):
+        threshold = fields.Datetime.now() - timedelta(minutes=ONLINE_WINDOW_MINUTES)
         for rec in self:
-            # ضبط التواريخ الافتراضية
-            if not from_date:
-                from_date = datetime.now().replace(hour=0, minute=0, second=0)
-            if not to_date:
-                to_date = datetime.now().replace(hour=23, minute=59, second=59)
+            rec.is_online = bool(rec.last_activity and rec.last_activity >= threshold)
 
-            # تحويل إلى الصيغة المطلوبة للـ URL
-            start_time = from_date.strftime("%Y-%m-%d %H:%M:%S")
-            end_time = to_date.strftime("%Y-%m-%d %H:%M:%S")
-
-            url = (
-                f"{rec.biotime_id.server_url}/iclock/api/transactions/"
-                f"?page={page}&page_size=1000000&terminal_sn={rec.terminal_sn}"
-                f"&start_time={start_time}&end_time={end_time}"
-            )
-            _logger.info("Fetching transactions from %s to %s for terminal %s", start_time, end_time, rec.terminal_sn)
-
-            # توليد التوكن
-            token = rec.biotime_id.generate_access_token()
-            headers = {
-                'Content-Type': 'application/json',
-                'Authorization': f'Token {token}'
-            }
-
-            # طلب البيانات
-            try:
-                response = requests.get(url, headers=headers)
-                response.raise_for_status()
-                data = response.json()
-            except Exception as e:
-                _logger.error("Failed to fetch transactions: %s", str(e))
-                raise ValidationError(f"Failed to fetch transactions: {str(e)}")
-
-            if "data" not in data:
-                _logger.warning("No transaction data returned: %s", data)
-                return {}
-
-            return data
+    def action_refresh_status(self):
+        """Re-fetch all devices of the parent server (upserts info + status)."""
+        servers = self.mapped('biotime_id')
+        servers.action_get_all_terminals()

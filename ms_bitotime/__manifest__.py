@@ -1,41 +1,41 @@
-# -*- coding: utf-8 -*-
 {
     'name': "ZK Biotime",
+    'version': '19.0.3.0.0',
     'category': 'Hr',
-    'author':'Mohamed Saied',
-    'depends': ['base', 'hr', 'hr_attendance','mail'],
-    'external_dependencies':
-        {'python':
-             [ 'pyzk','openpyxl']
-         },
+    'author': 'Mohamed Saied',
+    'depends': ['base', 'hr', 'hr_attendance', 'mail', 'base_sparse_field'],
+    'external_dependencies': {'python': ['requests']},
     'data': [
+        'security/groups.xml',
+        'security/queue_job_security.xml',
         'security/ir.model.access.csv',
+        'views/queue_job_views.xml',
+        'views/queue_job_channel_views.xml',
+        'views/queue_job_function_views.xml',
         'views/biotime.xml',
+        'views/queue_job_menus.xml',
+        'views/biotime_wizards.xml',
+        'data/queue_data.xml',
+        'data/queue_job_data.xml',
         'data/cron.xml',
-        'views/dashboard.xml',
     ],
-    "images": [
+    'post_init_hook': 'post_init_hook',
+    'post_load': 'post_load',
+    'images': [
         'static/description/banner.gif',
         'static/description/icon.png',
     ],
-    'assets': {
-        'web.assets_backend': [
-            'ms_bitotime/static/src/js/biotime_dashboard.js',
-            'ms_bitotime/static/src/xml/biotime_dashboard.xml',
-            'https://cdn.jsdelivr.net/npm/chart.js',
-
-        ],
-    },
     'license': 'LGPL-3',
-    'price': 65,
-    'currency': 'USD',
     'summary': "Sync ZKTeco Biotime (ZK devices, fingerprint, face recognition, RFID) with Odoo Attendance & HR",
     'description': """
          Odoo ZKTeco Biotime Integration
          ===================================
          - Full integration with ZKTeco Biotime & ZK devices
          - Supports fingerprint, RFID, face recognition
-         - Models supported: iClock, uFace, MB Series, K Series, UA Series, F Series, LX Series, SpeedFace, ProFace X, SilkBio, ZPad
          - Automatic attendance & payroll sync
      """,
+    'installable': True,
+    'application': True,
+    'price': 80,
+    'currency': 'USD',
 }
