@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Pull (Advanced) wizard -->
+        <record id="view_biotime_pull_wizard_form" model="ir.ui.view">
+            <field name="name">biotime.pull.wizard.form</field>
+            <field name="model">biotime.pull.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Pull Transactions">
+                    <group>
+                        <group>
+                            <field name="server_id"/>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </group>
+                        <group>
+                            <field name="terminal_ids" widget="many2many_tags"
+                                   placeholder="All devices"/>
+                            <field name="bio_employee_id"
+                                   placeholder="All employees"/>
+                            <field name="do_transfer"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_pull" type="object" string="Pull Now"
+                                class="btn-primary" icon="fa-download"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Link unmatched punches wizard -->
+        <record id="view_biotime_link_employee_wizard_form" model="ir.ui.view">
+            <field name="name">biotime.link.employee.wizard.form</field>
+            <field name="model">biotime.link.employee.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Link Punches to Employee">
+                    <group>
+                        <field name="emp_code"/>
+                        <field name="employee_id"/>
+                        <field name="log_ids" invisible="1"/>
+                    </group>
+                    <div class="text-muted">
+                        The employee gets this ZK code and all their unmatched
+                        punches are converted to transactions automatically.
+                    </div>
+                    <footer>
+                        <button name="action_confirm" type="object" string="Link"
+                                class="btn-primary" icon="fa-link"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Reverse sync wizard -->
+        <record id="view_biotime_push_employee_wizard_form" model="ir.ui.view">
+            <field name="name">biotime.push.employee.wizard.form</field>
+            <field name="model">biotime.push.employee.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Send Employees to BioTime">
+                    <group>
+                        <group>
+                            <field name="server_id"/>
+                            <field name="department_id"/>
+                            <field name="area_id"/>
+                        </group>
+                        <group>
+                            <field name="employee_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <div class="text-muted">
+                        Employees without a ZK code get one automatically
+                        (their PIN, or their Odoo id). The code is written back
+                        on the employee so punches match immediately.
+                    </div>
+                    <footer>
+                        <button name="action_push" type="object" string="Send to BioTime"
+                                class="btn-primary" icon="fa-upload"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

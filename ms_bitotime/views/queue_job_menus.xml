@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Job Queue lives inside the Biotime app menu, not as a root app -->
+    <menuitem
+        id="menu_queue_job_root"
+        name="Job Queue"
+        parent="ms_biotime_root_menu"
+        sequence="7"
+        groups="group_queue_job_manager"
+    />
+
+    <menuitem
+        id="menu_queue_job"
+        action="action_queue_job"
+        sequence="10"
+        parent="menu_queue_job_root"
+    />
+
+    <menuitem
+        id="menu_queue_job_channel"
+        action="action_queue_job_channel"
+        sequence="12"
+        parent="menu_queue_job_root"
+    />
+
+    <menuitem
+        id="menu_queue_job_function"
+        action="action_queue_job_function"
+        sequence="14"
+        parent="menu_queue_job_root"
+    />
+</odoo>
