@@ -1,0 +1,684 @@
+<section class="py-3" style="background-color: #fff">
+
+    <!-- Hero Section -->
+    <div style="padding: 85px 48px 32px 48px; margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div class="align-items-center d-flex justify-content-center">
+            <div class="bg-white fs-1 fw-bold lh-sm px-4 py-3 rounded shadow-lg text-center"
+                style="text-decoration: underline; margin-top: -165px">
+                <span style="color: #714B67">MCP</span> SERVER
+            </div>
+        </div>
+        <div class="container">
+            <div class="row gx-6">
+                <div class="fs-2 fw-bold lh-sm text-center pb-4" style="color: #714B67">
+                    Connect AI Assistants to Odoo ERP via Model Context Protocol
+                </div>
+                <div class="col">
+                    <p class="text-black" style="font-size: 15px; line-height: 1.6">
+                        <strong>MCP Server</strong> is a powerful Odoo 17.0 module that securely connects AI assistants
+                        like <strong>Claude, Cursor, VS Code Copilot, Gemini,</strong> and <strong>ChatGPT</strong> to
+                        your Odoo ERP using the <strong>Model Context Protocol (MCP)</strong> standard. It provides REST
+                        API endpoints, XML-RPC proxy, and a built-in <strong>OWL Chatbot widget</strong> — all with
+                        fine-grained access control, full audit logging, rate limiting, response caching, and
+                        LLM-optimized output formatting.
+                    </p>
+                    <p class="text-black" style="font-size: 15px; line-height: 1.6">
+                        Whether you need AI to read customer data, create sales orders, analyze inventory, or chat
+                        directly inside Odoo — MCP Server ensures every request is <strong>authenticated, authorized,
+                            logged,</strong> and delivered in a format AI assistants understand best.
+                    </p>
+                    <ul class="text-black mt-3 list-unstyled" style="font-size: 15px; line-height: 1.8; padding: 0">
+                        <li>&#x2705; REST API with 13 endpoints + XML-RPC proxy with 2 endpoints</li>
+                        <li>&#x2705; Built-in OWL Chatbot widget (Ollama / OpenAI / Gemini)</li>
+                        <li>&#x2705; Bearer Token (API Key) + Basic Auth support</li>
+                        <li>&#x2705; Per-model CRUD access control with field-level restrictions</li>
+                        <li>&#x2705; Rate limiting (configurable per minute per user)</li>
+                        <li>&#x2705; IP whitelist for production security</li>
+                        <li>&#x2705; Full audit logging with duration tracking</li>
+                        <li>&#x2705; Response caching with configurable TTL</li>
+                        <li>&#x2705; LLM-optimized output formatting</li>
+                        <li>&#x2705; YOLO mode for development (bypasses permissions)</li>
+                        <li>&#x2705; AI Function Calling — CRUD via chatbot</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- How to Use Section -->
+    <div style="padding: 48px; margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div class="container">
+            <div class="fs-2 fw-bold lh-sm text-center pb-3" style="color: #714B67">How to Use — Step by Step</div>
+            <p class="text-center" style="font-size: 16px; color: #555; margin-bottom: 30px">Get up and running in 5
+                minutes</p>
+
+            <!-- Step 1 -->
+            <div class="rounded border shadow p-4 mb-4">
+                <h4 class="fw-bold" style="color: #714B67">&#10102; Install the Module</h4>
+                <ol style="font-size: 15px; line-height: 1.8">
+                    <li>Copy the <code>mcp_odoo_connector</code> folder to your Odoo addons path.</li>
+                    <li>Restart Odoo server.</li>
+                    <li>Go to <strong>Apps</strong> &rarr; <strong>Update Apps List</strong> &rarr; Search <strong>"MCP
+                            Server"</strong> &rarr; Click <strong>Install</strong>.</li>
+                </ol>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="rounded border shadow p-4 mb-4">
+                <h4 class="fw-bold" style="color: #714B67">&#10103; Enable MCP Server</h4>
+                <ol style="font-size: 15px; line-height: 1.8">
+                    <li>Go to <strong>Settings</strong> (top menu).</li>
+                    <li>Scroll to the <strong>MCP Server</strong> section.</li>
+                    <li>Toggle <strong>Enable MCP Server</strong> to ON.</li>
+                    <li>Click <strong>Save</strong>.</li>
+                </ol>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="rounded border shadow p-4 mb-4">
+                <h4 class="fw-bold" style="color: #714B67">&#10104; Expose Models</h4>
+                <p style="font-size: 15px;">By default, no models are exposed. You must explicitly add each model you
+                    want AI to access:</p>
+                <ol style="font-size: 15px; line-height: 1.8">
+                    <li>Go to <strong>Settings &rarr; MCP Server &rarr; Model Access</strong>.</li>
+                    <li>Click <strong>New</strong>.</li>
+                    <li>Select a Model (e.g., <code>Contact / res.partner</code>).</li>
+                    <li>Toggle permissions: <strong>Read</strong>, <strong>Write</strong>, <strong>Create</strong>,
+                        <strong>Delete</strong>.
+                    </li>
+                    <li>(Optional) Set <strong>Allowed Fields</strong> as JSON: <code>["name", "email", "phone"]</code>
+                    </li>
+                    <li>Click <strong>Save</strong>.</li>
+                </ol>
+                <table class="table table-bordered table-sm mt-3" style="font-size: 14px">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Model</th>
+                            <th>Technical Name</th>
+                            <th>Recommended Permissions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Contacts</td>
+                            <td><code>res.partner</code></td>
+                            <td>Read, Write, Create</td>
+                        </tr>
+                        <tr>
+                            <td>Products</td>
+                            <td><code>product.template</code></td>
+                            <td>Read only</td>
+                        </tr>
+                        <tr>
+                            <td>Sale Orders</td>
+                            <td><code>sale.order</code></td>
+                            <td>Read, Write, Create</td>
+                        </tr>
+                        <tr>
+                            <td>Invoices</td>
+                            <td><code>account.move</code></td>
+                            <td>Read only</td>
+                        </tr>
+                        <tr>
+                            <td>Tasks</td>
+                            <td><code>project.task</code></td>
+                            <td>Read, Write, Create</td>
+                        </tr>
+                        <tr>
+                            <td>Employees</td>
+                            <td><code>hr.employee</code></td>
+                            <td>Read only</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="rounded border shadow p-4 mb-4">
+                <h4 class="fw-bold" style="color: #714B67">&#10105; Generate API Key</h4>
+                <ol style="font-size: 15px; line-height: 1.8">
+                    <li>Go to <strong>Settings &rarr; Users &amp; Companies &rarr; Users</strong>.</li>
+                    <li>Select your user.</li>
+                    <li>Go to the <strong>API Keys</strong> tab.</li>
+                    <li>Click <strong>New API Key</strong> &rarr; Enter a description (e.g., "MCP Claude") &rarr; Scope:
+                        <code>rpc</code>.
+                    </li>
+                    <li>Copy the generated key &mdash; you will need it for AI client configuration.</li>
+                </ol>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="rounded border shadow p-4 mb-4">
+                <h4 class="fw-bold" style="color: #714B67">&#10106; Install Python Dependencies (for MCP Bridge)</h4>
+                <pre
+                    style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 12px 16px; font-size: 13px"><code>pip install "mcp[cli]" httpx</code></pre>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="rounded border shadow p-4 mb-4">
+                <h4 class="fw-bold" style="color: #714B67">&#10107; Test the API</h4>
+                <pre
+                    style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 12px 16px; font-size: 13px"><code>curl http://localhost:8069/mcp/api/v1/health</code></pre>
+                <p style="font-size: 14px; color: #555; margin-top: 8px">Expected response:
+                    <code>{"status": "ok", "mcp_enabled": true, ...}</code>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Endpoints Section -->
+    <div style="padding: 48px; margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div class="container">
+            <div class="fs-2 fw-bold lh-sm text-center pb-3" style="color: #714B67">API Endpoints</div>
+
+            <h5 style="font-weight: 900; margin-bottom: 12px; font-size: 20px">&#10148; Public (No Auth Required)</h5>
+            <table class="table table-bordered align-middle mb-4">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 100px">Method</th>
+                        <th style="width: 350px">Endpoint</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge bg-success">GET</span></td>
+                        <td><code>/mcp/api/v1/health</code></td>
+                        <td>Health check with status, version, timestamp</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-success">GET</span></td>
+                        <td><code>/mcp/api/v1/system/info</code></td>
+                        <td>Odoo version, database, exposed model count</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5 style="font-weight: 900; margin-bottom: 12px; font-size: 20px">&#10148; Authenticated (Bearer Token or
+                Basic Auth)</h5>
+            <table class="table table-bordered align-middle table-striped mb-4">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 100px">Method</th>
+                        <th style="width: 350px">Endpoint</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/auth/validate</code></td>
+                        <td>Validate credentials, return user info</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-success">GET</span></td>
+                        <td><code>/mcp/api/v1/models</code></td>
+                        <td>List all exposed models with permissions</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-success">GET</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/fields</code></td>
+                        <td>Get field metadata for a model</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/search</code></td>
+                        <td>Search records with domain filter</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/read</code></td>
+                        <td>Read specific records by IDs</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/browse</code></td>
+                        <td>Paginated browse with offset/limit</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/count</code></td>
+                        <td>Count records matching domain</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/create</code></td>
+                        <td>Create new record</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/write</code></td>
+                        <td>Update existing records</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/unlink</code></td>
+                        <td>Delete records</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/mcp/api/v1/models/&lt;model&gt;/call</code></td>
+                        <td>Call arbitrary model method</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5 style="font-weight: 900; margin-bottom: 12px; font-size: 20px">&#10148; XML-RPC Endpoints</h5>
+            <table class="table table-bordered align-middle mb-4">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 350px">Endpoint</th>
+                        <th>Methods</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>/mcp/xmlrpc/2/common</code></td>
+                        <td>version(), authenticate()</td>
+                    </tr>
+                    <tr>
+                        <td><code>/mcp/xmlrpc/2/object</code></td>
+                        <td>execute_kw()</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5 style="font-weight: 900; margin-bottom: 12px; font-size: 20px">&#10148; Usage Examples</h5>
+            <p class="fw-bold" style="font-size: 16px">Search Partners (curl):</p>
+            <pre
+                style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 16px 20px; font-size: 13px; overflow-x: auto"><code>curl -X POST http://localhost:8069/mcp/api/v1/models/res-partner/search \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"domain": [["is_company", "=", true]], "fields": ["name", "email"], "limit": 5}'</code></pre>
+            <p style="font-size: 14px; color: #555; font-style: italic">Note: Use dashes (res-partner) instead of dots
+                (res.partner) in URL paths.</p>
+
+            <p class="fw-bold mt-3" style="font-size: 16px">Create a Record (curl):</p>
+            <pre
+                style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 16px 20px; font-size: 13px; overflow-x: auto"><code>curl -X POST http://localhost:8069/mcp/api/v1/models/res-partner/create \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"values": {"name": "New Partner", "email": "new@example.com", "is_company": true}}'</code></pre>
+        </div>
+    </div>
+
+    <!-- AI Client Configuration Section -->
+    <div style="padding: 48px; margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div class="container">
+            <div class="fs-2 fw-bold lh-sm text-center pb-2" style="color: #714B67">AI Client Configuration</div>
+            <p class="text-center" style="font-size: 16px; color: #555; margin-bottom: 10px">Connect your favorite AI
+                assistant to Odoo using the included MCP Bridge script</p>
+            <p class="text-center" style="font-size: 15px; color: #555; margin-bottom: 30px">
+                Install dependencies first: <code>pip install "mcp[cli]" httpx</code>
+            </p>
+
+            <div class="row gy-4">
+                <!-- VS Code -->
+                <div class="col-12 col-md-6">
+                    <div class="rounded border shadow p-4 h-100">
+                        <h5 class="fw-bold mb-3">&#x1F4BB; VS Code (Copilot / Claude)</h5>
+                        <p style="font-size: 14px; color: #555">Create <code>.vscode/mcp.json</code> in your workspace:
+                        </p>
+                        <pre
+                            style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 12px 16px; font-size: 12px; overflow-x: auto"><code>{
+  "servers": {
+    "odoo": {
+      "command": "python3",
+      "args": ["/path/to/mcp_odoo_connector/mcp_bridge.py"],
+      "env": {
+        "ODOO_URL": "http://localhost:8069",
+        "ODOO_API_KEY": "your-api-key-here",
+        "ODOO_DB": "your-database-name"
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+                <!-- Claude Desktop -->
+                <div class="col-12 col-md-6">
+                    <div class="rounded border shadow p-4 h-100">
+                        <h5 class="fw-bold mb-3">&#x1F916; Claude Desktop</h5>
+                        <p style="font-size: 14px; color: #555">Config:
+                            <code>~/.config/claude/claude_desktop_config.json</code>
+                        </p>
+                        <pre
+                            style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 12px 16px; font-size: 12px; overflow-x: auto"><code>{
+  "mcpServers": {
+    "odoo": {
+      "command": "python3",
+      "args": ["/path/to/mcp_odoo_connector/mcp_bridge.py"],
+      "env": {
+        "ODOO_URL": "http://localhost:8069",
+        "ODOO_API_KEY": "your-api-key-here",
+        "ODOO_DB": "your-database-name"
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+                <!-- Claude Code -->
+                <div class="col-12 col-md-6">
+                    <div class="rounded border shadow p-4 h-100">
+                        <h5 class="fw-bold mb-3">&#x1F4E1; Claude Code (CLI)</h5>
+                        <p style="font-size: 14px; color: #555">Run in your terminal:</p>
+                        <pre
+                            style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 12px 16px; font-size: 12px; overflow-x: auto"><code>claude mcp add-json odoo '{
+  "command": "python3",
+  "args": ["/path/to/mcp_odoo_connector/mcp_bridge.py"],
+  "env": {
+    "ODOO_URL": "http://localhost:8069",
+    "ODOO_API_KEY": "your-api-key-here",
+    "ODOO_DB": "your-database-name"
+  }
+}' -s user</code></pre>
+                    </div>
+                </div>
+                <!-- Cursor -->
+                <div class="col-12 col-md-6">
+                    <div class="rounded border shadow p-4 h-100">
+                        <h5 class="fw-bold mb-3">&#x1F5B1; Cursor IDE</h5>
+                        <p style="font-size: 14px; color: #555">Config: <code>~/.cursor/mcp.json</code></p>
+                        <pre
+                            style="background-color: #f6f8fb; border: 1px solid #e1e5e9; border-radius: 8px; padding: 12px 16px; font-size: 12px; overflow-x: auto"><code>{
+  "mcpServers": {
+    "odoo": {
+      "command": "python3",
+      "args": ["/path/to/mcp_odoo_connector/mcp_bridge.py"],
+      "env": {
+        "ODOO_URL": "http://localhost:8069",
+        "ODOO_API_KEY": "your-api-key-here",
+        "ODOO_DB": "your-database-name"
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-3" style="font-size: 14px; color: #555; font-style: italic">Replace
+                <code>/path/to/mcp_odoo_connector/mcp_bridge.py</code> with the actual full path. ODOO_DB is required for
+                multi-database servers.
+            </p>
+        </div>
+    </div>
+
+    <!-- Chatbot Section -->
+    <div style="padding: 48px; margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div class="container">
+            <div class="fs-2 fw-bold lh-sm text-center pb-3" style="color: #714B67">&#129302; Built-in AI Chatbot</div>
+            <p class="text-center" style="font-size: 16px; color: #555; margin-bottom: 20px">Chat with AI directly
+                inside Odoo — no external tools required</p>
+            <div class="row gy-4">
+                <div class="col-12 col-md-4">
+                    <div class="rounded border shadow p-4 h-100 text-center">
+                        <h5 class="fw-bold" style="color: #714B67">OpenAI</h5>
+                        <p style="font-size: 14px; color: #555">GPT-4o, GPT-4o-mini, and all OpenAI models. Enter your
+                            API key in settings and start chatting.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="rounded border shadow p-4 h-100 text-center">
+                        <h5 class="fw-bold" style="color: #714B67">Google Gemini</h5>
+                        <p style="font-size: 14px; color: #555">Gemini Pro and Flash models. Paste your Google AI API
+                            key and connect instantly.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="rounded border shadow p-4 h-100 text-center">
+                        <h5 class="fw-bold" style="color: #714B67">Ollama (Local)</h5>
+                        <p style="font-size: 14px; color: #555">Run LLMs locally — Llama 3, Mistral, Phi-3, and more. No
+                            API key needed. Full privacy.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 p-4 rounded border" style="background-color: #f9f6f8">
+                <h5 class="fw-bold mb-2">&#x1F527; AI Function Calling (Tool Use)</h5>
+                <p style="font-size: 15px; color: #555; margin-bottom: 8px">The chatbot can perform CRUD operations
+                    directly from the conversation:</p>
+                <ul style="font-size: 14px; line-height: 2; color: #555; padding-left: 20px">
+                    <li><strong>"Create a new customer named John Doe"</strong> &rarr; AI creates the record in Odoo
+                    </li>
+                    <li><strong>"Update partner 14's phone to +1 555-0200"</strong> &rarr; AI updates the record</li>
+                    <li><strong>"Show me all unpaid invoices"</strong> &rarr; AI searches and returns results</li>
+                    <li><strong>"Delete test partner ID 99"</strong> &rarr; AI deletes the record</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Best Practices -->
+    <div style="padding: 48px; margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div class="container" style="border-left: #714B67 3px solid; padding-left: 25px">
+            <div class="row gx-6">
+                <div class="fs-2 fw-bold lh-sm text-center pb-3" style="color: #714B67">Security Best Practices</div>
+                <div class="col">
+                    <ul class="text-black list-unstyled" style="font-size: 15px; line-height: 2.2; padding: 0">
+                        <li>&#x1F512; <strong>Use HTTPS in Production</strong> — Always deploy behind a reverse proxy
+                            (Nginx/Caddy) with TLS certificates.</li>
+                        <li>&#x1F511; <strong>Unique API Keys</strong> — Generate a separate API key for each AI
+                            integration. Revoke individually if compromised.</li>
+                        <li>&#x1F310; <strong>Enable IP Whitelist</strong> — In production, restrict access to known IP
+                            addresses via MCP Server settings.</li>
+                        <li>&#x1F6E1; <strong>Minimal Model Exposure</strong> — Only expose models your AI needs. Use
+                            field restrictions to hide sensitive columns.</li>
+                        <li>&#x26D4; <strong>Disable YOLO Mode</strong> — YOLO mode bypasses all permission checks.
+                            Never enable it in production.</li>
+                        <li>&#x1F4CA; <strong>Review Audit Logs</strong> — Regularly check audit logs for suspicious
+                            activity. Auto-cleanup after 90 days (configurable).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Codes Section -->
+    <div style="padding: 48px; margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div class="container">
+            <div class="fs-2 fw-bold lh-sm text-center pb-3" style="color: #714B67">Error Codes Reference</div>
+            <table class="table table-bordered align-middle table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 100px">HTTP</th>
+                        <th style="width: 200px">Error Code</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge bg-warning text-dark">401</span></td>
+                        <td><code>AUTH_INVALID</code></td>
+                        <td>Missing or invalid credentials</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-danger">403</span></td>
+                        <td><code>BLOCKED_MODEL</code></td>
+                        <td>Model is security-blocked (ir.rule, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-danger">403</span></td>
+                        <td><code>OPERATION_DENIED</code></td>
+                        <td>Operation not allowed on this model</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-secondary">404</span></td>
+                        <td><code>MODEL_NOT_FOUND</code></td>
+                        <td>Model not exposed via MCP</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-info text-dark">429</span></td>
+                        <td><code>RATE_LIMITED</code></td>
+                        <td>Rate limit exceeded — wait and retry</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-dark">500</span></td>
+                        <td><code>INTERNAL_ERROR</code></td>
+                        <td>Server error — check Odoo logs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div style="margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div id="custom_tabs">
+            <div style="padding-top: 48px">
+                <ul role="tablist" class="nav nav-tabs justify-content-center bg-transparent navbar-light"
+                    data-tabs="tabs">
+                    <li class="nav-item"><a href="#faq" class="nav-link fs-4 text-uppercase active"
+                            data-bs-toggle="tab">FAQ</a></li>
+                </ul>
+            </div>
+            <div style="padding: 30px 48px 48px 48px">
+                <div class="container">
+                    <div id="custom_tabs_content" class="tab-content">
+                        <div class="tab-pane active" id="faq">
+                            <div class="accordion accordion-flush" id="accordionFaq">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFaq1">
+                                        <a class="accordion-button collapsed py-3 text-black px-2 fs-5"
+                                            data-bs-toggle="collapse" href="#collapseFaq1" aria-expanded="true"
+                                            aria-controls="collapseFaq1">What is MCP Server?</a>
+                                    </h2>
+                                    <div id="collapseFaq1" class="accordion-collapse collapse"
+                                        aria-labelledby="headingFaq1" data-bs-parent="#accordionFaq">
+                                        <p class="py-2 px-2" style="font-size: 15px; line-height: 1.6; color: #555">
+                                            MCP Server is an Odoo module that implements the Model Context Protocol
+                                            standard, allowing AI assistants like Claude, Cursor, VS Code Copilot, and
+                                            ChatGPT to securely read and write Odoo data through REST API, XML-RPC
+                                            endpoints, and a built-in chatbot widget.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFaq2">
+                                        <a class="accordion-button collapsed py-3 text-black px-2 fs-5"
+                                            data-bs-toggle="collapse" href="#collapseFaq2" aria-expanded="false"
+                                            aria-controls="collapseFaq2">Which AI assistants are supported?</a>
+                                    </h2>
+                                    <div id="collapseFaq2" class="accordion-collapse collapse"
+                                        aria-labelledby="headingFaq2" data-bs-parent="#accordionFaq">
+                                        <p class="py-2 px-2" style="font-size: 15px; line-height: 1.6; color: #555">
+                                            Any AI client that supports the MCP standard can connect, including Claude
+                                            Desktop, Claude Code CLI, VS Code Copilot, and Cursor IDE. The built-in
+                                            chatbot also supports OpenAI (GPT-4o), Google Gemini, and Ollama (local
+                                            LLMs).
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFaq3">
+                                        <a class="accordion-button collapsed py-3 text-black px-2 fs-5"
+                                            data-bs-toggle="collapse" href="#collapseFaq3" aria-expanded="false"
+                                            aria-controls="collapseFaq3">How do I authenticate API requests?</a>
+                                    </h2>
+                                    <div id="collapseFaq3" class="accordion-collapse collapse"
+                                        aria-labelledby="headingFaq3" data-bs-parent="#accordionFaq">
+                                        <p class="py-2 px-2" style="font-size: 15px; line-height: 1.6; color: #555">
+                                            You can use either Bearer Token authentication (using Odoo's native API key
+                                            system) or HTTP Basic Auth (login:password). API keys are recommended for
+                                            production — generate them in Settings &rarr; Users &rarr; API Keys tab.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFaq4">
+                                        <a class="accordion-button collapsed py-3 text-black px-2 fs-5"
+                                            data-bs-toggle="collapse" href="#collapseFaq4" aria-expanded="false"
+                                            aria-controls="collapseFaq4">Is it safe to use in production?</a>
+                                    </h2>
+                                    <div id="collapseFaq4" class="accordion-collapse collapse"
+                                        aria-labelledby="headingFaq4" data-bs-parent="#accordionFaq">
+                                        <p class="py-2 px-2" style="font-size: 15px; line-height: 1.6; color: #555">
+                                            Yes — the module includes multiple security layers: Bearer token auth, IP
+                                            whitelisting, per-user rate limiting, per-model CRUD permissions,
+                                            field-level restrictions, blocked security-sensitive models, and complete
+                                            audit logging. Just make sure YOLO mode is disabled and you use HTTPS.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFaq5">
+                                        <a class="accordion-button collapsed py-3 text-black px-2 fs-5"
+                                            data-bs-toggle="collapse" href="#collapseFaq5" aria-expanded="false"
+                                            aria-controls="collapseFaq5">What is YOLO mode?</a>
+                                    </h2>
+                                    <div id="collapseFaq5" class="accordion-collapse collapse"
+                                        aria-labelledby="headingFaq5" data-bs-parent="#accordionFaq">
+                                        <p class="py-2 px-2" style="font-size: 15px; line-height: 1.6; color: #555">
+                                            YOLO mode is a development-only feature that bypasses MCP permission checks.
+                                            It has two levels: "read_only" (skips permissions for read operations) and
+                                            "full" (skips all permissions). Never enable it in production environments.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFaq6">
+                                        <a class="accordion-button collapsed py-3 text-black px-2 fs-5"
+                                            data-bs-toggle="collapse" href="#collapseFaq6" aria-expanded="false"
+                                            aria-controls="collapseFaq6">Can I use model names with dots in URLs?</a>
+                                    </h2>
+                                    <div id="collapseFaq6" class="accordion-collapse collapse"
+                                        aria-labelledby="headingFaq6" data-bs-parent="#accordionFaq">
+                                        <p class="py-2 px-2" style="font-size: 15px; line-height: 1.6; color: #555">
+                                            Use dashes instead of dots in URL paths. For example, use
+                                            <code>res-partner</code> instead of <code>res.partner</code>. The API
+                                            automatically converts dashes back to dots internally.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFaq7">
+                                        <a class="accordion-button collapsed py-3 text-black px-2 fs-5"
+                                            data-bs-toggle="collapse" href="#collapseFaq7" aria-expanded="false"
+                                            aria-controls="collapseFaq7">Does the chatbot support function calling?</a>
+                                    </h2>
+                                    <div id="collapseFaq7" class="accordion-collapse collapse"
+                                        aria-labelledby="headingFaq7" data-bs-parent="#accordionFaq">
+                                        <p class="py-2 px-2" style="font-size: 15px; line-height: 1.6; color: #555">
+                                            Yes! The built-in chatbot supports AI function calling (tool use) for all
+                                            three providers — OpenAI, Gemini, and Ollama. The AI can create, read,
+                                            update, and delete records directly from the chat interface.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Section -->
+    <div style="margin-top: 35px; border-radius: 20px; margin-left: calc(-40vw + 50%); width: 80vw"
+        class="bg-white shadow-lg position-relative">
+        <div
+            style="background-color: #714B67; color: white; padding: 32px 24px; border-radius: 20px; text-align: center">
+            <h2 style="margin: 0 0 8px 0; font-size: 3rem; font-weight: 700; color: #fff" class="fw-bold lh-sm pb-2">
+                Need Any Help?</h2>
+            <p style="margin: 0 0 16px 0; opacity: 0.9; font-size: 16px" class="fs-4">Having trouble? We're happy to
+                help you get started.</p>
+            <p style="margin: 0 0 24px 0; opacity: 0.85; font-size: 15px">Developed &amp; maintained by <strong>Mohamed
+                    Saied</strong></p>
+            <div
+                style="background-color: #fff; color: #714B67; padding: 12px 24px; border-radius: 6px; font-weight: 600; font-size: 1.5rem; display: inline-block">
+                &#x1F4E7; Contact us on Odoo Apps
+            </div>
+        </div>
+    </div>
+
+</section>

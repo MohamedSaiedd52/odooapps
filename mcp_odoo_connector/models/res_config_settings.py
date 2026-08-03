@@ -1,0 +1,100 @@
+from odoo import fields, models
+
+
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
+
+    def action_open_mcp_model_access(self):
+        return self.env.ref('mcp_odoo_connector.action_mcp_model_access').read()[0]
+
+    def action_open_mcp_audit_log(self):
+        return self.env.ref('mcp_odoo_connector.action_mcp_audit_log').read()[0]
+
+    mcp_enabled = fields.Boolean(
+        string='Enable MCP Server',
+        config_parameter='mcp_odoo_connector.enabled',
+        default=False,
+    )
+    mcp_logging_enabled = fields.Boolean(
+        string='Enable Audit Logging',
+        config_parameter='mcp_odoo_connector.logging_enabled',
+        default=True,
+    )
+    mcp_rate_limit = fields.Integer(
+        string='Rate Limit (req/min)',
+        config_parameter='mcp_odoo_connector.rate_limit',
+        default=10,
+        help='Maximum API requests per user per minute. Set 0 to disable.',
+    )
+    mcp_log_retention_days = fields.Integer(
+        string='Log Retention (days)',
+        config_parameter='mcp_odoo_connector.log_retention_days',
+        default=90,
+        help='Number of days to keep audit logs. Older logs are auto-deleted.',
+    )
+    mcp_allowed_ips = fields.Char(
+        string='IP Whitelist',
+        config_parameter='mcp_odoo_connector.allowed_ips',
+        help='Comma-separated IP addresses. Leave empty to allow all IPs.',
+    )
+    mcp_max_records_per_request = fields.Integer(
+        string='Max Records Per Request',
+        config_parameter='mcp_odoo_connector.max_records_per_request',
+        default=1000,
+        help='Maximum number of records returned in a single API request.',
+    )
+    mcp_cache_enabled = fields.Boolean(
+        string='Enable Response Caching',
+        config_parameter='mcp_odoo_connector.cache_enabled',
+        default=False,
+    )
+    mcp_default_cache_ttl = fields.Integer(
+        string='Default Cache TTL (seconds)',
+        config_parameter='mcp_odoo_connector.default_cache_ttl',
+        default=300,
+        help='Default cache time-to-live in seconds for read operations.',
+    )
+    mcp_ai_chat_provider = fields.Selection(
+        [
+            ('openai', 'OpenAI-compatible'),
+            ('gemini', 'Google Gemini'),
+            ('ollama', 'Ollama (Local / Free)'),
+        ],
+        string='AI Chat Provider',
+        config_parameter='mcp_odoo_connector.ai_chat_provider',
+        default='openai',
+        help='Choose which HTTP API format to use for the in-app chat.',
+    )
+    mcp_ai_chat_enabled = fields.Boolean(
+        string='Enable In-App AI Chat',
+        config_parameter='mcp_odoo_connector.ai_chat_enabled',
+        default=False,
+        help='Enable the built-in chat screen inside Odoo that talks to an external AI provider.',
+    )
+    mcp_ai_chat_endpoint = fields.Char(
+        string='AI Chat Endpoint URL',
+        config_parameter='mcp_odoo_connector.ai_chat_endpoint',
+        help='HTTP endpoint for the AI chat API. Typically an OpenAI-compatible /v1/chat/completions URL.',
+    )
+    mcp_ai_chat_api_key = fields.Char(
+        string='AI Chat API Key',
+        config_parameter='mcp_odoo_connector.ai_chat_api_key',
+        help='API key used to authenticate with the AI chat provider.',
+    )
+    mcp_ai_chat_model = fields.Char(
+        string='AI Chat Model',
+        config_parameter='mcp_odoo_connector.ai_chat_model',
+        help='Model identifier for the AI provider (e.g., gpt-4o, kimi-v1, etc.).',
+    )
+    mcp_yolo_mode = fields.Selection(
+        [
+            ('disabled', 'Disabled (Production)'),
+            ('read_only', 'Read Only (Dev)'),
+            ('full', 'Full Access (Dev)'),
+        ],
+        string='YOLO Mode',
+        config_parameter='mcp_odoo_connector.yolo_mode',
+        default='disabled',
+        help='WARNING: YOLO mode bypasses MCP permissions. '
+             'NEVER enable in production!',
+    )

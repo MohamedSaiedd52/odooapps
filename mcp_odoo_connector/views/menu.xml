@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root Menu (standalone top-level app) -->
+    <menuitem id="menu_mcp_server_root"
+              name="MCP Server"
+              sequence="99"
+              web_icon="mcp_odoo_connector,static/description/icon.png"
+              groups="mcp_odoo_connector.group_mcp_user"/>
+
+    <!-- Model Access Menu -->
+    <menuitem id="menu_mcp_model_access"
+              name="Model Access"
+              parent="menu_mcp_server_root"
+              action="action_mcp_model_access"
+              sequence="10"
+              groups="mcp_odoo_connector.group_mcp_admin"/>
+
+    <!-- Audit Logs Menu -->
+    <menuitem id="menu_mcp_audit_log"
+              name="Audit Logs"
+              parent="menu_mcp_server_root"
+              action="action_mcp_audit_log"
+              sequence="20"
+              groups="mcp_odoo_connector.group_mcp_user"/>
+
+    <!-- In-App AI Chat Menu -->
+    <menuitem id="menu_mcp_chat_session"
+              name="AI Chat"
+              parent="menu_mcp_server_root"
+              action="action_mcp_chat_session"
+              sequence="30"
+              groups="mcp_odoo_connector.group_mcp_user"/>
+
+</odoo>
