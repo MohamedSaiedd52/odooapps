@@ -1,35 +1,19 @@
 <section style="max-width:1100px;margin:0 auto;padding:24px 16px;font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:#1f2937;line-height:1.8;">
 
-    <!-- ===================== Header ===================== -->
-    <div style="background:linear-gradient(135deg,#714b67 0%,#217346 100%);border-radius:18px;padding:40px 32px;text-align:center;color:#ffffff;">
-        <img src="icon.png" alt="Stock Card Report" style="width:96px;height:96px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.35);" />
-        <h1 style="margin:18px 0 6px;font-size:34px;color:#ffffff;">Stock Card Report</h1>
-        <h2 style="margin:0;font-size:22px;font-weight:600;color:#e9fff1;">Product movement history with running balance — HTML, PDF &amp; XLSX</h2>
-        <p style="margin:14px auto 0;max-width:760px;font-size:16px;color:#f3f4f6;">
-            Generate a detailed stock card for any product and location, straight from Inventory Reporting:
-            opening balance, every In / Out movement and the running balance — viewable on screen,
-            printable as PDF, or exported to a styled Excel file.
-        </p>
-        <div style="margin-top:18px;">
-            <span style="display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);border-radius:30px;padding:6px 18px;margin:4px;font-size:14px;">Odoo 17 Community &amp; Enterprise</span>
-            <span style="display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);border-radius:30px;padding:6px 18px;margin:4px;font-size:14px;">Fully standalone — no report_xlsx needed</span>
-            <span style="display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);border-radius:30px;padding:6px 18px;margin:4px;font-size:14px;">Powered by openpyxl</span>
-        </div>
-    </div>
-
+  
     <!-- ===================== Features ===================== -->
     <div style="margin-top:34px;">
         <h2 style="text-align:center;font-size:26px;color:#714b67;margin-bottom:6px;">Key Features</h2>
-        <p style="text-align:center;color:#6b7280;margin-top:0;">One single module — the XLSX engine, controllers and report are all built in</p>
+        <p style="text-align:center;color:#6b7280;margin-top:0;">One single module the XLSX engine, controllers and report are all built in</p>
         <table style="width:100%;border-collapse:separate;border-spacing:12px;">
             <tr>
                 <td style="width:50%;background:#f8f5f7;border:1px solid #e5e0e4;border-radius:14px;padding:18px 20px;vertical-align:top;">
                     <b style="color:#714b67;font-size:17px;">Three output formats</b>
-                    <p style="margin:6px 0 0;color:#4b5563;font-size:14px;">Interactive on-screen view with Print / Export buttons, a clean A4 PDF, and a formatted XLSX workbook.</p>
+                    <p style="margin:6px 0 0;color:#4b5563;font-size:14px;">Interactive on-screen view with Print Export buttons, a clean A4 PDF, and a formatted XLSX workbook.</p>
                 </td>
                 <td style="width:50%;background:#f0f8f2;border:1px solid #dcebe0;border-radius:14px;padding:18px 20px;vertical-align:top;">
                     <b style="color:#217346;font-size:17px;">Excel export with openpyxl</b>
-                    <p style="margin:6px 0 0;color:#4b5563;font-size:14px;">The XLSX engine is rewritten on top of openpyxl — no xlsxwriter, no report_xlsx / report_xlsx_helper dependencies.</p>
+                    <p style="margin:6px 0 0;color:#4b5563;font-size:14px;">The XLSX engine is rewritten on top of openpyxl no xlsxwriter, no report_xlsx / report_xlsx_helper dependencies.</p>
                 </td>
             </tr>
             <tr>
@@ -112,7 +96,7 @@
     <div style="margin-top:40px;background:#fffbeb;border:1px solid #fde68a;border-radius:16px;padding:22px 26px;">
         <h3 style="margin:0 0 10px;color:#92400e;font-size:20px;">Technical notes</h3>
         <ul style="margin:0;padding-left:22px;color:#57534e;font-size:14.5px;">
-            <li><b>Single module</b> — the XLSX abstract engine, the <code>xlsx</code> report type, download controllers and the stock card report are all merged inside this module. The OCA <code>report_xlsx</code> / <code>report_xlsx_helper</code> modules are not required.</li>
+            <li><b>Single module</b>  the XLSX abstract engine, the <code>xlsx</code> report type, download controllers and the stock card report are all merged inside this module. The OCA <code>report_xlsx</code>  <code>report_xlsx_helper</code> modules are not required.</li>
             <li><b>openpyxl</b> is the only Python dependency (<code>pip install openpyxl</code>); xlsxwriter is not used anywhere.</li>
             <li>Report data is computed with a single SQL query over <code>stock_move</code> (state <code>done</code>), including child locations of the selected location.</li>
             <li>Depends only on the core <code>base</code>, <code>web</code> and <code>stock</code> modules.</li>
@@ -122,9 +106,9 @@
     <!-- ===================== Footer ===================== -->
     <div style="margin-top:34px;background:linear-gradient(135deg,#714b67 0%,#217346 100%);border-radius:16px;padding:26px;text-align:center;color:#fff;">
         <h3 style="margin:0 0 6px;color:#fff;font-size:20px;">Need help or a custom feature?</h3>
-        <p style="margin:0 0 4px;font-size:15px;color:#f3f4f6;">Get in touch — we are happy to support you</p>
+        <p style="margin:0 0 4px;font-size:15px;color:#f3f4f6;">Get in touch we are happy to support you</p>
         <p style="margin:0;font-size:15px;">
-            <b>Mohamed Saied</b> —
+            <b>Mohamed Saied</b> 
             <a href="mailto:mohamedsaiedd53@gmail.com" style="color:#e9fff1;text-decoration:underline;">mohamedsaiedd53@gmail.com</a>
         </p>
     </div>
