@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_mcp" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.mcp</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="MCP Server" string="MCP Server"
+                     name="mcp_odoo_connector"
+                     groups="mcp_odoo_connector.group_mcp_admin">
+
+                    <!-- General Section -->
+                    <block title="General" name="mcp_general">
+                        <setting string="Enable MCP Server"
+                                 help="Master switch to enable/disable all MCP API endpoints.">
+                            <field name="mcp_enabled"/>
+                        </setting>
+                        <setting string="YOLO Mode"
+                                 help="WARNING: Bypasses MCP permission checks. NEVER use in production!"
+                                 invisible="not mcp_enabled">
+                            <field name="mcp_yolo_mode"/>
+                            <div invisible="mcp_yolo_mode == 'disabled'"
+                                 class="text-danger fw-bold mt-2">
+                                YOLO mode is active! MCP permissions are bypassed.
+                                Do NOT use this in production environments.
+                            </div>
+                        </setting>
+                    </block>
+
+                    <!-- Security Section -->
+                    <block title="Security" name="mcp_security"
+                           invisible="not mcp_enabled">
+                        <setting string="Rate Limit"
+                                 help="Maximum API requests per user per minute. Set 0 to disable.">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-4" for="mcp_rate_limit"
+                                           string="Requests per minute"/>
+                                    <field name="mcp_rate_limit" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Max Records Per Request"
+                                 help="Limit the number of records returned in a single API response.">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-4" for="mcp_max_records_per_request"
+                                           string="Maximum records"/>
+                                    <field name="mcp_max_records_per_request" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="IP Whitetree"
+                                 help="Restrict MCP access to specific IP addresses. Comma-separated. Leave empty to allow all.">
+                            <field name="mcp_allowed_ips"
+                                   placeholder="192.168.1.100, 10.0.0.50"/>
+                        </setting>
+                    </block>
+
+                    <!-- Caching Section -->
+                    <block title="Caching" name="mcp_caching"
+                           invisible="not mcp_enabled">
+                        <setting string="Response Caching"
+                                 help="Cache read-only API responses for better performance.">
+                            <field name="mcp_cache_enabled"/>
+                            <div invisible="not mcp_cache_enabled"
+                                 class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-4" for="mcp_default_cache_ttl"
+                                           string="Default TTL (seconds)"/>
+                                    <field name="mcp_default_cache_ttl" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <!-- In-App Chat Section -->
+                    <block title="In-App AI Chat" name="mcp_ai_chat"
+                           invisible="not mcp_enabled">
+                        <setting string="Enable In-App Chat"
+                                 help="Show a chat screen inside Odoo that talks to an external AI provider (e.g. OpenAI, Kimi, etc.).">
+                            <field name="mcp_ai_chat_enabled"/>
+                        </setting>
+                        <setting string="Chat Provider"
+                                 invisible="not mcp_ai_chat_enabled"
+                                 help="Select the HTTP API format for the AI chat provider.">
+                            <field name="mcp_ai_chat_provider"/>
+                        </setting>
+                        <setting string="Provider Configuration"
+                                 invisible="not mcp_ai_chat_enabled"
+                                 help="Configure the HTTP endpoint and credentials for the selected AI chat provider.">
+                            <group invisible="mcp_ai_chat_provider != 'openai'">
+                                <label string="OpenAI-compatible endpoint" for="mcp_ai_chat_endpoint"/>
+                                <field name="mcp_ai_chat_endpoint"
+                                       placeholder="https://api.openai.com/v1/chat/completions"/>
+                                <field name="mcp_ai_chat_api_key" password="True"/>
+                                <field name="mcp_ai_chat_model"
+                                       placeholder="gpt-4o-mini"/>
+                            </group>
+                            <group invisible="mcp_ai_chat_provider != 'gemini'">
+                                <label string="Gemini endpoint (model base URL)" for="mcp_ai_chat_endpoint"/>
+                                <field name="mcp_ai_chat_endpoint"
+                                       placeholder="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash"/>
+                                <field name="mcp_ai_chat_api_key" password="True"
+                                       placeholder="Google API key (used as ?key=...)"/>
+                                <field name="mcp_ai_chat_model"
+                                       placeholder="(optional, for your own reference only)"/>
+                            </group>
+                            <group invisible="mcp_ai_chat_provider != 'ollama'">
+                                <label string="Ollama Server URL" for="mcp_ai_chat_endpoint"/>
+                                <field name="mcp_ai_chat_endpoint"
+                                       placeholder="http://localhost:11434"/>
+                                <field name="mcp_ai_chat_model"
+                                       placeholder="llama3"/>
+                                <div class="text-muted mt-2">
+                                    <i class="fa fa-info-circle"/>
+                                    Ollama is free and runs locally. No API key needed.
+                                    Install from <a href="https://ollama.ai" target="_blank">ollama.ai</a>
+                                </div>
+                            </group>
+                        </setting>
+                    </block>
+
+                    <!-- Logging Section -->
+                    <block title="Audit Logging" name="mcp_logging"
+                           invisible="not mcp_enabled">
+                        <setting string="Audit Logging"
+                                 help="Log all MCP API requests for compliance and debugging.">
+                            <field name="mcp_logging_enabled"/>
+                            <div invisible="not mcp_logging_enabled"
+                                 class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-4" for="mcp_log_retention_days"
+                                           string="Retention (days)"/>
+                                    <field name="mcp_log_retention_days" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <!-- Quick Links Section -->
+                    <block title="Quick Links" name="mcp_links"
+                           invisible="not mcp_enabled">
+                        <setting string="Management"
+                                 help="Quick access to MCP configuration.">
+                            <div class="mt-2">
+                                <button name="action_open_mcp_model_access"
+                                        type="object"
+                                        string="Manage Model Access"
+                                        class="btn-link"
+                                        icon="oi-arrow-right"/>
+                                <br/>
+                                <button name="action_open_mcp_audit_log"
+                                        type="object"
+                                        string="View Audit Logs"
+                                        class="btn-link"
+                                        icon="oi-arrow-right"/>
+                            </div>
+                        </setting>
+                    </block>
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
