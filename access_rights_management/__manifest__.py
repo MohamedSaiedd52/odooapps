@@ -115,7 +115,7 @@ ORM-cached.
             'access_rights_management/static/src/simulate/simulate_banner.scss',
         ],
     },
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.gif'],
     'post_init_hook': 'post_init_hook',
     'application': True,
     'installable': True,
