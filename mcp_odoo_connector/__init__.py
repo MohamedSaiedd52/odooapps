@@ -16,16 +16,25 @@ def pre_init_hook(env_or_cr):
             return False
         return True
 
+    def _column_exists(table, column):
+        cr.execute(
+            "SELECT 1 FROM information_schema.columns "
+            "WHERE table_name = %s AND column_name = %s",
+            (table, column),
+        )
+        return bool(cr.fetchone())
+
     # ir_model.abstract: compat with simplify_access_management
     _safe_execute("""
         ALTER TABLE ir_model
         ADD COLUMN IF NOT EXISTS abstract boolean DEFAULT false
     """)
-    # Copy values if the source column exists in this DB
-    _safe_execute("""
-        UPDATE ir_model SET abstract = is_abstract
-        WHERE is_abstract IS NOT NULL
-    """)
+    # Copy values only if the source column exists in this DB
+    if _column_exists('ir_model', 'is_abstract'):
+        _safe_execute("""
+            UPDATE ir_model SET abstract = is_abstract
+            WHERE is_abstract IS NOT NULL
+        """)
 
     # discuss_channel.is_mcp_ai_channel: our MCP AI channel flag
     _safe_execute("""

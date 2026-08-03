@@ -343,7 +343,7 @@ class MCPController(http.Controller):
                 } if user.company_id else None,
                 'groups': [
                     {'id': g.id, 'name': g.full_name}
-                    for g in user.group_ids[:20]
+                    for g in (user.group_ids if 'group_ids' in user._fields else user.groups_id)[:20]
                 ],
                 'is_mcp_admin': user.has_group('mcp_odoo_connector.group_mcp_admin'),
                 'is_mcp_user': user.has_group('mcp_odoo_connector.group_mcp_user'),

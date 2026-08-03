@@ -3,10 +3,13 @@
 import json
 import logging
 
-from odoo import _, http
+from odoo import _, http, release
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
+
+# Odoo 19 renamed route type 'json' to 'jsonrpc'
+JSON_ROUTE_TYPE = "jsonrpc" if release.version_info[0] >= 19 else "json"
 
 try:
     import requests as py_requests
@@ -17,7 +20,7 @@ except Exception:
 class MCPChatbotController(http.Controller):
     """JSON-RPC controller for the OWL chatbot widget."""
 
-    @http.route("/mcp/chatbot/send", type="json", auth="user", methods=["POST"])
+    @http.route("/mcp/chatbot/send", type=JSON_ROUTE_TYPE, auth="user", methods=["POST"])
     def chatbot_send(self, message="", session_id=None):
         """Receive a user message, call AI with full context, return the reply."""
         user = request.env.user

@@ -108,8 +108,7 @@ class MCPAuditLog(models.Model):
         default='rest',
     )
 
-    _display_name_depends = ['model_name', 'operation', 'timestamp']
-
+    @api.depends('model_name', 'operation', 'timestamp')
     def _compute_display_name(self):
         for record in self:
             record.display_name = f"{record.model_name} / {record.operation} ({record.timestamp})"

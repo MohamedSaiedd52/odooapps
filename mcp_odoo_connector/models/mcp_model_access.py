@@ -71,9 +71,16 @@ class MCPModelAccess(models.Model):
         help='Admin notes about why this model is exposed via MCP.',
     )
 
-    _sql_constraints = [
-        ('unique_model_id', 'unique(model_id)', 'Each model can only have one MCP access configuration.'),
-    ]
+    # Odoo 19 dropped _sql_constraints in favor of models.Constraint
+    if hasattr(models, 'Constraint'):
+        _unique_model_id = models.Constraint(
+            'UNIQUE(model_id)',
+            'Each model can only have one MCP access configuration.',
+        )
+    else:
+        _sql_constraints = [
+            ('unique_model_id', 'unique(model_id)', 'Each model can only have one MCP access configuration.'),
+        ]
 
     @api.depends('model_id', 'model_id.name')
     def _compute_name(self):
@@ -149,7 +156,9 @@ class MCPModelAccess(models.Model):
         self.ensure_one()
         if not self.group_ids:
             return True
-        return bool(self.group_ids & user.group_ids)
+        # res.users group field: groups_id (Odoo <= 18) / group_ids (Odoo 19+)
+        user_groups = user.group_ids if 'group_ids' in user._fields else user.groups_id
+        return bool(self.group_ids & user_groups)
 
     @api.model
     def get_access_for_model(self, model_name, user=None):

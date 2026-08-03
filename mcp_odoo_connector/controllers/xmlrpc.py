@@ -11,6 +11,7 @@ from ..models.mcp_model_access import BLOCKED_MODELS
 from ..utils.auth import (
     get_client_ip, get_user_agent, check_ip_whitelist, check_rate_limit,
     check_auth_rate_limit, record_auth_failure,
+    session_authenticate, users_authenticate,
 )
 
 _logger = logging.getLogger(__name__)
@@ -141,8 +142,7 @@ class MCPXmlRpcController(http.Controller):
                 return _xmlrpc_fault(429, f'Too many failed authentication attempts. Retry after {retry_after}s.')
 
             try:
-                # Odoo 17: session authentication helper returns uid or False
-                uid = request.session.authenticate(db, login, password)
+                uid = session_authenticate(request, db, login, password)
                 if not uid:
                     raise AccessDenied("Authentication failed.")
                 self._log_activity(uid, '', 'auth', 'success', method_name='authenticate')
@@ -199,12 +199,12 @@ class MCPXmlRpcController(http.Controller):
                 scope='rpc', key=password
             )
             if not auth_uid:
-                # API key failed, try password auth (Odoo 17)
+                # API key failed, try password auth
                 user_record = request.env['res.users'].sudo().browse(uid)
                 if not user_record.exists():
                     raise AccessDenied("User not found.")
-                auth_uid = request.env['res.users'].authenticate(
-                    db, user_record.login, password, {'interactive': False}
+                auth_uid = users_authenticate(
+                    request, db, user_record.login, password
                 )
 
             if not auth_uid or auth_uid != uid:

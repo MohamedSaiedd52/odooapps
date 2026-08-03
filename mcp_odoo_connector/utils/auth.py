@@ -5,9 +5,54 @@ import re
 import time
 import threading
 
+from odoo import release
 from odoo.exceptions import AccessDenied
 
 _logger = logging.getLogger(__name__)
+
+ODOO_MAJOR = release.version_info[0]
+
+
+def session_authenticate(request, db, login, password):
+    """Version-agnostic wrapper around request.session.authenticate().
+
+    - Odoo 17: authenticate(db, login, password) -> uid
+    - Odoo 18: authenticate(db, credential) -> auth_info dict
+    - Odoo 19: authenticate(env, credential) -> auth_info dict
+    Returns the uid or False.
+    """
+    if ODOO_MAJOR >= 18:
+        credential = {'login': login, 'password': password, 'type': 'password'}
+        if ODOO_MAJOR >= 19:
+            auth_info = request.session.authenticate(request.env, credential)
+        else:
+            auth_info = request.session.authenticate(db, credential)
+        if isinstance(auth_info, dict):
+            return auth_info.get('uid')
+        return auth_info
+    return request.session.authenticate(db, login, password)
+
+
+def users_authenticate(request, db, login, password):
+    """Version-agnostic wrapper around res.users.authenticate().
+
+    - Odoo 17: authenticate(db, login, password, env) -> uid
+    - Odoo 18: authenticate(db, credential, env) -> auth_info dict
+    - Odoo 19: authenticate(credential, env) -> auth_info dict
+    Returns the uid or False.
+    """
+    Users = request.env['res.users']
+    user_agent_env = {'interactive': False}
+    if ODOO_MAJOR >= 18:
+        credential = {'login': login, 'password': password, 'type': 'password'}
+        if ODOO_MAJOR >= 19:
+            auth_info = Users.authenticate(credential, user_agent_env)
+        else:
+            auth_info = Users.authenticate(db, credential, user_agent_env)
+        if isinstance(auth_info, dict):
+            return auth_info.get('uid')
+        return auth_info
+    return Users.authenticate(db, login, password, user_agent_env)
 
 # Thread-safe rate limiter storage: {user_id: [(timestamp, ...),]}
 _rate_limit_store = {}
@@ -66,8 +111,7 @@ def _authenticate_basic(request, encoded):
 
     try:
         db_name = request.env.cr.dbname
-        # Odoo 17: authenticate via HTTP session helper
-        uid = request.session.authenticate(db_name, login, password)
+        uid = session_authenticate(request, db_name, login, password)
         if not uid:
             raise AccessDenied("Invalid credentials.")
         user = request.env['res.users'].sudo().browse(uid)
