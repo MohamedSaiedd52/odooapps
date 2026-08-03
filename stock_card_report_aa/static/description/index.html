@@ -1,0 +1,132 @@
+<section style="max-width:1100px;margin:0 auto;padding:24px 16px;font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:#1f2937;line-height:1.8;">
+
+    <!-- ===================== Header ===================== -->
+    <div style="background:linear-gradient(135deg,#714b67 0%,#217346 100%);border-radius:18px;padding:40px 32px;text-align:center;color:#ffffff;">
+        <img src="icon.png" alt="Stock Card Report" style="width:96px;height:96px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.35);" />
+        <h1 style="margin:18px 0 6px;font-size:34px;color:#ffffff;">Stock Card Report</h1>
+        <h2 style="margin:0;font-size:22px;font-weight:600;color:#e9fff1;">Product movement history with running balance — HTML, PDF &amp; XLSX</h2>
+        <p style="margin:14px auto 0;max-width:760px;font-size:16px;color:#f3f4f6;">
+            Generate a detailed stock card for any product and location, straight from Inventory Reporting:
+            opening balance, every In / Out movement and the running balance — viewable on screen,
+            printable as PDF, or exported to a styled Excel file.
+        </p>
+        <div style="margin-top:18px;">
+            <span style="display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);border-radius:30px;padding:6px 18px;margin:4px;font-size:14px;">Odoo 17 Community &amp; Enterprise</span>
+            <span style="display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);border-radius:30px;padding:6px 18px;margin:4px;font-size:14px;">Fully standalone — no report_xlsx needed</span>
+            <span style="display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);border-radius:30px;padding:6px 18px;margin:4px;font-size:14px;">Powered by openpyxl</span>
+        </div>
+    </div>
+
+    <!-- ===================== Features ===================== -->
+    <div style="margin-top:34px;">
+        <h2 style="text-align:center;font-size:26px;color:#714b67;margin-bottom:6px;">Key Features</h2>
+        <p style="text-align:center;color:#6b7280;margin-top:0;">One single module — the XLSX engine, controllers and report are all built in</p>
+        <table style="width:100%;border-collapse:separate;border-spacing:12px;">
+            <tr>
+                <td style="width:50%;background:#f8f5f7;border:1px solid #e5e0e4;border-radius:14px;padding:18px 20px;vertical-align:top;">
+                    <b style="color:#714b67;font-size:17px;">Three output formats</b>
+                    <p style="margin:6px 0 0;color:#4b5563;font-size:14px;">Interactive on-screen view with Print / Export buttons, a clean A4 PDF, and a formatted XLSX workbook.</p>
+                </td>
+                <td style="width:50%;background:#f0f8f2;border:1px solid #dcebe0;border-radius:14px;padding:18px 20px;vertical-align:top;">
+                    <b style="color:#217346;font-size:17px;">Excel export with openpyxl</b>
+                    <p style="margin:6px 0 0;color:#4b5563;font-size:14px;">The XLSX engine is rewritten on top of openpyxl — no xlsxwriter, no report_xlsx / report_xlsx_helper dependencies.</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="background:#f0f8f2;border:1px solid #dcebe0;border-radius:14px;padding:18px 20px;vertical-align:top;">
+                    <b style="color:#217346;font-size:17px;">One sheet per product</b>
+                    <p style="margin:6px 0 0;color:#4b5563;font-size:14px;">Select several products at once — each gets its own worksheet with filters, opening balance and a running balance column.</p>
+                </td>
+                <td style="background:#f8f5f7;border:1px solid #e5e0e4;border-radius:14px;padding:18px 20px;vertical-align:top;">
+                    <b style="color:#714b67;font-size:17px;">Location aware</b>
+                    <p style="margin:6px 0 0;color:#4b5563;font-size:14px;">Pick any stock location — child locations are included automatically, and In / Out are computed against it.</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ===================== Steps ===================== -->
+    <div style="margin-top:40px;">
+        <h2 style="text-align:center;font-size:26px;color:#714b67;">Step-by-step Guide</h2>
+
+        <!-- Step 1 -->
+        <div style="margin-top:26px;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06);">
+            <div style="padding:16px 22px;background:#faf7f9;border-bottom:1px solid #eee;">
+                <span style="display:inline-block;background:#714b67;color:#fff;border-radius:50%;width:34px;height:34px;line-height:34px;text-align:center;font-weight:bold;font-size:16px;">1</span>
+                <b style="font-size:19px;margin-left:10px;color:#111827;">Install the module</b>
+                <p style="margin:8px 0 0;color:#4b5563;font-size:14.5px;">Open <b>Apps</b>, search for <b>Stock Card Report</b> and install it.
+                    The only requirement is the <code>openpyxl</code> Python library — no other Odoo module is needed.</p>
+            </div>
+            <img src="screenshots/01_apps.png" alt="Install the module" style="width:100%;display:block;" />
+        </div>
+
+        <!-- Step 2 -->
+        <div style="margin-top:26px;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06);">
+            <div style="padding:16px 22px;background:#faf7f9;border-bottom:1px solid #eee;">
+                <span style="display:inline-block;background:#714b67;color:#fff;border-radius:50%;width:34px;height:34px;line-height:34px;text-align:center;font-weight:bold;font-size:16px;">2</span>
+                <b style="font-size:19px;margin-left:10px;color:#111827;">Open the report from Inventory Reporting</b>
+                <p style="margin:8px 0 0;color:#4b5563;font-size:14.5px;">Go to <b>Inventory → Reporting → Stock Card</b>.
+                    Access is controlled by the <b>Stock Card Report User</b> group added by the module.</p>
+            </div>
+            <img src="screenshots/02_menu.png" alt="Reporting menu" style="width:100%;display:block;" />
+        </div>
+
+        <!-- Step 3 -->
+        <div style="margin-top:26px;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06);">
+            <div style="padding:16px 22px;background:#faf7f9;border-bottom:1px solid #eee;">
+                <span style="display:inline-block;background:#714b67;color:#fff;border-radius:50%;width:34px;height:34px;line-height:34px;text-align:center;font-weight:bold;font-size:16px;">3</span>
+                <b style="font-size:19px;margin-left:10px;color:#111827;">Set your filters</b>
+                <p style="margin:8px 0 0;color:#4b5563;font-size:14.5px;">In the wizard, choose the <b>date range</b>, one or more <b>products</b> and the <b>location</b>.
+                    Then pick your output: <b>View</b> (on screen), <b>Export PDF</b> or <b>Export XLSX</b>.
+                    Movements before the start date are summarized into the opening balance.</p>
+            </div>
+            <img src="screenshots/03_wizard.png" alt="Stock Card wizard" style="width:100%;display:block;" />
+        </div>
+
+        <!-- Step 4 -->
+        <div style="margin-top:26px;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06);">
+            <div style="padding:16px 22px;background:#faf7f9;border-bottom:1px solid #eee;">
+                <span style="display:inline-block;background:#714b67;color:#fff;border-radius:50%;width:34px;height:34px;line-height:34px;text-align:center;font-weight:bold;font-size:16px;">4</span>
+                <b style="font-size:19px;margin-left:10px;color:#111827;">Review the report on screen</b>
+                <p style="margin:8px 0 0;color:#4b5563;font-size:14.5px;">The <b>View</b> option renders the stock card right in the backend:
+                    date, reference (with source document), In, Out and the running <b>Balance</b> for every movement.
+                    Use the <b>Print</b> and <b>Export</b> buttons at the top to get the PDF or the Excel file without reopening the wizard.</p>
+            </div>
+            <img src="screenshots/04_html_view.png" alt="On-screen report" style="width:100%;display:block;" />
+        </div>
+
+        <!-- Step 5 -->
+        <div style="margin-top:26px;background:#ffffff;border:1px solid #217346;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(33,115,70,.15);">
+            <div style="padding:16px 22px;background:#eef8f1;border-bottom:1px solid #d8ecdf;">
+                <span style="display:inline-block;background:#217346;color:#fff;border-radius:50%;width:34px;height:34px;line-height:34px;text-align:center;font-weight:bold;font-size:16px;">5</span>
+                <b style="font-size:19px;margin-left:10px;color:#111827;">Get a clean, formatted Excel file</b>
+                <p style="margin:8px 0 0;color:#4b5563;font-size:14.5px;"><b>Export XLSX</b> downloads a workbook generated with <b>openpyxl</b>:
+                    a worksheet per product, highlighted headers, bordered cells, date and number formats,
+                    frozen header rows and print-ready page setup.</p>
+            </div>
+            <img src="screenshots/05_xlsx_output.png" alt="Generated XLSX file" style="width:100%;display:block;" />
+        </div>
+    </div>
+
+    <!-- ===================== Technical ===================== -->
+    <div style="margin-top:40px;background:#fffbeb;border:1px solid #fde68a;border-radius:16px;padding:22px 26px;">
+        <h3 style="margin:0 0 10px;color:#92400e;font-size:20px;">Technical notes</h3>
+        <ul style="margin:0;padding-left:22px;color:#57534e;font-size:14.5px;">
+            <li><b>Single module</b> — the XLSX abstract engine, the <code>xlsx</code> report type, download controllers and the stock card report are all merged inside this module. The OCA <code>report_xlsx</code> / <code>report_xlsx_helper</code> modules are not required.</li>
+            <li><b>openpyxl</b> is the only Python dependency (<code>pip install openpyxl</code>); xlsxwriter is not used anywhere.</li>
+            <li>Report data is computed with a single SQL query over <code>stock_move</code> (state <code>done</code>), including child locations of the selected location.</li>
+            <li>Depends only on the core <code>base</code>, <code>web</code> and <code>stock</code> modules.</li>
+        </ul>
+    </div>
+
+    <!-- ===================== Footer ===================== -->
+    <div style="margin-top:34px;background:linear-gradient(135deg,#714b67 0%,#217346 100%);border-radius:16px;padding:26px;text-align:center;color:#fff;">
+        <h3 style="margin:0 0 6px;color:#fff;font-size:20px;">Need help or a custom feature?</h3>
+        <p style="margin:0 0 4px;font-size:15px;color:#f3f4f6;">Get in touch — we are happy to support you</p>
+        <p style="margin:0;font-size:15px;">
+            <b>Mohamed Saied</b> —
+            <a href="mailto:mohamedsaiedd53@gmail.com" style="color:#e9fff1;text-decoration:underline;">mohamedsaiedd53@gmail.com</a>
+        </p>
+    </div>
+
+</section>
