@@ -49,7 +49,7 @@ Features:
             'mcp_odoo_connector/static/src/components/mcp_chatbot.xml',
         ],
     },
-    "images": ["static/description/banner.png"],
+    "images": ["static/description/banner.gif"],
     'pre_init_hook': 'pre_init_hook',
     'installable': True,
     'application': True,
