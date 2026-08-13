@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_irio_approval" model="ir.ui.view">
+        <field name="name">sale.order.form.irio.approval</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="irio_needs_approval" invisible="1"/>
+                <field name="irio_approval_request_id" invisible="1"/>
+                <button name="action_irio_request_approval" type="object"
+                        string="Submit for Approval" class="btn-warning"
+                        invisible="not irio_needs_approval"/>
+                <field name="irio_approval_state" widget="badge"
+                       decoration-warning="irio_approval_state == 'pending'"
+                       decoration-success="irio_approval_state == 'approved'"
+                       decoration-danger="irio_approval_state in ('rejected', 'cancelled')"
+                       invisible="not irio_approval_request_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_form_irio_approval" model="ir.ui.view">
+        <field name="name">purchase.order.form.irio.approval</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="irio_needs_approval" invisible="1"/>
+                <field name="irio_approval_request_id" invisible="1"/>
+                <button name="action_irio_request_approval" type="object"
+                        string="Submit for Approval" class="btn-warning"
+                        invisible="not irio_needs_approval"/>
+                <field name="irio_approval_state" widget="badge"
+                       decoration-warning="irio_approval_state == 'pending'"
+                       decoration-success="irio_approval_state == 'approved'"
+                       decoration-danger="irio_approval_state in ('rejected', 'cancelled')"
+                       invisible="not irio_approval_request_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_form_irio_approval" model="ir.ui.view">
+        <field name="name">account.move.form.irio.approval</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="irio_needs_approval" invisible="1"/>
+                <field name="irio_approval_request_id" invisible="1"/>
+                <button name="action_irio_request_approval" type="object"
+                        string="Submit for Approval" class="btn-warning"
+                        invisible="not irio_needs_approval"/>
+                <field name="irio_approval_state" widget="badge"
+                       decoration-warning="irio_approval_state == 'pending'"
+                       decoration-success="irio_approval_state == 'approved'"
+                       decoration-danger="irio_approval_state in ('rejected', 'cancelled')"
+                       invisible="not irio_approval_request_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_form_irio_approval" model="ir.ui.view">
+        <field name="name">stock.picking.form.irio.approval</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="irio_needs_approval" invisible="1"/>
+                <field name="irio_approval_request_id" invisible="1"/>
+                <button name="action_irio_request_approval" type="object"
+                        string="Submit for Approval" class="btn-warning"
+                        invisible="not irio_needs_approval"/>
+                <field name="irio_approval_state" widget="badge"
+                       decoration-warning="irio_approval_state == 'pending'"
+                       decoration-success="irio_approval_state == 'approved'"
+                       decoration-danger="irio_approval_state in ('rejected', 'cancelled')"
+                       invisible="not irio_approval_request_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

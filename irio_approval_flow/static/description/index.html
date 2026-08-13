@@ -1,0 +1,93 @@
+<div style="max-width: 900px; margin: 0 auto; font-family: 'Segoe UI', Arial, sans-serif; color: #12172b;">
+
+    <img src="banner.gif" alt="Approval Matrix &amp; Workflow" style="width: 100%; border-radius: 10px; margin-bottom: 24px;"/>
+
+    <h1 style="font-size: 30px; margin: 0 0 6px; text-align: center;">Approval Matrix &amp; Workflow</h1>
+    <p style="text-align: center; color: #5a6178; font-size: 16px; margin: 0 0 8px;">
+        Amount-based multi-level approvals for Sales Orders, Purchase Orders, Invoices and Stock Transfers -
+        with escalation, vacation delegation and a full audit trail.
+    </p>
+    <p style="text-align: center; margin: 0 0 30px;">
+        <span style="background: #eef0ff; color: #4f46e5; border-radius: 999px; padding: 4px 14px; font-weight: 600; font-size: 13px; margin: 0 3px;">Odoo 17</span>
+        <span style="background: #eef0ff; color: #4f46e5; border-radius: 999px; padding: 4px 14px; font-weight: 600; font-size: 13px; margin: 0 3px;">Odoo 18</span>
+        <span style="background: #eef0ff; color: #4f46e5; border-radius: 999px; padding: 4px 14px; font-weight: 600; font-size: 13px; margin: 0 3px;">Odoo 19</span>
+        <span style="background: #e8f7ef; color: #0a7d4f; border-radius: 999px; padding: 4px 14px; font-weight: 600; font-size: 13px; margin: 0 3px;">Community &amp; Enterprise</span>
+    </p>
+
+    <table style="width: 100%; border-collapse: separate; border-spacing: 10px; margin-bottom: 26px;">
+        <tr>
+            <td style="width: 33%; background: #f6f8fc; border: 1px solid #e4e8f2; border-radius: 12px; padding: 16px; vertical-align: top;">
+                <p style="font-weight: 700; margin: 0 0 6px;">&#128203; Approval Matrix</p>
+                <p style="color: #5a6178; font-size: 13.5px; margin: 0;">Amount ranges per document type and company. The most specific rule wins automatically.</p>
+            </td>
+            <td style="width: 33%; background: #f6f8fc; border: 1px solid #e4e8f2; border-radius: 12px; padding: 16px; vertical-align: top;">
+                <p style="font-weight: 700; margin: 0 0 6px;">&#128274; Real Blocking</p>
+                <p style="color: #5a6178; font-size: 13.5px; margin: 0;">Confirmation, posting and validation are blocked until approved - no bypass.</p>
+            </td>
+            <td style="width: 33%; background: #f6f8fc; border: 1px solid #e4e8f2; border-radius: 12px; padding: 16px; vertical-align: top;">
+                <p style="font-weight: 700; margin: 0 0 6px;">&#128101; Multi-Level Quorum</p>
+                <p style="color: #5a6178; font-size: 13.5px; margin: 0;">Unlimited levels; several approvers per level with an any-of quorum (e.g. 2 of 3).</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="background: #f6f8fc; border: 1px solid #e4e8f2; border-radius: 12px; padding: 16px; vertical-align: top;">
+                <p style="font-weight: 700; margin: 0 0 6px;">&#9200; Escalation</p>
+                <p style="color: #5a6178; font-size: 13.5px; margin: 0;">Overdue levels re-notify approvers daily and give the next level a heads-up.</p>
+            </td>
+            <td style="background: #f6f8fc; border: 1px solid #e4e8f2; border-radius: 12px; padding: 16px; vertical-align: top;">
+                <p style="font-weight: 700; margin: 0 0 6px;">&#127958; Vacation Delegation</p>
+                <p style="color: #5a6178; font-size: 13.5px; margin: 0;">Delegate approvals for a date range; the trail records who really acted.</p>
+            </td>
+            <td style="background: #f6f8fc; border: 1px solid #e4e8f2; border-radius: 12px; padding: 16px; vertical-align: top;">
+                <p style="font-weight: 700; margin: 0 0 6px;">&#128270; Full Audit Trail</p>
+                <p style="color: #5a6178; font-size: 13.5px; margin: 0;">Levels, timestamps, actors and chatter history are kept on every request.</p>
+            </td>
+        </tr>
+    </table>
+
+    <h2 style="font-size: 22px; margin: 26px 0 4px;">Build your approval matrix in one grid</h2>
+    <p style="color: #5a6178; margin: 0 0 10px;">Each rule = document type + amount range + the chain of levels that must approve.</p>
+    <img src="shots/01_rules_matrix.png" alt="Approval rules matrix" style="width: 100%; border: 1px solid #e4e8f2; border-radius: 10px; margin-bottom: 8px;"/>
+    <img src="shots/02_rule_form.png" alt="Approval rule form with levels" style="width: 100%; border: 1px solid #e4e8f2; border-radius: 10px; margin-bottom: 26px;"/>
+
+    <h2 style="font-size: 22px; margin: 26px 0 4px;">Documents are really blocked</h2>
+    <p style="color: #5a6178; margin: 0 0 10px;">A Sales Order over the threshold cannot be confirmed before approval.</p>
+    <img src="shots/03_so_submit_button_annotated.png" alt="Submit for approval button on sales order" style="width: 100%; border: 1px solid #e4e8f2; border-radius: 10px; margin-bottom: 8px;"/>
+    <img src="shots/04_blocked_dialog_annotated.png" alt="Confirmation blocked dialog" style="width: 100%; border: 1px solid #e4e8f2; border-radius: 10px; margin-bottom: 26px;"/>
+
+    <h2 style="font-size: 22px; margin: 26px 0 4px;">Approve level by level - with full visibility</h2>
+    <p style="color: #5a6178; margin: 0 0 10px;">Approvers get activities; each level shows its quorum, deadline and who already approved.</p>
+    <img src="shots/07_request_form_annotated.png" alt="Approval request form" style="width: 100%; border: 1px solid #e4e8f2; border-radius: 10px; margin-bottom: 8px;"/>
+    <img src="shots/08_request_approved.png" alt="Approved request" style="width: 100%; border: 1px solid #e4e8f2; border-radius: 10px; margin-bottom: 26px;"/>
+
+    <h2 style="font-size: 22px; margin: 26px 0 4px;">Going on vacation? Delegate.</h2>
+    <p style="color: #5a6178; margin: 0 0 10px;">Your delegate approves in your place for a date range - recorded transparently.</p>
+    <img src="shots/09_delegations.png" alt="Approval delegations" style="width: 100%; border: 1px solid #e4e8f2; border-radius: 10px; margin-bottom: 26px;"/>
+
+    <table style="width: 100%; border-collapse: separate; border-spacing: 10px; margin: 6px 0 26px;">
+        <tr>
+            <td style="width: 33%; text-align: center; background: #1e1b4b; color: #ffffff; border-radius: 12px; padding: 18px;">
+                <p style="font-size: 24px; font-weight: 800; margin: 0;">01</p>
+                <p style="font-weight: 700; margin: 4px 0 2px;">Define your matrix</p>
+                <p style="color: #c7d2fe; font-size: 13px; margin: 0;">Rules per document type, amount range and levels.</p>
+            </td>
+            <td style="width: 33%; text-align: center; background: #312e81; color: #ffffff; border-radius: 12px; padding: 18px;">
+                <p style="font-size: 24px; font-weight: 800; margin: 0;">02</p>
+                <p style="font-weight: 700; margin: 4px 0 2px;">Submit &amp; approve</p>
+                <p style="color: #c7d2fe; font-size: 13px; margin: 0;">Users submit; approvers act from activities and requests.</p>
+            </td>
+            <td style="width: 33%; text-align: center; background: #4f46e5; color: #ffffff; border-radius: 12px; padding: 18px;">
+                <p style="font-size: 24px; font-weight: 800; margin: 0;">03</p>
+                <p style="font-weight: 700; margin: 4px 0 2px;">Proceed safely</p>
+                <p style="color: #c7d2fe; font-size: 13px; margin: 0;">Approved documents confirm, post and validate normally.</p>
+            </td>
+        </tr>
+    </table>
+
+    <p style="text-align: center; color: #5a6178; font-size: 13px; margin: 0 0 6px;">
+        Unit-tested on every supported version before release. Need a feature or a hand? We reply fast.
+    </p>
+    <p style="text-align: center; font-weight: 700; color: #4f46e5; font-size: 15px; margin: 0 0 30px;">
+        IRIO Solutions
+    </p>
+</div>
