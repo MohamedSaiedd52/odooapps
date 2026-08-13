@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================= Approval Requests ================= -->
+    <record id="view_approval_request_tree" model="ir.ui.view">
+        <field name="name">irio.approval.request.tree</field>
+        <field name="model">irio.approval.request</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'approved'"
+                  decoration-danger="state == 'rejected'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="document_ref"/>
+                <field name="requester_id" widget="many2one_avatar_user"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="amount"/>
+                <field name="rule_id"/>
+                <field name="current_approver_ids" widget="many2many_tags"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state == 'pending'"
+                       decoration-success="state == 'approved'"
+                       decoration-danger="state == 'rejected'"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_approval_request_form" model="ir.ui.view">
+        <field name="name">irio.approval.request.form</field>
+        <field name="model">irio.approval.request</field>
+        <field name="arch" type="xml">
+            <form string="Approval Request">
+                <header>
+                    <field name="can_user_approve" invisible="1"/>
+                    <button name="action_approve" type="object" string="Approve"
+                            class="oe_highlight"
+                            invisible="not can_user_approve or state != 'pending'"/>
+                    <button name="action_reject" type="object" string="Reject"
+                            invisible="not can_user_approve or state != 'pending'"/>
+                    <button name="action_cancel" type="object" string="Cancel Request"
+                            invisible="state != 'pending'"/>
+                    <button name="action_open_document" type="object"
+                            string="Open Document" class="btn-secondary"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="document_ref"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount"/>
+                            <field name="rule_id"/>
+                        </group>
+                        <group>
+                            <field name="requester_id" widget="many2one_avatar_user"/>
+                            <field name="current_approver_ids" widget="many2many_tags"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Approval Levels" name="levels">
+                            <field name="step_ids" readonly="1">
+                                <tree decoration-success="status == 'approved'"
+                                      decoration-danger="status == 'rejected'">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="approver_ids" widget="many2many_tags"/>
+                                    <field name="min_approvals"/>
+                                    <field name="approved_user_ids" widget="many2many_tags"/>
+                                    <field name="deadline"/>
+                                    <field name="escalated"/>
+                                    <field name="status" widget="badge"
+                                           decoration-warning="status == 'pending'"
+                                           decoration-success="status == 'approved'"
+                                           decoration-danger="status == 'rejected'"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_approval_request_search" model="ir.ui.view">
+        <field name="name">irio.approval.request.search</field>
+        <field name="model">irio.approval.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="document_ref"/>
+                <field name="requester_id"/>
+                <filter name="to_approve" string="To Approve"
+                        domain="[('current_approver_ids', 'in', uid), ('state', '=', 'pending')]"/>
+                <filter name="my_requests" string="My Requests"
+                        domain="[('requester_id', '=', uid)]"/>
+                <separator/>
+                <filter name="pending" string="Pending"
+                        domain="[('state', '=', 'pending')]"/>
+                <filter name="approved" string="Approved"
+                        domain="[('state', '=', 'approved')]"/>
+                <filter name="rejected" string="Rejected"
+                        domain="[('state', '=', 'rejected')]"/>
+                <group>
+                    <filter name="group_state" string="Status"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_rule" string="Rule"
+                            context="{'group_by': 'rule_id'}"/>
+                    <filter name="group_requester" string="Requested By"
+                            context="{'group_by': 'requester_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_approval_requests" model="ir.actions.act_window">
+        <field name="name">Approval Requests</field>
+        <field name="res_model">irio.approval.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No approval requests yet</p>
+            <p>Requests appear here when documents that match an approval rule
+               are submitted for approval.</p>
+        </field>
+    </record>
+
+    <!-- ================= Approval Rules (the matrix) ================= -->
+    <record id="view_approval_rule_tree" model="ir.ui.view">
+        <field name="name">irio.approval.rule.tree</field>
+        <field name="model">irio.approval.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model_apply"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="min_amount"/>
+                <field name="max_amount"/>
+                <field name="level_count" string="Levels"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_approval_rule_form" model="ir.ui.view">
+        <field name="name">irio.approval.rule.form</field>
+        <field name="model">irio.approval.rule</field>
+        <field name="arch" type="xml">
+            <form string="Approval Rule">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Purchases above 10,000"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="model_apply"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="min_amount"/>
+                            <field name="max_amount"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Approval Levels" name="levels">
+                            <field name="level_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="user_ids" widget="many2many_tags"/>
+                                    <field name="min_approvals"/>
+                                    <field name="escalate_days"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_approval_rules" model="ir.actions.act_window">
+        <field name="name">Approval Rules</field>
+        <field name="res_model">irio.approval.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Build your approval matrix</p>
+            <p>Each rule matches one document type and an amount range, and
+               defines the chain of approval levels.</p>
+        </field>
+    </record>
+
+    <!-- ================= Delegations ================= -->
+    <record id="view_approval_delegation_tree" model="ir.ui.view">
+        <field name="name">irio.approval.delegation.tree</field>
+        <field name="model">irio.approval.delegation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="delegate_id" widget="many2one_avatar_user"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_approval_delegation_form" model="ir.ui.view">
+        <field name="name">irio.approval.delegation.form</field>
+        <field name="model">irio.approval.delegation</field>
+        <field name="arch" type="xml">
+            <form string="Delegation">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="delegate_id"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_approval_delegations" model="ir.actions.act_window">
+        <field name="name">Delegations</field>
+        <field name="res_model">irio.approval.delegation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Going on vacation?</p>
+            <p>Delegate your approvals to a colleague for a date range. Their
+               approval fills your slot and the audit trail records who acted.</p>
+        </field>
+    </record>
+
+    <!-- ================= Menus ================= -->
+    <menuitem id="menu_approvals_root" name="Approvals" sequence="56"
+              web_icon="irio_approval_flow,static/description/icon.png"/>
+    <menuitem id="menu_approval_requests" name="Requests"
+              parent="menu_approvals_root" action="action_approval_requests"
+              sequence="10"/>
+    <menuitem id="menu_approval_config" name="Configuration"
+              parent="menu_approvals_root" sequence="90"/>
+    <menuitem id="menu_approval_rules" name="Approval Rules"
+              parent="menu_approval_config" action="action_approval_rules"
+              groups="irio_approval_flow.group_approval_manager" sequence="10"/>
+    <menuitem id="menu_approval_delegations" name="Delegations"
+              parent="menu_approval_config" action="action_approval_delegations"
+              sequence="20"/>
+</odoo>

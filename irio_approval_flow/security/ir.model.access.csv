@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_approval_rule_read,irio.approval.rule read,model_irio_approval_rule,base.group_user,1,0,0,0
+access_approval_rule_manager,irio.approval.rule manager,model_irio_approval_rule,group_approval_manager,1,1,1,1
+access_approval_level_read,irio.approval.rule.level read,model_irio_approval_rule_level,base.group_user,1,0,0,0
+access_approval_level_manager,irio.approval.rule.level manager,model_irio_approval_rule_level,group_approval_manager,1,1,1,1
+access_approval_request_read,irio.approval.request read,model_irio_approval_request,base.group_user,1,0,0,0
+access_approval_request_manager,irio.approval.request manager,model_irio_approval_request,group_approval_manager,1,1,1,1
+access_approval_step_read,irio.approval.step read,model_irio_approval_step,base.group_user,1,0,0,0
+access_approval_step_manager,irio.approval.step manager,model_irio_approval_step,group_approval_manager,1,1,1,1
+access_approval_delegation_user,irio.approval.delegation user,model_irio_approval_delegation,base.group_user,1,1,1,0
+access_approval_delegation_manager,irio.approval.delegation manager,model_irio_approval_delegation,group_approval_manager,1,1,1,1
