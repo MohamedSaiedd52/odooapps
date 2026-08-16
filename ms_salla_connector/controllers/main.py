@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 
 class SallaAuth(http.Controller):
 
-    @http.route('/salla_connector/auth_callback', type='http', auth='user')
+    @http.route('/ms_salla_connector/auth_callback', type='http', auth='user')
     def salla_auth_callback(self, **kw):
         """
         Callback route for Salla OAuth2.
@@ -41,7 +41,7 @@ class SallaAuth(http.Controller):
             _logger.exception("Error during Salla Token Exchange")
             return f"Error during token exchange: {str(e)}"
 
-    @http.route('/salla_connector/webhook', type='http', auth='public',
+    @http.route('/ms_salla_connector/webhook', type='http', auth='public',
                 methods=['POST'], csrf=False)
     def salla_webhook(self, **kw):
         """
@@ -54,7 +54,7 @@ class SallaAuth(http.Controller):
         try:
             raw_body = request.httprequest.get_data()
             secret = request.env['ir.config_parameter'].sudo().get_param(
-                'salla_connector.webhook_secret')
+                'ms_salla_connector.webhook_secret')
             signature = request.httprequest.headers.get('X-Salla-Signature')
             if not verify_webhook_signature(secret, raw_body, signature):
                 _logger.warning("Salla webhook rejected: bad signature")
