@@ -32,7 +32,7 @@ Requires: Odoo Enterprise (account_reports).
 Developed by MohamedSaied
 WhatsApp: +20 101 390 7174
     """,
-    'author': 'MohamedSaied',
+    'author': 'Mohamed Saied',
     'website': 'https://wa.me/201013907174',
     'category': 'Accounting/Accounting',
     'version': '19.0.1.0.0',
@@ -43,4 +43,5 @@ WhatsApp: +20 101 390 7174
     'application': False,
     'price': 30.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

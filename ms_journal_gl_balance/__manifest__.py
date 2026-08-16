@@ -6,7 +6,7 @@
         'instead of the statement-based balance, so the kanban card always '
         'matches the GL report with a single consolidated number.'
     ),
-    'author': 'MohamedSaied',
+    'author': 'Mohamed Saied',
     'website': 'https://wa.me/201013907174',
     'category': 'Accounting',
     'license': 'LGPL-3',
@@ -16,4 +16,5 @@
     'application': False,
     'price': 25.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

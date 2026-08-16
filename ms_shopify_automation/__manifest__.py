@@ -113,9 +113,7 @@ Perfect for enterprise e-commerce businesses requiring the most advanced Shopify
         # Menu - Must be loaded last to reference all actions
         'views/menu.xml',
     ],
-    'images': [
-        'static/description/banner.png',
-    ],
+    'images': ['static/description/banner.gif'],
     'installable': True,
     'application': True,
     'license': 'LGPL-3',

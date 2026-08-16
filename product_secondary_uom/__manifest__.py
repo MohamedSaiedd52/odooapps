@@ -16,7 +16,7 @@ Features:
 
 The secondary UoM is completely independent - no automatic conversion.
     """,
-    'author': 'Custom Development',
+    'author': 'Mohamed Saied',
     'license': 'LGPL-3',
     'depends': [
         'product',
@@ -44,6 +44,7 @@ The secondary UoM is completely independent - no automatic conversion.
     'auto_install': False,
     'price': 35.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }
 
 

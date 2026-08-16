@@ -21,10 +21,7 @@
     ],
     'post_init_hook': 'post_init_hook',
     'post_load': 'post_load',
-    'images': [
-        'static/description/banner.gif',
-        'static/description/icon.png',
-    ],
+    'images': ['static/description/banner.gif'],
     'license': 'LGPL-3',
     'summary': "Sync ZKTeco Biotime (ZK devices, fingerprint, face recognition, RFID) with Odoo Attendance & HR",
     'description': """
