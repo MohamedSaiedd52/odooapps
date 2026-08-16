@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.salla</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="90"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Salla Connector" string="Salla Connector" name="salla_connector">
+                    <block title="Salla Credentials" name="salla_credentials">
+                        <setting string="API Credentials">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="salla_client_id" class="col-lg-3 o_light_label"/>
+                                    <field name="salla_client_id"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="salla_client_secret" class="col-lg-3 o_light_label"/>
+                                    <field name="salla_client_secret" password="True"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="salla_webhook_secret" class="col-lg-3 o_light_label"/>
+                                    <field name="salla_webhook_secret" password="True"/>
+                                </div>
+                                <div class="row mt16" invisible="not salla_access_token">
+                                    <label for="salla_access_token" class="col-lg-3 o_light_label"/>
+                                    <field name="salla_access_token" password="True" readonly="1"/>
+                                </div>
+                                <div class="row mt16" invisible="not salla_refresh_token">
+                                    <label for="salla_refresh_token" class="col-lg-3 o_light_label"/>
+                                    <field name="salla_refresh_token" password="True" readonly="1"/>
+                                </div>
+                                <div class="mt16">
+                                    <button name="action_salla_connect" string="Connect to Salla" type="object" class="oe_highlight" icon="fa-plug"/>
+                                    <button name="action_salla_test_connection" string="Test Connection" type="object" class="btn-secondary" icon="fa-check"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
