@@ -24,7 +24,7 @@ class SallaAPI:
         self.base_url = "https://api.salla.dev/admin/v2"
         self.token_url = "https://accounts.salla.sa/oauth2/token"
         
-        self.access_token = self.env['ir.config_parameter'].sudo().get_param('salla_connector.access_token')
+        self.access_token = self.env['ir.config_parameter'].sudo().get_param('ms_salla_connector.access_token')
         
     def _get_headers(self):
         # Check if we should refresh? (Simplified for now, assume access_token is valid or handle 401)
@@ -34,9 +34,9 @@ class SallaAPI:
         }
         
     def refresh_access_token(self):
-        refresh_token = self.env['ir.config_parameter'].sudo().get_param('salla_connector.refresh_token')
-        client_id = self.env['ir.config_parameter'].sudo().get_param('salla_connector.client_id')
-        client_secret = self.env['ir.config_parameter'].sudo().get_param('salla_connector.client_secret')
+        refresh_token = self.env['ir.config_parameter'].sudo().get_param('ms_salla_connector.refresh_token')
+        client_id = self.env['ir.config_parameter'].sudo().get_param('ms_salla_connector.client_id')
+        client_secret = self.env['ir.config_parameter'].sudo().get_param('ms_salla_connector.client_secret')
         
         if not refresh_token:
             raise Exception("No refresh token available.")
@@ -57,10 +57,10 @@ class SallaAPI:
             new_refresh_token = data.get('refresh_token')
             
             if new_access_token:
-                self.env['ir.config_parameter'].sudo().set_param('salla_connector.access_token', new_access_token)
+                self.env['ir.config_parameter'].sudo().set_param('ms_salla_connector.access_token', new_access_token)
                 self.access_token = new_access_token
             if new_refresh_token:
-                self.env['ir.config_parameter'].sudo().set_param('salla_connector.refresh_token', new_refresh_token)
+                self.env['ir.config_parameter'].sudo().set_param('ms_salla_connector.refresh_token', new_refresh_token)
                 
             return True
         except Exception as e:

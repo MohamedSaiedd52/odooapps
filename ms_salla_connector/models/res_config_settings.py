@@ -9,13 +9,13 @@ _logger = logging.getLogger(__name__)
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    salla_client_id = fields.Char(string='Client ID', config_parameter='salla_connector.client_id')
-    salla_client_secret = fields.Char(string='Client Secret', config_parameter='salla_connector.client_secret')
-    salla_access_token = fields.Char(string='Access Token', config_parameter='salla_connector.access_token', readonly=True)
-    salla_refresh_token = fields.Char(string='Refresh Token', config_parameter='salla_connector.refresh_token', readonly=True)
+    salla_client_id = fields.Char(string='Client ID', config_parameter='ms_salla_connector.client_id')
+    salla_client_secret = fields.Char(string='Client Secret', config_parameter='ms_salla_connector.client_secret')
+    salla_access_token = fields.Char(string='Access Token', config_parameter='ms_salla_connector.access_token', readonly=True)
+    salla_refresh_token = fields.Char(string='Refresh Token', config_parameter='ms_salla_connector.refresh_token', readonly=True)
     salla_webhook_secret = fields.Char(
         string='Webhook Secret',
-        config_parameter='salla_connector.webhook_secret',
+        config_parameter='ms_salla_connector.webhook_secret',
         help="Secret used to verify the signature of incoming Salla "
              "webhooks. Leave empty to accept webhooks without verification "
              "(not recommended).")
@@ -26,12 +26,12 @@ class ResConfigSettings(models.TransientModel):
 
     def action_salla_connect(self):
         self.ensure_one()
-        client_id = self.env['ir.config_parameter'].sudo().get_param('salla_connector.client_id')
+        client_id = self.env['ir.config_parameter'].sudo().get_param('ms_salla_connector.client_id')
         if not client_id:
             raise UserError("Please save the Client ID first.")
             
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        redirect_uri = werkzeug.urls.url_join(base_url, '/salla_connector/auth_callback')
+        redirect_uri = werkzeug.urls.url_join(base_url, '/ms_salla_connector/auth_callback')
         
         params = {
             'client_id': client_id,
@@ -51,10 +51,10 @@ class ResConfigSettings(models.TransientModel):
 
     @api.model
     def salla_exchange_code(self, code):
-        client_id = self.env['ir.config_parameter'].sudo().get_param('salla_connector.client_id')
-        client_secret = self.env['ir.config_parameter'].sudo().get_param('salla_connector.client_secret')
+        client_id = self.env['ir.config_parameter'].sudo().get_param('ms_salla_connector.client_id')
+        client_secret = self.env['ir.config_parameter'].sudo().get_param('ms_salla_connector.client_secret')
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        redirect_uri = werkzeug.urls.url_join(base_url, '/salla_connector/auth_callback')
+        redirect_uri = werkzeug.urls.url_join(base_url, '/ms_salla_connector/auth_callback')
 
         payload = {
             'client_id': client_id,
@@ -75,9 +75,9 @@ class ResConfigSettings(models.TransientModel):
             expires_in = data.get('expires_in')
             
             if access_token:
-                self.env['ir.config_parameter'].sudo().set_param('salla_connector.access_token', access_token)
+                self.env['ir.config_parameter'].sudo().set_param('ms_salla_connector.access_token', access_token)
             if refresh_token:
-                self.env['ir.config_parameter'].sudo().set_param('salla_connector.refresh_token', refresh_token)
+                self.env['ir.config_parameter'].sudo().set_param('ms_salla_connector.refresh_token', refresh_token)
                 
             _logger.info("Salla Token Exchange Successful: %s", data)
             
