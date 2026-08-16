@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="paperformat_a4_land" model="report.paperformat">
+    <field name="name">A4 Landscape</field>
+    <field name="format">A4</field>
+    <field name="orientation">Landscape</field>
+    <!-- The letterhead is printed in the body, so the top margin only has to clear
+         the slim running header (see pl_running_header). -->
+    <field name="margin_top">20</field>
+    <field name="margin_bottom">12</field>
+    <field name="margin_left">7</field>
+    <field name="margin_right">7</field>
+    <field name="header_line" eval="False" />
+    <field name="header_spacing">14</field>
+    <field name="dpi">90</field>
+  </record>
+
+  <record id="action_report_cus_acc" model="ir.actions.report">
+    <field name="name">Custom PL Report</field>
+    <field name="model">res.partner</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">customer_partner_ledger.rep_cus_acc</field>
+    <field name="report_file">customer_partner_ledger.rep_cus_acc</field>
+    <field name="print_report_name">'Customer Account Report'</field>
+    <field name="binding_type">report</field>
+    <field name="paperformat_id" ref="customer_partner_ledger.paperformat_a4_land" />
+  </record>
+</odoo>

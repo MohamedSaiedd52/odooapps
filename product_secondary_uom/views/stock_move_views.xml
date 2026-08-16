@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- NOTE: the stock.move list columns are added by
+         stock_picking_views.xml (stock_move_tree_secondary_uom) —
+         a second inherit here would duplicate the column. -->
+
+    <record id="view_move_line_tree_secondary_uom" model="ir.ui.view">
+        <field name="name">stock.move.line.tree.secondary.uom</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quantity']" position="after">
+                <field name="secondary_uom_qty" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

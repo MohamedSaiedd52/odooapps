@@ -1,0 +1,91 @@
+<section style="max-width: 1100px; margin: 0 auto; padding: 32px 16px; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: #212529;">
+
+    <!-- ============ HERO ============ -->
+    <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #714B67 0%, #4d3247 100%); border-radius: 12px; color: #ffffff;">
+        <h1 style="margin: 0 0 12px; font-size: 34px;">Custom Ledger Currency Total</h1>
+        <p style="margin: 0; font-size: 19px; opacity: .92;">
+            Real multi-currency totals in the General Ledger, the Partner Ledger and Journal Items
+        </p>
+        <p style="margin: 18px 0 0; font-size: 14px;">
+            <span style="background: rgba(255,255,255,.18); border-radius: 20px; padding: 6px 14px; margin: 0 4px; display: inline-block;">Odoo 17.0 Enterprise</span>
+            <span style="background: rgba(255,255,255,.18); border-radius: 20px; padding: 6px 14px; margin: 0 4px; display: inline-block;">Accounting Reports</span>
+            <span style="background: rgba(255,255,255,.18); border-radius: 20px; padding: 6px 14px; margin: 0 4px; display: inline-block;">No configuration needed</span>
+        </p>
+    </div>
+
+    <!-- ============ WHAT IT DOES ============ -->
+    <div style="padding: 36px 8px 8px;">
+        <h2 style="font-size: 26px; margin: 0 0 14px; color: #714B67;">What does this module do?</h2>
+        <p style="font-size: 16px; line-height: 1.7; margin: 0 0 14px;">
+            In standard Odoo, the <b>"Amount in Currency"</b> column of the ledger reports stays <b>empty</b> on account
+            and partner lines unless the account is locked to one specific foreign currency &mdash; so when your invoices,
+            credit notes and vendor bills are booked in EUR, GBP or any other mix of currencies, you never see a total.
+        </p>
+        <p style="font-size: 16px; line-height: 1.7; margin: 0 0 22px;">
+            This module <b>computes and injects those totals automatically</b>, respecting all the report filters
+            (date range, journals, posted-entries-only&hellip;):
+        </p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 15.5px;">
+            <tr>
+                <td style="border: 1px solid #e4dbe1; background: #faf7f9; padding: 12px 16px; width: 33%;"><b>&#128202; General Ledger</b><br/>Every account line and the report Total line show the sum of Amount in Currency of their journal items.</td>
+                <td style="border: 1px solid #e4dbe1; background: #faf7f9; padding: 12px 16px; width: 33%;"><b>&#129309; Partner Ledger</b><br/>Every partner line and the Total row show the net Amount Currency across all of that partner's documents.</td>
+                <td style="border: 1px solid #e4dbe1; background: #faf7f9; padding: 12px 16px; width: 33%;"><b>&#128203; Journal Items</b><br/>The list view gets a total aggregate on the Amount in Currency column.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ============ CASE 1 ============ -->
+    <div style="padding: 30px 8px 8px;">
+        <h2 style="font-size: 24px; margin: 0 0 6px; color: #714B67;">Case 1 &mdash; General Ledger: totals per account</h2>
+        <p style="font-size: 15.5px; line-height: 1.7; margin: 0 0 14px;">
+            The receivable account contains documents in <b>two different currencies</b>
+            (EUR invoices &amp; credit note, and a GBP invoice). The module totals them on the account line:
+            <b>1,200 + 2,300 &minus; 500 (EUR) + 4,000 (GBP) = 7,000.00</b> &mdash; and does the same for payables,
+            sales and expense accounts.
+        </p>
+        <img src="general_ledger.png" alt="General Ledger with multi-currency totals per account"
+             style="width: 100%; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- ============ CASE 2 ============ -->
+    <div style="padding: 30px 8px 8px;">
+        <h2 style="font-size: 24px; margin: 0 0 6px; color: #714B67;">Case 2 &mdash; Partner Ledger: net total per partner &amp; grand total</h2>
+        <p style="font-size: 15.5px; line-height: 1.7; margin: 0 0 14px;">
+            Acme Corporation has two EUR invoices and one EUR credit note &rarr; the partner line shows the net
+            <b>3,000.00</b>. The GBP customer (<b>4,000.00</b>) and the EUR vendor bill (<b>&minus;1,500.00</b>)
+            are totalled the same way, and the report's <b>Total row</b> shows the grand total <b>5,500.00</b>.
+        </p>
+        <img src="partner_ledger.png" alt="Partner Ledger with net Amount Currency per partner and grand total"
+             style="width: 100%; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- ============ CASE 3 ============ -->
+    <div style="padding: 30px 8px 8px;">
+        <h2 style="font-size: 24px; margin: 0 0 6px; color: #714B67;">Case 3 &mdash; The multi-currency journal items behind the reports</h2>
+        <p style="font-size: 15.5px; line-height: 1.7; margin: 0 0 14px;">
+            The demo data used in the screenshots above: three EUR documents and one GBP invoice posted on the same
+            receivable account. The module also adds a column total on this Journal Items list
+            (displayed when the filtered lines share a single currency).
+        </p>
+        <img src="journal_items.png" alt="Journal items grouped by currency"
+             style="width: 100%; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- ============ NOTES ============ -->
+    <div style="padding: 30px 8px 8px;">
+        <h2 style="font-size: 24px; margin: 0 0 10px; color: #714B67;">Good to know</h2>
+        <ul style="font-size: 15.5px; line-height: 1.9; margin: 0; padding-left: 22px;">
+            <li>Totals are computed on the fly from the journal items matching the <b>current report filters</b> (period, journals, posted entries only&hellip;).</li>
+            <li>Works with <b>any number of currencies</b> &mdash; EUR, GBP, USD or your own.</li>
+            <li>Requires the <b>Multi-Currencies</b> access right (standard Odoo hides the currency column without it).</li>
+            <li>Zero configuration: install it and open your ledgers.</li>
+        </ul>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <div style="margin-top: 34px; padding: 18px; text-align: center; background: #faf7f9; border: 1px solid #e4dbe1; border-radius: 8px; font-size: 14px; color: #6c757d;">
+        <b style="color: #714B67;">Custom Ledger Currency Total</b> &nbsp;&bull;&nbsp; Odoo 18.0 &nbsp;&bull;&nbsp;
+        Depends on <code>account_reports</code> (Enterprise) &nbsp;&bull;&nbsp; License: LGPL-3
+    </div>
+
+</section>

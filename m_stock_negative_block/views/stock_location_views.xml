@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_location_form_inherit_negative_stock" model="ir.ui.view">
+        <field name="name">stock.location.form.inherit.negative.stock</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <!-- ``replenish_location`` sits in the "Additional Information"
+                 group of the location form on Odoo 17, 18 and 19 alike. -->
+            <field name="replenish_location" position="after">
+                <field name="allow_negative_stock"
+                       invisible="usage not in ('internal', 'transit')"/>
+            </field>
+        </field>
+    </record>
+</odoo>

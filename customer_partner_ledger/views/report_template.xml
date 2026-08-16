@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <!-- Running header. Odoo pulls every div.header out of the body and hands it to
+       wkhtmltopdf as the page header, so it must be emitted ONCE for the whole
+       document and stay slim: it is repeated on every page of every statement. -->
+  <template id="pl_running_header">
+    <div class="header" style="border-bottom:1px solid #999999; padding-bottom:4px;">
+      <table style="width:100%; border:0;">
+        <tr>
+          <td style="text-align:left; font-size:12px; color:#555555; border:0;" t-esc="company.name" />
+          <td dir="rtl" style="text-align:right; font-size:12px; color:#555555; border:0;">كشف حساب الزبائن</td>
+        </tr>
+      </table>
+    </div>
+  </template>
+
+  <!-- Letterhead of one statement: the company the user was standing on when the
+       PL button was pressed. Lives in the body, so the logo can be printed large. -->
+  <template id="pl_statement_head">
+    <div style="text-align:center; margin-bottom:18px;">
+      <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+           style="max-height:150px; max-width:55%;" alt="Logo"/>
+      <h1 t-else="" style="margin:0; font-size:32px; font-weight:bold;" t-esc="company.name" />
+      <h2 style="margin:10px 0 4px; font-weight:bold;">كشف حساب </h2>
+      <!-- <address dir="rtl" class="mb-0" t-field="company.partner_id"
+               t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/> -->
+    </div>
+  </template>
+
+  <template id="rep_cus_acc">
+    <t t-call="web.basic_layout">
+      <t t-call="customer_partner_ledger.pl_running_header" />
+      <t t-foreach="docs" t-as="o">
+        <t t-set="summary" t-value="data['summary'][o.id]" />
+        <div class="container mt-4" t-att-style="'' if o_last else 'page-break-after: always;'">
+          <t t-call="customer_partner_ledger.pl_statement_head" />
+          <div class="border p-3" style="margin-bottom: 15px;">
+            <h4><strong t-esc="o.get_partner_name(o.id)" /></h4>
+          </div>
+          <table class="table table-bordered text-center" dir="rtl" style="border-collapse: collapse; font-size: 14px;">
+            <thead class="thead-dark" style="background-color:#333; color:#fff;">
+              <tr>
+                <th>الرصيد</th>
+                <th>المبلغ</th>
+                <th>المرجع</th>
+                <th>الدفترة اليومية</th>
+                <th>التاريخ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="data['lines'][o.id]" t-as="line">
+                <tr>
+                  <td>
+                    <span t-att-style="'color:red' if line['amount_currency'] &lt; 0 else ''"
+                          t-esc="'{:,.3f}'.format(line['running_balance'])"/>
+                  </td>
+                  <td t-esc="'{:,.3f}'.format(line['amount_currency'])" />
+                  <td t-esc="o.get_line_ref(line['id'], line['ref'])" />
+                  <td>
+                    <t t-if="line['ref'] and 'سداد العميل' in line['ref']">
+                      <span>سداد</span>
+                    </t>
+                    <t t-else="">
+                      <t t-if="line['amount_currency'] &lt; 0">
+                        <span>سداد</span>
+                      </t>
+                      <t t-else="">
+                        <span>دفع</span>
+                      </t>
+                    </t>
+                  </td>
+                  <td t-esc="line['date']" />
+                </tr>
+              </t>
+              <tr style="font-weight: bold; background-color:#ddd;">
+                <td><strong t-esc="'{:,.3f}'.format(summary['closing'])" /></td>
+                <td colspan="3"></td>
+                <td>الإجمالي</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div dir="rtl" style="page-break-inside: avoid;">
+            <table class="table table-bordered" dir="rtl"
+                   style="width: 45%; margin-left: auto; margin-right: 0; border-collapse: collapse; font-size: 14px;">
+              <tbody>
+                <tr>
+                  <td style="text-align: right; width: 62%;">الرصيد الافتتاحي</td>
+                  <td style="text-align: right;" t-esc="'{:,.3f}'.format(summary['opening'])" />
+                </tr>
+                <tr>
+                  <td style="text-align: right;">إجمالي مدين</td>
+                  <td style="text-align: right;" t-esc="'{:,.3f}'.format(summary['debit'])" />
+                </tr>
+                <tr>
+                  <td style="text-align: right;">إجمالي دائن</td>
+                  <td style="text-align: right;" t-esc="'{:,.3f}'.format(summary['credit'])" />
+                </tr>
+                <tr style="font-weight: bold; background-color:#ddd;">
+                  <td style="text-align: right;">رصيد الفترة</td>
+                  <td style="text-align: right;" t-esc="'{:,.3f}'.format(summary['closing'])" />
+                </tr>
+                <tr style="font-weight: bold; background-color:#333; color:#fff; font-size: 16px;">
+                  <td style="text-align: right;">إجمالي المستحق (Total Due)</td>
+                  <td style="text-align: right;">
+                    <span t-esc="'{:,.3f}'.format(summary['total_due'])" />
+                    <span t-esc="currency.symbol" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </t>
+    </t>
+  </template>
+</odoo>

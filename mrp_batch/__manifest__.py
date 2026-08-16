@@ -1,0 +1,18 @@
+{
+    'name': 'Manufacturing Order Batch',
+    'version': '18.0.1.0.0',
+    'category': 'Manufacturing',
+    'summary': 'Separate batch manufacturing orders with dedicated sequence and product filter',
+    'depends': ['mrp'],
+    'data': [
+        'data/mrp_batch_data.xml',
+        'views/product_views.xml',
+        'views/mrp_production_views.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+    'license': 'LGPL-3',
+    'price': 45.0,
+    'currency': 'USD',
+}

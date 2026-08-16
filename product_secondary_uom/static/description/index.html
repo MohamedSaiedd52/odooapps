@@ -1,0 +1,118 @@
+<section style="max-width: 980px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #212529;">
+
+    <!-- ═══════════════ Header ═══════════════ -->
+    <div style="text-align: center; padding: 36px 20px; background: linear-gradient(135deg, #714B67 0%, #4d3246 100%); border-radius: 12px; color: #ffffff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">Product Secondary Unit of Measure</h1>
+        <p style="margin: 0 0 18px; font-size: 18px; opacity: .9;">
+            Sell in <b>Units</b>, track in <b>kg</b> &mdash; a second, fully independent unit on every product,
+            visible across Sales, Purchases, Inventory, Invoicing and the analysis reports.
+        </p>
+        <div>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 17</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 18</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 19</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">LGPL-3</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Community &amp; Enterprise</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Why ═══════════════ -->
+    <div style="padding: 28px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 10px;">Why this module?</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Many businesses count the same goods in <b>two units at once</b>: steel rods sold per piece but
+            weighed in kilograms, tiles sold per box but quoted in square meters, fabric in rolls and meters.
+            Odoo&rsquo;s standard UoM conversion forces both units into the same category with a fixed ratio &mdash;
+            which often doesn&rsquo;t fit the real world.
+        </p>
+        <p style="font-size: 15px; line-height: 1.7;">
+            This module adds a <b>secondary UoM with its own conversion factor per product</b> &mdash; any unit,
+            any factor, no category constraints. The secondary quantity is computed automatically on sales
+            orders, deliveries, invoices and stock, and can be entered manually on purchase orders.
+        </p>
+    </div>
+
+    <!-- ═══════════════ 1 Product ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">1&nbsp;&middot;&nbsp;Set it up on the product</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Two fields on the product form: the <b>secondary unit</b> and the <b>conversion factor</b>.
+            Steel Rod below is sold per <i>Unit</i>, each unit weighing 12.5&nbsp;kg.
+        </p>
+        <img src="psu_01_product.png" alt="Product form with secondary UoM and conversion factor"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ 2 Sales ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">2&nbsp;&middot;&nbsp;Sales orders</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Order 4 Units and the line instantly shows <b>50&nbsp;kg</b> (4&nbsp;&times;&nbsp;12.5) in the
+            <i>Sec.&nbsp;Qty</i> / <i>Sec.&nbsp;UoM</i> columns. The value is stored, so it is also available
+            in the <b>Sales Analysis</b> report as a measure.
+        </p>
+        <img src="psu_02_so.png" alt="Sales order line with secondary quantity columns"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ 3 Inventory ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">3&nbsp;&middot;&nbsp;Deliveries &amp; stock</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Every stock move shows the secondary <b>demand</b> and <b>done</b> quantities; the same figure
+            follows the goods into the Moves History and the on-hand quants.
+        </p>
+        <img src="psu_03_picking.png" alt="Delivery order with secondary demand and done quantities"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ 4 Invoicing ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">4&nbsp;&middot;&nbsp;Invoices &amp; reporting</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Invoice lines carry the secondary quantity too, and the <b>Invoice Analysis</b> report gets a
+            <i>Secondary Qty</i> measure (sign-corrected for credit notes) plus a <i>Secondary UoM</i> group-by
+            &mdash; so you can answer &ldquo;how many kilograms did we invoice this month?&rdquo; in one pivot.
+        </p>
+        <img src="psu_04_invoice.png" alt="Customer invoice line with secondary quantity"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ How it works ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">How it works (technical)</h2>
+        <ul style="font-size: 15px; line-height: 1.9;">
+            <li>Two fields on <code>product.template</code>: <code>secondary_uom_id</code> (any
+                <code>uom.uom</code>) and <code>conversion_factor</code>.</li>
+            <li>Computed, stored secondary quantities on sale order lines, stock moves (demand &amp; done)
+                and invoice lines; manual entry on purchase order lines.</li>
+            <li><code>sale.report</code> and <code>account.invoice.report</code> are extended through the
+                official SQL hooks, so pivots and group-bys aggregate correctly.</li>
+            <li>Secondary UoM and quantity columns are optional list columns &mdash; each user can show or
+                hide them per view.</li>
+            <li>No automatic UoM conversion is imposed anywhere &mdash; the factor is per product and purely
+                informational, exactly as entered.</li>
+        </ul>
+    </div>
+
+    <!-- ═══════════════ Compatibility ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Compatibility</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Tested on <b>Odoo 17, 18 and 19</b> (Community and Enterprise).
+            Depends on <code>sale_management</code>, <code>sale_stock</code>, <code>purchase</code>,
+            <code>stock</code> and <code>account</code>.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Support ═══════════════ -->
+    <div style="text-align: center; margin: 28px 0 8px; padding: 26px; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px;">
+        <h2 style="font-size: 22px; color: #714B67; margin: 0 0 8px;">Support</h2>
+        <p style="font-size: 15px; margin: 0 0 14px;">Community of Accountants (COA) &mdash; questions, custom work and support:</p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 26px; border-radius: 28px;">
+            WhatsApp: +20&nbsp;101&nbsp;390&nbsp;7174
+        </a>
+    </div>
+
+</section>

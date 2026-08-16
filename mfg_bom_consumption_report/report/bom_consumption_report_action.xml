@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_bom_consumption_pdf" model="ir.actions.report">
+        <field name="name">BOM vs Actual Consumption</field>
+        <field name="model">bom.consumption.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mfg_bom_consumption_report.report_bom_consumption_document</field>
+        <field name="report_file">mfg_bom_consumption_report.report_bom_consumption_document</field>
+        <field name="print_report_name">'BOM_Consumption_%s_%s' % (object.report_date_from, object.report_date_to)</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+</odoo>

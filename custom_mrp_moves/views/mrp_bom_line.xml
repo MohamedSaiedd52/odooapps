@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- BOM Components List View -->
+    <record id="mrp_bom_form_inherit_source_location" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.source.location</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_line_ids']/list/field[@name='product_qty']" position="after">
+                <field name="source_location_id" optional="hide" options="{'no_create': True, 'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

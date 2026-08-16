@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Pivot View of Account Invoice Report -->
+    <record id="view_account_invoice_report_pivot_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.report.pivot.inherit</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="secondary_uom_qty" type="measure"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit List/Tree View of Account Invoice Report -->
+    <record id="view_account_invoice_report_list_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.report.list.inherit</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.account_invoice_report_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="secondary_uom_qty" optional="show" sum="Total"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Search View of Account Invoice Report -->
+    <record id="view_account_invoice_report_search_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.report.search.inherit</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter string="Invoice" name="group_by_move_id" context="{'group_by':'move_id'}"/>
+                <filter string="Secondary UoM" name="group_by_secondary_uom_id" context="{'group_by':'secondary_uom_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

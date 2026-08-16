@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_biometric_log_list" model="ir.ui.view">
+        <field name="name">biometric.log.list</field>
+        <field name="model">biometric.log</field>
+        <field name="arch" type="xml">
+            <list string="Biometric Logs" decoration-success="state == 'synced'" decoration-danger="state == 'failed'" decoration-muted="state == 'draft'" create="false" edit="false">
+                <field name="punch_id"/>
+                <field name="device_serial"/>
+                <field name="employee_id"/>
+                <field name="biometric_id"/>
+                <field name="punch_time"/>
+                <field name="state"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_biometric_log_form" model="ir.ui.view">
+        <field name="name">biometric.log.form</field>
+        <field name="model">biometric.log</field>
+        <field name="arch" type="xml">
+            <form string="Biometric Log" create="false" edit="false">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,synced,failed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="punch_id"/>
+                            <field name="device_serial"/>
+                            <field name="biometric_id"/>
+                        </group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="punch_time"/>
+                        </group>
+                    </group>
+                    <group string="Details">
+                        <field name="note" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_biometric_log_search" model="ir.ui.view">
+        <field name="name">biometric.log.search</field>
+        <field name="model">biometric.log</field>
+        <field name="arch" type="xml">
+            <search string="Search Biometric Logs">
+                <field name="employee_id"/>
+                <field name="biometric_id"/>
+                <field name="device_serial"/>
+                <filter string="Synced" name="synced" domain="[('state', '=', 'synced')]"/>
+                <filter string="Failed" name="failed" domain="[('state', '=', 'failed')]"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <group>
+                    <filter string="Employee" name="group_by_employee" context="{'group_by': 'employee_id'}"/>
+                    <filter string="Status" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Device" name="group_by_device" context="{'group_by': 'device_serial'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_biometric_log" model="ir.actions.act_window">
+        <field name="name">Biometric Logs</field>
+        <field name="res_model">biometric.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_biometric_log_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No biometric logs found!
+            </p>
+            <p>
+                This log displays raw punches received from your local biometric devices.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_biometric_log"
+              name="Biometric Logs"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="action_biometric_log"
+              sequence="30"/>
+</odoo>

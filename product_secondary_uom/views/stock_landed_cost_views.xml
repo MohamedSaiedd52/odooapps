@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_landed_cost_form_inherit_second_uom" model="ir.ui.view">
+        <field name="name">stock.landed.cost.form.inherit.second.uom</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- استهداف الـ list الخاص بأودو 18 مباشرة -->
+            <xpath expr="//field[@name='valuation_adjustment_lines']/list/field[@name='quantity']" position="after">
+                <field name="secondary_uom_qty" string="Secondary Qty"/>
+                <field name="secondary_uom_id" string="Secondary UoM"/>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ─── Wizard Form View ─────────────────────────────────────── -->
+    <record id="view_bom_consumption_wizard_form" model="ir.ui.view">
+        <field name="name">bom.consumption.wizard.form</field>
+        <field name="model">bom.consumption.wizard</field>
+        <field name="arch" type="xml">
+            <form string="BOM vs Actual Consumption Report">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>BOM vs Actual Consumption</h1>
+                        <p class="text-muted">
+                            Compare planned quantities (BOM) with actual stock consumed per manufacturing order.
+                        </p>
+                    </div>
+
+                    <group string="Filters" col="4">
+                        <field name="date_from" required="1"/>
+                        <field name="date_to"   required="1"/>
+                        <field name="state_filter"/>
+                        <field name="show_only_diff"/>
+                    </group>
+
+                    <group string="Optional Filters" col="2">
+                        <field name="production_ids"
+                               widget="many2many_tags"
+                               domain="[('state','in',['progress','done'])]"
+                               placeholder="Leave empty for all MOs…"/>
+                        <field name="product_ids"
+                               widget="many2many_tags"
+                               placeholder="Leave empty for all finished products…"/>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name="action_print_pdf"
+                            string="🖨  Print PDF"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="action_export_excel"
+                            string="📊  Export Excel"
+                            type="object"
+                            class="btn-secondary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ─── Wizard Action ────────────────────────────────────────── -->
+    <record id="action_bom_consumption_wizard" model="ir.actions.act_window">
+        <field name="name">BOM vs Actual Consumption</field>
+        <field name="res_model">bom.consumption.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_bom_consumption_wizard_form"/>
+    </record>
+
+    <!-- ─── Menu Items ───────────────────────────────────────────── -->
+    <menuitem id="menu_bom_consumption_root"
+              name="BOM Consumption Report"
+              parent="mrp.menu_mrp_reporting"
+              action="action_bom_consumption_wizard"
+              sequence="25"/>
+
+</odoo>
