@@ -36,7 +36,7 @@ WhatsApp: +20 101 390 7174
     'website': 'https://wa.me/201013907174',
     'category': 'Accounting/Accounting',
     'version': '17.0.1.0.0',
-    'license': 'OEEL-1',
+    'license': 'OPL-1',
     'depends': ['account_reports'],
     'data': [],
     'installable': True,

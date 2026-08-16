@@ -19,10 +19,10 @@
     <field name="name">Custom PL Report</field>
     <field name="model">res.partner</field>
     <field name="report_type">qweb-pdf</field>
-    <field name="report_name">customer_partner_ledger.rep_cus_acc</field>
-    <field name="report_file">customer_partner_ledger.rep_cus_acc</field>
+    <field name="report_name">ms_customer_partner_ledger.rep_cus_acc</field>
+    <field name="report_file">ms_customer_partner_ledger.rep_cus_acc</field>
     <field name="print_report_name">'Customer Account Report'</field>
     <field name="binding_type">report</field>
-    <field name="paperformat_id" ref="customer_partner_ledger.paperformat_a4_land" />
+    <field name="paperformat_id" ref="ms_customer_partner_ledger.paperformat_a4_land" />
   </record>
 </odoo>

@@ -1,0 +1,240 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ms_hr_loan_accounting
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__message_needaction
+msgid "Action Needed"
+msgstr "الإجراءات اللازمة"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__activity_ids
+msgid "Activities"
+msgstr "أنشطة"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "نشاط استثناء الديكور"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line__amount
+msgid "Amount"
+msgstr "كمية"
+
+#. hr_reward_warning, ms_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:ms_hr_loan_accounting.hr_loan_form_view
+msgid "Approve"
+msgstr "يوافق"
+
+#. ohrms_loan_accounting, ohrms_service_request, hr_reward_warning, ms_hr_loan_accounting
+#: model:ir.model.fields.selection,name:ms_hr_loan_accounting.selection__hr_loan__state__approve
+msgid "Approved"
+msgstr "وافق"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: ms_hr_loan_accounting
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__balance_amount
+msgid "Balance Amount"
+msgstr "مقدار وسطي"
+
+#. oh_hr_lawsuit_management, hr_employee_transfer, ms_hr_loan_accounting,
+#: model_terms:ir.ui.view,arch_db:ms_hr_loan_accounting.hr_loan_form_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. modules: hr_vacation_mngmt, ohrms_loan_accounting, ms_hr_loan_accounting
+#: model:ir.model.fields.selection,name:ms_hr_loan_accounting.selection__hr_loan__state__cancel
+msgid "Canceled"
+msgstr "ملغي"
+
+#. module: ms_hr_loan_accounting
+#: model_terms:ir.actions.act_window,help:ms_hr_loan_accounting.action_hr_loan_request
+msgid "Click to create a new Loan request."
+msgstr ".انقر لإنشاء طلب قرض جديد"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting, oh_appraisal,
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: ms_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:ms_hr_loan_accounting.hr_loan_form_view
+msgid "Compute Installment"
+msgstr "حساب القسط"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting, oh_appraisal,
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__create_uid
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line__create_uid
+msgid "Created by"
+msgstr "انشأ من قبل"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting, oh_appraisal,
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__create_date
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. modules: hr_gratuity_settlement, ohrms_salary_advance, ms_hr_loan_accounting
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__currency_id
+msgid "Currency"
+msgstr "عملة"
+
+#. oh_hr_lawsuit_management, hr_employee_transfer, ms_hr_loan_accounting
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__date
+msgid "Date"
+msgstr "تاريخ"
+
+#. ms_hr_loan_accounting, hr_employee_shift, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__department_id
+#: model_terms:ir.ui.view,arch_db:ms_hr_loan_accounting.view_loan_request_search_form
+msgid "Department"
+msgstr "القسم"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting, oh_appraisal,
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__display_name
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. oh_hr_lawsuit_management, hr_employee_transfer, ms_hr_loan_accounting
+#: model:ir.model.fields.selection,name:ms_hr_loan_accounting.selection__hr_loan__state__draft
+msgid "Draft"
+msgstr "مشروع"
+
+#. hr_insurance, hr_employee_transfer, ms_hr_loan_accounting, hr_employee_shift,
+#: model:ir.model,name:ms_hr_loan_accounting.model_hr_employee
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__employee_id
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line__employee_id
+#: model_terms:ir.ui.view,arch_db:ms_hr_loan_accounting.view_loan_request_search_form
+msgid "Employee"
+msgstr "الموظف"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__message_follower_ids
+msgid "Followers"
+msgstr "متابعون"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "(المتابعون (القنوات"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "(المتابعون (الشركاء"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting, oh_appraisal,
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__id
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line__id
+msgid "ID"
+msgstr "هوية شخصية"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,help:ms_hr_loan_accounting.field_hr_loan__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ".أيقونة للإشارة إلى نشاط استثناء"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,help:ms_hr_loan_accounting.field_hr_loan__message_needaction
+#: model:ir.model.fields,help:ms_hr_loan_accounting.field_hr_loan__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ".إذا تم تحديد ذلك ، فإن الرسائل الجديدة تتطلب اهتمامك"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,help:ms_hr_loan_accounting.field_hr_loan__message_has_error
+#: model:ir.model.fields,help:ms_hr_loan_accounting.field_hr_loan__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ".إذا تم التحقق ، فبعض الرسائل بها خطأ في التسليم"
+
+#. modules: ohrms_loan_accounting, ms_hr_loan_accounting
+#: model:ir.model,name:ms_hr_loan_accounting.model_hr_loan_line
+msgid "Installment Line"
+msgstr "خط التقسيط"
+
+#. module: ms_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:ms_hr_loan_accounting.hr_loan_form_view
+msgid "Installments"
+msgstr "الأقساط"
+
+#. oh_employee_check_list, ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__message_is_follower
+msgid "Is Follower"
+msgstr "هو تابع"
+
+#. modules: ms_hr_loan_accounting, saudi_gosi
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__job_position_id
+msgid "Job Position"
+msgstr "وظيفه"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting, oh_appraisal,
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan____last_update
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting, oh_appraisal,
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__write_uid
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. modules: hr_gratuity_settlement, ms_hr_loan_accounting, oh_appraisal,
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__write_date
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan_line__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: ms_hr_loan_accounting
+#: model:hr.salary.rule,name:ms_hr_loan_accounting.hr_rule_loan
+#: model:ir.ui.menu,name:ms_hr_loan_accounting.menu_base_hr_loan_request
+#: model_terms:ir.ui.view,arch_db:ms_hr_loan_accounting.view_loan_request_search_form
+msgid "Loan"
+msgstr "قرض"
+
+#. module: ms_hr_loan_accounting
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__loan_amount
+msgid "Loan Amount"
+msgstr "مبلغ القرض"
+
+#. module: ms_hr_loan_accounting
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_employee__loan_count
+msgid "Loan Count"
+msgstr "عدد القروض"
+
+#. module: ms_hr_loan_accounting
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_payslip_input__loan_line_id
+msgid "Loan Installment"
+msgstr "قرض القسط"
+
+#. module: ms_hr_loan_accounting
+#: model:ir.model.fields,field_description:ms_hr_loan_accounting.field_hr_loan__loan_line_ids
+msgid "Loan Line"
+msgstr "خط القرض"
