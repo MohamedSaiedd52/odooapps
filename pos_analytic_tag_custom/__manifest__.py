@@ -1,5 +1,5 @@
 {
-    'name': "PoS Analytic Tag (DIS)",
+    'name': 'POS Analytic Account & Tags',
     'category': 'Point of Sale',
     'author': 'Mohamed Saied',
     'depends': ['point_of_sale', 'analytic', 'account'],
@@ -22,4 +22,5 @@
     'application': False,
     'price': 30.0,
     'currency': 'USD',
+    'summary': 'Set analytic accounts & analytic tags on Point of Sale orders and their journal entries.',
 }

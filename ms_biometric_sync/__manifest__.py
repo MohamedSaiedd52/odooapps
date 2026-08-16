@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'MS Biometric Sync',
+    'name': 'Biometric Device Attendance Sync',
     'version': '18.0.1.0.0',
-    'summary': 'Sync attendance from local biometric devices via API',
-    'category': 'Human Resources/Attendance',
+    'summary': 'Sync employee attendance from fingerprint & biometric machines (ZKTeco) straight to Odoo Attendance in real time.',
+    'category': 'Human Resources/Attendances',
     'author': 'Mohamed Saied',
     'depends': ['base', 'hr', 'hr_attendance'],
     'data': [

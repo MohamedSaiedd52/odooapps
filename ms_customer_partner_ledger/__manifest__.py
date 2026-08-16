@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Customer Partner Ledger With New Layout',
+    'name': 'Customer Account Statement - Arabic Partner Ledger',
     'version': '18.0.1.1.0',
-    'category': 'Accounting/Accounting',
-    'summary': 'Arabic customer account statement (PL) printed from the Partner Ledger',
+    'category': 'Accounting',
+    'summary': 'Print an Arabic customer statement of account from the Partner Ledger with running balance & totals. كشف حساب عميل',
     'description': """
 Customer Partner Ledger With New Layout
 =======================================

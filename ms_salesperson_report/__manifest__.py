@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'MS Salesperson Report & Filter',
+    'name': 'Salesperson Sales & Invoice Report',
     'version': '18.0.1.0.0',
-    'category': 'Sales/Accounting',
+    'category': 'Sales',
     'summary': (
         'Adds Invoice-based Salesperson to Sale Report, '
         'and adds Salesperson filter to Journal Items (Accounting).'
@@ -36,4 +36,5 @@ Features:
     'price': 25.0,
     'currency': 'USD',
     'images': ['static/description/banner.gif'],
+    'summary': 'Invoice-based salesperson in Sales Analysis plus salesperson filters on journal items & invoices.',
 }

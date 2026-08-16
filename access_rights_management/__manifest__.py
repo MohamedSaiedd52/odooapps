@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Access Rights Management',
+    'name': 'Access Rights Manager - Users, Groups & Permissions',
     'version': '18.0.2.3.1',
     'sequence': 5,
     'author': 'Mohamed Saied',
@@ -9,8 +9,7 @@
     'price': 60.0,
     'currency': 'USD',
     'category': 'Extra Tools',
-    'summary': "One screen to decide who sees what — profiles, record rules, "
-               "login security, device control and a full audit trail.",
+    'summary': 'All-in-one user access rights management: profiles, groups, record rules, field & menu restrictions, login security.',
     'description': """
 Access Rights Management
 ========================

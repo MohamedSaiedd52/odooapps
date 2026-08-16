@@ -1,7 +1,7 @@
 {
-    "name": "Stock Card Report",
-    "summary": "Stock Card report (PDF, XLSX and HTML view) powered by openpyxl - fully standalone, no report_xlsx dependency.",
-    "category": "Inventory/Warehouse",
+    "name": 'Stock Card Report',
+    "summary": 'Stock card per product & location: opening, in, out & closing balance in PDF, Excel XLSX and HTML.',
+    "category": 'Inventory',
     "author": 'Mohamed Saied',
     "license": "LGPL-3",
     "version": "18.0.1.0.0",

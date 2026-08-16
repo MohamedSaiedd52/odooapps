@@ -1,7 +1,7 @@
 {
-    'name': 'MS Shopify Automation',
+    'name': 'Shopify Connector - Orders, Products & Inventory Sync',
     'version': '18.0.3.0.0',
-    'summary': 'Enterprise-Grade Shopify-Odoo Integration with Advanced Automation & Analytics',
+    'summary': 'Shopify integration: sync orders, products, customers, stock & payouts with automation, webhooks & analytics dashboard.',
     'description': '''
 🚀 **ENTERPRISE-GRADE SHOPIFY INTEGRATION SUITE**
 
@@ -73,7 +73,7 @@ Perfect for enterprise e-commerce businesses requiring the most advanced Shopify
     ''',
     'author': 'Mohamed Saied',
     'website': 'https://coa-egy.odoo.com/coa',
-    'category': 'Connector',
+    'category': 'eCommerce',
     'depends': [
         'base',
         'sale_management',

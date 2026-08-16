@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'HR Loan Management & Accounting',
+    'name': 'Employee Loan Management & Accounting',
     'version': '18.0.2.0.0',
     'category': 'Human Resources',
-    'summary': 'Employee loan management with payroll deduction and '
-               'accounting integration',
+    'summary': 'Employee loans with approval flow, payroll installment deduction & automatic accounting entries. HR loan management.',
     'description': """Manage employee loan requests with installment schedules,
 automatic payroll deduction of installments, journal entry creation on loan
 approval, a journal entries smart button, and an installment delay wizard.""",

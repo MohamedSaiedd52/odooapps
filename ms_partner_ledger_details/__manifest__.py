@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'MS Partner Ledger - Invoice Details Drill-down',
-    'summary': 'Adds an expandable arrow next to each invoice in the Partner '
-               'Ledger. Unfolding shows the invoice product lines with '
-               'quantity and total.',
+    'name': 'Partner Ledger Invoice Details Drill-Down',
+    'summary': 'Expand any invoice inside the Partner Ledger to see its lines, taxes & payments inline - ledger drill-down.',
     'description': """
 MS Partner Ledger - Invoice Details Drill-down
 ===============================================
@@ -34,7 +32,7 @@ WhatsApp: +20 101 390 7174
     """,
     'author': 'Mohamed Saied',
     'website': 'https://wa.me/201013907174',
-    'category': 'Accounting/Accounting',
+    'category': 'Accounting',
     'version': '18.0.1.0.0',
     'license': 'OPL-1',
     'depends': ['account_reports'],

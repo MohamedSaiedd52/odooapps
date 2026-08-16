@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Product Secondary Unit of Measure',
+    'name': 'Product Secondary UoM - Dual Unit of Measure',
     'version': '18.0.1.0.0',
-    'category': 'Inventory/Products',
-    'summary': 'Add secondary unit of measure to products',
+    'category': 'Inventory',
+    'summary': 'Secondary unit of measure on products, sales, purchases, stock moves & invoices with conversion factor. Dual UoM.',
     'description': """
 Product Secondary Unit of Measure
 =================================

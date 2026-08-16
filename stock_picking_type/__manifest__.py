@@ -1,6 +1,6 @@
 {
-    'name': 'Stock Location Restrictions',
-    'summary': 'Restrict stock locations visible to each user based on configuration',
+    'name': 'Stock Location Restrictions - User Access',
+    'summary': 'Restrict stock locations & operation types per user - location-based warehouse access control.',
     'description': """
         Stock Location Restriction for Users
         ====================================
