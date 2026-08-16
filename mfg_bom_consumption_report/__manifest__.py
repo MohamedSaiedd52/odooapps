@@ -3,7 +3,7 @@
     'version': '17.0.1.0.1',
     'category': 'Manufacturing',
     'summary': 'Compare planned BOM quantities with actual stock consumption per MO',
-    'author': 'Eslam Tarek',
+    'author': 'Mohamed Saied',
     'website': 'https://wa.me/201013907174',
     'license': 'LGPL-3',
     'depends': ['mrp', 'stock'],
@@ -18,4 +18,5 @@
     'auto_install': False,
     'price': 35.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

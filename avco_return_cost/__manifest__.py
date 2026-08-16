@@ -20,4 +20,5 @@ different prices are returned without lot tracking.
     'application': False,
     'price': 45.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

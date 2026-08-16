@@ -20,7 +20,7 @@
         - fs_planning            : Create planning slots for a whole
           department or employee tags at once.
     """,
-    'author': 'FS',
+    'author': 'Mohamed Saied',
     'depends': [
         'hr',
         'hr_attendance',
@@ -43,7 +43,7 @@
         'views/planning_views.xml',
         'views/generate_shifts_views.xml',
     ],
-    'images': ['static/description/bannar.jpg'],
+    'images': ['static/description/banner.gif'],
     'license': 'OPL-1',
     'installable': True,
     'application': True,

@@ -7,7 +7,7 @@
         This module limits the quantity field decimal precision to 2 decimal places
         in Sales Orders and Purchase Orders.
     """,
-    'author': 'Punalu',
+    'author': 'Mohamed Saied',
     'depends': ['sale', 'purchase'],
     'data': [
         'report/sale_report_templates.xml',
@@ -19,4 +19,5 @@
     'license': 'LGPL-3',
     'price': 15.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

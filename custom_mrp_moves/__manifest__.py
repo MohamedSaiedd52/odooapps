@@ -11,7 +11,7 @@ move takes its source location from the matching BOM line instead of the
 default picking type location.
     """,
 
-    'author': "My Company",
+    'author': 'Mohamed Saied',
     'website': "https://www.yourcompany.com",
 
     'category': 'Manufacturing/Manufacturing',
@@ -30,4 +30,5 @@ default picking type location.
     'application': False,
     'price': 40.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

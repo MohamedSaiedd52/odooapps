@@ -38,4 +38,5 @@ and a clear error lists every product that would end up negative.
     'license': 'LGPL-3',
     'price': 25.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

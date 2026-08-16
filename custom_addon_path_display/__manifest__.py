@@ -9,11 +9,7 @@
     'data': [
         'views/ir_module_module_views.xml',
     ],
-    'images': [
-    'static/description/banner.gif',
-    'static/description/icon.png',
-    
-    ], 
+    'images': ['static/description/banner.gif'], 
  'license': 'AGPL-3',
     'installable': True,
     'auto_install': False,

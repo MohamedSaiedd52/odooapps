@@ -8,7 +8,7 @@
 Long description of module's purpose
     """,
 
-    'author': "Ebrahiem Abdellatef",
+    'author': 'Mohamed Saied',
     'website': "https://www.linkedin.com/in/ebrahiem-abdellatef-105547102/",
 
     # Categories can be used to filter modules in modules listing
@@ -29,4 +29,5 @@ Long description of module's purpose
     ],
     'price': 25.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

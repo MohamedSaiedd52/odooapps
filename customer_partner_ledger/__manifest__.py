@@ -20,7 +20,7 @@ partners selected in the report:
   still unpaid by the partner whatever the printed period is;
 * one A4-landscape page per selected partner.
 """,
-    'author': '',
+    'author': 'Mohamed Saied',
     'website': '',
     'license': 'LGPL-3',
 
@@ -31,7 +31,7 @@ partners selected in the report:
         'views/report_template.xml'
 
     ],
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.gif'],
     'installable': True,
     'auto_install': False,
     'application': False,
