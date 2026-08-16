@@ -68,5 +68,5 @@ class AccountReport(models.AbstractModel):
             "allowed_company_ids": self.env.companies.ids,
         }
 
-        report = self.env.ref('customer_partner_ledger.action_report_cus_acc')
+        report = self.env.ref('ms_customer_partner_ledger.action_report_cus_acc')
         return report.with_context(discard_logo_check=True).report_action([], data=res)
