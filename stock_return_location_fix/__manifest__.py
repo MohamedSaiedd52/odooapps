@@ -4,7 +4,6 @@
     'category': 'Inventory',
     'summary': 'Stock returns automatically go back to the source location of the original delivery order.',
     'author': 'Mohamed Saied',
-    'website': 'https://wa.me/201013907174',
     'depends': ['stock'],
     'data': [],
     'installable': True,

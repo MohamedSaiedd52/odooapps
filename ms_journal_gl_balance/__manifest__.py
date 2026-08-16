@@ -7,7 +7,7 @@
         'matches the GL report with a single consolidated number.'
     ),
     'author': 'Mohamed Saied',
-    'website': 'https://wa.me/201013907174',
+   
     'category': 'Accounting',
     'license': 'LGPL-3',
     'depends': ['account'],
