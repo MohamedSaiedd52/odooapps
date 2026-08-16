@@ -1,0 +1,97 @@
+<odoo>
+    <data>
+        <record id="letter_credit_form_view" model="ir.ui.view">
+            <field name="name">letter.credit.form</field>
+            <field name="model">letter.credit</field>
+            <field name="arch" type="xml">
+                <form string="Letter Credit">
+                    <header>
+                        <button name="action_running" string="تحويل الي جاري" type="object" class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <button name="action_done" string="تحويل الي منتهي" type="object" class="oe_highlight"
+                                invisible="state != 'running'"/>
+                        <button name="action_cancel" string="الغاء" type="object" class="oe_highlight"
+                                invisible="state not in ['draft']"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,running,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" string="القيد الجاري" name="view_running_move"
+                                    icon="fa-money" invisible="state not in ['running', 'done']"/>
+                            <button class="oe_stat_button" type="object" string="القيد المنتهي" name="view_done_move"
+                                    icon="fa-file-text" invisible="state != 'done'"/>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" readonly="1" force_save="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+
+                                <field name="bank_journal_id" readonly="state != 'draft'"/>
+                                <field name="bank_account_id" readonly="state != 'draft'"/>
+                                <field name="credit_bank_expense" readonly="state != 'draft'"/>
+                                <field name="current_account_id" readonly="state != 'draft'"/>
+                                <field name="expense_account_id" readonly="state != 'draft'"/>
+
+                            </group>
+                            <group>
+
+                                <field name="credit_number" readonly="state != 'draft'"/>
+                                <field name="credit_date" readonly="state != 'draft'"/>
+                                <field name="credit_value" readonly="state != 'draft'"/>
+                                <field name="credit_currency" readonly="state != 'draft'"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="letter_credit_tree_view" model="ir.ui.view">
+            <field name="name">letter.credit.tree</field>
+            <field name="model">letter.credit</field>
+            <field name="arch" type="xml">
+                <list string="Letter Credit">
+                    <field name="name"/>
+                    <field name="bank_journal_id"/>
+                    <field name="credit_number"/>
+                    <field name="credit_date"/>
+                    <field name="credit_value"/>
+                    <field name="credit_currency"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="letter_credit_search_view" model="ir.ui.view">
+            <field name="name">letter.credit.search</field>
+            <field name="model">letter.credit</field>
+            <field name="arch" type="xml">
+                <search string="Search Letter Credit">
+                    <field name="name" string="Name"/>
+                    <field name="credit_number" string="Credit Number"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_letter_credit_window" model="ir.actions.act_window">
+            <field name="name">الإعتمادات المستندية</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">letter.credit</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_letter_credit"
+                  name="الإعتمادات المستندية"
+                  sequence="10"
+                  groups="custom_credits_document.group_show_credit_documents"
+                  action="action_letter_credit_window"
+                  parent="account.menu_finance_entries_management"/>
+
+    </data>
+</odoo>
