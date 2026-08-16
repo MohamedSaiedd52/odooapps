@@ -1,0 +1,21 @@
+{
+    'name': 'BOM vs Actual Consumption Report',
+    'version': '19.0.1.0.1',
+    'category': 'Manufacturing',
+    'summary': 'Compare planned BOM quantities with actual stock consumption per MO',
+    'author': 'Eslam Tarek',
+    'website': 'https://wa.me/201013907174',
+    'license': 'LGPL-3',
+    'depends': ['mrp', 'stock'],
+    'data': [
+        'security/ir.model.access.csv',
+        'wizard/bom_consumption_wizard_view.xml',
+        'report/bom_consumption_report_template.xml',
+        'report/bom_consumption_report_action.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+    'price': 35.0,
+    'currency': 'USD',
+}

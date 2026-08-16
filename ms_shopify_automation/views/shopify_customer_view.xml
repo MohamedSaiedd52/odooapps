@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shopify_customer_tree" model="ir.ui.view">
+        <field name="name">shopify.customer.tree</field>
+        <field name="model">shopify.customer</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Shopify Customers" decoration-muted="not active" decoration-danger="sync_status == 'error'" decoration-warning="sync_status == 'pending'">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="orders_count"/>
+                <field name="total_spent"/>
+                <field name="verified_email" widget="boolean"/>
+                <field name="odoo_partner_id"/>
+                <field name="instance_id"/>
+                <field name="sync_status" widget="badge" decoration-success="sync_status == 'synced'" decoration-warning="sync_status == 'pending'" decoration-danger="sync_status == 'error'"/>
+                <field name="last_sync"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_shopify_customer_form" model="ir.ui.view">
+        <field name="name">shopify.customer.form</field>
+        <field name="model">shopify.customer</field>
+        <field name="arch" type="xml">
+            <form string="Shopify Customer">
+                <header>
+                    <button name="action_sync_from_shopify" type="object" string="Sync from Shopify" class="btn-primary" invisible="not shopify_customer_id"/>
+                    <field name="sync_status" widget="statusbar" statusbar_visible="pending,synced,error"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Customer Information">
+                            <field name="shopify_customer_id"/>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="instance_id"/>
+                        </group>
+                        <group string="Shopify Details">
+                            <field name="verified_email"/>
+                            <field name="accepts_marketing"/>
+                            <field name="orders_count"/>
+                            <field name="total_spent"/>
+                            <field name="currency"/>
+                            <field name="shopify_state"/>
+                            <field name="shopify_tags"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Default Address">
+                            <field name="default_address_line1"/>
+                            <field name="default_address_line2"/>
+                            <field name="default_city"/>
+                            <field name="default_province"/>
+                            <field name="default_country"/>
+                            <field name="default_zip"/>
+                        </group>
+                        <group string="Odoo Information">
+                            <field name="odoo_partner_id"/>
+                            <field name="created_at"/>
+                            <field name="updated_at"/>
+                            <field name="last_sync"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="note" placeholder="Internal notes..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_shopify_customer_search" model="ir.ui.view">
+        <field name="name">shopify.customer.search</field>
+        <field name="model">shopify.customer</field>
+        <field name="arch" type="xml">
+            <search string="Shopify Customers">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="shopify_customer_id"/>
+                <field name="odoo_partner_id"/>
+                <field name="instance_id"/>
+                <filter string="Synced" name="synced" domain="[('sync_status', '=', 'synced')]"/>
+                <filter string="Pending" name="pending" domain="[('sync_status', '=', 'pending')]"/>
+                <filter string="Error" name="error" domain="[('sync_status', '=', 'error')]"/>
+                <separator/>
+                <filter string="Email Verified" name="verified" domain="[('verified_email', '=', True)]"/>
+                <filter string="Accepts Marketing" name="marketing" domain="[('accepts_marketing', '=', True)]"/>
+                <filter string="Has Orders" name="has_orders" domain="[('orders_count', '>', 0)]"/>
+                <separator/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <group>
+                    <filter string="Instance" name="group_instance" context="{'group_by': 'instance_id'}"/>
+                    <filter string="Sync Status" name="group_sync_status" context="{'group_by': 'sync_status'}"/>
+                    <filter string="Account State" name="group_state" context="{'group_by': 'shopify_state'}"/>
+                    <filter string="Country" name="group_country" context="{'group_by': 'default_country'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_shopify_customer" model="ir.actions.act_window">
+        <field name="name">Shopify Customers</field>
+        <field name="res_model">shopify.customer</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Shopify customer mappings will appear here after sync.
+            </p>
+            <p>
+                Click "Sync Customers" on your Shopify Instance to import customers.
+            </p>
+        </field>
+    </record>
+</odoo>

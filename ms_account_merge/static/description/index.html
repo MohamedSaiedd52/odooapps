@@ -1,0 +1,202 @@
+<div style="max-width: 980px; margin: 0 auto; padding: 16px; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: #374151; line-height: 1.6;">
+
+    <!-- ============================= HERO ============================= -->
+    <img src="banner.png" alt="MS Account Merge banner"
+         style="width: 100%; border-radius: 10px; display: block;"/>
+
+    <div style="text-align: center; margin: 28px 0 8px;">
+        <h1 style="color: #714B67; font-size: 34px; margin: 0 0 8px;">MS Account Merge</h1>
+        <p style="font-size: 17px; color: #6b7280; margin: 0;">
+            Merge two or more General Ledger accounts into one &mdash; exactly like the
+            native Contacts merge, but for your Chart of Accounts.
+        </p>
+        <p style="margin: 14px 0 0;">
+            <span style="background: #714B67; color: #fff; border-radius: 14px; padding: 4px 14px; font-size: 13px; margin: 0 3px;">Odoo 17</span>
+            <span style="background: #714B67; color: #fff; border-radius: 14px; padding: 4px 14px; font-size: 13px; margin: 0 3px;">Odoo 18</span>
+            <span style="background: #714B67; color: #fff; border-radius: 14px; padding: 4px 14px; font-size: 13px; margin: 0 3px;">Odoo 19</span>
+            <span style="background: #00a09d; color: #fff; border-radius: 14px; padding: 4px 14px; font-size: 13px; margin: 0 3px;">Community &amp; Enterprise</span>
+            <span style="background: #6b7280; color: #fff; border-radius: 14px; padding: 4px 14px; font-size: 13px; margin: 0 3px;">LGPL-3</span>
+        </p>
+    </div>
+
+    <!-- =========================== OVERVIEW =========================== -->
+    <div style="background: #f9f5f8; border-left: 5px solid #714B67; border-radius: 8px; padding: 18px 22px; margin: 26px 0;">
+        <p style="margin: 0; font-size: 15px;">
+            Duplicated accounts pile up after imports, migrations or years of bookkeeping:
+            <i>"Bank Fees"</i> here, <i>"Bank Charges"</i> there &mdash; same purpose, split history.
+            <b>MS Account Merge</b> adds a <b>Merge Accounts</b> action to the Chart of Accounts
+            that moves <b>all journal items and every database reference</b> of the source
+            accounts to one destination account, then archives the empty sources.
+            Your General Ledger shows one combined account with movements naturally ordered
+            by date and a correct running balance &mdash; as if the duplicates never existed.
+        </p>
+    </div>
+
+    <!-- ========================== HOW IT WORKS ======================== -->
+    <h2 style="color: #714B67; font-size: 24px; border-bottom: 2px solid #ece0e9; padding-bottom: 8px; margin-top: 40px;">How It Works</h2>
+
+    <h3 style="font-size: 18px; color: #111827; margin: 26px 0 6px;">1&nbsp;&mdash;&nbsp;Select the duplicated accounts</h3>
+    <p style="margin-top: 0;">
+        Open <b>Accounting &rarr; Configuration &rarr; Chart of Accounts</b>, tick two or more
+        accounts, then click <b>&#9881; Actions &rarr; Merge Accounts</b>. The action is only
+        visible to users in the <b>Accounting Administrator</b> group.
+    </p>
+    <img src="screenshot_1_list.svg" alt="Selecting accounts in the Chart of Accounts"
+         style="width: 100%; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,.08); display: block;"/>
+
+    <h3 style="font-size: 18px; color: #111827; margin: 30px 0 6px;">2&nbsp;&mdash;&nbsp;Pick the destination and confirm</h3>
+    <p style="margin-top: 0;">
+        The wizard shows the selected accounts, lets you choose the <b>destination account</b>
+        (it must be one of the selection) and displays how many <b>journal items</b> will move.
+        Accounts of different types are blocked unless you explicitly tick
+        <b>Allow Different Types</b>. A final confirmation dialog protects against misclicks.
+    </p>
+    <img src="screenshot_2_wizard.svg" alt="The Merge Accounts wizard"
+         style="width: 100%; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,.08); display: block;"/>
+
+    <h3 style="font-size: 18px; color: #111827; margin: 30px 0 6px;">3&nbsp;&mdash;&nbsp;One account, full history</h3>
+    <p style="margin-top: 0;">
+        After the merge, the destination account holds the combined balance and complete
+        history. The source accounts are <b>archived, never deleted</b>, so the operation
+        leaves no dangling records and archived accounts remain visible under
+        <b>Filters &rarr; Archived</b>.
+    </p>
+    <img src="screenshot_3_result.svg" alt="Result after merging: one account with combined history"
+         style="width: 100%; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,.08); display: block;"/>
+
+    <!-- ============================ FEATURES ========================== -->
+    <h2 style="color: #714B67; font-size: 24px; border-bottom: 2px solid #ece0e9; padding-bottom: 8px; margin-top: 44px;">Key Features</h2>
+
+    <table style="width: 100%; border-collapse: separate; border-spacing: 10px; margin: 6px -10px;">
+        <tr>
+            <td style="width: 50%; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; vertical-align: top;">
+                <b style="color: #714B67;">&#128257; Everything is repointed</b><br/>
+                <span style="font-size: 14px;">A generic foreign-key scan (the same technique as the
+                native partner merge) redirects <i>every</i> reference in the database:
+                journal items, journal default accounts, taxes, products, reconciliation
+                models, fiscal positions, assets &mdash; including columns added by
+                third-party modules.</span>
+            </td>
+            <td style="width: 50%; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; vertical-align: top;">
+                <b style="color: #714B67;">&#127970; Company-dependent fields covered</b><br/>
+                <span style="font-size: 14px;">Partner receivable/payable accounts and product
+                income/expense accounts are stored per company (jsonb on Odoo 18/19,
+                <code>ir.property</code> on Odoo 17). The module rewrites both storage
+                formats, so no per-company setting is left behind.</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; vertical-align: top;">
+                <b style="color: #714B67;">&#128202; Clean ledgers, correct balances</b><br/>
+                <span style="font-size: 14px;">Because journal items are moved (not copied or
+                netted), the General Ledger and Partner Ledger show one account whose
+                movements are naturally ordered by date with a correct running balance.</span>
+            </td>
+            <td style="background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; vertical-align: top;">
+                <b style="color: #714B67;">&#128274; Reconciliation-safe</b><br/>
+                <span style="font-size: 14px;">If any source account allows reconciliation, the
+                destination is made reconcilable automatically, so existing full and
+                partial reconciliations remain valid after the merge.</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; vertical-align: top;">
+                <b style="color: #714B67;">&#128451; Archive, never delete</b><br/>
+                <span style="font-size: 14px;">Source accounts are archived
+                (<code>active = False</code> on 18/19, <code>deprecated</code> on 17),
+                keeping the chart clean while staying reversible from the Archived filter.</span>
+            </td>
+            <td style="background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; vertical-align: top;">
+                <b style="color: #714B67;">&#129517; One codebase, three versions</b><br/>
+                <span style="font-size: 14px;">The same module installs unchanged on
+                Odoo 17, 18 and 19 &mdash; version differences are detected at runtime,
+                no separate branches to maintain.</span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- =========================== SAFEGUARDS ========================= -->
+    <h2 style="color: #714B67; font-size: 24px; border-bottom: 2px solid #ece0e9; padding-bottom: 8px; margin-top: 40px;">Built-in Safeguards</h2>
+    <ul style="font-size: 15px; padding-left: 24px;">
+        <li><b>Accounting Administrator only</b> &mdash; the action, the wizard model and a
+            server-side check are all restricted to <code>account.group_account_manager</code>.</li>
+        <li><b>Same company scope required</b> &mdash; accounts from different companies
+            cannot be merged together.</li>
+        <li><b>Same account type required</b> &mdash; merging Expenses into Receivable is
+            blocked unless <i>Allow Different Types</i> is explicitly ticked.</li>
+        <li><b>Hashed entries protected</b> &mdash; if any journal item of a source account
+            belongs to a hashed (inalterable) entry, the merge is refused entirely.</li>
+        <li><b>Explicit confirmation</b> &mdash; a warning banner plus a confirmation dialog
+            before anything is written.</li>
+        <li><b>Audit trail</b> &mdash; every merge is logged (accounts, journal item count,
+            user) in the server log.</li>
+    </ul>
+
+    <!-- ========================== COMPATIBILITY ======================= -->
+    <h2 style="color: #714B67; font-size: 24px; border-bottom: 2px solid #ece0e9; padding-bottom: 8px; margin-top: 40px;">Version Compatibility</h2>
+    <p style="font-size: 15px;">The module adapts automatically to the running version:</p>
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <tr style="background: #714B67; color: #fff;">
+            <th style="padding: 10px 14px; text-align: left; border-radius: 6px 0 0 0;">Mechanism</th>
+            <th style="padding: 10px 14px; text-align: left;">Odoo 17</th>
+            <th style="padding: 10px 14px; text-align: left; border-radius: 0 6px 0 0;">Odoo 18 / 19</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #e5e7eb;">
+            <td style="padding: 10px 14px;"><b>Company-dependent values</b><br/><span style="color:#6b7280;">partner &amp; product default accounts</span></td>
+            <td style="padding: 10px 14px;"><code>ir.property</code> references are rewritten</td>
+            <td style="padding: 10px 14px;">jsonb columns are rewritten per company</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #e5e7eb;">
+            <td style="padding: 10px 14px;"><b>Archiving the sources</b></td>
+            <td style="padding: 10px 14px;"><code>deprecated</code> flag</td>
+            <td style="padding: 10px 14px;"><code>active</code> flag</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #e5e7eb;">
+            <td style="padding: 10px 14px;"><b>Company scope check</b></td>
+            <td style="padding: 10px 14px;">single <code>company_id</code></td>
+            <td style="padding: 10px 14px;">multi-company <code>company_ids</code></td>
+        </tr>
+        <tr style="border-bottom: 1px solid #e5e7eb;">
+            <td style="padding: 10px 14px;"><b>Action group restriction</b></td>
+            <td style="padding: 10px 14px;" colspan="2">applied at install time with whichever field the version uses
+                (<code>groups_id</code> up to 18, <code>group_ids</code> since 19)</td>
+        </tr>
+    </table>
+
+    <!-- ============================= FAQ ============================== -->
+    <h2 style="color: #714B67; font-size: 24px; border-bottom: 2px solid #ece0e9; padding-bottom: 8px; margin-top: 40px;">FAQ</h2>
+
+    <p style="margin-bottom: 4px;"><b style="color:#111827;">Can I undo a merge?</b></p>
+    <p style="margin-top: 0; font-size: 14.5px;">The merge itself is not reversible &mdash; journal items are physically
+    repointed. That is why the wizard warns twice before running. The source accounts, however,
+    are only archived and can be unarchived at any time. Take a database backup before merging
+    large accounts.</p>
+
+    <p style="margin-bottom: 4px;"><b style="color:#111827;">Why is my merge refused with a message about hashed entries?</b></p>
+    <p style="margin-top: 0; font-size: 14.5px;">Some localizations hash posted entries to make them legally
+    inalterable. Moving such journal items would break the hash chain, so the module blocks the
+    merge instead of corrupting your audit trail.</p>
+
+    <p style="margin-bottom: 4px;"><b style="color:#111827;">Does it work with third-party modules that reference accounts?</b></p>
+    <p style="margin-top: 0; font-size: 14.5px;">Yes. The foreign-key scan works at the PostgreSQL level, so any
+    module whose tables have a foreign key to <code>account_account</code> is repointed
+    automatically &mdash; no per-module code needed.</p>
+
+    <p style="margin-bottom: 4px;"><b style="color:#111827;">Does it support multi-company databases?</b></p>
+    <p style="margin-top: 0; font-size: 14.5px;">Yes. All selected accounts must share the same company scope, and
+    per-company default account settings are rewritten for every company.</p>
+
+    <!-- =========================== SUPPORT ============================ -->
+    <div style="background: linear-gradient(135deg, #714B67, #4a2c42); border-radius: 10px; text-align: center; padding: 30px 20px; margin: 44px 0 10px;">
+        <h2 style="color: #fff; margin: 0 0 8px; font-size: 22px;">Need Help?</h2>
+        <p style="color: #e2d6de; margin: 0 0 16px; font-size: 15px;">
+            MohamedSaied &mdash; we are happy to assist with installation,
+            migrations and custom accounting workflows.
+        </p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #fff; text-decoration: none; font-weight: 600; border-radius: 24px; padding: 10px 28px; font-size: 15px;">
+            &#128172; Contact us on WhatsApp
+        </a>
+    </div>
+
+</div>

@@ -1,0 +1,108 @@
+<section style="max-width: 980px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #212529;">
+
+    <!-- ═══════════════ Header ═══════════════ -->
+    <div style="text-align: center; padding: 36px 20px; background: linear-gradient(135deg, #714B67 0%, #4d3246 100%); border-radius: 12px; color: #ffffff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">Stock Return to Original Location</h1>
+        <p style="margin: 0 0 18px; font-size: 18px; opacity: .9;">
+            Returned goods go back <b>exactly where they came from</b> &mdash; the source location of the
+            original delivery, not the operation type&rsquo;s generic default.
+        </p>
+        <div>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 17</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 18</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 19</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">LGPL-3</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Community &amp; Enterprise</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Why ═══════════════ -->
+    <div style="padding: 28px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 10px;">Why this module?</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            When you use sub-locations (shelves, zones, branch stores&hellip;), a delivery is picked from a
+            <b>specific place</b> &mdash; say <code>WH/Stock/Shelf&nbsp;A</code>. But when the customer sends the goods
+            back, the standard return wizard sends them to the <b>return operation type&rsquo;s default
+            destination</b> (typically the warehouse root <code>WH/Stock</code>, or a configured returns area).
+            The quantity ends up in the wrong place, on-hand per shelf is off, and someone has to make an
+            extra internal transfer to fix it.
+        </p>
+        <p style="font-size: 15px; line-height: 1.7;">
+            This module makes every return created from the <b>Return wizard</b> go back to the
+            <b>source location of the original transfer</b> &mdash; on the return picking <i>and on every stock
+            move inside it</i>, so the goods physically land on the right shelf.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Step 1 ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">1&nbsp;&middot;&nbsp;A delivery shipped from a sub-location</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            The delivery below was picked from <code>WH/Stock/Shelf&nbsp;A</code> and sent to the customer.
+        </p>
+        <img src="srl_01_delivery.png" alt="Delivery shipped from sub-location WH/Stock/Shelf A"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ Step 2 ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">2&nbsp;&middot;&nbsp;Standard Odoo: the shelf is lost</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Returning that delivery with the standard wizard creates a receipt whose destination is the
+            operation type&rsquo;s default &mdash; plain <code>WH/Stock</code>. Nobody remembers the goods belong
+            on Shelf&nbsp;A.
+        </p>
+        <img src="srl_02_standard.png" alt="Standard return goes to the operation type default location"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ Step 3 ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">3&nbsp;&middot;&nbsp;With this module: back to Shelf A</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Same return, module installed: the destination is <code>WH/Stock/Shelf&nbsp;A</code> &mdash; the exact
+            source of the original delivery. Validate, and the on-hand quantity is correct per shelf,
+            no manual transfer needed.
+        </p>
+        <img src="srl_03_fixed.png" alt="With the module the return goes back to the original source location"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ How it works ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">How it works (technical)</h2>
+        <ul style="font-size: 15px; line-height: 1.9;">
+            <li>Extends the standard return wizard (<code>stock.return.picking</code>):
+                <code>_prepare_picking_default_values()</code> forces the return picking&rsquo;s destination to the
+                original picking&rsquo;s source location.</li>
+            <li>On Odoo 17 the return <b>moves</b> take their destination from the wizard&rsquo;s &ldquo;Return
+                Location&rdquo; field, so the module also overrides
+                <code>_prepare_move_default_values()</code> there &mdash; the override is inert on 18/19, where the
+                moves already follow the picking&rsquo;s destination.</li>
+            <li>Applies to every return created from the wizard (returns, exchanges, partial returns) &mdash;
+                chained flows (pick/pack/ship) keep working, only the final destination changes.</li>
+            <li>No views, no data, no stored fields &mdash; one small wizard override, safe to install and
+                uninstall at any time.</li>
+        </ul>
+    </div>
+
+    <!-- ═══════════════ Compatibility ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Compatibility</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Tested on <b>Odoo 17, 18 and 19</b> (Community and Enterprise).
+            Depends only on the standard <code>stock</code> module.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Support ═══════════════ -->
+    <div style="text-align: center; margin: 28px 0 8px; padding: 26px; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px;">
+        <h2 style="font-size: 22px; color: #714B67; margin: 0 0 8px;">Support</h2>
+        <p style="font-size: 15px; margin: 0 0 14px;">Community of Accountants (COA) &mdash; questions, custom work and support:</p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 26px; border-radius: 28px;">
+            WhatsApp: +20&nbsp;101&nbsp;390&nbsp;7174
+        </a>
+    </div>
+
+</section>

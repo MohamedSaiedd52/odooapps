@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Manufacturing Order Raw Materials List View -->
+    <record id="mrp_production_form_inherit_source_location" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.source.location</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_raw_ids']/list/field[@name='location_id']" position="after">
+                <field name="source_location_id" optional="hide" options="{'no_create': True, 'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- Stock Move Form View -->
+    <record id="stock_move_form_inherit_source_location" model="ir.ui.view">
+        <field name="name">stock.move.form.inherit.source.location</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='main_grp_col1']/field[@name='location_id']" position="after">
+                <field name="raw_material_production_id" invisible="1"/>
+                <field name="source_location_id" invisible="not raw_material_production_id"
+                       options="{'no_create': True, 'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Actions must be defined BEFORE the view that uses them -->
+    <record id="action_shopify_product_from_instance" model="ir.actions.act_window">
+        <field name="name">Shopify Products</field>
+        <field name="res_model">shopify.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('instance_id', '=', active_id)]</field>
+        <field name="context">{'default_instance_id': active_id}</field>
+    </record>
+
+    <!-- Action to open Odoo Products (for Production Mode) -->
+    <record id="action_odoo_products_from_instance" model="ir.actions.act_window">
+        <field name="name">Odoo Products</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('sale_ok', '=', True), ('active', '=', True)]</field>
+        <field name="context">{'search_default_filter_to_sell': 1}</field>
+    </record>
+
+    <record id="action_shopify_order_from_instance" model="ir.actions.act_window">
+        <field name="name">Shopify Orders</field>
+        <field name="res_model">shopify.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('instance_id', '=', active_id)]</field>
+        <field name="context">{'default_instance_id': active_id}</field>
+    </record>
+
+    <record id="action_shopify_customer_from_instance" model="ir.actions.act_window">
+        <field name="name">Shopify Customers</field>
+        <field name="res_model">shopify.customer</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('instance_id', '=', active_id)]</field>
+        <field name="context">{'default_instance_id': active_id}</field>
+    </record>
+
+    <record id="action_shopify_queue_job_from_instance" model="ir.actions.act_window">
+        <field name="name">Queue Jobs</field>
+        <field name="res_model">shopify.queue.job</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('instance_id', '=', active_id)]</field>
+        <field name="context">{'default_instance_id': active_id}</field>
+    </record>
+
+    <record id="action_shopify_log_from_instance" model="ir.actions.act_window">
+        <field name="name">Logs</field>
+        <field name="res_model">shopify.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('job_id.instance_id', '=', active_id)]</field>
+    </record>
+
+    <record id="view_shopify_instance_tree" model="ir.ui.view">
+        <field name="name">shopify.instance.tree</field>
+        <field name="model">shopify.instance</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Shopify Instances" decoration-success="state == 'connected'" decoration-danger="state == 'error'">
+                <field name="name"/>
+                <field name="shop_url"/>
+                <field name="company_id"/>
+                <field name="state" widget="badge" decoration-success="state == 'connected'" decoration-warning="state == 'draft'" decoration-danger="state == 'error'"/>
+                <field name="last_sync"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_shopify_instance_form" model="ir.ui.view">
+        <field name="name">shopify.instance.form</field>
+        <field name="model">shopify.instance</field>
+        <field name="arch" type="xml">
+            <form string="Shopify Instance">
+                <header>
+                    <button name="action_test_connection" type="object" string="Test Connection" class="btn-primary" invisible="state == 'connected'"/>
+                    <button name="action_sync_all" type="object" string="Sync All" class="btn-primary" invisible="state != 'connected' or not sync_products_from_shopify"/>
+                    <button name="action_sync_products" type="object" string="Sync Products" invisible="state != 'connected' or not sync_products_from_shopify"/>
+                    <button name="action_sync_orders" type="object" string="Sync Orders" class="btn-primary" invisible="state != 'connected'"/>
+                    <button name="action_refresh_existing_orders" type="object" string="Refresh Orders (Fix Discounts)" class="btn-warning" invisible="state != 'connected'" confirm="This will re-fetch all orders from Shopify and recalculate discounts. Continue?"/>
+                    <button name="action_sync_customers" type="object" string="Sync Customers" invisible="state != 'connected' or use_fixed_customer"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,connected,error"/>
+                    <field name="sync_products_from_shopify" invisible="1"/>
+                    <field name="use_fixed_customer" invisible="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- Shopify Products: Show when syncing products from Shopify -->
+                        <button name="%(action_shopify_product_from_instance)d" type="action" class="oe_stat_button" icon="fa-cubes"
+                                invisible="not sync_products_from_shopify">
+                            <field name="product_count" string="Shopify Products" widget="statinfo"/>
+                        </button>
+                        <!-- Odoo Products: Show in Production Mode (not syncing from Shopify) -->
+                        <button name="%(action_odoo_products_from_instance)d" type="action" class="oe_stat_button" icon="fa-cubes"
+                                invisible="sync_products_from_shopify">
+                            <field name="odoo_product_count" string="Products" widget="statinfo"/>
+                        </button>
+                        <button name="%(action_shopify_order_from_instance)d" type="action" class="oe_stat_button" icon="fa-shopping-cart">
+                            <field name="order_count" string="Orders" widget="statinfo"/>
+                        </button>
+                        <!-- Customers: Only show when not using fixed customer -->
+                        <button name="%(action_shopify_customer_from_instance)d" type="action" class="oe_stat_button" icon="fa-users"
+                                invisible="use_fixed_customer">
+                            <field name="customer_count" string="Customers" widget="statinfo"/>
+                        </button>
+                        <button name="%(action_shopify_queue_job_from_instance)d" type="action" class="oe_stat_button" icon="fa-tasks">
+                            <field name="queue_job_count" string="Jobs" widget="statinfo"/>
+                        </button>
+                        <button name="%(action_shopify_log_from_instance)d" type="action" class="oe_stat_button" icon="fa-exclamation-triangle">
+                            <field name="error_count" string="Errors" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Instance Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Store Information">
+                            <field name="shop_url" placeholder="https://yourstore.myshopify.com"/>
+                            <field name="company_id"/>
+                            <field name="currency_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="API Credentials">
+                            <field name="access_token" password="True" placeholder="Admin API Access Token (shpat_xxx)"/>
+                            <field name="api_key" placeholder="API Key (optional)"/>
+                            <field name="password" password="True" placeholder="API Password (optional)"/>
+                            <field name="shared_secret" password="True" placeholder="Shared Secret (for webhooks)"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sync Settings">
+                            <group>
+                                <group string="Auto Sync">
+                                    <field name="auto_sync_products" invisible="not sync_products_from_shopify"/>
+                                    <field name="auto_sync_orders"/>
+                                    <field name="auto_sync_customers" invisible="use_fixed_customer"/>
+                                    <field name="auto_sync_inventory" invisible="not sync_products_from_shopify"/>
+                                </group>
+                                <group string="Sync Options">
+                                    <field name="sync_from_date"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Last Sync Info">
+                            <group>
+                                <group>
+                                    <field name="last_sync"/>
+                                    <field name="last_product_sync" invisible="not sync_products_from_shopify"/>
+                                    <field name="last_order_sync"/>
+                                </group>
+                                <group>
+                                    <field name="last_customer_sync" invisible="use_fixed_customer"/>
+                                    <field name="last_inventory_sync" invisible="not sync_products_from_shopify"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Dashboard">
+                            <group>
+                                <field name="total_sales"/>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <field name="note" placeholder="Internal notes..."/>
+                        </page>
+                        <page string="Production Settings" name="production_settings">
+                            <div class="alert alert-info" role="alert">
+                                <strong>Production Mode:</strong> Configure these settings to integrate with existing Odoo products and customers instead of syncing from Shopify.
+                            </div>
+                            <group>
+                                <group string="Product Settings">
+                                    <field name="sync_products_from_shopify"/>
+                                    <field name="product_lookup_field" invisible="sync_products_from_shopify"/>
+                                    <field name="skip_orders_missing_products" invisible="sync_products_from_shopify"/>
+                                </group>
+                                <group string="Customer Settings">
+                                    <field name="use_fixed_customer"/>
+                                    <field name="fixed_customer_id"
+                                           invisible="not use_fixed_customer"
+                                           required="use_fixed_customer"/>
+                                    <field name="store_customer_name_in_order"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Discount Settings">
+                                    <field name="map_discount_codes"/>
+                                    <field name="default_discount_scheme_name" invisible="not map_discount_codes"
+                                           placeholder="e.g., WELCOME10"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_shopify_instance_search" model="ir.ui.view">
+        <field name="name">shopify.instance.search</field>
+        <field name="model">shopify.instance</field>
+        <field name="arch" type="xml">
+            <search string="Shopify Instances">
+                <field name="name"/>
+                <field name="shop_url"/>
+                <field name="company_id"/>
+                <filter string="Connected" name="connected" domain="[('state', '=', 'connected')]"/>
+                <filter string="Error" name="error" domain="[('state', '=', 'error')]"/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <group>
+                    <filter string="Company" name="group_company" context="{'group_by': 'company_id'}"/>
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_shopify_instance" model="ir.actions.act_window">
+        <field name="name">Shopify Instances</field>
+        <field name="res_model">shopify.instance</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create and configure your Shopify store connection here.
+            </p>
+            <p>
+                Enter your Shopify Admin API Access Token to connect your store.
+            </p>
+        </field>
+    </record>
+
+</odoo>

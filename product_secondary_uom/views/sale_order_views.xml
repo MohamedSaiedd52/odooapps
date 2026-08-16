@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form_secondary_uom" model="ir.ui.view">
+        <field name="name">sale.order.form.secondary.uom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">999</field>
+        <field name="arch" type="xml">
+            <!-- anchor inside the /list subtree: the o2m also contains a <form>
+                 dialog whose product_uom would match first otherwise -->
+            <xpath expr="//field[@name='order_line']/list//field[@name='product_uom_qty']" position="after">
+                <field name="secondary_uom_qty" string="Sec. Qty" optional="show" readonly="1"/>
+                <field name="secondary_uom_id" string="Sec. UoM" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_tree_secondary_uom" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.secondary.uom</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <!-- Odoo 19: sale.order.line uom field renamed product_uom -> product_uom_id -->
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field name="secondary_uom_qty" string="Sec. Qty" optional="show" readonly="1"/>
+                <field name="secondary_uom_id" string="Sec. UoM" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

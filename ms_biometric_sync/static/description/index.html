@@ -1,0 +1,288 @@
+<section style="font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#212529;line-height:1.6;max-width:1120px;margin:0 auto;padding:0 8px 48px;">
+
+  <!-- ============ HERO ============ -->
+  <div style="background-color:#14243b;border-radius:12px;padding:34px 36px;margin-bottom:32px;">
+    <h1 style="color:#ffffff;font-size:34px;font-weight:700;line-height:1.2;margin:0 0 10px;">MS Biometric Sync</h1>
+    <p style="color:#cfd9e6;font-size:17px;margin:0 0 18px;">
+      Push attendance punches from ZKTeco fingerprint / face / RFID devices straight into Odoo Attendances &mdash;
+      no BioTime server, no middleware, no inbound port forwarding.
+    </p>
+    <p style="margin:0;">
+      <span style="display:inline-block;background-color:#2c4a70;color:#ffffff;border-radius:14px;padding:4px 13px;font-size:13px;margin:4px 6px 0 0;">Odoo 17 &middot; 18 &middot; 19</span>
+      <span style="display:inline-block;background-color:#2c4a70;color:#ffffff;border-radius:14px;padding:4px 13px;font-size:13px;margin:4px 6px 0 0;">Talks to the device SDK directly</span>
+      <span style="display:inline-block;background-color:#2c4a70;color:#ffffff;border-radius:14px;padding:4px 13px;font-size:13px;margin:4px 6px 0 0;">Works with Odoo.sh &amp; on-premise</span>
+      <span style="display:inline-block;background-color:#2c4a70;color:#ffffff;border-radius:14px;padding:4px 13px;font-size:13px;margin:4px 6px 0 0;">Token-authenticated endpoint</span>
+      <span style="display:inline-block;background-color:#2c4a70;color:#ffffff;border-radius:14px;padding:4px 13px;font-size:13px;margin:4px 6px 0 0;">Replay-safe</span>
+    </p>
+  </div>
+
+  <p style="font-size:18px;color:#4a5568;margin:0 0 20px;">
+    A small Python agent runs on any PC inside the same network as the fingerprint device.
+    It reads new punches over the native ZKTeco protocol, then pushes them to Odoo over HTTPS.
+    Odoo maps each punch to an employee and pairs it into a normal
+    <span style="font-family:Consolas,monospace;font-size:15px;background-color:#f2f4f7;padding:1px 5px;">hr.attendance</span> record.
+  </p>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <h2 style="color:#14243b;font-size:25px;font-weight:700;margin:44px 0 4px;">How the connection works</h2>
+  <div style="background-color:#2c4a70;height:3px;width:100%;margin-bottom:20px;"></div>
+
+  <img src="00_architecture.png" alt="The device talks to a local agent over the ZK protocol; the agent posts to Odoo over HTTPS"
+       style="width:100%;height:auto;display:block;margin-bottom:24px;"/>
+
+  <table style="width:100%;border-collapse:collapse;margin:0 0 20px;">
+    <tr>
+      <td style="width:33.3%;border:1px solid #e3e7ec;border-left:4px solid #2c4a70;padding:16px 18px;vertical-align:top;">
+        <h3 style="color:#14243b;font-size:16px;font-weight:600;margin:0 0 8px;">No BioTime required</h3>
+        <p style="margin:0;font-size:14px;color:#4a5568;">The agent speaks the native ZKTeco protocol on port 4370.
+          You do not need a BioTime server, its licence, or its database.</p>
+      </td>
+      <td style="width:33.3%;border:1px solid #e3e7ec;border-left:4px solid #2c4a70;padding:16px 18px;vertical-align:top;">
+        <h3 style="color:#14243b;font-size:16px;font-weight:600;margin:0 0 8px;">No inbound firewall rule</h3>
+        <p style="margin:0;font-size:14px;color:#4a5568;">A cloud Odoo can never reach a private
+          <span style="font-family:Consolas,monospace;">192.168.x.x</span> address. The agent pushes outward instead,
+          so nothing has to be exposed to the internet.</p>
+      </td>
+      <td style="width:33.3%;border:1px solid #e3e7ec;border-left:4px solid #2c4a70;padding:16px 18px;vertical-align:top;">
+        <h3 style="color:#14243b;font-size:16px;font-weight:600;margin:0 0 8px;">Several devices, one database</h3>
+        <p style="margin:0;font-size:14px;color:#4a5568;">Every punch is stamped with its device serial, and sync
+          progress is tracked per serial. Add branches without extra configuration.</p>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ============ SETUP ============ -->
+  <h2 style="color:#14243b;font-size:25px;font-weight:700;margin:44px 0 4px;">Setting it up</h2>
+  <div style="background-color:#2c4a70;height:3px;width:100%;margin-bottom:20px;"></div>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 8px;">Step 1 &mdash; Create the shared token in Odoo</h3>
+  <p style="margin:0 0 12px;">Go to <em>Settings &rarr; Technical &rarr; System Parameters</em> and add:</p>
+  <table style="width:100%;border-collapse:collapse;margin:0 0 24px;font-size:14.5px;">
+    <tr>
+      <th style="border:1px solid #e3e7ec;background-color:#f7f9fb;padding:9px 12px;text-align:left;width:38%;">Key</th>
+      <th style="border:1px solid #e3e7ec;background-color:#f7f9fb;padding:9px 12px;text-align:left;">Value</th>
+    </tr>
+    <tr>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;font-family:Consolas,monospace;">ms_biometric_sync.token</td>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;">Any long random string. The agent must send exactly the same one.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;font-family:Consolas,monospace;">ms_biometric_sync.timezone</td>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;">The timezone the <em>device clock</em> runs in, e.g.
+        <span style="font-family:Consolas,monospace;">Africa/Cairo</span> (this is also the default).</td>
+    </tr>
+  </table>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 8px;">Step 2 &mdash; Map each employee to their device enroll number</h3>
+  <p style="margin:0 0 24px;">Open the employee, go to the <em>HR Settings</em> tab, and fill in
+    <strong>Biometric ID</strong> with the User ID stored on the fingerprint machine.</p>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 8px;">Step 3 &mdash; Configure the agent</h3>
+  <p style="margin:0 0 12px;">On a PC in the same network as the device, install the dependencies and run the agent
+    once so that it writes its configuration file:</p>
+  <pre style="background-color:#14243b;color:#e9edf3;border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:Consolas,monospace;font-size:13px;line-height:1.55;margin:0 0 14px;">pip install pyzk requests
+python biometric_sync_agent.py</pre>
+  <p style="margin:0 0 12px;">Then edit the generated <span style="font-family:Consolas,monospace;">sync_config.json</span>:</p>
+  <pre style="background-color:#14243b;color:#e9edf3;border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:Consolas,monospace;font-size:13px;line-height:1.55;margin:0 0 24px;">{
+    "device_ip":   "192.168.1.201",
+    "device_port": 4370,
+    "odoo_url":    "https://yourcompany.odoo.com",
+    "odoo_token":  "the same token you set in Odoo",
+    "force_udp":   false
+}</pre>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 8px;">Step 4 &mdash; Schedule it</h3>
+  <p style="margin:0 0 16px;">Run the agent every 10&ndash;15 minutes with Windows Task Scheduler or a Linux cron entry.
+    Progress is stored in <span style="font-family:Consolas,monospace;">sync_state.json</span>, so each run only
+    uploads punches it has not sent before.</p>
+
+  <div style="background-color:#fff8e6;border:1px solid #f2dfae;border-left:4px solid #d99f22;border-radius:6px;padding:14px 16px;margin:0 0 20px;font-size:14.5px;">
+    <strong>Use HTTPS in production.</strong> The token travels inside the request body, so
+    <span style="font-family:Consolas,monospace;">odoo_url</span> should always start with
+    <span style="font-family:Consolas,monospace;">https://</span> on a real deployment.
+  </div>
+
+  <!-- ============ SCREENSHOTS ============ -->
+  <h2 style="color:#14243b;font-size:25px;font-weight:700;margin:44px 0 4px;">What it looks like in Odoo</h2>
+  <div style="background-color:#2c4a70;height:3px;width:100%;margin-bottom:20px;"></div>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">1. Mapping an employee to the device</h3>
+  <img src="01_employee_mapping.png" alt="Employee form showing the Biometric ID field in the HR Settings tab"
+       style="width:100%;height:auto;display:block;border:1px solid #dde2e8;border-radius:8px;"/>
+  <p style="font-size:14px;color:#6b7684;margin:9px 0 30px;">
+    The module adds one field to the employee form. If a punch arrives with an ID that matches no
+    <strong>Biometric ID</strong>, Odoo falls back to the standard <strong>Badge ID</strong>, so an existing badge
+    numbering scheme keeps working.
+  </p>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">2. Every punch is recorded, successful or not</h3>
+  <img src="02_biometric_logs.png" alt="Biometric Logs list view with synced and failed punches"
+       style="width:100%;height:auto;display:block;border:1px solid #dde2e8;border-radius:8px;"/>
+  <p style="font-size:14px;color:#6b7684;margin:9px 0 30px;">
+    A new <em>Attendances &rarr; Biometric Logs</em> menu shows the raw device feed. Rows are colour coded, and the
+    note tells you exactly which attendance record each punch produced.
+  </p>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">3. Failures are diagnosable, not silent</h3>
+  <img src="03_failed_punch.png" alt="Form view of a failed punch explaining that no employee matched"
+       style="width:100%;height:auto;display:block;border:1px solid #dde2e8;border-radius:8px;"/>
+  <p style="font-size:14px;color:#6b7684;margin:9px 0 30px;">
+    An unmapped device user does not break the sync and is not dropped. The punch is stored with a
+    <em>Failed</em> status and an explanation, so you can map the employee and review it afterwards.
+  </p>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">4. The result: a normal attendance record</h3>
+  <img src="04_attendance_result.png" alt="Attendance list showing check in and check out written by the sync"
+       style="width:100%;height:auto;display:block;border:1px solid #dde2e8;border-radius:8px;"/>
+  <p style="font-size:14px;color:#6b7684;margin:9px 0 30px;">
+    Two punches became one <span style="font-family:Consolas,monospace;">hr.attendance</span> record. From here on
+    everything is standard Odoo &mdash; worked hours, overtime, reporting and payroll all behave exactly as usual.
+  </p>
+
+  <!-- ============ PIPELINE ============ -->
+  <h2 style="color:#14243b;font-size:25px;font-weight:700;margin:44px 0 4px;">How a punch becomes an attendance</h2>
+  <div style="background-color:#2c4a70;height:3px;width:100%;margin-bottom:20px;"></div>
+
+  <p style="margin:0 0 12px;">For every punch, in order:</p>
+  <ol style="margin:0 0 18px;padding-left:22px;">
+    <li style="margin-bottom:8px;"><strong>Authenticate.</strong> The token is compared with the system parameter.
+      A wrong or missing token rejects the whole batch and writes nothing.</li>
+    <li style="margin-bottom:8px;"><strong>Skip replays.</strong> If a log with the same
+      <em>(device serial, punch UID)</em> already exists, the punch is counted as <em>ignored</em>.
+      A database-level unique constraint backs this up.</li>
+    <li style="margin-bottom:8px;"><strong>Convert the time.</strong> The device sends local wall-clock time. It is
+      read in the configured device timezone and stored in UTC, the way Odoo stores every datetime.</li>
+    <li style="margin-bottom:8px;"><strong>Find the employee.</strong> First by <em>Biometric ID</em>, then by
+      <em>Badge ID</em>. No match &rarr; the log is saved as <em>Failed</em> with a reason.</li>
+    <li style="margin-bottom:8px;"><strong>Pair it.</strong> If the employee has an attendance that is still open,
+      this punch closes it as the check-out. Otherwise a new check-in is opened.</li>
+  </ol>
+
+  <div style="background-color:#eef8f1;border:1px solid #cfe8d8;border-left:4px solid #2e9e5b;border-radius:6px;padding:14px 16px;margin:0 0 20px;font-size:14.5px;">
+    <strong>Safe to re-run.</strong> Sending the same batch twice changes nothing: the second call reports every
+    punch as <em>ignored</em> and no duplicate attendance is created, so a failed network request can simply be retried.
+  </div>
+
+  <!-- ============ TECHNICAL ============ -->
+  <h2 style="color:#14243b;font-size:25px;font-weight:700;margin:44px 0 4px;">Technical reference</h2>
+  <div style="background-color:#2c4a70;height:3px;width:100%;margin-bottom:20px;"></div>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">Endpoint</h3>
+  <table style="width:100%;border-collapse:collapse;margin:0 0 22px;font-size:14.5px;">
+    <tr>
+      <th style="border:1px solid #e3e7ec;background-color:#f7f9fb;padding:9px 12px;text-align:left;width:24%;">Route</th>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;font-family:Consolas,monospace;">POST /api/biometric/sync</td>
+    </tr>
+    <tr>
+      <th style="border:1px solid #e3e7ec;background-color:#f7f9fb;padding:9px 12px;text-align:left;">Type</th>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;">JSON-RPC (<span style="font-family:Consolas,monospace;">type="json"</span>),
+        <span style="font-family:Consolas,monospace;">auth="public"</span>, CSRF disabled</td>
+    </tr>
+    <tr>
+      <th style="border:1px solid #e3e7ec;background-color:#f7f9fb;padding:9px 12px;text-align:left;">Authentication</th>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;">Shared token in
+        <span style="font-family:Consolas,monospace;">params.token</span>, compared against
+        <span style="font-family:Consolas,monospace;">ir.config_parameter</span></td>
+    </tr>
+  </table>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">Request</h3>
+  <pre style="background-color:#14243b;color:#e9edf3;border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:Consolas,monospace;font-size:13px;line-height:1.55;margin:0 0 22px;">{
+  "jsonrpc": "2.0",
+  "method": "call",
+  "params": {
+    "token": "your-token",
+    "logs": [
+      {
+        "punch_id":      10001,
+        "device_serial": "ZKTEST_MOCK_01",
+        "biometric_id":  "123",
+        "punch_time":    "2026-06-18 08:00:00"
+      }
+    ]
+  }
+}</pre>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">Response</h3>
+  <pre style="background-color:#14243b;color:#e9edf3;border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:Consolas,monospace;font-size:13px;line-height:1.55;margin:0 0 22px;">{
+  "result": {
+    "status":    "success",
+    "processed": 2,       // punches written into hr.attendance
+    "ignored":   0,       // already synced before
+    "errors":    1,       // stored as Failed logs, with the reason
+    "error_details": []
+  }
+}</pre>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">Data model</h3>
+  <table style="width:100%;border-collapse:collapse;margin:0 0 22px;font-size:14.5px;">
+    <tr>
+      <th style="border:1px solid #e3e7ec;background-color:#f7f9fb;padding:9px 12px;text-align:left;width:32%;">Model / field</th>
+      <th style="border:1px solid #e3e7ec;background-color:#f7f9fb;padding:9px 12px;text-align:left;">Purpose</th>
+    </tr>
+    <tr>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;font-family:Consolas,monospace;">biometric.log</td>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;">One record per punch received: employee,
+        biometric ID, punch UID, device serial, punch time, status and note.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;font-family:Consolas,monospace;">hr.employee.biometric_id</td>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;">The employee's enroll number on the
+        device. Unique across employees.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;">Unique constraint</td>
+      <td style="border:1px solid #e3e7ec;padding:9px 12px;vertical-align:top;">
+        <span style="font-family:Consolas,monospace;">(device_serial, punch_id)</span> &mdash; the database-level
+        guarantee against duplicates.</td>
+    </tr>
+  </table>
+
+  <h3 style="color:#14243b;font-size:18px;font-weight:600;margin:0 0 10px;">Access rights</h3>
+  <ul style="margin:0 0 22px;padding-left:22px;">
+    <li style="margin-bottom:7px;"><em>HR Manager</em> &mdash; full access to biometric logs.</li>
+    <li style="margin-bottom:7px;"><em>HR Officer</em> &mdash; read and write, but cannot delete log records.</li>
+  </ul>
+
+  <!-- ============ TESTING ============ -->
+  <h2 style="color:#14243b;font-size:25px;font-weight:700;margin:44px 0 4px;">Testing without a device</h2>
+  <div style="background-color:#2c4a70;height:3px;width:100%;margin-bottom:20px;"></div>
+
+  <p style="margin:0 0 14px;">A mock tester,
+    <span style="font-family:Consolas,monospace;">mock_test_sync.py</span>, is provided next to the sync agent. It posts
+    three fabricated punches (a check-in, a check-out, and one for an unmapped user) to the endpoint, so you can
+    validate the token, the employee mapping and the pairing logic before any hardware is on site.</p>
+
+  <pre style="background-color:#14243b;color:#e9edf3;border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:Consolas,monospace;font-size:13px;line-height:1.55;margin:0 0 22px;">$ python mock_test_sync.py
+Sending request to: http://localhost:8069/api/biometric/sync
+HTTP Status Code: 200
+{
+    "result": {
+        "status":    "success",
+        "processed": 2,
+        "ignored":   0,
+        "errors":    1
+    }
+}</pre>
+
+  <p style="margin:0 0 14px;">An automated suite covers the same ground: token rejection, timezone conversion,
+    punch pairing, replay protection, unmapped users and the badge-ID fallback.</p>
+
+  <pre style="background-color:#14243b;color:#e9edf3;border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:Consolas,monospace;font-size:13px;line-height:1.55;margin:0 0 22px;">python -m odoo -d yourdb -i ms_biometric_sync \
+    --test-enable --test-tags=/ms_biometric_sync --stop-after-init</pre>
+
+  <!-- ============ REQUIREMENTS ============ -->
+  <h2 style="color:#14243b;font-size:25px;font-weight:700;margin:44px 0 4px;">Requirements</h2>
+  <div style="background-color:#2c4a70;height:3px;width:100%;margin-bottom:20px;"></div>
+
+  <ul style="margin:0;padding-left:22px;">
+    <li style="margin-bottom:7px;">Odoo 17.0, 18.0 or 19.0 with <span style="font-family:Consolas,monospace;">hr</span> and
+      <span style="font-family:Consolas,monospace;">hr_attendance</span> installed.</li>
+    <li style="margin-bottom:7px;">A PC on the device network able to run Python 3 with
+      <span style="font-family:Consolas,monospace;">pyzk</span> and
+      <span style="font-family:Consolas,monospace;">requests</span>.</li>
+    <li style="margin-bottom:7px;">A ZKTeco device reachable on TCP/UDP port 4370 (the standard fingerprint,
+      face and RFID range).</li>
+  </ul>
+
+</section>

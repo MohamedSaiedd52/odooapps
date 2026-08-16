@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Sale Order Report: limit quantity to 2 decimal places -->
+    <template id="report_saleorder_document_qty_precision"
+              inherit_id="sale.report_saleorder_document">
+        <!-- [not(@t-options)] skips the Odoo 19 combo-line span that renders
+             the qty with the integer widget -->
+        <xpath expr="//span[@t-field='line.product_uom_qty'][not(@t-options)]" position="attributes">
+            <attribute name="t-options">{"widget": "float", "precision": 2}</attribute>
+        </xpath>
+    </template>
+
+</odoo>

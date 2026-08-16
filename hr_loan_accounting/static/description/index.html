@@ -1,0 +1,124 @@
+<section style="max-width: 980px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: #212529;">
+
+    <!-- ===== Hero ===== -->
+    <div style="text-align:center; padding: 32px 16px; background: linear-gradient(135deg,#1a2e4c 0%,#2e5077 100%); border-radius: 12px; color:#fff;">
+        <h1 style="margin:0; font-size: 34px; font-weight:700;">HR Loan Accounting</h1>
+        <p style="font-size:18px; margin: 12px auto 0; max-width: 640px; color:#dbe4f0;">
+            Complete employee loan management — loan requests with installment
+            schedules, payroll deduction, automatic journal entries on
+            approval, a Journal Entries smart button, and an installment delay
+            wizard.
+        </p>
+        <p style="margin-top:16px;">
+            <span style="background:#875A7B; padding:6px 14px; border-radius:16px; font-size:13px;">Odoo 18</span>
+            <span style="background:#875A7B; padding:6px 14px; border-radius:16px; font-size:13px; margin-left:8px;">Human Resources</span>
+            <span style="background:#875A7B; padding:6px 14px; border-radius:16px; font-size:13px; margin-left:8px;">Accounting</span>
+        </p>
+    </div>
+
+    <!-- ===== Key features ===== -->
+    <h2 style="margin-top:40px; color:#1a2e4c; border-bottom: 3px solid #875A7B; padding-bottom:8px;">Key Features</h2>
+    <table style="width:100%; border-collapse: collapse; margin-top: 16px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; padding:12px; border:1px solid #e9ecef; border-radius:8px;">
+                <h3 style="color:#875A7B; margin:0 0 8px;">&#128209; Automatic Journal Entry</h3>
+                <p style="margin:0; font-size:14px;">When a loan is approved, a balanced journal entry is created and
+                posted automatically: <b>debit</b> the Loan Account (employee receivable),
+                <b>credit</b> the Treasury Account (cash/bank disbursement).</p>
+            </td>
+            <td style="width:33%; vertical-align:top; padding:12px; border:1px solid #e9ecef;">
+                <h3 style="color:#875A7B; margin:0 0 8px;">&#128218; Journal Entries Smart Button</h3>
+                <p style="margin:0; font-size:14px;">A smart button on the loan form shows the number of linked journal
+                entries (matched by the loan reference) and opens them in one click.</p>
+            </td>
+            <td style="width:33%; vertical-align:top; padding:12px; border:1px solid #e9ecef;">
+                <h3 style="color:#875A7B; margin:0 0 8px;">&#9200; Delay Installments Wizard</h3>
+                <p style="margin:0; font-size:14px;">Postpone the repayment schedule of an approved loan: shift every
+                <b>unpaid</b> installment forward by N months. Paid installments are never touched.</p>
+            </td>
+        </tr>
+    </table>
+
+    <!-- ===== Configuration guard ===== -->
+    <div style="margin-top:24px; padding:14px 18px; background:#fdf3e7; border-left:4px solid #e8a33d; border-radius:4px;">
+        <b>Validation guard:</b> a loan cannot be approved until the
+        <i>Journal</i>, <i>Loan Account</i> and <i>Treasury Account</i> are set —
+        so no disbursement ever goes unrecorded.
+    </div>
+
+    <!-- ===== Screenshots ===== -->
+    <h2 style="margin-top:40px; color:#1a2e4c; border-bottom: 3px solid #875A7B; padding-bottom:8px;">How It Works</h2>
+
+    <h3 style="color:#875A7B; margin-top:28px;">1. Set the accounting details on the loan request</h3>
+    <p style="font-size:14px;">Three new fields are added to the loan form: <b>Journal</b> (bank/cash),
+    <b>Loan Account</b> (debit side) and <b>Treasury Account</b> (credit side).
+    Compute the installment schedule, submit, and approve.</p>
+    <img src="01_loan_form.png" style="width:100%; border:1px solid #dee2e6; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.08);" alt="Loan form with accounting fields"/>
+
+    <h3 style="color:#875A7B; margin-top:28px;">2. Approval posts the disbursement entry</h3>
+    <p style="font-size:14px;">On approval the journal entry is created and posted automatically. The
+    <b>Journal Entries</b> smart button appears in the button box, and the
+    <b>Delay Installments</b> button becomes available in the header.</p>
+    <img src="02_approved_smart_button.png" style="width:100%; border:1px solid #dee2e6; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.08);" alt="Approved loan with smart button"/>
+
+    <h3 style="color:#875A7B; margin-top:28px;">3. The posted journal entry</h3>
+    <p style="font-size:14px;">The entry debits the Loan Account and credits the Treasury Account for the
+    full loan amount, with the loan number as reference.</p>
+    <img src="03_journal_entry.png" style="width:100%; border:1px solid #dee2e6; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.08);" alt="Posted journal entry"/>
+
+    <h3 style="color:#875A7B; margin-top:28px;">4. Delay the repayment schedule</h3>
+    <p style="font-size:14px;">Open the <b>Delay Installments</b> wizard on an approved loan, choose the
+    number of months, and submit. Only unpaid installments are rescheduled.</p>
+    <img src="04_delay_wizard.png" style="width:100%; border:1px solid #dee2e6; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.08);" alt="Delay installments wizard"/>
+
+    <h3 style="color:#875A7B; margin-top:28px;">5. Updated installment schedule</h3>
+    <p style="font-size:14px;">After the delay, unpaid installment dates are shifted forward while paid
+    lines and running totals (Total / Paid / Balance) stay consistent.</p>
+    <img src="05_installments_after_delay.png" style="width:100%; border:1px solid #dee2e6; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.08);" alt="Installments after delay"/>
+
+    <h3 style="color:#875A7B; margin-top:28px;">6. Loan requests overview</h3>
+    <p style="font-size:14px;">All loan requests with their lifecycle states: Draft &#8594; Submitted &#8594;
+    Approved / Refused / Canceled.</p>
+    <img src="06_loan_list.png" style="width:100%; border:1px solid #dee2e6; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.08);" alt="Loan list"/>
+
+    <!-- ===== Accounting logic ===== -->
+    <h2 style="margin-top:40px; color:#1a2e4c; border-bottom: 3px solid #875A7B; padding-bottom:8px;">Accounting Logic</h2>
+    <table style="width:100%; border-collapse:collapse; margin-top:16px; font-size:14px;">
+        <thead>
+            <tr style="background:#1a2e4c; color:#fff;">
+                <th style="padding:10px; text-align:left;">Account</th>
+                <th style="padding:10px; text-align:right;">Debit</th>
+                <th style="padding:10px; text-align:right;">Credit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom:1px solid #dee2e6;">
+                <td style="padding:10px;">Loan Account (employee loan receivable)</td>
+                <td style="padding:10px; text-align:right;">Loan Amount</td>
+                <td style="padding:10px; text-align:right;">—</td>
+            </tr>
+            <tr>
+                <td style="padding:10px;">Treasury Account (bank / cash)</td>
+                <td style="padding:10px; text-align:right;">—</td>
+                <td style="padding:10px; text-align:right;">Loan Amount</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="font-size:13px; color:#6c757d; margin-top:8px;">The entry is posted in the selected bank/cash journal with
+    the loan number (e.g. <code>LO/0001</code>) as its reference.</p>
+
+    <!-- ===== Technical ===== -->
+    <h2 style="margin-top:40px; color:#1a2e4c; border-bottom: 3px solid #875A7B; padding-bottom:8px;">Technical Details</h2>
+    <ul style="font-size:14px; line-height:1.9;">
+        <li><b>Dependencies:</b> <code>hr</code>, <code>hr_payroll</code>, <code>account</code>.</li>
+        <li><b>Models:</b> <code>hr.loan</code>, <code>hr.loan.line</code> — loan requests and installments, with <code>journal_id</code>, <code>loan_account_id</code>, <code>treasury_account_id</code>, <code>move_count</code>.</li>
+        <li><b>New wizard:</b> <code>hr.loan.delay.wizard</code> — shifts unpaid installment dates by N months.</li>
+        <li><b>Approval flow:</b> <code>action_approve()</code> — validates the accounting setup, then creates and posts the disbursement entry.</li>
+        <li><b>Payroll:</b> installments due in the payslip period are added as <code>LO</code> other inputs and deducted by the bundled salary rule.</li>
+        <li><b>Unit tests included:</b> approval guard, posted-entry correctness, delay wizard behaviour (<code>tests/test_hr_loan_accounting.py</code>).</li>
+    </ul>
+
+    <div style="margin-top:40px; text-align:center; padding:20px; background:#f8f9fa; border-radius:8px; color:#6c757d; font-size:13px;">
+        HR Loan Management &amp; Accounting — Author: Mohamed Saied — LGPL-3
+    </div>
+</section>

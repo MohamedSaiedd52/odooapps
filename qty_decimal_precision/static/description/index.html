@@ -1,0 +1,96 @@
+<section style="max-width: 980px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #212529;">
+
+    <!-- ═══════════════ Header ═══════════════ -->
+    <div style="text-align: center; padding: 36px 20px; background: linear-gradient(135deg, #714B67 0%, #4d3246 100%); border-radius: 12px; color: #ffffff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">Quantity Decimal Precision</h1>
+        <p style="margin: 0 0 18px; font-size: 18px; opacity: .9;">
+            Keep quantities clean &mdash; <b>2 decimal places</b> on sales orders, purchase orders and
+            customer invoices, even when the global UoM precision is higher.
+        </p>
+        <div>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 17</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 18</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 19</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">LGPL-3</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Community &amp; Enterprise</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Why ═══════════════ -->
+    <div style="padding: 28px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 10px;">Why this module?</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            The decimal precision of <i>Product Unit of Measure</i> is <b>global</b>: raise it to 3&ndash;5 decimals
+            because inventory or manufacturing needs it, and suddenly every sales order, purchase order and
+            invoice shows quantities like <code>3.1416</code>. Customers get quotes with four decimals,
+            and clerks type long fractions that were never intended on commercial documents.
+        </p>
+        <p style="font-size: 15px; line-height: 1.7;">
+            This module pins the <b>quantity fields of the commercial documents</b> to <b>2 decimal places</b> &mdash;
+            entered values are rounded and stored with 2 decimals &mdash; while the rest of the system
+            (stock moves, BoMs&hellip;) keeps using the global precision.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Before ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">1&nbsp;&middot;&nbsp;Standard Odoo with a high global precision</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Here the global UoM precision is set to 4 decimals: the quotation line happily stores and
+            displays <b>3.1416</b>.
+        </p>
+        <img src="qdp_01_before.png" alt="Sales order line showing a 4-decimal quantity in standard Odoo"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ After ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">2&nbsp;&middot;&nbsp;With this module: always 2 decimals</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Same setup, module installed &mdash; quantities on the three commercial documents are rounded to
+            2 decimals the moment they are saved:
+        </p>
+        <img src="qdp_02_after_so.png" alt="Sales order quantity limited to 2 decimals"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 24px;"/>
+        <img src="qdp_03_after_po.png" alt="Purchase order quantity limited to 2 decimals"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 24px;"/>
+        <img src="qdp_04_after_inv.png" alt="Customer invoice quantity limited to 2 decimals"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ How it works ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">How it works (technical)</h2>
+        <ul style="font-size: 15px; line-height: 1.9;">
+            <li>Redefines the digits of three fields to <code>(16,&nbsp;2)</code>:
+                <code>sale.order.line.product_uom_qty</code>, <code>purchase.order.line.product_qty</code>
+                and <code>account.move.line.quantity</code> &mdash; values are rounded by the ORM on save.</li>
+            <li>Four QWeb report overrides render the quantity with 2 decimals on the printed
+                <b>Quotation / Sales Order</b>, <b>Purchase Order</b>, <b>Request for Quotation</b> and
+                <b>Invoice</b> PDF documents.</li>
+            <li>The global <i>Product Unit of Measure</i> precision is untouched &mdash; warehouse operations
+                keep their fine-grained decimals.</li>
+            <li>No new tables, no JavaScript; uninstall restores the standard behavior instantly.</li>
+        </ul>
+    </div>
+
+    <!-- ═══════════════ Compatibility ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Compatibility</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Tested on <b>Odoo 17, 18 and 19</b> (Community and Enterprise).
+            Depends on the standard <code>sale</code> and <code>purchase</code> modules.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Support ═══════════════ -->
+    <div style="text-align: center; margin: 28px 0 8px; padding: 26px; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px;">
+        <h2 style="font-size: 22px; color: #714B67; margin: 0 0 8px;">Support</h2>
+        <p style="font-size: 15px; margin: 0 0 14px;">Community of Accountants (COA) &mdash; questions, custom work and support:</p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 26px; border-radius: 28px;">
+            WhatsApp: +20&nbsp;101&nbsp;390&nbsp;7174
+        </a>
+    </div>
+
+</section>

@@ -1,0 +1,196 @@
+<section style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#2c3e50; line-height:1.6; max-width:1180px; margin:0 auto; padding:0 16px 48px;">
+
+  <!-- ============================== HEADER ============================== -->
+  <div style="background:#2c3e50; color:#ffffff; padding:44px 40px; border-bottom:10px solid #d62828; margin-bottom:40px;">
+    <div style="font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#8fa8bd; margin-bottom:12px;">Odoo 19 &nbsp;&middot;&nbsp; Accounting</div>
+    <h1 style="margin:0 0 10px; font-size:40px; font-weight:700; color:#ffffff;">Customer Partner Ledger</h1>
+    <h2 style="margin:0 0 18px; font-size:26px; font-weight:400; color:#b4c8dc;">With New Layout</h2>
+    <p style="margin:0; font-size:17px; color:#c9d6e2; max-width:760px;">
+      Prints a simplified, right-to-left Arabic customer account statement
+      (<span style="direction:rtl; unicode-bidi:embed;">&#1603;&#1588;&#1601; &#1581;&#1587;&#1575;&#1576; &#1575;&#1604;&#1586;&#1576;&#1575;&#1574;&#1606;</span>)
+      straight from the standard Partner Ledger report &mdash; closing with the customer's <strong style="color:#ffffff;">Total Due</strong>.
+    </p>
+  </div>
+
+  <!-- ============================== WHAT IT DOES ============================== -->
+  <h2 style="font-size:27px; font-weight:700; color:#2c3e50; margin:0 0 14px; padding-bottom:10px; border-bottom:3px solid #eceff1;">What this module does</h2>
+  <p style="font-size:16px; margin:0 0 16px;">
+    Odoo's Partner Ledger is an audit report: it shows journal, account, invoice date, due date, matching number,
+    debit, credit and balance for every move line. That is far more detail than a customer wants to see on the
+    statement you email them.
+  </p>
+  <p style="font-size:16px; margin:0 0 16px;">
+    This module adds a <strong>PL</strong> button next to the standard PDF / XLSX exports of the Partner Ledger.
+    It prints the same figures as a clean five-column Arabic statement &mdash; one A4 landscape page per selected
+    customer &mdash; carrying in each partner's opening balance from before the reporting period so the running
+    balance is complete, and closing with a summary box that answers the one question the customer actually asks:
+    <em>how much do I still owe?</em>
+  </p>
+
+  <!-- ============================== HIGHLIGHTS ============================== -->
+  <div style="margin:28px 0 40px;">
+    <div style="display:inline-block; vertical-align:top; width:31%; min-width:250px; margin:0 1% 16px 0; padding:20px 22px; background:#f7f9fa; border-left:5px solid #d62828;">
+      <div style="font-size:17px; font-weight:700; margin-bottom:6px;">Total Due on every page</div>
+      <div style="font-size:15px; color:#54687a;">The amount still unpaid by the customer, whatever period you print.</div>
+    </div>
+    <div style="display:inline-block; vertical-align:top; width:31%; min-width:250px; margin:0 1% 16px 0; padding:20px 22px; background:#f7f9fa; border-left:5px solid #d62828;">
+      <div style="font-size:17px; font-weight:700; margin-bottom:6px;">Five columns, nothing else</div>
+      <div style="font-size:15px; color:#54687a;">Date, Type, Reference, Amount, Balance &mdash; laid out right to left for Arabic readers.</div>
+    </div>
+    <div style="display:inline-block; vertical-align:top; width:31%; min-width:250px; margin:0 0 16px 0; padding:20px 22px; background:#f7f9fa; border-left:5px solid #d62828;">
+      <div style="font-size:17px; font-weight:700; margin-bottom:6px;">True opening balance</div>
+      <div style="font-size:15px; color:#54687a;">Every receivable and payable line dated before the period is summed into the first balance.</div>
+    </div>
+    <div style="display:inline-block; vertical-align:top; width:31%; min-width:250px; margin:0 1% 16px 0; padding:20px 22px; background:#f7f9fa; border-left:5px solid #d62828;">
+      <div style="font-size:17px; font-weight:700; margin-bottom:6px;">Dated by invoice date</div>
+      <div style="font-size:15px; color:#54687a;">Lines use the invoice date when there is one, falling back to the accounting date.</div>
+    </div>
+    <div style="display:inline-block; vertical-align:top; width:31%; min-width:250px; margin:0 1% 16px 0; padding:20px 22px; background:#f7f9fa; border-left:5px solid #d62828;">
+      <div style="font-size:17px; font-weight:700; margin-bottom:6px;">One page per customer</div>
+      <div style="font-size:15px; color:#54687a;">Select any number of partners; each one gets its own page in a single PDF.</div>
+    </div>
+    <div style="display:inline-block; vertical-align:top; width:31%; min-width:250px; margin:0 0 16px 0; padding:20px 22px; background:#f7f9fa; border-left:5px solid #d62828;">
+      <div style="font-size:17px; font-weight:700; margin-bottom:6px;">Payment / charge marking</div>
+      <div style="font-size:15px; color:#54687a;">Each line is tagged as a charge or a settlement, and credits are printed in red.</div>
+    </div>
+  </div>
+
+  <!-- ============================== THE FOOTER BOX ============================== -->
+  <h2 style="font-size:27px; font-weight:700; color:#2c3e50; margin:40px 0 18px; padding-bottom:10px; border-bottom:3px solid #eceff1;">The summary box</h2>
+  <div style="display:inline-block; vertical-align:top; width:53%; min-width:280px; padding-right:3%;">
+    <p style="font-size:16px; margin:0 0 14px;">
+      Every statement ends with a five-line summary, so the page stands on its own without the reader
+      having to add anything up:
+    </p>
+    <p style="font-size:16px; margin:0 0 14px;">
+      The first four lines describe the <strong>printed period</strong> &mdash; what the customer owed
+      when it started, what was charged, what was settled, and where the balance stands at the end.
+    </p>
+    <p style="font-size:16px; margin:0;">
+      <strong>Total Due</strong> is a different number on purpose: it is the outstanding amount of the
+      customer's receivable and payable entries, taken from the residual left on each one, so an invoice
+      that has since been paid contributes nothing even when it falls inside the printed period, and an
+      invoice paid only in part contributes just the part that is left.
+    </p>
+  </div>
+  <div style="display:inline-block; vertical-align:top; width:41%; min-width:260px;">
+    <table dir="rtl" style="width:100%; border-collapse:collapse; font-size:15px;">
+      <tbody>
+        <tr>
+          <td style="padding:9px 12px; border:1px solid #dfe4e8; text-align:right;">&#1575;&#1604;&#1585;&#1589;&#1610;&#1583; &#1575;&#1604;&#1575;&#1601;&#1578;&#1578;&#1575;&#1581;&#1610;</td>
+          <td style="padding:9px 12px; border:1px solid #dfe4e8; text-align:right;">0.000</td>
+        </tr>
+        <tr>
+          <td style="padding:9px 12px; border:1px solid #dfe4e8; text-align:right;">&#1573;&#1580;&#1605;&#1575;&#1604;&#1610; &#1605;&#1583;&#1610;&#1606;</td>
+          <td style="padding:9px 12px; border:1px solid #dfe4e8; text-align:right;">24,750.000</td>
+        </tr>
+        <tr>
+          <td style="padding:9px 12px; border:1px solid #dfe4e8; text-align:right;">&#1573;&#1580;&#1605;&#1575;&#1604;&#1610; &#1583;&#1575;&#1574;&#1606;</td>
+          <td style="padding:9px 12px; border:1px solid #dfe4e8; text-align:right;">15,500.000</td>
+        </tr>
+        <tr style="background:#dddddd; font-weight:700;">
+          <td style="padding:9px 12px; border:1px solid #dfe4e8; text-align:right;">&#1585;&#1589;&#1610;&#1583; &#1575;&#1604;&#1601;&#1578;&#1585;&#1577;</td>
+          <td style="padding:9px 12px; border:1px solid #dfe4e8; text-align:right;">9,250.000</td>
+        </tr>
+        <tr style="background:#333333; color:#ffffff; font-weight:700; font-size:16px;">
+          <td style="padding:10px 12px; border:1px solid #333333; text-align:right;">&#1573;&#1580;&#1605;&#1575;&#1604;&#1610; &#1575;&#1604;&#1605;&#1587;&#1578;&#1581;&#1602; (Total Due)</td>
+          <td style="padding:10px 12px; border:1px solid #333333; text-align:right;">9,250.000 $</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:13px; color:#54687a; margin-top:8px;">The footer of the statement shown below.</div>
+  </div>
+
+  <!-- ============================== HOW TO USE ============================== -->
+  <h2 style="font-size:27px; font-weight:700; color:#2c3e50; margin:40px 0 18px; padding-bottom:10px; border-bottom:3px solid #eceff1;">How to use it</h2>
+  <ol style="font-size:16px; padding-left:22px; margin:0 0 8px;">
+    <li style="margin-bottom:10px;">Open <strong>Accounting &rarr; Reporting &rarr; Partner Ledger</strong>.</li>
+    <li style="margin-bottom:10px;">Set the period you want with the date filter.</li>
+    <li style="margin-bottom:10px;">Open the <strong>Partners</strong> filter and pick one or more customers. This step is required.</li>
+    <li style="margin-bottom:10px;">Click the <strong>PL</strong> button, next to the standard <strong>PDF</strong> and <strong>XLSX</strong> exports.</li>
+    <li style="margin-bottom:10px;">The statement downloads as an A4 landscape PDF, one page per selected customer.</li>
+  </ol>
+
+  <!-- ============================== SCREENSHOTS ============================== -->
+  <h2 style="font-size:27px; font-weight:700; color:#2c3e50; margin:44px 0 18px; padding-bottom:10px; border-bottom:3px solid #eceff1;">Screenshots</h2>
+
+  <h3 style="font-size:20px; font-weight:700; margin:28px 0 8px;">1. The PL button on the Partner Ledger</h3>
+  <p style="font-size:15px; color:#54687a; margin:0 0 14px;">
+    The button sits with the standard exports. The report itself is untouched &mdash; it still filters,
+    unfolds and drills down exactly as before.
+  </p>
+  <img src="screenshot_1_button.png" alt="The PL button added to the Partner Ledger toolbar"
+       style="width:100%; max-width:100%; border:1px solid #dfe4e8; margin-bottom:26px;"/>
+
+  <h3 style="font-size:20px; font-weight:700; margin:28px 0 8px;">2. The printed statement</h3>
+  <p style="font-size:15px; color:#54687a; margin:0 0 14px;">
+    The same customer as above: the period totals and the closing balance match the standard Partner Ledger
+    line for line, so the simplified layout never changes the numbers. Here the middle invoice was only
+    partly settled, which is exactly what the <strong>Total Due</strong> line reports.
+  </p>
+  <img src="screenshot_2_statement.png" alt="The Arabic customer account statement produced by the PL button"
+       style="width:100%; max-width:100%; border:1px solid #dfe4e8; margin-bottom:26px;"/>
+
+  <h3 style="font-size:20px; font-weight:700; margin:28px 0 8px;">3. Several customers in one PDF</h3>
+  <p style="font-size:15px; color:#54687a; margin:0 0 14px;">
+    Select as many partners as you need &mdash; each statement starts on a fresh page and carries its own
+    opening balance, period totals and Total Due.
+  </p>
+  <img src="screenshot_3_multi.png" alt="Two customer statements printed in a single PDF, one page each"
+       style="width:100%; max-width:100%; border:1px solid #dfe4e8; margin-bottom:26px;"/>
+
+  <h3 style="font-size:20px; font-weight:700; margin:28px 0 8px;">4. Nothing selected</h3>
+  <p style="font-size:15px; color:#54687a; margin:0 0 14px;">
+    The statement is always partner-specific, so the module stops you before it produces an empty document.
+  </p>
+  <img src="screenshot_4_guard.png" alt="Warning shown when the PL button is used without selecting partners"
+       style="width:100%; max-width:100%; border:1px solid #dfe4e8; margin-bottom:26px;"/>
+
+  <!-- ============================== TECHNICAL ============================== -->
+  <h2 style="font-size:27px; font-weight:700; color:#2c3e50; margin:44px 0 18px; padding-bottom:10px; border-bottom:3px solid #eceff1;">Technical notes</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:15px; margin-bottom:24px;">
+    <thead>
+      <tr style="background:#2c3e50; color:#ffffff; text-align:left;">
+        <th style="padding:12px 14px; border:1px solid #2c3e50;">Where</th>
+        <th style="padding:12px 14px; border:1px solid #2c3e50;">What it does</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:11px 14px; border:1px solid #dfe4e8; white-space:nowrap;"><code>account.report</code><br/><span style="color:#54687a;">_init_options_buttons</span></td>
+        <td style="padding:11px 14px; border:1px solid #dfe4e8;">Appends the <strong>PL</strong> button on reports that expose the Partners filter (Partner Ledger, Aged Receivable / Payable), and drops the standard <em>Save</em> export wizard.</td>
+      </tr>
+      <tr style="background:#f7f9fa;">
+        <td style="padding:11px 14px; border:1px solid #dfe4e8; white-space:nowrap;"><code>account.report</code><br/><span style="color:#54687a;">_get_aml_values</span></td>
+        <td style="padding:11px 14px; border:1px solid #dfe4e8;">Asks the standard Partner Ledger handler for the move lines per partner &mdash; both directly linked lines and lines reached through partial reconciliations &mdash; then dates each line by <code>invoice_date</code> with a fallback to <code>date</code> and re-sorts on it.</td>
+      </tr>
+      <tr>
+        <td style="padding:11px 14px; border:1px solid #dfe4e8; white-space:nowrap;"><code>account.report</code><br/><span style="color:#54687a;">custom_pl_pdf</span></td>
+        <td style="padding:11px 14px; border:1px solid #dfe4e8;">The button action. Validates that partners are selected and returns the report action carrying the collected lines and the period.</td>
+      </tr>
+      <tr style="background:#f7f9fa;">
+        <td style="padding:11px 14px; border:1px solid #dfe4e8; white-space:nowrap;"><code>res.partner</code><br/><span style="color:#54687a;">get_partner_initial_bal<br/>get_partner_total_due</span></td>
+        <td style="padding:11px 14px; border:1px solid #dfe4e8;">The opening balance, from posted receivable / payable lines dated before the period; and the Total Due, from the <code>amount_residual</code> left on those lines whatever their date.</td>
+      </tr>
+      <tr>
+        <td style="padding:11px 14px; border:1px solid #dfe4e8; white-space:nowrap;"><code>customer_partner_ledger.<br/>rep_cus_acc</code></td>
+        <td style="padding:11px 14px; border:1px solid #dfe4e8;">Stamps the running balance on each line, builds the summary box figures, and renders the QWeb template in its A4 landscape paper format.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:#fff8e6; border-left:5px solid #e0a800; padding:16px 20px; font-size:15px; margin-bottom:16px;">
+    <strong>Good to know:</strong> the toolbar override applies to every accounting report. It keeps the
+    buttons the report already offers and only removes the standard <em>Save</em> (export wizard) one, adding
+    <strong>PL</strong> where a Partners filter exists.
+  </div>
+
+  <!-- ============================== REQUIREMENTS ============================== -->
+  <h2 style="font-size:27px; font-weight:700; color:#2c3e50; margin:40px 0 18px; padding-bottom:10px; border-bottom:3px solid #eceff1;">Requirements</h2>
+  <ul style="font-size:16px; padding-left:22px; margin:0;">
+    <li style="margin-bottom:8px;">Odoo 19 with <code>account_reports</code> installed (Accounting / Enterprise).</li>
+    <li style="margin-bottom:8px;">wkhtmltopdf, as required by any Odoo PDF report.</li>
+    <li style="margin-bottom:8px;">A font covering Arabic must be available to wkhtmltopdf on the server.</li>
+  </ul>
+
+</section>

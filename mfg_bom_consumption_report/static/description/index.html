@@ -1,0 +1,94 @@
+<div style="max-width: 1100px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: #212529;">
+
+    <!-- Hero -->
+    <div style="text-align: center; padding: 36px 20px 28px; background: linear-gradient(135deg, #1F3A5F 0%, #12233a 100%); border-radius: 14px; color: #fff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">BOM vs Actual Consumption Report</h1>
+        <p style="margin: 0 auto; max-width: 780px; font-size: 17px; line-height: 1.6; color: #dfe8f5;">
+            Compare the quantities your Bills of Materials <b>planned</b> with what production
+            <b>actually consumed</b> from stock &mdash; per manufacturing order, per component,
+            with the <b>cost impact</b> of every difference. Export as a color-coded
+            <b>PDF</b> or a styled <b>Excel</b> workbook.
+        </p>
+        <div style="margin-top: 18px;">
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Over / Under / Exact per component</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Cost impact in company currency</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">PDF + Excel</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Multi-step routes supported</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Odoo 17 / 18 / 19</span>
+        </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #1F3A5F; margin-bottom: 6px;">1. Open the report from the Reporting menu</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            After installation a new <b>BOM Consumption Report</b> entry appears under
+            <i>Manufacturing &gt; Reporting</i>. It is available to every Manufacturing user.
+        </p>
+        <img src="reporting_menu.png" alt="BOM Consumption Report menu entry"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 2 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #1F3A5F; margin-bottom: 6px;">2. Pick your filters</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            Choose a date range (defaults to the current month), optionally narrow down by MO status,
+            specific manufacturing orders or finished products &mdash; and tick
+            <b>Show Differences Only</b> to hide every line that matched the plan exactly.
+            Then print the PDF or export the Excel file.
+        </p>
+        <img src="wizard_form.png" alt="Report wizard with filters"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 3 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #1F3A5F; margin-bottom: 6px;">3. The PDF: instant answer to "where did the material go?"</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            Summary cards on top, then one section per manufacturing order. Every component line shows
+            planned vs actual quantity, the difference, its cost value and a color-coded status
+            with the consumption percentage &mdash; red for over-consumption, green for savings.
+        </p>
+        <img src="report_pdf_preview.png" alt="PDF report with summary cards and color-coded lines"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 4 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #1F3A5F; margin-bottom: 6px;">4. The Excel export: ready for analysis</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            The same data lands in a professionally styled workbook: per-MO section headers, alternating
+            row colors, conditional coloring on the difference columns, a frozen header row with
+            auto-filters, and a summary block &mdash; ready to pivot, sort or send to management.
+        </p>
+        <img src="excel_report.png" alt="Styled Excel export opened in Microsoft Excel"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Feature summary -->
+    <div style="margin-top: 48px; background: #f4f7fb; border: 1px solid #d9e2ef; border-radius: 12px; padding: 24px 28px;">
+        <h2 style="font-size: 22px; color: #1F3A5F; margin-top: 0;">What the module does</h2>
+        <ul style="font-size: 15px; line-height: 2; margin: 0; padding-left: 22px;">
+            <li>Planned quantity = the MO's raw-material demand (from the BoM).</li>
+            <li>Actual quantity = <b>done</b> stock move lines, resolved through the whole origin chain
+                (<i>move_orig_ids</i>), so 1-step, 2-step and 3-step manufacturing routes and
+                multi-warehouse setups are all handled.</li>
+            <li>Classifies every component line as <b>Over</b> / <b>Under</b> / <b>Exact</b>
+                with quantity, percentage and cost impact (qty &times; standard price).</li>
+            <li>Filters: date range, MO status, specific MOs, specific finished products, differences only.</li>
+            <li>Color-coded <b>PDF</b> (wkhtmltopdf) and styled <b>Excel</b> (.xlsx via openpyxl).</li>
+            <li>Access: Manufacturing User and Manager groups.</li>
+        </ul>
+    </div>
+
+    <!-- Tech notes -->
+    <div style="margin-top: 24px; margin-bottom: 30px; border-left: 4px solid #1F3A5F; background: #fff; padding: 14px 20px; font-size: 14px; color: #495057; line-height: 1.8;">
+        <b>Technical notes</b><br/>
+        Supported versions: <b>Odoo 17, 18 and 19</b> (Community &amp; Enterprise). Depends on
+        <i>mrp</i> and <i>stock</i> only. The Excel export requires the <i>openpyxl</i> Python
+        package (<code>pip install openpyxl</code>). Report data is snapshotted on the wizard at
+        print time, so the QWeb template needs no extra context.
+    </div>
+
+</div>

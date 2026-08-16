@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ms_account_merge_wizard,access.ms.account.merge.wizard,model_ms_account_merge_wizard,account.group_account_manager,1,1,1,1

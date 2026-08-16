@@ -1,0 +1,96 @@
+<section style="max-width: 980px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #212529;">
+
+    <!-- ═══════════════ Header ═══════════════ -->
+    <div style="text-align: center; padding: 36px 20px; background: linear-gradient(135deg, #714B67 0%, #4d3246 100%); border-radius: 12px; color: #ffffff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">MS Partner Ledger &ndash; Invoice Details Drill-down</h1>
+        <p style="margin: 0 0 18px; font-size: 18px; opacity: .9;">
+            Unfold any invoice right inside the Partner Ledger and see <b>what was sold</b> &mdash;
+            product, quantity and line total &mdash; without leaving the report.
+        </p>
+        <div>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 17</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 18</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 19</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Enterprise (account_reports)</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Why ═══════════════ -->
+    <div style="padding: 28px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 10px;">Why this module?</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            The Partner Ledger answers <i>&ldquo;how much does this customer owe?&rdquo;</i> &mdash; but the moment a customer
+            calls about an invoice, the very next question is <i>&ldquo;what was this invoice for?&rdquo;</i>.
+            In standard Odoo you have to leave the report, open the invoice, look at the lines, and come back.
+        </p>
+        <p style="font-size: 15px; line-height: 1.7;">
+            With this module every invoice and credit note in the Partner Ledger becomes <b>unfoldable</b>:
+            one click on its arrow expands the <b>product lines</b> &mdash;
+            <code>Product &mdash; Quantity (UoM) | Line Total</code> &mdash; right inside the report,
+            on screen and in the <b>PDF / XLSX exports</b>.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Feature 1 ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">1&nbsp;&middot;&nbsp;An unfold arrow on every invoice line</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Open <b>Accounting &rarr; Reporting &rarr; Partner Ledger</b> and expand a partner. Every line that belongs
+            to a real invoice or credit note now carries its own arrow. Manual journal entries (MISC) are left
+            untouched &mdash; they have no product lines to show.
+        </p>
+        <img src="pl_01_arrows.png" alt="Partner Ledger with unfold arrows on every invoice line"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ Feature 2 ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">2&nbsp;&middot;&nbsp;Product lines with quantity and amount</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Click the arrow and the invoice expands into its product lines. Each row shows the product,
+            the quantity with its unit of measure, and the line subtotal placed in the <b>Debit</b> column for
+            invoices (or the <b>Credit</b> column for refunds) &mdash; so the details always mirror, and add up to,
+            the invoice line above them.
+        </p>
+        <img src="pl_02_details.png" alt="Invoice expanded into product lines with quantity and amount"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ How it works ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">How it works (technical)</h2>
+        <ul style="font-size: 15px; line-height: 1.9;">
+            <li>Inherits the Enterprise report handler <code>account.partner.ledger.report.handler</code> &mdash;
+                after the standard partner expansion, every move line that belongs to an invoice
+                (<code>out_invoice / out_refund / in_invoice / in_refund</code>) is tagged unfoldable with a custom
+                expand function.</li>
+            <li>Child rows are built with the official <code>account.report._get_generic_line_id()</code> helper &mdash;
+                no hand-crafted line IDs, so <code>_parse_line_id</code> never breaks.</li>
+            <li><b>PDF &amp; XLSX ready:</b> in export mode the invoice details are expanded automatically, so the
+                printed report shows the same drill-down as the screen.</li>
+            <li>No change to the report definition, no new columns, no stored fields, no JavaScript &mdash;
+                safe to install and uninstall at any time.</li>
+        </ul>
+    </div>
+
+    <!-- ═══════════════ Compatibility ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Compatibility</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Tested on <b>Odoo 17, 18 and 19 Enterprise</b>. Requires the Enterprise reporting engine
+            (<code>account_reports</code>). Works with all standard Partner Ledger filters
+            (dates, partners, posted/draft entries, multi-company).
+        </p>
+    </div>
+
+    <!-- ═══════════════ Support ═══════════════ -->
+    <div style="text-align: center; margin: 28px 0 8px; padding: 26px; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px;">
+        <h2 style="font-size: 22px; color: #714B67; margin: 0 0 8px;">Support</h2>
+        <p style="font-size: 15px; margin: 0 0 14px;">MohamedSaied &mdash; questions, custom work and support:</p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 26px; border-radius: 28px;">
+            WhatsApp: +20&nbsp;101&nbsp;390&nbsp;7174
+        </a>
+    </div>
+
+</section>

@@ -1,0 +1,13 @@
+{
+    'name': 'Custom Ledger Currency Total',
+    'version': '19.0.1.0.0',
+    'category': 'Accounting',
+    'summary': 'Sum Amount Currency in Partner and General Ledger Reports',
+    'depends': ['account_reports'],
+    'data': ['views/account_move_line_views.xml',],
+    'installable': True,
+    'application': False,
+    'license': 'LGPL-3',
+    'price': 15.0,
+    'currency': 'USD',
+}

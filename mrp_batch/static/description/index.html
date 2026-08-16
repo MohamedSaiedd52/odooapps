@@ -1,0 +1,102 @@
+<div style="max-width: 1100px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: #212529;">
+
+    <!-- Hero -->
+    <div style="text-align: center; padding: 36px 20px 28px; background: linear-gradient(135deg, #714B67 0%, #4d3246 100%); border-radius: 14px; color: #fff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">Manufacturing Order Batch</h1>
+        <p style="margin: 0 auto; max-width: 760px; font-size: 17px; line-height: 1.6; color: #f0e6ee;">
+            Run <b>batch production</b> side by side with regular manufacturing &mdash; a dedicated menu,
+            a dedicated <b>FWH/MOB</b> reference sequence, and a product selector that only offers
+            products flagged as <b>Batch</b>.
+        </p>
+        <div style="margin-top: 18px;">
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Separate menu &amp; list</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Dedicated sequence FWH/MOB/xxxxx</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Filtered product dropdown</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Odoo 17 / 18 / 19</span>
+        </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 6px;">1. Flag your batch products</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            The module adds a <b>Batch</b> checkbox next to the other product options on the product form.
+            Tick it on every product that is produced in batches. Regular products are left untouched.
+        </p>
+        <img src="product_batch_flag.png" alt="Batch checkbox on the product form"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 2 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 6px;">2. A dedicated menu for batch production</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            A new <b>Manufacturing Order Batch</b> entry appears under
+            <i>Manufacturing &gt; Operations</i>, right below the standard Manufacturing Orders menu.
+        </p>
+        <img src="batch_menu.png" alt="Manufacturing Order Batch menu entry"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 3 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 6px;">3. Batch orders get their own reference sequence</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            The batch workspace lists <b>only</b> batch manufacturing orders, and every order created here
+            is numbered from a dedicated sequence &mdash; <b>FWH/MOB/00001</b>, <b>FWH/MOB/00002</b>, &hellip; &mdash;
+            so batch production is instantly recognizable in references, reports and traceability documents.
+            The prefix can be changed anytime in <i>Settings &gt; Technical &gt; Sequences</i>.
+        </p>
+        <img src="batch_list.png" alt="Batch manufacturing order list with FWH/MOB sequence"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 4 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 6px;">4. Only batch products can be selected</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            Inside a Batch Manufacturing Order, the <b>Product</b> dropdown (including <i>Search More&hellip;</i>)
+            proposes only products whose <b>Batch</b> checkbox is ticked. No more picking a regular product
+            in a batch order by mistake.
+        </p>
+        <img src="batch_dropdown.png" alt="Filtered product dropdown in a batch manufacturing order"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 5 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 6px;">5. Regular manufacturing stays exactly the same</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            The standard <b>Manufacturing Orders</b> menu now excludes batch orders, so day-to-day
+            production is not cluttered by batch runs &mdash; and in a regular MO the product dropdown
+            still shows every manufacturable product.
+        </p>
+        <img src="regular_list.png" alt="Regular manufacturing order list without batch orders"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); margin-bottom: 18px;"/>
+        <img src="regular_dropdown.png" alt="Unfiltered product dropdown in a regular manufacturing order"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Feature summary -->
+    <div style="margin-top: 48px; background: #f8f5f7; border: 1px solid #e6dde3; border-radius: 12px; padding: 24px 28px;">
+        <h2 style="font-size: 22px; color: #714B67; margin-top: 0;">What the module does</h2>
+        <ul style="font-size: 15px; line-height: 2; margin: 0; padding-left: 22px;">
+            <li><b>Batch</b> checkbox on the product form (<i>product.template</i>).</li>
+            <li><b>Is Batch</b> flag on manufacturing orders (<i>mrp.production</i>), kept on duplication.</li>
+            <li>Dedicated <b>Manufacturing Order Batch</b> menu, list, form and search views.</li>
+            <li>Dedicated <b>ir.sequence</b> (code <i>mrp.production.batch</i>, prefix <b>FWH/MOB/</b>, 5 digits) used automatically for batch orders.</li>
+            <li>Product dropdown and <i>Search More</i> dialog filtered to batch products inside batch orders only.</li>
+            <li>Standard Manufacturing Orders action filtered to exclude batch orders.</li>
+            <li>No configuration required &mdash; install and use.</li>
+        </ul>
+    </div>
+
+    <!-- Tech notes -->
+    <div style="margin-top: 24px; margin-bottom: 30px; border-left: 4px solid #714B67; background: #fff; padding: 14px 20px; font-size: 14px; color: #495057; line-height: 1.8;">
+        <b>Technical notes</b><br/>
+        Supported versions: <b>Odoo 17, 18 and 19</b> (Community &amp; Enterprise). Depends only on <i>mrp</i>.
+        The product filter is applied server-side (<i>name_search</i> / <i>web_search_read</i>) through the
+        batch order's context, so it also covers the <i>Search More&hellip;</i> dialog.
+    </div>
+
+</div>

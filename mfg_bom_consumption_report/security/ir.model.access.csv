@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bom_consumption_wizard_user,bom.consumption.wizard user,model_bom_consumption_wizard,mrp.group_mrp_user,1,1,1,1
+access_bom_consumption_wizard_manager,bom.consumption.wizard manager,model_bom_consumption_wizard,mrp.group_mrp_manager,1,1,1,1

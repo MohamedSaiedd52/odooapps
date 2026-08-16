@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 710" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <filter id="mshadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="18" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- window + dimmed app behind the modal -->
+  <rect x="0.5" y="0.5" width="1359" height="709" rx="8" fill="#ffffff" stroke="#d8dadd"/>
+  <path d="M8 0 h1344 a8 8 0 0 1 8 8 v44 h-1360 v-44 a8 8 0 0 1 8 -8 z" fill="#714B67"/>
+  <text x="56" y="31" font-size="15" font-weight="600" fill="#ffffff">Accounting</text>
+  <text x="24" y="88" font-size="18" font-weight="600" fill="#111827">Chart of Accounts</text>
+  <g opacity="0.5">
+    <rect x="16" y="118" width="1328" height="36" fill="#f9fafb"/>
+    <line x1="16" y1="154" x2="1344" y2="154" stroke="#d8dadd"/>
+    <line x1="16" y1="194" x2="1344" y2="194" stroke="#eceff1"/>
+    <line x1="16" y1="234" x2="1344" y2="234" stroke="#eceff1"/>
+    <line x1="16" y1="274" x2="1344" y2="274" stroke="#eceff1"/>
+    <line x1="16" y1="314" x2="1344" y2="314" stroke="#eceff1"/>
+  </g>
+  <rect x="0.5" y="0.5" width="1359" height="709" rx="8" fill="#000000" opacity="0.35"/>
+
+  <!-- modal -->
+  <rect x="350" y="100" width="660" height="520" rx="10" fill="#ffffff" filter="url(#mshadow)"/>
+  <text x="378" y="146" font-size="19" font-weight="600" fill="#111827">Merge Accounts</text>
+  <text x="978" y="146" font-size="17" fill="#9ca3af">&#10005;</text>
+  <line x1="350" y1="166" x2="1010" y2="166" stroke="#eceff1"/>
+
+  <!-- warning alert -->
+  <rect x="378" y="186" width="604" height="92" rx="6" fill="#fff3cd" stroke="#ffe69c"/>
+  <text x="396" y="212" font-size="13" fill="#664d03">All journal items and every reference (journals, taxes, products,</text>
+  <text x="396" y="234" font-size="13" fill="#664d03">partners, ...) of the source accounts will be moved to the destination</text>
+  <text x="396" y="256" font-size="13" fill="#664d03">account. The source accounts will be archived. <tspan font-weight="700">This cannot be undone.</tspan></text>
+
+  <!-- Accounts to Merge -->
+  <text x="396" y="322" font-size="13" font-weight="600" fill="#374151">Accounts to Merge</text>
+  <rect x="590" y="302" width="150" height="30" rx="15" fill="#e9ecef"/>
+  <text x="606" y="322" font-size="12.5" fill="#374151">400001 Bank Fees</text>
+  <text x="722" y="322" font-size="12.5" fill="#6b7280">&#10005;</text>
+  <rect x="750" y="302" width="172" height="30" rx="15" fill="#e9ecef"/>
+  <text x="766" y="322" font-size="12.5" fill="#374151">400002 Bank Charges</text>
+  <text x="904" y="322" font-size="12.5" fill="#6b7280">&#10005;</text>
+  <line x1="590" y1="340" x2="982" y2="340" stroke="#d8dadd"/>
+
+  <!-- Destination Account -->
+  <text x="396" y="384" font-size="13" font-weight="600" fill="#374151">Destination Account</text>
+  <text x="590" y="384" font-size="13" fill="#111827">400001 Bank Fees</text>
+  <path d="M962 378 l7 8 l7 -8" stroke="#6b7280" stroke-width="2" fill="none"/>
+  <line x1="590" y1="398" x2="982" y2="398" stroke="#714B67" stroke-width="2"/>
+
+  <!-- Allow Different Types -->
+  <text x="396" y="442" font-size="13" font-weight="600" fill="#374151">Allow Different Types</text>
+  <rect x="590" y="428" width="17" height="17" rx="3" fill="#ffffff" stroke="#b6bac0"/>
+
+  <!-- Journal Items to Move -->
+  <text x="396" y="496" font-size="13" font-weight="600" fill="#374151">Journal Items to Move</text>
+  <text x="590" y="496" font-size="14" font-weight="700" fill="#714B67">128</text>
+
+  <!-- footer -->
+  <line x1="350" y1="540" x2="1010" y2="540" stroke="#eceff1"/>
+  <rect x="378" y="560" width="150" height="38" rx="6" fill="#714B67"/>
+  <text x="403" y="584" font-size="13.5" font-weight="600" fill="#ffffff">Merge Accounts</text>
+  <rect x="540" y="560" width="86" height="38" rx="6" fill="#ffffff" stroke="#d8dadd"/>
+  <text x="562" y="584" font-size="13.5" fill="#374151">Cancel</text>
+
+  <!-- caption bar -->
+  <rect x="16" y="650" width="1328" height="44" rx="6" fill="#f9fafb" stroke="#eceff1"/>
+  <text x="32" y="677" font-size="14" fill="#374151">Pick the destination account, review the number of journal items that will move, then confirm. Different account types are blocked unless explicitly allowed.</text>
+</svg>

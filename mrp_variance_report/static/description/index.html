@@ -1,0 +1,93 @@
+<div style="max-width: 1100px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: #212529;">
+
+    <!-- Hero -->
+    <div style="text-align: center; padding: 36px 20px 28px; background: linear-gradient(135deg, #1F3864 0%, #0e1b30 100%); border-radius: 14px; color: #fff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">Manufacturing Variance Report</h1>
+        <p style="margin: 0 auto; max-width: 780px; font-size: 17px; line-height: 1.6; color: #dde6f3;">
+            Classic <b>standard vs actual</b> cost-accounting variance analysis for your Manufacturing
+            Orders &mdash; on one Excel workbook with two sheets: <b>Materials</b>
+            (planned vs consumed quantities &times; unit cost) and <b>Operations</b>
+            (expected vs real work-center time &times; hourly rate).
+        </p>
+        <div style="margin-top: 18px;">
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Material cost variance</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Operation time &amp; cost variance</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Favorable / unfavorable color coding</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Odoo 17 / 18 / 19</span>
+        </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #1F3864; margin-bottom: 6px;">1. Open the wizard</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            A new <b>Manufacturing Variance</b> entry is added under <i>Manufacturing &gt; Reporting</i>.
+        </p>
+        <img src="var_menu.png" alt="Manufacturing Variance menu entry"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 2 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #1F3864; margin-bottom: 6px;">2. Choose the period and filters</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            Pick the date range to analyze &mdash; only <b>done</b> manufacturing orders are included,
+            so the comparison is always against final consumption. Optionally restrict the report to
+            specific finished products or specific MOs, then hit <b>Export Excel</b>.
+        </p>
+        <img src="var_wizard.png" alt="Variance report wizard"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 3 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #1F3864; margin-bottom: 6px;">3. Sheet 1 &mdash; Material Variance</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            One section per MO. Each component line compares the <b>standard quantity</b> (BoM demand)
+            with the <b>actual quantity</b> consumed, values both at the product's standard cost and
+            highlights the variance: <span style="color:#9C0006;"><b>red = unfavorable</b></span> (over
+            consumption), <span style="color:#006100;"><b>green = favorable</b></span> (savings) &mdash;
+            with MO totals and a grand total for the whole period.
+        </p>
+        <img src="excel_materials.png" alt="Material variance sheet in Excel"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 4 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #1F3864; margin-bottom: 6px;">4. Sheet 2 &mdash; Operation Variance</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            The same analysis for work-center time: every finished work order compares the
+            <b>expected duration</b> with the <b>real duration</b> recorded on the shop floor and
+            costs both at the work order's hourly rate (falling back to the work center's rate).
+            An extra hour on the line immediately shows up as an unfavorable cost variance.
+        </p>
+        <img src="excel_operations.png" alt="Operation variance sheet in Excel"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Feature summary -->
+    <div style="margin-top: 48px; background: #f3f6fb; border: 1px solid #d8e1ee; border-radius: 12px; padding: 24px 28px;">
+        <h2 style="font-size: 22px; color: #1F3864; margin-top: 0;">What the module does</h2>
+        <ul style="font-size: 15px; line-height: 2; margin: 0; padding-left: 22px;">
+            <li>Analyzes <b>done</b> MOs started in the selected period (scrapped moves excluded).</li>
+            <li><b>Materials</b>: standard qty vs actual consumed qty, valued at standard price;
+                qty variance, cost variance and variance % per component.</li>
+            <li><b>Operations</b>: expected vs real duration per finished work order, costed at
+                <i>work order rate or work center rate</i>.</li>
+            <li>Color-coded Excel: red = unfavorable, green = favorable; MO subtotal rows and grand totals.</li>
+            <li>Filters: date range (required), finished products, specific MOs.</li>
+            <li>Landscape A4 print setup on both sheets; file downloads immediately.</li>
+        </ul>
+    </div>
+
+    <!-- Tech notes -->
+    <div style="margin-top: 24px; margin-bottom: 30px; border-left: 4px solid #1F3864; background: #fff; padding: 14px 20px; font-size: 14px; color: #495057; line-height: 1.8;">
+        <b>Technical notes</b><br/>
+        Supported versions: <b>Odoo 17, 18 and 19</b> (Community &amp; Enterprise). Depends only on
+        <i>mrp</i>. The workbook is generated with <i>xlsxwriter</i> (bundled with Odoo).
+        Variance % = cost variance / standard cost; a positive variance always means
+        "cost more than planned".
+    </div>
+
+</div>

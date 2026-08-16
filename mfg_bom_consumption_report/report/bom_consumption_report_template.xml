@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--
+    The template reads directly from the wizard record (o / doc).
+    We do NOT use t-call="web.external_layout" with docs[0]
+    because this is a wizard-based report, not a model report.
+    Instead we use web.html_container + web.internal_layout
+    which accept a single transient record without issue.
+-->
+<template id="report_bom_consumption_document">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.internal_layout">
+                <div class="page">
+
+                    <!-- ══ Title ══════════════════════════════════════════ -->
+                    <div style="background:#1F3A5F;color:#fff;padding:14px 20px;
+                                border-radius:6px;margin-bottom:14px;">
+                        <h2 style="margin:0;font-size:17px;font-weight:700;">
+                            BOM vs Actual Consumption Report
+                        </h2>
+                        <p style="margin:4px 0 0;font-size:11px;opacity:.8;">
+                            مقارنة الكميات المخططة مع الصرف الفعلي من المخزن
+                        </p>
+                    </div>
+
+                    <!-- ══ Meta ═══════════════════════════════════════════ -->
+                    <table style="width:100%;font-size:10.5px;
+                                  margin-bottom:12px;border-collapse:collapse;">
+                        <tr>
+                            <td style="width:50%;">
+                                <b>Period:</b>
+                                <t t-esc="o.report_date_from"/> → <t t-esc="o.report_date_to"/>
+                            </td>
+                            <td style="text-align:right;">
+                                <b>Company:</b> <t t-esc="o.report_company"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Printed:</b>
+                                <t t-esc="o.report_printed_at"/>
+                            </td>
+                            <td style="text-align:right;">
+                                <b>Printed by:</b> <t t-esc="user.name"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- ══ Parse lines from JSON (json is not available in
+                         the QWeb namespace, so the wizard parses it) ══════ -->
+                    <t t-set="all_lines" t-value="o.get_report_lines()"/>
+
+                    <!-- ══ Summary Cards ══════════════════════════════════ -->
+                    <t t-set="over_lines"  t-value="[l for l in all_lines if l['status']=='over']"/>
+                    <t t-set="under_lines" t-value="[l for l in all_lines if l['status']=='under']"/>
+                    <t t-set="exact_lines" t-value="[l for l in all_lines if l['status']=='exact']"/>
+                    <t t-set="total_diff"  t-value="sum(l['diff_value'] for l in all_lines)"/>
+
+                    <table style="width:100%;border-collapse:collapse;
+                                  margin-bottom:14px;font-size:10.5px;">
+                        <tr>
+                            <td style="width:23%;background:#EAF3DE;border:1px solid #C0DD97;
+                                       border-radius:4px;padding:8px;text-align:center;">
+                                <div style="font-size:22px;font-weight:700;color:#3B6D11;">
+                                    <t t-esc="len(exact_lines)"/>
+                                </div>
+                                <div style="color:#3B6D11;font-size:10px;">Exact Match ✓</div>
+                            </td>
+                            <td style="width:3%;"/>
+                            <td style="width:23%;background:#FCEBEB;border:1px solid #F09595;
+                                       border-radius:4px;padding:8px;text-align:center;">
+                                <div style="font-size:22px;font-weight:700;color:#A32D2D;">
+                                    <t t-esc="len(over_lines)"/>
+                                </div>
+                                <div style="color:#A32D2D;font-size:10px;">Over Consumed ↑</div>
+                            </td>
+                            <td style="width:3%;"/>
+                            <td style="width:23%;background:#FAEEDA;border:1px solid #FAC775;
+                                       border-radius:4px;padding:8px;text-align:center;">
+                                <div style="font-size:22px;font-weight:700;color:#854F0B;">
+                                    <t t-esc="len(under_lines)"/>
+                                </div>
+                                <div style="color:#854F0B;font-size:10px;">Under Consumed ↓</div>
+                            </td>
+                            <td style="width:3%;"/>
+                            <td style="width:22%;background:#E6F1FB;border:1px solid #85B7EB;
+                                       border-radius:4px;padding:8px;text-align:center;">
+                                <div style="font-size:14px;font-weight:700;color:#185FA5;">
+                                    <t t-esc="'{:,.2f}'.format(abs(total_diff))"/>
+                                </div>
+                                <div style="color:#185FA5;font-size:10px;">Net Diff (EGP)</div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- ══ Data table grouped by MO ═══════════════════════ -->
+                    <t t-set="current_mo" t-value="''"/>
+
+                    <t t-foreach="all_lines" t-as="line">
+
+                        <!-- Section header on MO change -->
+                        <t t-if="line['mo_name'] != current_mo">
+                            <t t-set="current_mo" t-value="line['mo_name']"/>
+                            <table style="width:100%;border-collapse:collapse;
+                                          margin-top:10px;">
+                                <tr>
+                                    <td colspan="9"
+                                        style="background:#D6E4F0;color:#1F3A5F;
+                                               font-weight:700;font-size:10.5px;
+                                               padding:6px 8px;
+                                               border:1px solid #85B7EB;">
+                                        ▶  <t t-esc="line['mo_name']"/>
+                                        &#160;|&#160;
+                                        <t t-esc="line['finished_product']"/>
+                                    </td>
+                                </tr>
+                                <tr style="background:#1F3A5F;color:#fff;
+                                           font-size:9px;font-weight:600;">
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:23%;">Component</td>
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:8%;">Ref</td>
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:6%;text-align:center;">UoM</td>
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:10%;text-align:right;">Planned</td>
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:10%;text-align:right;">Actual</td>
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:10%;text-align:right;">Diff Qty</td>
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:11%;text-align:right;">Unit Cost</td>
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:12%;text-align:right;">Diff Value</td>
+                                    <td style="padding:4px 6px;border:1px solid #4a6a8a;width:10%;text-align:center;">Status</td>
+                                </tr>
+                            </table>
+                        </t>
+
+                        <!-- Data row -->
+                        <t t-set="row_bg"  t-value="'#FCEBEB' if line['status']=='over' else ('#EAF3DE' if line['status']=='under' else '#F9F9F9')"/>
+                        <t t-set="diff_fg" t-value="'#A32D2D' if line['status']=='over' else ('#3B6D11' if line['status']=='under' else '#5F5E5A')"/>
+
+                        <table style="width:100%;border-collapse:collapse;">
+                            <tr style="font-size:9.5px;">
+                                <td style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:23%;background:#fff;">
+                                    <t t-esc="line['component_name']"/>
+                                </td>
+                                <td style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:8%;background:#fff;color:#999;font-size:8.5px;">
+                                    <t t-esc="line['component_ref']"/>
+                                </td>
+                                <td style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:6%;text-align:center;background:#fff;color:#666;">
+                                    <t t-esc="line['uom']"/>
+                                </td>
+                                <td style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:10%;text-align:right;background:#fff;">
+                                    <t t-esc="'{:,.3f}'.format(line['planned_qty'])"/>
+                                </td>
+                                <td style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:10%;text-align:right;background:#fff;">
+                                    <t t-esc="'{:,.3f}'.format(line['actual_qty'])"/>
+                                </td>
+                                <td t-attf-style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:10%;text-align:right;
+                                           background:#{row_bg};color:#{diff_fg};font-weight:700;">
+                                    <t t-if="line['diff_qty'] > 0">+</t>
+                                    <t t-esc="'{:,.3f}'.format(line['diff_qty'])"/>
+                                </td>
+                                <td style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:11%;text-align:right;background:#fff;color:#555;">
+                                    <t t-esc="'{:,.2f}'.format(line['unit_cost'])"/>
+                                </td>
+                                <td t-attf-style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:12%;text-align:right;
+                                           background:#{row_bg};color:#{diff_fg};font-weight:700;">
+                                    <t t-if="line['diff_value'] > 0">+</t>
+                                    <t t-esc="'{:,.2f}'.format(line['diff_value'])"/>
+                                </td>
+                                <td t-attf-style="padding:4px 6px;border:1px solid #E0E0E0;
+                                           width:10%;text-align:center;
+                                           background:#{row_bg};color:#{diff_fg};
+                                           font-size:8.5px;font-weight:600;">
+                                    <t t-if="line['status'] == 'over'">&#8679; Over</t>
+                                    <t t-elif="line['status'] == 'under'">&#8681; Under</t>
+                                    <t t-else="">&#10003; Match</t>
+                                    (<t t-esc="'{:.1f}'.format(line['pct'])"/>%)
+                                </td>
+                            </tr>
+                        </table>
+
+                    </t><!-- end t-foreach lines -->
+
+                    <!-- ══ Footer totals ══════════════════════════════════ -->
+                    <table style="width:100%;border-collapse:collapse;
+                                  margin-top:14px;font-size:10px;">
+                        <tr style="background:#1F3A5F;color:#fff;font-weight:700;">
+                            <td style="padding:7px 10px;border:1px solid #4a6a8a;width:55%;">
+                                TOTALS — <t t-esc="len(all_lines)"/> components across
+                                <t t-esc="len(set(l['mo_name'] for l in all_lines))"/> MOs
+                            </td>
+                            <td style="padding:7px 10px;border:1px solid #4a6a8a;
+                                       width:22%;text-align:right;">
+                                Over: <span style="color:#FFAAAA;">
+                                    +<t t-esc="'{:,.2f}'.format(sum(l['diff_value'] for l in over_lines))"/>
+                                </span>
+                            </td>
+                            <td style="padding:7px 10px;border:1px solid #4a6a8a;
+                                       width:23%;text-align:right;">
+                                Under: <span style="color:#AAFFAA;">
+                                    <t t-esc="'{:,.2f}'.format(sum(l['diff_value'] for l in under_lines))"/>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div><!-- .page -->
+            </t><!-- web.internal_layout -->
+        </t><!-- t-foreach docs -->
+    </t><!-- web.html_container -->
+</template>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

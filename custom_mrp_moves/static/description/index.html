@@ -1,0 +1,159 @@
+<div style="max-width: 1100px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: #212529;">
+
+    <!-- Hero -->
+    <div style="text-align: center; padding: 36px 20px 28px; background: linear-gradient(135deg, #17472A 0%, #0b2416 100%); border-radius: 14px; color: #fff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700; color: #ffffff;">Source Location per BoM Component</h1>
+        <p style="margin: 0 auto; max-width: 800px; font-size: 17px; line-height: 1.6; color: #d9e7de;">
+            Standard Odoo pulls <b>every</b> raw material of a Manufacturing Order from the
+            same source location &mdash; the one configured on the operation type. This module
+            lets each <b>Bill of Materials line</b> declare where its component really lives, and
+            every Manufacturing Order created from that BoM picks each component from its own
+            shelf, bin or yard.
+        </p>
+        <div style="margin-top: 18px;">
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Source Location on BoM lines</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Per-order manual override</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Falls back to the default location</span>
+            <span style="display: inline-block; background: rgba(255,255,255,.15); border-radius: 20px; padding: 6px 14px; margin: 4px; font-size: 13px;">Odoo 17 / 18 / 19</span>
+        </div>
+    </div>
+
+    <!-- The problem -->
+    <div style="margin-top: 34px; display: flex; gap: 18px; flex-wrap: wrap;">
+        <div style="flex: 1 1 320px; background: #fdf1f1; border: 1px solid #f2d0d0; border-radius: 12px; padding: 20px 24px;">
+            <h3 style="margin: 0 0 8px; font-size: 18px; color: #9C0006;">Without the module</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.7;">
+                Steel, paint and fasteners are stored in three different zones, but the
+                Manufacturing Order asks for all of them from <i>WH/Stock</i>. Either the
+                warehouse keeper edits every component line by hand on every order, or the
+                reservation grabs quantities from the wrong place.
+            </p>
+        </div>
+        <div style="flex: 1 1 320px; background: #eef7f1; border: 1px solid #cfe6d8; border-radius: 12px; padding: 20px 24px;">
+            <h3 style="margin: 0 0 8px; font-size: 18px; color: #17472A;">With the module</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.7;">
+                You state the storage zone <b>once</b>, on the Bill of Materials. Every order
+                built from that BoM &mdash; today and next year &mdash; reserves, picks and
+                consumes each component from the right location, with no manual step.
+            </p>
+        </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #17472A; margin-bottom: 6px;">1. Set the location once, on the Bill of Materials</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            A <b>Source Location</b> column is added to the BoM components list. It is an
+            optional column, so switch it on once from the small toggle at the right end of the
+            header row. Only internal locations can be selected, and leaving a line empty is a
+            valid choice: that component simply keeps the default behaviour.
+        </p>
+        <img src="01_bom_source_location.png" alt="Source Location column on the BoM components"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 2 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #17472A; margin-bottom: 6px;">2. Every Manufacturing Order follows the BoM</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            Create a Manufacturing Order for that product and the component lines are generated
+            with their own source location already filled in. The <b>From</b> column, which used
+            to repeat the same value on every row, now shows exactly where each material will be
+            taken from &mdash; and the reservation follows: the 20 steel sheets are reserved in
+            <i>Metal Yard</i>, the 10 kg of paint in <i>Chemicals Cabinet</i>, the 15 hinge sets
+            in <i>Fasteners Bin</i>.
+        </p>
+        <img src="02_mo_components.png" alt="Manufacturing Order components, one location per line"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 3 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #17472A; margin-bottom: 6px;">3. Override one order without touching the BoM</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            Sometimes this one batch has to be taken from somewhere else. Open the component move
+            and set <b>Source Location Override</b>: the module writes the real source location of
+            the move for you, so the change is effective immediately &mdash; for this order only.
+            The field is only shown on manufacturing component moves, so ordinary deliveries and
+            receipts are untouched. If the BoM is later re-applied to the order with
+            <i>Update BoM</i>, a line you overrode by hand keeps your value.
+        </p>
+        <img src="03_move_override.png" alt="Source Location Override on a component move"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 4 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #17472A; margin-bottom: 6px;">4. Produce &mdash; the stock leaves the right shelves</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            Nothing changes in the way you work: mark the order as done as usual. The on-hand
+            quantity of each zone drops by exactly what that zone supplied &mdash; 8 sheets out of
+            <i>Metal Yard</i>, 4 kg out of <i>Chemicals Cabinet</i>, 6 sets out of
+            <i>Fasteners Bin</i>, and 2 locks out of plain <i>WH/Stock</i> for the component with
+            no override.
+        </p>
+        <img src="04_mo_done.png" alt="Finished Manufacturing Order with per-line source locations"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Step 5 -->
+    <div style="margin-top: 42px;">
+        <h2 style="font-size: 24px; color: #17472A; margin-bottom: 6px;">5. Full traceability in the stock ledger</h2>
+        <p style="font-size: 15px; line-height: 1.7; margin-top: 0;">
+            The source location is not cosmetic: it is the location of the stock move itself, so it
+            reaches the quants, the <i>Moves History</i> report and the valuation. Inventory
+            reporting shows each component leaving its own zone towards
+            <i>Virtual Locations/Production</i>.
+        </p>
+        <img src="05_moves_history.png" alt="Moves History showing one source location per component"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- Feature summary -->
+    <div style="margin-top: 48px; background: #f2f7f4; border: 1px solid #d5e6dc; border-radius: 12px; padding: 24px 28px;">
+        <h2 style="font-size: 22px; color: #17472A; margin-top: 0;">What the module does</h2>
+        <ul style="font-size: 15px; line-height: 2; margin: 0; padding-left: 22px;">
+            <li>Adds <b>Source Location</b> to Bill of Materials lines (internal locations only).</li>
+            <li>Adds <b>Source Location Override</b> to stock moves, visible only on manufacturing
+                component moves and company-checked.</li>
+            <li>New Manufacturing Orders take the source location of each raw move from the
+                matching BoM line, instead of the operation type's default location.</li>
+            <li>A component whose BoM line has no source location keeps the standard behaviour,
+                so existing BoMs are not affected by installing the module.</li>
+            <li>Setting the override on a move &mdash; from the form or from code &mdash; updates
+                the real source location of that move in the same write.</li>
+            <li>Re-applying the BoM to an order (<i>Update BoM</i>) pushes the new BoM locations
+                onto the components, while manual per-order overrides are preserved.</li>
+            <li>Reservations, done move lines, quants and Moves History all use the chosen
+                location &mdash; no extra step, no separate report.</li>
+        </ul>
+    </div>
+
+    <!-- Setup -->
+    <div style="margin-top: 24px; background: #fff; border: 1px solid #dee2e6; border-radius: 12px; padding: 24px 28px;">
+        <h2 style="font-size: 22px; color: #17472A; margin-top: 0;">Before you start</h2>
+        <ul style="font-size: 15px; line-height: 2; margin: 0; padding-left: 22px;">
+            <li>Enable <b>Inventory &gt; Configuration &gt; Settings &gt; Storage Locations</b>
+                &mdash; without multi-location warehouses there is nothing to choose from.</li>
+            <li>Create the internal locations that match your shop floor
+                (for example <i>WH/Stock/Metal Yard</i>, <i>WH/Stock/Chemicals Cabinet</i>).</li>
+            <li>The two new columns are <i>optional</i> list columns: switch them on once from
+                the toggle at the right of the header row and Odoo remembers your choice.</li>
+        </ul>
+    </div>
+
+    <!-- Tech notes -->
+    <div style="margin-top: 24px; margin-bottom: 30px; border-left: 4px solid #17472A; background: #fff; padding: 14px 20px; font-size: 14px; color: #495057; line-height: 1.8;">
+        <b>Technical notes</b><br/>
+        Supported versions: <b>Odoo 17, 18 and 19</b> (Community &amp; Enterprise). Depends on
+        <i>mrp</i> and <i>stock</i> only. Two fields are added &mdash;
+        <code>mrp.bom.line.source_location_id</code> and
+        <code>stock.move.source_location_id</code> &mdash; and three methods are extended:
+        <code>mrp.production._get_move_raw_values</code>,
+        <code>mrp.production._link_bom</code> and
+        <code>stock.move.create</code>&nbsp;/&nbsp;<code>write</code>. No data file, no new menu,
+        no scheduled action; uninstalling simply removes the two columns and the orders go back to
+        the default source location.
+    </div>
+
+</div>
