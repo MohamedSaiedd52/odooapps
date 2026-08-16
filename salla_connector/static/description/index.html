@@ -1,0 +1,93 @@
+<div style="max-width: 980px; margin: 0 auto; padding: 8px; font-family: Arial, Helvetica, sans-serif; color: #1f2430;">
+
+    <!-- ═══════════════ Hero ═══════════════ -->
+    <div style="text-align: center; padding: 18px 8px 6px;">
+        <h1 style="font-size: 34px; color: #714B67; margin: 0 0 6px;">Salla Connector</h1>
+        <p style="font-size: 17px; color: #5b6270; margin: 0 0 4px;">
+            Connect your Salla store to Odoo — products, orders and customers, synced automatically.
+        </p>
+        <p style="font-size: 16px; color: #5b6270; margin: 0 0 16px;" dir="rtl">
+            اربط متجرك في منصة سلة مع أودو — مزامنة المنتجات والطلبات والعملاء تلقائياً.
+        </p>
+        <img src="banner.gif" alt="Salla Connector" style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 26px rgba(0,0,0,0.16);"/>
+    </div>
+
+    <!-- ═══════════════ Connect ═══════════════ -->
+    <div style="padding: 24px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Connect in one click</h2>
+        <p style="font-size: 15px; line-height: 1.8;">
+            Paste your Salla app <b>Client ID</b> and <b>Secret</b>, hit <b>Connect to Salla</b> and
+            approve — that&rsquo;s it. The module handles the OAuth2 flow and refreshes expired tokens
+            automatically, and a <b>Test Connection</b> button tells you instantly that everything works.
+        </p>
+        <img src="screenshot_1_settings.png" alt="Salla Connector settings"
+             style="max-width: 100%; border: 1px solid #e6dbe3; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.10);"/>
+    </div>
+
+    <!-- ═══════════════ Products ═══════════════ -->
+    <div style="padding: 24px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Products, imported clean</h2>
+        <p style="font-size: 15px; line-height: 1.8;">
+            Pull your whole Salla catalog with one action: name, price, SKU, sales description and the
+            public store URL. Existing products are matched by Salla ID or SKU — <b>no duplicates</b> —
+            and the raw Salla payload is kept on the product for full traceability.
+        </p>
+        <img src="screenshot_2_product.png" alt="Product imported from Salla"
+             style="max-width: 100%; border: 1px solid #e6dbe3; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.10);"/>
+    </div>
+
+    <!-- ═══════════════ Orders ═══════════════ -->
+    <div style="padding: 24px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Orders flow straight into Sales</h2>
+        <p style="font-size: 15px; line-height: 1.8;">
+            Every Salla order becomes a normal Odoo quotation with its customer (deduplicated by
+            mobile/email), its lines and prices. Products missing from Odoo are created on the fly so
+            an order never fails to import. The Salla ID and live status sit on a dedicated tab.
+        </p>
+        <img src="screenshot_3_order.png" alt="Salla order in Odoo"
+             style="max-width: 100%; border: 1px solid #e6dbe3; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.10);"/>
+    </div>
+
+    <!-- ═══════════════ Key features ═══════════════ -->
+    <div style="padding: 24px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Key Features</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; OAuth2 connect with automatic token refresh</td>
+                <td style="width: 50%; padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; One-click <b>product import</b> with pagination</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; <b>Order import</b> with customers &amp; lines</td>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Duplicate-safe matching by Salla ID, SKU, mobile &amp; email</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; <b>Live webhooks</b> for product &amp; order updates</td>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Webhook <b>HMAC signature verification</b></td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Salla tab on products &amp; orders with raw payload</td>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Covered by automated tests</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ═══════════════ Compatibility ═══════════════ -->
+    <div style="padding: 18px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Compatibility</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Works on <b>Odoo 17, 18 and 19</b> (Community and Enterprise).
+            Depends on <code>sale_management</code>, <code>stock</code> and <code>account</code>.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Support ═══════════════ -->
+    <div style="text-align: center; margin: 28px 0 8px; padding: 26px; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px;">
+        <h2 style="font-size: 22px; color: #714B67; margin: 0 0 8px;">Support</h2>
+        <p style="font-size: 15px; margin: 0 0 14px;">Mohamed Saied &mdash; questions, custom work and support:</p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 26px; border-radius: 28px;">
+            WhatsApp: +20&nbsp;101&nbsp;390&nbsp;7174
+        </a>
+    </div>
+
+</div>
