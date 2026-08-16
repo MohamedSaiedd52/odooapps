@@ -19,7 +19,7 @@ Features:
    - إضافة فلتر "مندوب المبيعات" في قائمة الفلاتر/التجميع
      حتى يمكن الفلترة بسهولة على مستوى المندوب.
     """,
-    'author': 'MohamedSaied',
+    'author': 'Mohamed Saied',
     'website': 'https://wa.me/201013907174',
     'license': 'LGPL-3',
     'depends': [
@@ -35,4 +35,5 @@ Features:
     'auto_install': False,
     'price': 25.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

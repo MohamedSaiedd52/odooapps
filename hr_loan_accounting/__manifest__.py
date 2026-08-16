@@ -35,4 +35,5 @@ approval, a journal entries smart button, and an installment delay wizard.""",
     'license': 'LGPL-3',
     'price': 70.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

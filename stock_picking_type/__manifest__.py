@@ -31,8 +31,5 @@
     ],
     'installable': True,
     'auto_install': False,
-    'images': [
-        'static/description/banner.gif',
-        'static/description/icon.png',
-    ],
+    'images': ['static/description/banner.gif'],
 }

@@ -1,7 +1,7 @@
 {
     'name': "PoS Analytic Tag (DIS)",
     'category': 'Point of Sale',
-    'author': "Mohamed Saied",
+    'author': 'Mohamed Saied',
     'depends': ['point_of_sale', 'analytic', 'account'],
     'data': [
         'views/res_config_settings_views.xml',
@@ -15,10 +15,7 @@
             'pos_analytic_tag_custom/static/src/js/PosSession.js',
         ],
     },
-     'images': [
-        'static/description/banner.gif',
-        'static/description/icon.png',
-        ],
+     'images': ['static/description/banner.gif'],
     'license': 'AGPL-3',
     'installable': True,
     'auto_install': False,

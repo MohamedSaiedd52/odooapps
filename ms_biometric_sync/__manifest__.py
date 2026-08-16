@@ -4,7 +4,7 @@
     'version': '18.0.1.0.0',
     'summary': 'Sync attendance from local biometric devices via API',
     'category': 'Human Resources/Attendance',
-    'author': 'MohamedSaied',
+    'author': 'Mohamed Saied',
     'depends': ['base', 'hr', 'hr_attendance'],
     'data': [
         'security/ir.model.access.csv',
@@ -16,4 +16,5 @@
     'license': 'LGPL-3',
     'price': 70.0,
     'currency': 'USD',
+    'images': ['static/description/banner.gif'],
 }

@@ -46,7 +46,7 @@ One codebase for Odoo 17, 18 and 19:
 * The action's group restriction is applied in a post_init_hook
   (groups_id was renamed to group_ids in Odoo 19).
 """,
-    'author': 'MohamedSaied',
+    'author': 'Mohamed Saied',
     'website': 'https://wa.me/201013907174',
     'license': 'LGPL-3',
     'depends': ['account'],
@@ -54,7 +54,7 @@ One codebase for Odoo 17, 18 and 19:
         'security/ir.model.access.csv',
         'views/account_merge_wizard_views.xml',
     ],
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.gif'],
     'post_init_hook': 'post_init_hook',
     'installable': True,
     'application': False,

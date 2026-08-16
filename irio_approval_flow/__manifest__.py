@@ -5,7 +5,7 @@
     "description": "Approval matrix with multi-level amount-based rules, escalation reminders, delegation (vacation mode) and a full audit trail. Blocks confirmation of Sales/Purchase Orders, posting of Invoices/Bills and validation of Stock Transfers until approved.",
     "version": "18.0.1.0.0",
     "category": "Extra Tools",
-    "author": "IRIO Solutions",
+    "author": 'Mohamed Saied',
     "website": "https://irio-solutions.com",
     "license": "OPL-1",
     "price": 78.16,
@@ -19,7 +19,7 @@
         "views/document_views.xml",
     ],
     "demo": ["demo/approval_demo.xml"],
-    "images": ["static/description/banner.gif"],
+    'images': ['static/description/banner.gif'],
     "installable": True,
     "application": True,
 }

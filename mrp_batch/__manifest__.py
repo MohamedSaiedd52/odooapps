@@ -15,4 +15,6 @@
     'license': 'LGPL-3',
     'price': 45.0,
     'currency': 'USD',
+    'author': 'Mohamed Saied',
+    'images': ['static/description/banner.gif'],
 }
