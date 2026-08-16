@@ -1,7 +1,7 @@
 {
-    'name': "ZK Biotime",
+    'name': 'ZKTeco BioTime Attendance Sync',
     'version': '19.0.3.0.0',
-    'category': 'Hr',
+    'category': 'Human Resources/Attendances',
     'author': 'Mohamed Saied',
     'depends': ['base', 'hr', 'hr_attendance', 'mail', 'base_sparse_field'],
     'external_dependencies': {'python': ['requests']},
@@ -23,7 +23,7 @@
     'post_load': 'post_load',
     'images': ['static/description/banner.gif'],
     'license': 'LGPL-3',
-    'summary': "Sync ZKTeco Biotime (ZK devices, fingerprint, face recognition, RFID) with Odoo Attendance & HR",
+    'summary': 'ZKTeco BioTime integration: fingerprint, face recognition & RFID attendance devices synced with Odoo HR Attendance.',
     'description': """
          Odoo ZKTeco Biotime Integration
          ===================================

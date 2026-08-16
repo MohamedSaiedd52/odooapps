@@ -2,7 +2,7 @@
     'name': 'Manufacturing Variance Report',
     'version': '19.0.1.0.0',
     'category': 'Manufacturing',
-    'summary': 'Standard vs Actual variance analysis for Manufacturing Orders',
+    'summary': 'Standard vs actual cost & material variance analysis per Manufacturing Order - production cost control report.',
     'depends': ['mrp'],
     'data': [
         'security/ir.model.access.csv',

@@ -1,8 +1,8 @@
 {
-    'name': 'Stock Return to Original Location',
+    'name': 'Return to Original Source Location',
     'version': '19.0.1.0.0',
-    'category': 'Inventory/Inventory',
-    'summary': 'Return products to the same source location of the original delivery',
+    'category': 'Inventory',
+    'summary': 'Stock returns automatically go back to the source location of the original delivery order.',
     'author': 'Mohamed Saied',
     'website': 'https://wa.me/201013907174',
     'depends': ['stock'],

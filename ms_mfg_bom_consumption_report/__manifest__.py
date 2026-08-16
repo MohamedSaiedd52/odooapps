@@ -2,7 +2,7 @@
     'name': 'BOM vs Actual Consumption Report',
     'version': '19.0.1.0.1',
     'category': 'Manufacturing',
-    'summary': 'Compare planned BOM quantities with actual stock consumption per MO',
+    'summary': 'Compare planned BOM quantities with actual material consumption per Manufacturing Order - waste & overuse analysis.',
     'author': 'Mohamed Saied',
     'website': 'https://wa.me/201013907174',
     'license': 'LGPL-3',

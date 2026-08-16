@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'MS Account Merge',
+    'name': 'Account Merge - Merge GL Accounts',
     'version': '1.1.0',
     'category': 'Accounting',
-    'summary': 'Merge two or more GL accounts like the Contacts merge: '
-               'all journal items and references move to one account. '
-               'Compatible with Odoo 17, 18 and 19.',
+    'summary': 'Merge two or more general ledger accounts: journal items, references & mappings moved safely like Contacts merge.',
     'description': """
 MS Account Merge
 =================

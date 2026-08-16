@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Approval Matrix & Workflow",
-    "summary": "Amount-based multi-level approvals for Sales Orders, Purchase Orders, Invoices and Stock Transfers",
+    "name": 'Approval Matrix & Multi-Level Approval Workflow',
+    "summary": 'Amount-based multi-level approval workflow for Sales Orders, Purchase Orders, Invoices, Payments & Stock Transfers.',
     "description": "Approval matrix with multi-level amount-based rules, escalation reminders, delegation (vacation mode) and a full audit trail. Blocks confirmation of Sales/Purchase Orders, posting of Invoices/Bills and validation of Stock Transfers until approved.",
     "version": "19.0.1.0.0",
-    "category": "Extra Tools",
+    "category": 'Extra Tools',
     "author": 'Mohamed Saied',
     "website": "https://irio-solutions.com",
     "license": "OPL-1",
