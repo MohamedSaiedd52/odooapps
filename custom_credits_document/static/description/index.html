@@ -1,0 +1,143 @@
+<div style="max-width: 980px; margin: 0 auto; padding: 8px; font-family: Arial, Helvetica, sans-serif; color: #1f2430;">
+
+    <!-- ═══════════════ Hero ═══════════════ -->
+    <div style="text-align: center; padding: 18px 8px 6px;">
+        <h1 style="font-size: 34px; color: #714B67; margin: 0 0 6px;">Letter of Credit Management (LC)</h1>
+        <p style="font-size: 17px; color: #5b6270; margin: 0 0 4px;">
+            Manage documentary letters of credit from opening to execution — with automatic journal entries.
+        </p>
+        <p style="font-size: 16px; color: #5b6270; margin: 0 0 16px;" dir="rtl">
+            إدارة الاعتمادات المستندية من الفتح حتى التنفيذ — بقيود محاسبية تلقائية وواجهة عربية بالكامل.
+        </p>
+        <img src="banner.gif" alt="Letter of Credit Management" style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 26px rgba(0,0,0,0.16);"/>
+    </div>
+
+    <!-- ═══════════════ What it does ═══════════════ -->
+    <div style="padding: 22px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">What does it do?</h2>
+        <p style="font-size: 15px; line-height: 1.8;">
+            A dedicated <b>Letter of Credit (LC)</b> register inside Odoo Accounting. Each LC document holds the
+            bank journal, LC number, date, amount, currency and bank charges — then follows a clear
+            <b>Draft &rarr; Running &rarr; Done</b> workflow. At every stage the module posts the matching
+            journal entry for you, so the LC account, the bank and the charges are always in sync,
+            in the <b>original LC currency</b>.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Workflow ═══════════════ -->
+    <div style="padding: 14px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Workflow</h2>
+        <table style="width: 100%; border-collapse: separate; border-spacing: 10px 0;">
+            <tr>
+                <td style="width: 33%; vertical-align: top; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 13px; font-weight: 700; color: #714B67; letter-spacing: 1px;">STEP 1</div>
+                    <h3 style="font-size: 18px; margin: 6px 0;">Draft — مسودة</h3>
+                    <p style="font-size: 14px; line-height: 1.7; margin: 0;">
+                        Register the LC: bank journal &amp; account, LC number, date, amount,
+                        currency, bank expenses, LC settlement account and expense account.
+                        A sequence gives every document its own reference (<code>LOC/00001</code>).
+                    </p>
+                </td>
+                <td style="width: 33%; vertical-align: top; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 13px; font-weight: 700; color: #714B67; letter-spacing: 1px;">STEP 2</div>
+                    <h3 style="font-size: 18px; margin: 6px 0;">Running — جاري</h3>
+                    <p style="font-size: 14px; line-height: 1.7; margin: 0;">
+                        One click posts the <b>opening entry</b>: the LC amount moves from the bank to the
+                        LC settlement account and the bank charges are booked as an expense —
+                        all in the LC currency.
+                    </p>
+                </td>
+                <td style="width: 33%; vertical-align: top; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 13px; font-weight: 700; color: #714B67; letter-spacing: 1px;">STEP 3</div>
+                    <h3 style="font-size: 18px; margin: 6px 0;">Done — منتهي</h3>
+                    <p style="font-size: 14px; line-height: 1.7; margin: 0;">
+                        When the credit is executed, the <b>closing entry</b> clears the LC settlement
+                        account against the bank. Both entries stay linked to the document
+                        through smart buttons.
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p style="font-size: 14px; color: #5b6270; margin: 10px 4px 0;">
+            &#10004; A <b>Cancel</b> action is available while the document is still a draft.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Key features ═══════════════ -->
+    <div style="padding: 18px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Key Features</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Full LC register under <b>Accounting &rarr; Journal Entries</b></td>
+                <td style="width: 50%; padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Automatic <b>opening &amp; closing journal entries</b></td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; <b>Multi-currency</b>: amounts posted in the LC currency</td>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Dedicated field for <b>bank charges / LC expenses</b></td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Smart buttons to open the running &amp; executed entries</td>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Automatic sequence <code>LOC/00001</code> per document</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; Access group: only authorized users see the LC menu</td>
+                <td style="padding: 8px 12px; font-size: 15px; line-height: 1.7;">&#10004; <b>Arabic user interface</b> — واجهة عربية جاهزة</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ═══════════════ Fields ═══════════════ -->
+    <div style="padding: 18px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Document Fields</h2>
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <tr style="background: #714B67; color: #ffffff;">
+                <th style="padding: 10px 14px; text-align: left; border: 1px solid #714B67;">Field</th>
+                <th style="padding: 10px 14px; text-align: left; border: 1px solid #714B67;">Purpose</th>
+            </tr>
+            <tr>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;"><b>Bank Journal / Bank Account</b> — دفتر حساب البنك</td>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;">The bank paying for the LC (account taken from the journal automatically)</td>
+            </tr>
+            <tr style="background: #f8f9fb;">
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;"><b>LC Number &amp; Date</b> — رقم وتاريخ الإعتماد</td>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;">The official credit reference used on every journal item</td>
+            </tr>
+            <tr>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;"><b>LC Amount &amp; Currency</b> — مبلغ وعملة الإعتماد</td>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;">Value of the credit, posted as amount-currency on all entries</td>
+            </tr>
+            <tr style="background: #f8f9fb;">
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;"><b>Bank Expenses</b> — مصروفات الإعتماد البنكية</td>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;">LC fees booked to the expense account in the opening entry</td>
+            </tr>
+            <tr>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;"><b>LC Settlement Account</b> — الحساب المقابل</td>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;">Current-asset account holding the LC amount while it is running</td>
+            </tr>
+            <tr style="background: #f8f9fb;">
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;"><b>Expense Account</b> — حساب المصروفات</td>
+                <td style="padding: 9px 14px; border: 1px solid #dfe4e8;">Where the bank charges are recorded</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ═══════════════ Compatibility ═══════════════ -->
+    <div style="padding: 18px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Compatibility</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Works on <b>Odoo 17, 18 and 19</b> (Community and Enterprise).
+            Depends only on <code>base</code> and <code>account</code> — no extra libraries needed.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Support ═══════════════ -->
+    <div style="text-align: center; margin: 28px 0 8px; padding: 26px; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px;">
+        <h2 style="font-size: 22px; color: #714B67; margin: 0 0 8px;">Support</h2>
+        <p style="font-size: 15px; margin: 0 0 14px;">Mohamed Saied &mdash; questions, custom work and support:</p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 26px; border-radius: 28px;">
+            WhatsApp: +20&nbsp;101&nbsp;390&nbsp;7174
+        </a>
+    </div>
+
+</div>
