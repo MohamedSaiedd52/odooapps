@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_cod_collection" model="ir.actions.report">
+        <field name="name">COD Collection Sheet</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ms_website_cash_on_delivery.report_cod_collection</field>
+        <field name="report_file">ms_website_cash_on_delivery.report_cod_collection</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_cod_collection">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>COD Collection Sheet</h2>
+                    <p>
+                        <span t-esc="len(docs)"/> order(s) —
+                        printed on <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </p>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Ship To</th>
+                                <th class="text-end">COD Fee</th>
+                                <th class="text-end">Amount to Collect</th>
+                                <th>Signature</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="docs" t-as="order">
+                                <td><span t-field="order.name"/></td>
+                                <td><span t-field="order.date_order" t-options="{'widget': 'date'}"/></td>
+                                <td><span t-field="order.partner_id.name"/></td>
+                                <td><span t-esc="order.partner_shipping_id.phone or order.partner_id.phone or ''"/></td>
+                                <td>
+                                    <span t-esc="', '.join(filter(None, [order.partner_shipping_id.street, order.partner_shipping_id.city, order.partner_shipping_id.zip]))"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-field="order.cod_fee_amount"
+                                          t-options="{'widget': 'monetary', 'display_currency': order.currency_id}"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-field="order.amount_total"
+                                          t-options="{'widget': 'monetary', 'display_currency': order.currency_id}"/>
+                                </td>
+                                <td style="min-width: 90px;"/>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-end"><b>Total to Collect</b></td>
+                                <td class="text-end">
+                                    <b t-esc="sum(docs.mapped('amount_total'))"
+                                       t-options="{'widget': 'monetary', 'display_currency': docs[:1].currency_id}"/>
+                                </td>
+                                <td/>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

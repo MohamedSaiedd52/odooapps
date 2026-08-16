@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sales_order_filter_cod" model="ir.ui.view">
+        <field name="name">sale.order.search.cod</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Cash on Delivery" name="filter_is_cod_order"
+                        domain="[('is_cod_order', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree_cod" model="ir.ui.view">
+        <field name="name">sale.order.tree.cod</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field name="is_cod_order" optional="hide"/>
+                <field name="cod_fee_amount" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_cod" model="ir.ui.view">
+        <field name="name">sale.order.form.cod</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="is_cod_order" invisible="not is_cod_order"/>
+                <field name="cod_fee_amount" invisible="not is_cod_order"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
