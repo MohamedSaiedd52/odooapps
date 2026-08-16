@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Server Action for Order Sync -->
+    <record id="action_sync_salla_orders" model="ir.actions.server">
+        <field name="name">Sync from Salla</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.action_sync_orders_from_salla()
+        </field>
+    </record>
+
+    <!-- Sale Order Form Inherit -->
+    <record id="view_order_form_inherit_salla" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.salla</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Salla Info" name="salla_info" invisible="not salla_order_id">
+                    <group>
+                        <group>
+                            <field name="salla_order_id"/>
+                            <field name="salla_status"/>
+                        </group>
+                        <group>
+                            <field name="salla_raw_data" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
