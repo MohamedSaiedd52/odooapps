@@ -168,7 +168,7 @@ class BomConsumptionWizard(models.TransientModel):
         })
 
         return self.env.ref(
-            'mfg_bom_consumption_report.action_bom_consumption_pdf'
+            'ms_mfg_bom_consumption_report.action_bom_consumption_pdf'
         ).report_action(self)          # pass self (wizard) as the record
 
     def _lines_to_json(self, lines):

@@ -2,7 +2,7 @@ from odoo import models, api, fields
 
 
 class CustomerAccountReport(models.AbstractModel):
-    _name = "report.customer_partner_ledger.rep_cus_acc"
+    _name = "report.ms_customer_partner_ledger.rep_cus_acc"
     _description = "Customer Account Statement"
 
     @api.model

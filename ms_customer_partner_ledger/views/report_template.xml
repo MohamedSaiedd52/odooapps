@@ -29,11 +29,11 @@
 
   <template id="rep_cus_acc">
     <t t-call="web.basic_layout">
-      <t t-call="customer_partner_ledger.pl_running_header" />
+      <t t-call="ms_customer_partner_ledger.pl_running_header" />
       <t t-foreach="docs" t-as="o">
         <t t-set="summary" t-value="data['summary'][o.id]" />
         <div class="container mt-4" t-att-style="'' if o_last else 'page-break-after: always;'">
-          <t t-call="customer_partner_ledger.pl_statement_head" />
+          <t t-call="ms_customer_partner_ledger.pl_statement_head" />
           <div class="border p-3" style="margin-bottom: 15px;">
             <h4><strong t-esc="o.get_partner_name(o.id)" /></h4>
           </div>
