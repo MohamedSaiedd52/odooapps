@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══════════════════════════════════════════════════════════════
+         1. إضافة مندوب المبيعات (الفاتورة) في Pivot View
+            الـ Pivot View الأصلي ليس فيه field بالاسم user_id
+            لذلك نضيف مباشرة داخل عنصر <pivot>
+         ═══════════════════════════════════════════════════════════════ -->
+    <record id="view_sale_report_pivot_salesperson_invoice" model="ir.ui.view">
+        <field name="name">sale.report.pivot.salesperson.invoice</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//pivot" position="inside">
+                <field name="invoice_user_id" type="row"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         2. إضافة مندوب المبيعات (الفاتورة) في Search View (فلتر + تجميع)
+            بناءً على الملف الأصلي:
+              - filter name="User"    → هو فلتر Salesperson
+              - filter name="User"    → هو Group By Salesperson أيضاً
+         ═══════════════════════════════════════════════════════════════ -->
+    <record id="view_sale_report_search_salesperson_invoice" model="ir.ui.view">
+        <field name="name">sale.report.search.salesperson.invoice</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <!-- إضافة Group By بمندوب الفاتورة بعد Group By Salesperson الأصلي -->
+            <xpath expr="//filter[@name='User']" position="after">
+                <filter
+                    string="مندوب المبيعات (الفاتورة)"
+                    name="group_invoice_user_id"
+                    context="{'group_by': 'invoice_user_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

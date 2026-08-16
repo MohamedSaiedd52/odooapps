@@ -1,0 +1,78 @@
+<div style="max-width: 900px; margin: 0 auto; font-family: 'Segoe UI', Tahoma, sans-serif; color: #333;">
+
+    <div style="background: linear-gradient(135deg, #1f3a5f 0%, #2e5d8f 100%); color: #ffffff; padding: 40px 30px; border-radius: 10px; text-align: center; margin-bottom: 30px;">
+        <h1 style="margin: 0 0 10px 0; font-size: 30px; color: #ffffff;">AVCO Vendor Return at Original Cost</h1>
+        <p style="margin: 0; font-size: 17px; color: #d8e4f2;">
+            Stop average-cost distortion when goods bought at different prices are returned to the vendor
+        </p>
+    </div>
+
+    <div style="background: #fff3f3; border-left: 5px solid #d9534f; padding: 18px 22px; border-radius: 6px; margin-bottom: 25px;">
+        <h2 style="margin: 0 0 10px 0; font-size: 20px; color: #c9302c;">The Problem</h2>
+        <p style="margin: 0 0 8px 0; line-height: 1.7;">
+            With the <b>Average Cost (AVCO)</b> method and no lot tracking, Odoo values a
+            <b>return to vendor</b> at the <b>current average cost</b> — not at the price the
+            returned goods were actually bought for.
+        </p>
+        <p style="margin: 0; line-height: 1.7;">
+            Buy 10 pcs @ 100 and 10 pcs @ 200 (average = 150). Return the 200-batch:
+            Odoo removes only <b>10 &times; 150 = 1,500</b> from stock, while the vendor credit
+            note is <b>10 &times; 200 = 2,000</b>. The remaining 10 cheap units stay valued at
+            1,500 instead of 1,000, the average cost stays 150 instead of 100, every later
+            delivery books a wrong COGS, and a residue is stuck forever in the
+            <i>Stock Interim (Received)</i> account.
+        </p>
+    </div>
+
+    <div style="background: #f0f9f0; border-left: 5px solid #5cb85c; padding: 18px 22px; border-radius: 6px; margin-bottom: 25px;">
+        <h2 style="margin: 0 0 10px 0; font-size: 20px; color: #3d8b3d;">The Fix</h2>
+        <p style="margin: 0 0 8px 0; line-height: 1.7;">
+            When a return is created <b>from the original receipt</b> (the standard Return button),
+            Odoo already knows which receipt the goods came from. This module uses that link:
+        </p>
+        <ul style="margin: 0; padding-left: 22px; line-height: 1.8;">
+            <li>The return's valuation layer is booked at the <b>original receipt cost</b> (200 in the example), not the current average.</li>
+            <li>The <b>average cost is realigned</b> with the remaining stock (back to 100).</li>
+            <li>The journal entry of the return matches the vendor credit note, so the interim account <b>nets to zero</b>.</li>
+            <li>Later deliveries book the <b>correct COGS</b>.</li>
+        </ul>
+    </div>
+
+    <h2 style="font-size: 20px; color: #1f3a5f; border-bottom: 2px solid #e3e9f1; padding-bottom: 8px;">Before / After</h2>
+    <table style="width: 100%; border-collapse: collapse; margin: 15px 0 25px 0; font-size: 14px;">
+        <tr style="background: #1f3a5f; color: #ffffff;">
+            <th style="padding: 10px 12px; text-align: left; border: 1px solid #d5dde8;">After returning the 200-batch</th>
+            <th style="padding: 10px 12px; text-align: left; border: 1px solid #d5dde8;">Standard Odoo</th>
+            <th style="padding: 10px 12px; text-align: left; border: 1px solid #d5dde8;">With this module</th>
+        </tr>
+        <tr>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8;">Return layer value</td>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8; color: #c9302c;">-1,500 (avg 150)</td>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8; color: #3d8b3d;"><b>-2,000 (original 200)</b></td>
+        </tr>
+        <tr style="background: #f6f8fb;">
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8;">Remaining 10 units valued at</td>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8; color: #c9302c;">1,500</td>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8; color: #3d8b3d;"><b>1,000 (their real cost)</b></td>
+        </tr>
+        <tr>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8;">Average cost after return</td>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8; color: #c9302c;">150</td>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8; color: #3d8b3d;"><b>100</b></td>
+        </tr>
+        <tr style="background: #f6f8fb;">
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8;">Interim (received) residue</td>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8; color: #c9302c;">500 stuck forever</td>
+            <td style="padding: 9px 12px; border: 1px solid #d5dde8; color: #3d8b3d;"><b>0</b></td>
+        </tr>
+    </table>
+
+    <h2 style="font-size: 20px; color: #1f3a5f; border-bottom: 2px solid #e3e9f1; padding-bottom: 8px;">Notes</h2>
+    <ul style="line-height: 1.8; padding-left: 22px;">
+        <li>Works with manual and automated (real-time) valuation; no configuration needed.</li>
+        <li>Applies only to returns created from the original document (Return button), where the origin link exists.</li>
+        <li>Partial returns are supported; returning the last units on hand always leaves exactly zero value.</li>
+        <li>Normal deliveries and FIFO / Standard products are not affected.</li>
+        <li>Covered by an automated test suite (6 scenarios, including the full bill / credit-note accounting flow).</li>
+    </ul>
+</div>

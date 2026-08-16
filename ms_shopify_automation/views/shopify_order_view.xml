@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shopify_order_tree" model="ir.ui.view">
+        <field name="name">shopify.order.tree</field>
+        <field name="model">shopify.order</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Shopify Orders" decoration-muted="cancelled_at" decoration-danger="sync_status == 'error'" decoration-warning="sync_status == 'pending'">
+                <field name="cancelled_at" column_invisible="1"/>
+                <field name="name"/>
+                <field name="shopify_order_number"/>
+                <field name="customer_name"/>
+                <field name="customer_email"/>
+                <field name="total_price" widget="monetary"/>
+                <field name="financial_status" widget="badge" decoration-success="financial_status == 'paid'" decoration-warning="financial_status in ['pending', 'authorized']" decoration-danger="financial_status in ['refunded', 'voided']"/>
+                <field name="fulfillment_status" widget="badge" decoration-success="fulfillment_status == 'fulfilled'" decoration-warning="fulfillment_status in ['partial', 'unfulfilled']"/>
+                <field name="tracking_number" optional="show"/>
+                <field name="shipping_method" optional="hide"/>
+                <field name="order_date"/>
+                <field name="odoo_order_id"/>
+                <field name="instance_id"/>
+                <field name="sync_status" widget="badge" decoration-success="sync_status == 'synced'" decoration-warning="sync_status == 'pending'" decoration-danger="sync_status == 'error'"/>
+                <field name="active" column_invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_shopify_order_form" model="ir.ui.view">
+        <field name="name">shopify.order.form</field>
+        <field name="model">shopify.order</field>
+        <field name="arch" type="xml">
+            <form string="Shopify Order">
+                <header>
+                    <button name="action_cancel_in_shopify" type="object" string="Cancel in Shopify" class="btn-danger" invisible="cancelled_at or not shopify_order_id"/>
+                    <button name="action_resync_from_shopify" type="object" string="Re-sync from Shopify" class="btn-warning" invisible="not shopify_order_id"/>
+                    <field name="sync_status" widget="statusbar" statusbar_visible="pending,synced,error"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Order Information">
+                            <field name="shopify_order_id"/>
+                            <field name="shopify_order_number"/>
+                            <field name="order_date"/>
+                            <field name="instance_id"/>
+                        </group>
+                        <group string="Customer Information">
+                            <field name="customer_name"/>
+                            <field name="customer_email"/>
+                            <field name="shopify_customer_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Order Status">
+                            <field name="financial_status"/>
+                            <field name="fulfillment_status"/>
+                            <field name="cancelled_at"/>
+                            <field name="cancel_reason" invisible="not cancelled_at"/>
+                        </group>
+                        <group string="Order Totals">
+                            <field name="subtotal_price"/>
+                            <field name="total_tax"/>
+                            <field name="total_discounts"/>
+                            <field name="total_price"/>
+                            <field name="currency"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Odoo Information">
+                            <field name="odoo_order_id"/>
+                            <field name="last_sync"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="line_ids" readonly="1">
+                                <tree string="Order Line Items">
+                                    <field name="title"/>
+                                    <field name="variant_title"/>
+                                    <field name="sku"/>
+                                    <field name="barcode" optional="show"/>
+                                    <field name="quantity"/>
+                                    <field name="price" widget="monetary"/>
+                                    <field name="total_discount" widget="monetary"/>
+                                    <field name="total_tax" widget="monetary" optional="show"/>
+                                    <field name="net_price" widget="monetary"/>
+                                    <field name="fulfillment_status" widget="badge" decoration-success="fulfillment_status == 'fulfilled'" decoration-warning="fulfillment_status == 'partial'" decoration-info="fulfillment_status == 'pending'"/>
+                                    <field name="shopify_product_mapping_id" optional="hide"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Shipping Address" name="shipping_address">
+                            <group>
+                                <group string="Shipping Information">
+                                    <field name="shipping_name"/>
+                                    <field name="shipping_company"/>
+                                    <field name="shipping_address1"/>
+                                    <field name="shipping_address2"/>
+                                    <field name="shipping_city"/>
+                                    <field name="shipping_province"/>
+                                    <field name="shipping_country"/>
+                                    <field name="shipping_zip"/>
+                                    <field name="shipping_phone"/>
+                                </group>
+                                <group string="Shipping Method">
+                                    <field name="shipping_method"/>
+                                    <field name="shipping_cost" widget="monetary"/>
+                                    <field name="shipping_tax" widget="monetary"/>
+                                    <field name="shipping_carrier_identifier"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Billing Address" name="billing_address">
+                            <group>
+                                <group string="Billing Information">
+                                    <field name="billing_name"/>
+                                    <field name="billing_company"/>
+                                    <field name="billing_address1"/>
+                                    <field name="billing_address2"/>
+                                    <field name="billing_city"/>
+                                    <field name="billing_province"/>
+                                    <field name="billing_country"/>
+                                    <field name="billing_zip"/>
+                                    <field name="billing_phone"/>
+                                </group>
+                                <group string="Address Partners">
+                                    <field name="shipping_address_id"/>
+                                    <field name="billing_address_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Fulfillment &amp; Tracking" name="fulfillment">
+                            <group>
+                                <group string="Tracking Information">
+                                    <field name="tracking_number"/>
+                                    <field name="tracking_company"/>
+                                    <field name="tracking_url" widget="url"/>
+                                </group>
+                                <group string="Fulfillment Details">
+                                    <field name="fulfillment_id"/>
+                                    <field name="fulfilled_at"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Discounts &amp; Taxes" name="discounts_taxes">
+                            <group>
+                                <group string="Discount Codes">
+                                    <field name="discount_codes"/>
+                                    <field name="discount_codes_json" widget="text" readonly="1" groups="base.group_no_one"/>
+                                </group>
+                                <group string="Tax Details">
+                                    <field name="tax_lines_json" widget="text" readonly="1" groups="base.group_no_one"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <field name="note" placeholder="Internal notes..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_shopify_order_search" model="ir.ui.view">
+        <field name="name">shopify.order.search</field>
+        <field name="model">shopify.order</field>
+        <field name="arch" type="xml">
+            <search string="Shopify Orders">
+                <field name="name"/>
+                <field name="shopify_order_id"/>
+                <field name="shopify_order_number"/>
+                <field name="customer_name"/>
+                <field name="customer_email"/>
+                <field name="odoo_order_id"/>
+                <field name="instance_id"/>
+                <filter string="Synced" name="synced" domain="[('sync_status', '=', 'synced')]"/>
+                <filter string="Pending" name="pending" domain="[('sync_status', '=', 'pending')]"/>
+                <filter string="Error" name="error" domain="[('sync_status', '=', 'error')]"/>
+                <separator/>
+                <filter string="Paid" name="paid" domain="[('financial_status', '=', 'paid')]"/>
+                <filter string="Unfulfilled" name="unfulfilled" domain="[('fulfillment_status', '=', 'unfulfilled')]"/>
+                <filter string="Fulfilled" name="fulfilled" domain="[('fulfillment_status', '=', 'fulfilled')]"/>
+                <filter string="Cancelled" name="cancelled" domain="[('cancelled_at', '!=', False)]"/>
+                <separator/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <group>
+                    <filter string="Instance" name="group_instance" context="{'group_by': 'instance_id'}"/>
+                    <filter string="Sync Status" name="group_sync_status" context="{'group_by': 'sync_status'}"/>
+                    <filter string="Financial Status" name="group_financial" context="{'group_by': 'financial_status'}"/>
+                    <filter string="Fulfillment Status" name="group_fulfillment" context="{'group_by': 'fulfillment_status'}"/>
+                    <filter string="Order Date" name="group_date" context="{'group_by': 'order_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_shopify_order" model="ir.actions.act_window">
+        <field name="name">Shopify Orders</field>
+        <field name="res_model">shopify.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Shopify order mappings will appear here after sync.
+            </p>
+            <p>
+                Click "Sync Orders" on your Shopify Instance to import orders.
+            </p>
+        </field>
+    </record>
+</odoo>

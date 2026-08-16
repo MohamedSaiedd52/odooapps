@@ -1,0 +1,114 @@
+<section style="max-width: 980px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #212529;">
+
+    <!-- ═══════════════ Header ═══════════════ -->
+    <div style="text-align: center; padding: 36px 20px; background: linear-gradient(135deg, #714B67 0%, #4d3246 100%); border-radius: 12px; color: #ffffff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">MS Journal Dashboard &ndash; GL Balance</h1>
+        <p style="margin: 0 0 18px; font-size: 18px; opacity: .9;">
+            One number you can trust &mdash; the bank/cash card shows the <b>General Ledger balance</b>,
+            not a statement estimate split over three lines.
+        </p>
+        <div>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 17</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 18</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 19</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">LGPL-3</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Community &amp; Enterprise</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Why ═══════════════ -->
+    <div style="padding: 28px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 10px;">Why this module?</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            On the standard Accounting dashboard, the <b>Bank / Cash kanban card</b> splits the money into
+            up to three different lines:
+        </p>
+        <ul style="font-size: 15px; line-height: 1.9;">
+            <li><b>Balance</b> &mdash; built from bank statements and direct payments;</li>
+            <li><b>Payments</b> &mdash; outstanding amounts still sitting in transit accounts;</li>
+            <li><b>Misc. Operations</b> &mdash; manual journal entries posted on the bank account from other journals.</li>
+        </ul>
+        <p style="font-size: 15px; line-height: 1.7;">
+            The moment an accountant posts a <b>manual journal entry</b> that touches the bank or cash account
+            (an opening balance, a correction, a bank charge booked in a Miscellaneous journal&hellip;), the amount
+            lands in <i>Misc. Operations</i> and the main <i>Balance</i> line <b>no longer matches the General
+            Ledger</b>. Every day someone asks: <i>&ldquo;why does the dashboard say one thing and the GL report
+            another?&rdquo;</i> This module ends that conversation: the card shows <b>exactly one number, taken
+            straight from the General Ledger</b>.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Before ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">1&nbsp;&middot;&nbsp;The problem &mdash; standard Odoo</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Below, the bank account really holds <b>$&nbsp;42,444.87</b> in the General Ledger. The standard card
+            shows <b>$&nbsp;34,944.87</b> as &ldquo;Balance&rdquo; and hides the remaining <b>$&nbsp;7,500.00</b> of manual
+            entries on a separate &ldquo;Misc. Operations&rdquo; line &mdash; no line on the card matches the GL report.
+        </p>
+        <img src="01_problem.png" alt="Standard Odoo bank card: balance split over multiple lines"
+             style="width: 100%; max-width: 620px; display: block; margin: 10px auto 8px; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- ═══════════════ After ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">2&nbsp;&middot;&nbsp;The fix &mdash; with this module</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Same database, module installed: the card now shows a single consolidated
+            <b>Balance of $&nbsp;42,444.87</b> &mdash; the sum of <b>all posted journal items</b> on the journal&rsquo;s
+            bank/cash account. The confusing &ldquo;Misc. Operations&rdquo; split is gone because those entries are
+            already inside the number.
+        </p>
+        <img src="02_solution.png" alt="With the module: one consolidated GL balance on the bank card"
+             style="width: 100%; max-width: 620px; display: block; margin: 10px auto 8px; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);"/>
+    </div>
+
+    <!-- ═══════════════ GL match ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">3&nbsp;&middot;&nbsp;Always equal to the General Ledger</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Open <b>Accounting &rarr; Reporting &rarr; General Ledger</b>: account <b>101401 Bank</b> shows the same
+            <b>$&nbsp;42,444.87</b>. Dashboard and GL now agree, by construction &mdash; the card is computed from the
+            very same posted journal items the report reads.
+        </p>
+        <img src="03_gl_match.png" alt="General Ledger report showing the same balance as the dashboard card"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ How it works ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">How it works (technical)</h2>
+        <ul style="font-size: 15px; line-height: 1.9;">
+            <li>Overrides <code>account.journal&nbsp;&rarr;&nbsp;_fill_bank_cash_dashboard_data()</code>: after the standard
+                computation it replaces the card&rsquo;s balance with one SQL aggregation over
+                <b>posted</b> <code>account.move.line</code> rows on the journal&rsquo;s default (bank/cash) account.</li>
+            <li><b>Multi-currency aware:</b> journals with their own currency sum <code>amount_currency</code>
+                (journal currency); all others sum <code>balance</code> (company currency).</li>
+            <li><b>Multi-company aware:</b> only moves of the companies selected in the company switcher are counted,
+                and branch access is respected.</li>
+            <li>Applies to <b>bank, cash and credit-card</b> journals; sale/purchase cards are untouched.</li>
+            <li>No new tables, no stored fields, no cron jobs, no JavaScript &mdash; a single method override,
+                safe to install and uninstall at any time.</li>
+        </ul>
+    </div>
+
+    <!-- ═══════════════ Compatibility ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Compatibility</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Tested on <b>Odoo 17, 18 and 19</b> (Community and Enterprise).
+            Depends only on the standard <code>account</code> module.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Support ═══════════════ -->
+    <div style="text-align: center; margin: 28px 0 8px; padding: 26px; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px;">
+        <h2 style="font-size: 22px; color: #714B67; margin: 0 0 8px;">Support</h2>
+        <p style="font-size: 15px; margin: 0 0 14px;">MohamedSaied &mdash; questions, custom work and support:</p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 26px; border-radius: 28px;">
+            WhatsApp: +20&nbsp;101&nbsp;390&nbsp;7174
+        </a>
+    </div>
+
+</section>

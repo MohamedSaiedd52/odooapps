@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add is_batch hidden field to base MO form (for regular MOs) -->
+    <record id="mrp_production_form_view_inherit_batch" model="ir.ui.view">
+        <field name="name">mrp.production.form.batch</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="is_locked" position="after">
+                <field name="is_batch" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Modify existing MO action to exclude batch MOs -->
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="name">Manufacturing Orders</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="context">{'search_default_todo': True, 'default_company_id': allowed_company_ids[0], 'default_is_batch': False}</field>
+        <field name="domain">[('picking_type_id.active', '=', True), ('is_batch', '=', False)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            No manufacturing order found. Let's create one.
+          </p><p>
+            Use Manufacturing Orders (MO) to build finished products while consuming components: i.e. 1 Table = 4 Table Legs + 1 Table Top
+          </p>
+        </field>
+    </record>
+
+    <!-- Batch MO: Primary form view - change product_id context to pass batch flag -->
+    <record id="mrp_production_batch_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.batch.form</field>
+        <field name="model">mrp.production</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="99"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="is_locked" position="after">
+                <field name="is_batch" invisible="1"/>
+            </field>
+            <field name="product_id" position="attributes">
+                <attribute name="context">{'default_detailed_type': 'product', 'default_is_batch': True}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- Batch MO: Primary tree view -->
+    <record id="mrp_production_batch_tree_view" model="ir.ui.view">
+        <field name="name">mrp.production.batch.tree</field>
+        <field name="model">mrp.production</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="99"/>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">Manufacturing Order Batch</attribute>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Batch MO: Primary search view -->
+    <record id="mrp_production_batch_search_view" model="ir.ui.view">
+        <field name="name">mrp.production.batch.search</field>
+        <field name="model">mrp.production</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="99"/>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="arch" type="xml">
+            <search position="attributes">
+                <attribute name="string">Search Batch Manufacturing Orders</attribute>
+            </search>
+        </field>
+    </record>
+
+    <!-- Batch MO action -->
+    <record id="mrp_production_batch_action" model="ir.actions.act_window">
+        <field name="name">Manufacturing Order Batch</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="mrp_production_batch_search_view"/>
+        <field name="context">{'search_default_todo': True, 'default_company_id': allowed_company_ids[0], 'default_is_batch': True}</field>
+        <field name="domain">[('picking_type_id.active', '=', True), ('is_batch', '=', True)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            No batch manufacturing order found. Let's create one.
+          </p><p>
+            Use Batch Manufacturing Orders to build batch products.
+          </p>
+        </field>
+    </record>
+
+    <!-- Bind primary views to batch action -->
+    <record id="mrp_production_batch_action_view_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="mrp_production_batch_tree_view"/>
+        <field name="act_window_id" ref="mrp_production_batch_action"/>
+    </record>
+
+    <record id="mrp_production_batch_action_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="mrp_production_batch_form_view"/>
+        <field name="act_window_id" ref="mrp_production_batch_action"/>
+    </record>
+
+    <!-- Menu item under Manufacturing > Operations -->
+    <menuitem id="menu_mrp_production_batch_action"
+        name="Manufacturing Order Batch"
+        action="mrp_production_batch_action"
+        parent="mrp.menu_mrp_manufacturing"
+        sequence="2"/>
+
+</odoo>

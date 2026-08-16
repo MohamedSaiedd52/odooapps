@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="planning_view_form_inherit_fs_hr_shifts" model="ir.ui.view">
+        <field name="name">planning.view.form.inherit.fs.hr.shifts</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//group//group//field[@name='resource_id']" position="attributes">
+                <attribute name="options">{'no_create': 1, 'no_open': 1}</attribute>
+            </xpath>
+            <xpath expr="//sheet//group//group//field[@name='resource_id']" position="after">
+                <field name="department" placeholder="Department"
+                    options="{'no_create': 1, 'no_open': 1}" />
+                <field name="category_ids" widget="many2many_tags" placeholder="Tags"
+                    options="{'no_create': 1, 'no_open': 1}" />
+            </xpath>
+            <field name="role_id" position="attributes">
+                <attribute name="options">{'no_create': 1, 'no_open': 1}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

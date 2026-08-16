@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_variance_wizard_form_view" model="ir.ui.view">
+        <field name="name">mrp.variance.wizard.form</field>
+        <field name="model">mrp.variance.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Manufacturing Variance Report">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="product_ids" widget="many2many_tags"
+                               options="{'no_create': True, 'no_open': True}"
+                               domain="[('bom_ids', '!=', False)]"/>
+                        <field name="production_ids" widget="many2many_tags"
+                               options="{'no_create': True, 'no_open': True}"
+                               domain="[('state', '=', 'done')]"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_excel_report" string="Export Excel"
+                            type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mrp_variance_wizard" model="ir.actions.act_window">
+        <field name="name">Manufacturing Variance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.variance.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="mrp_variance_wizard_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_mrp_variance_report"
+              name="Manufacturing Variance"
+              action="action_mrp_variance_wizard"
+              parent="mrp.menu_mrp_reporting"
+              sequence="99"/>
+
+</odoo>

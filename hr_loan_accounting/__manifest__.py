@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'HR Loan Management & Accounting',
+    'version': '17.0.2.0.0',
+    'category': 'Human Resources',
+    'summary': 'Employee loan management with payroll deduction and '
+               'accounting integration',
+    'description': """Manage employee loan requests with installment schedules,
+automatic payroll deduction of installments, journal entry creation on loan
+approval, a journal entries smart button, and an installment delay wizard.""",
+    'author': 'Mohamed Saied',
+    'maintainer': 'Mohamed Saied',
+    'depends': [
+        'hr',
+        'hr_payroll',
+        'account',
+    ],
+    'data': [
+        'security/hr_loan_security.xml',
+        'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
+        'data/hr_payroll_structure_data.xml',
+        'data/hr_salary_rule_data.xml',
+        'data/hr_payslip_input_type_data.xml',
+        'views/delay_installments_views.xml',
+        'views/hr_loan_views.xml',
+        'views/hr_employee_views.xml',
+        'views/hr_payroll_structure_views.xml',
+        'views/hr_payslip_views.xml',
+        'views/hr_salary_rule_views.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+    'license': 'LGPL-3',
+    'price': 70.0,
+    'currency': 'USD',
+}

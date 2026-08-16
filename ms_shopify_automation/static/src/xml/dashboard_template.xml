@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Main Dashboard Component Template -->
+    <t t-name="ms_shopify_automation.ShopifyAutomationDashboard">
+        <div class="o_shopify_automation_dashboard">
+            <!-- Loading State -->
+            <div t-if="state.loading" class="o_dashboard_loading">
+                <div class="o_loading_content">
+                    <i class="fa fa-spinner fa-spin fa-3x"></i>
+                    <p>Loading dashboard...</p>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div t-elif="state.error" class="o_dashboard_error">
+                <div class="o_error_content">
+                    <i class="fa fa-exclamation-triangle fa-3x text-danger"></i>
+                    <h3>Error Loading Dashboard</h3>
+                    <p t-esc="state.error"/>
+                    <button class="btn btn-primary" t-on-click="loadDashboardData">
+                        <i class="fa fa-refresh"></i> Retry
+                    </button>
+                </div>
+            </div>
+
+            <!-- No Connected Instance State -->
+            <div t-elif="!state.hasConnectedInstance" class="o_no_instance_container">
+                <div class="o_no_instance_content">
+                    <div class="o_no_instance_icon">
+                        <i class="fa fa-plug fa-4x"></i>
+                    </div>
+                    <h2>No Connected Shopify Store</h2>
+                    <p class="text-muted">
+                        Connect your Shopify store to start syncing products, orders, and customers.
+                    </p>
+                    <div class="o_no_instance_actions">
+                        <button class="btn btn-primary btn-lg" t-on-click="navigateToCreateInstance">
+                            <i class="fa fa-plus"></i> Connect New Store
+                        </button>
+                        <button class="btn btn-secondary btn-lg ms-2" t-on-click="navigateToInstances">
+                            <i class="fa fa-list"></i> View Existing Instances
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content (when connected) -->
+            <div t-else="" class="o_dashboard_content">
+                <!-- Header -->
+                <div class="o_dashboard_header">
+                    <div class="o_header_left">
+                        <h1 class="o_dashboard_title">
+                            <i class="fa fa-shopping-cart me-2"></i>
+                            Shopify Automation Dashboard
+                        </h1>
+                        <div class="o_dashboard_instance_info">
+                            <span class="badge bg-success me-2">
+                                <i class="fa fa-check-circle"></i> Connected
+                            </span>
+                            <span t-esc="state.instanceData.name"/>
+                        </div>
+                    </div>
+                    <div class="o_header_right">
+                        <button class="btn btn-outline-primary" t-on-click="refreshData">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Status Bar -->
+                <div class="o_status_bar">
+                    <div class="o_status_item o_status_connected">
+                        <i class="fa fa-circle text-success"></i>
+                        <span>Connected to Shopify</span>
+                    </div>
+                    <div class="o_status_item" t-if="state.instanceData.last_sync">
+                        <i class="fa fa-clock-o"></i>
+                        <span>Last Sync: <t t-esc="state.instanceData.last_sync"/></span>
+                    </div>
+                    <div class="o_status_item">
+                        <i class="fa fa-refresh"></i>
+                        <span>Auto Refresh: Active</span>
+                    </div>
+                </div>
+
+                <!-- KPI Section -->
+                <div class="o_kpi_section">
+                    <h3 class="o_section_title">
+                        <i class="fa fa-chart-line"></i>
+                        Key Performance Indicators
+                    </h3>
+                    <div class="o_kpi_grid">
+                        <div class="o_kpi_card o_kpi_sales" t-on-click="navigateToOrders">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-usd"></i>
+                            </div>
+                            <div class="o_kpi_content">
+                                <div class="o_kpi_value" t-esc="formatCurrency(state.dashboardData.total_sales)"/>
+                                <div class="o_kpi_label">Total Sales</div>
+                            </div>
+                        </div>
+
+                        <div class="o_kpi_card o_kpi_orders" t-on-click="navigateToOrders">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-shopping-bag"></i>
+                            </div>
+                            <div class="o_kpi_content">
+                                <div class="o_kpi_value" t-esc="formatNumber(state.dashboardData.order_count)"/>
+                                <div class="o_kpi_label">Orders</div>
+                            </div>
+                        </div>
+
+                        <div class="o_kpi_card o_kpi_customers" t-on-click="navigateToCustomers">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <div class="o_kpi_content">
+                                <div class="o_kpi_value" t-esc="formatNumber(state.dashboardData.customer_count)"/>
+                                <div class="o_kpi_label">Customers</div>
+                            </div>
+                        </div>
+
+                        <div class="o_kpi_card o_kpi_products" t-on-click="navigateToProducts">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-cube"></i>
+                            </div>
+                            <div class="o_kpi_content">
+                                <div class="o_kpi_value" t-esc="formatNumber(state.dashboardData.product_count)"/>
+                                <div class="o_kpi_label">Products</div>
+                            </div>
+                        </div>
+
+                        <div class="o_kpi_card o_kpi_queue" t-on-click="navigateToQueueJobs">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                            <div class="o_kpi_content">
+                                <div class="o_kpi_value" t-esc="formatNumber(state.dashboardData.queue_job_count)"/>
+                                <div class="o_kpi_label">Queue Jobs</div>
+                            </div>
+                        </div>
+
+                        <div class="o_kpi_card o_kpi_errors" t-on-click="navigateToLogs">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="o_kpi_content">
+                                <div class="o_kpi_value" t-esc="formatNumber(state.dashboardData.error_count)"/>
+                                <div class="o_kpi_label">Errors</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section Row 1 -->
+                <div class="o_charts_section">
+                    <div class="o_chart_container">
+                        <h4 class="o_chart_title">
+                            <i class="fa fa-line-chart"></i>
+                            Sales Analytics
+                        </h4>
+                        <div class="o_chart_wrapper">
+                            <canvas id="dashboard_sales_chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="o_chart_container">
+                        <h4 class="o_chart_title">
+                            <i class="fa fa-pie-chart"></i>
+                            Revenue Distribution
+                        </h4>
+                        <div class="o_chart_wrapper">
+                            <canvas id="dashboard_revenue_chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section Row 2 -->
+                <div class="o_charts_section">
+                    <div class="o_chart_container">
+                        <h4 class="o_chart_title">
+                            <i class="fa fa-bar-chart"></i>
+                            Customer Growth
+                        </h4>
+                        <div class="o_chart_wrapper">
+                            <canvas id="dashboard_customer_chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="o_chart_container">
+                        <h4 class="o_chart_title">
+                            <i class="fa fa-cubes"></i>
+                            Inventory Status
+                        </h4>
+                        <div class="o_chart_wrapper">
+                            <canvas id="dashboard_inventory_chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="o_quick_actions">
+                    <h3 class="o_section_title">
+                        <i class="fa fa-bolt"></i>
+                        Quick Actions
+                    </h3>
+                    <div class="o_actions_grid">
+                        <button class="o_action_card" t-on-click="navigateToOrders">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>View Orders</span>
+                        </button>
+                        <button class="o_action_card" t-on-click="navigateToProducts">
+                            <i class="fa fa-cube"></i>
+                            <span>Manage Products</span>
+                        </button>
+                        <button class="o_action_card" t-on-click="navigateToCustomers">
+                            <i class="fa fa-users"></i>
+                            <span>Customer Database</span>
+                        </button>
+                        <button class="o_action_card" t-on-click="navigateToQueueJobs">
+                            <i class="fa fa-tasks"></i>
+                            <span>Queue Management</span>
+                        </button>
+                        <button class="o_action_card" t-on-click="navigateToLogs">
+                            <i class="fa fa-file-text-o"></i>
+                            <span>System Logs</span>
+                        </button>
+                        <button class="o_action_card" t-on-click="navigateToCronJobs">
+                            <i class="fa fa-clock-o"></i>
+                            <span>Schedule Jobs</span>
+                        </button>
+                        <button class="o_action_card o_action_secondary" t-on-click="navigateToInstances">
+                            <i class="fa fa-cogs"></i>
+                            <span>Manage Instances</span>
+                        </button>
+                        <button class="o_action_card o_action_secondary" t-on-click="navigateToWebhooks">
+                            <i class="fa fa-plug"></i>
+                            <span>Webhooks</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Dashboard Charts Widget Template -->
+    <t t-name="ms_shopify_automation.DashboardChartsWidget">
+        <div class="o_dashboard_charts_widget">
+            <t t-if="state.loading">
+                <div class="o_chart_loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>Loading charts...</span>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="o_charts_grid">
+                    <div class="o_chart_item">
+                        <h4>Sales Trend</h4>
+                        <div class="o_chart_canvas_wrapper" style="height: 250px;">
+                            <canvas id="sales_chart_canvas"></canvas>
+                        </div>
+                    </div>
+                    <div class="o_chart_item">
+                        <h4>Revenue Distribution</h4>
+                        <div class="o_chart_canvas_wrapper" style="height: 250px;">
+                            <canvas id="revenue_chart_canvas"></canvas>
+                        </div>
+                    </div>
+                    <div class="o_chart_item">
+                        <h4>Customer Growth</h4>
+                        <div class="o_chart_canvas_wrapper" style="height: 250px;">
+                            <canvas id="customer_chart_canvas"></canvas>
+                        </div>
+                    </div>
+                    <div class="o_chart_item">
+                        <h4>Inventory Status</h4>
+                        <div class="o_chart_canvas_wrapper" style="height: 250px;">
+                            <canvas id="inventory_chart_canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <!-- Analytics Charts Widget Template -->
+    <t t-name="ms_shopify_automation.AnalyticsChartsWidget">
+        <div class="o_analytics_charts_widget">
+            <t t-if="state.loading">
+                <div class="o_chart_loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <span>Loading analytics charts...</span>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="o_analytics_charts_ready">
+                    <p t-if="!state.chartsRendered" class="text-muted text-center">
+                        <i class="fa fa-info-circle"></i>
+                        Select date range and click "Generate Analytics" to view charts
+                    </p>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

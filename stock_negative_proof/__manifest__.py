@@ -12,4 +12,6 @@
     'static/description/icon.png',
     
     ],
+    'price': 25.0,
+    'currency': 'USD',
 }

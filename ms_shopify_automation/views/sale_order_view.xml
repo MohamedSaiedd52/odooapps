@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Sale Order Form to show Shopify Details like Shopify Admin -->
+    <record id="view_sale_order_shopify_form" model="ir.ui.view">
+        <field name="name">sale.order.shopify.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Shopify status badges in header -->
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="shopify_financial_status" widget="badge"
+                       decoration-success="shopify_financial_status == 'paid'"
+                       decoration-warning="shopify_financial_status in ['pending', 'authorized']"
+                       decoration-danger="shopify_financial_status in ['refunded', 'voided']"
+                       invisible="not is_shopify_order"/>
+                <field name="shopify_fulfillment_status" widget="badge"
+                       decoration-success="shopify_fulfillment_status == 'fulfilled'"
+                       decoration-warning="shopify_fulfillment_status == 'partial'"
+                       decoration-info="shopify_fulfillment_status == 'unfulfilled'"
+                       invisible="not is_shopify_order"/>
+            </xpath>
+
+            <!-- Add Shopify Order Number near the title -->
+            <xpath expr="//field[@name='name']" position="after">
+                <span invisible="not is_shopify_order" class="text-muted ms-2">
+                    (Shopify #<field name="shopify_order_number" class="oe_inline"/>)
+                </span>
+            </xpath>
+
+            <!-- Add Shopify Details Tab -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Shopify Order Details" name="shopify_details" invisible="not is_shopify_order">
+                    <!-- Fulfillment Section -->
+                    <group string="Fulfillment &amp; Tracking">
+                        <group>
+                            <field name="shopify_fulfillment_status" string="Status"/>
+                            <field name="shopify_fulfilled_at" string="Delivered Date"/>
+                            <field name="shopify_fulfillment_location" string="Location"/>
+                        </group>
+                        <group>
+                            <field name="shopify_tracking_company" string="Carrier"/>
+                            <field name="shopify_tracking_number" string="Tracking Number"/>
+                            <field name="shopify_tracking_url" string="Tracking URL" widget="url"/>
+                        </group>
+                    </group>
+
+                    <!-- Order Summary Section - Like Shopify -->
+                    <group string="Order Summary">
+                        <group>
+                            <label for="shopify_subtotal" string="Subtotal"/>
+                            <div class="o_row">
+                                <field name="shopify_subtotal" nolabel="1"/>
+                            </div>
+
+                            <label for="shopify_discount_amount" string="Discount" invisible="not shopify_discount_code"/>
+                            <div class="o_row" invisible="not shopify_discount_code">
+                                <field name="shopify_discount_display" nolabel="1" class="text-muted"/>
+                                <span class="text-danger">-</span>
+                                <field name="shopify_discount_amount" nolabel="1" class="text-danger"/>
+                            </div>
+
+                            <label for="shopify_shipping_cost" string="Shipping"/>
+                            <div class="o_row">
+                                <field name="shopify_shipping_display" nolabel="1" class="text-muted"/>
+                                <field name="shopify_shipping_cost" nolabel="1"/>
+                            </div>
+
+                            <label for="shopify_tax_amount" string="Tax"/>
+                            <div class="o_row">
+                                <field name="shopify_tax_display" nolabel="1" class="text-muted"/>
+                                <field name="shopify_tax_amount" nolabel="1"/>
+                            </div>
+                        </group>
+                        <group>
+                            <div class="oe_title">
+                                <label for="shopify_total" string="Total" class="fw-bold fs-4"/>
+                                <h2>
+                                    <field name="shopify_total" nolabel="1" class="fw-bold"/>
+                                </h2>
+                            </div>
+                            <field name="shopify_financial_status" string="Payment" widget="badge"
+                                   decoration-success="shopify_financial_status == 'paid'"
+                                   decoration-warning="shopify_financial_status == 'pending'"/>
+                        </group>
+                    </group>
+
+                    <!-- Hidden fields -->
+                    <field name="shopify_order_id" invisible="1"/>
+                    <field name="shopify_discount_code" invisible="1"/>
+                    <field name="is_shopify_order" invisible="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add Shopify columns to Sale Order Tree View -->
+    <record id="view_sale_order_shopify_tree" model="ir.ui.view">
+        <field name="name">sale.order.shopify.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="shopify_order_number" string="Shopify #" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="shopify_financial_status" string="Payment" widget="badge" optional="show"
+                       decoration-success="shopify_financial_status == 'paid'"
+                       decoration-warning="shopify_financial_status == 'pending'"/>
+                <field name="shopify_fulfillment_status" string="Fulfillment" widget="badge" optional="show"
+                       decoration-success="shopify_fulfillment_status == 'fulfilled'"
+                       decoration-info="shopify_fulfillment_status == 'unfulfilled'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Search view to filter Shopify orders -->
+    <record id="view_sale_order_shopify_search" model="ir.ui.view">
+        <field name="name">sale.order.shopify.search</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[1]" position="before">
+                <filter string="Shopify Orders" name="shopify_orders" domain="[('is_shopify_order', '=', True)]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

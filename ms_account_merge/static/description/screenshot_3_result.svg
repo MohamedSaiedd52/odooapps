@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 500" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <filter id="tshadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000000" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <!-- window -->
+  <rect x="0.5" y="0.5" width="1359" height="499" rx="8" fill="#ffffff" stroke="#d8dadd"/>
+
+  <!-- top navbar -->
+  <path d="M8 0 h1344 a8 8 0 0 1 8 8 v44 h-1360 v-44 a8 8 0 0 1 8 -8 z" fill="#714B67"/>
+  <circle cx="34" cy="26" r="11" fill="#ffffff" opacity="0.9"/>
+  <circle cx="34" cy="26" r="5" fill="#714B67"/>
+  <text x="56" y="31" font-size="15" font-weight="600" fill="#ffffff">Accounting</text>
+  <text x="170" y="31" font-size="13" fill="#ffffff" opacity="0.8">Dashboard</text>
+  <text x="258" y="31" font-size="13" fill="#ffffff" opacity="0.8">Customers</text>
+  <text x="346" y="31" font-size="13" fill="#ffffff" opacity="0.8">Vendors</text>
+  <text x="416" y="31" font-size="13" fill="#ffffff" opacity="0.95" font-weight="600">Accounting</text>
+  <text x="510" y="31" font-size="13" fill="#ffffff" opacity="0.8">Reporting</text>
+
+  <!-- control panel -->
+  <text x="24" y="88" font-size="18" font-weight="600" fill="#111827">Chart of Accounts</text>
+  <rect x="900" y="66" width="436" height="34" rx="6" fill="#ffffff" stroke="#d8dadd"/>
+  <circle cx="922" cy="82" r="6" fill="none" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="927" y1="87" x2="933" y2="93" stroke="#9ca3af" stroke-width="2"/>
+  <text x="944" y="88" font-size="13" fill="#9ca3af">Search...</text>
+
+  <!-- table header -->
+  <rect x="16" y="118" width="1328" height="36" fill="#f9fafb"/>
+  <line x1="16" y1="154" x2="1344" y2="154" stroke="#d8dadd"/>
+  <rect x="34" y="128" width="16" height="16" rx="3" fill="#ffffff" stroke="#b6bac0"/>
+  <text x="76" y="141" font-size="13" font-weight="600" fill="#374151">Code</text>
+  <text x="200" y="141" font-size="13" font-weight="600" fill="#374151">Account Name</text>
+  <text x="640" y="141" font-size="13" font-weight="600" fill="#374151">Type</text>
+  <text x="900" y="141" font-size="13" font-weight="600" fill="#374151">Allow Reconciliation</text>
+  <text x="1320" y="141" font-size="13" font-weight="600" fill="#374151" text-anchor="end">Balance</text>
+
+  <!-- rows -->
+  <rect x="34" y="166" width="16" height="16" rx="3" fill="#ffffff" stroke="#b6bac0"/>
+  <text x="76" y="179" font-size="13" fill="#374151">101401</text>
+  <text x="200" y="179" font-size="13" fill="#374151">Bank</text>
+  <text x="640" y="179" font-size="13" fill="#6b7280">Bank and Cash</text>
+  <text x="1320" y="179" font-size="13" fill="#374151" text-anchor="end">24,180.00</text>
+  <line x1="16" y1="194" x2="1344" y2="194" stroke="#eceff1"/>
+
+  <rect x="34" y="206" width="16" height="16" rx="3" fill="#ffffff" stroke="#b6bac0"/>
+  <text x="76" y="219" font-size="13" fill="#374151">121000</text>
+  <text x="200" y="219" font-size="13" fill="#374151">Account Receivable</text>
+  <text x="640" y="219" font-size="13" fill="#6b7280">Receivable</text>
+  <text x="960" y="219" font-size="13" fill="#28a745">&#10003;</text>
+  <text x="1320" y="219" font-size="13" fill="#374151" text-anchor="end">8,540.00</text>
+  <line x1="16" y1="234" x2="1344" y2="234" stroke="#eceff1"/>
+
+  <!-- merged destination row -->
+  <rect x="16" y="234" width="1328" height="40" fill="#eefbf3"/>
+  <rect x="34" y="246" width="16" height="16" rx="3" fill="#ffffff" stroke="#b6bac0"/>
+  <text x="76" y="259" font-size="13" fill="#374151">400001</text>
+  <text x="200" y="259" font-size="13" font-weight="700" fill="#111827">Bank Fees</text>
+  <rect x="290" y="242" width="176" height="24" rx="12" fill="#d1e7dd"/>
+  <text x="302" y="259" font-size="11.5" font-weight="600" fill="#0f5132">holds all merged history</text>
+  <text x="640" y="259" font-size="13" fill="#6b7280">Expenses</text>
+  <text x="1320" y="259" font-size="13" font-weight="700" fill="#111827" text-anchor="end">12,480.00</text>
+  <line x1="16" y1="274" x2="1344" y2="274" stroke="#eceff1"/>
+
+  <rect x="34" y="286" width="16" height="16" rx="3" fill="#ffffff" stroke="#b6bac0"/>
+  <text x="76" y="299" font-size="13" fill="#374151">400010</text>
+  <text x="200" y="299" font-size="13" fill="#374151">Office Supplies</text>
+  <text x="640" y="299" font-size="13" fill="#6b7280">Expenses</text>
+  <text x="1320" y="299" font-size="13" fill="#374151" text-anchor="end">1,120.00</text>
+  <line x1="16" y1="314" x2="1344" y2="314" stroke="#eceff1"/>
+
+  <rect x="34" y="326" width="16" height="16" rx="3" fill="#ffffff" stroke="#b6bac0"/>
+  <text x="76" y="339" font-size="13" fill="#374151">600000</text>
+  <text x="200" y="339" font-size="13" fill="#374151">Salaries</text>
+  <text x="640" y="339" font-size="13" fill="#6b7280">Expenses</text>
+  <text x="1320" y="339" font-size="13" fill="#374151" text-anchor="end">54,300.00</text>
+  <line x1="16" y1="354" x2="1344" y2="354" stroke="#eceff1"/>
+
+  <!-- note under table -->
+  <text x="76" y="392" font-size="12.5" font-style="italic" fill="#9ca3af">400002 Bank Charges was archived - recover it any time from Filters &#8594; Archived.</text>
+
+  <!-- success notification -->
+  <rect x="940" y="120" width="396" height="118" rx="8" fill="#ffffff" filter="url(#tshadow)"/>
+  <rect x="940" y="120" width="6" height="118" rx="3" fill="#28a745"/>
+  <circle cx="972" cy="152" r="12" fill="#d1e7dd"/>
+  <path d="M966 152 l4 5 l9 -10" stroke="#0f5132" stroke-width="2.5" fill="none"/>
+  <text x="996" y="150" font-size="14.5" font-weight="700" fill="#111827">Accounts Merged</text>
+  <text x="1316" y="150" font-size="13" fill="#9ca3af" text-anchor="end">&#10005;</text>
+  <text x="996" y="176" font-size="12.5" fill="#4b5563">128 journal items and all references were</text>
+  <text x="996" y="196" font-size="12.5" fill="#4b5563">moved to 400001 Bank Fees. Source</text>
+  <text x="996" y="216" font-size="12.5" fill="#4b5563">accounts were archived.</text>
+
+  <!-- caption bar -->
+  <rect x="16" y="440" width="1328" height="44" rx="6" fill="#f9fafb" stroke="#eceff1"/>
+  <text x="32" y="467" font-size="14" fill="#374151">After the merge: one account holds the combined history and balance, sources are archived (never deleted), and every ledger keeps a correct running balance.</text>
+</svg>

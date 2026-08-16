@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_auto_generate_shifts_wizard" model="ir.ui.view">
+            <field name="name">auto.generate.shifts.wizard.form</field>
+            <field name="model">auto.generate.shifts.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Auto Generate Shifts">
+
+                    <!-- main data -->
+                    <group>
+                        <field name="role_id" required="1"/>
+                        <field name="company_id" required="1"/>
+                        <field name="replace_existing"/>
+                    </group>
+
+                    <!-- first period + second period side by side -->
+                    <group>
+                        <!-- first period -->
+                        <group string="First Period">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="start_hour" widget="float_time"/>
+                            <field name="end_hour" widget="float_time"/>
+                            <field name="thursday_start_hour" widget="float_time"/>
+                            <field name="thursday_end_hour" widget="float_time"/>
+                            <field name="friday_off"/>
+                        </group>
+
+                        <!-- second period -->
+                        <group string="Second Period">
+                            <field name="second_period"/>
+                            <field name="second_start_date" invisible="not second_period" required="second_period"/>
+                            <field name="second_end_date" invisible="not second_period" required="second_period"/>
+                            <field name="second_start_hour" widget="float_time" invisible="not second_period"/>
+                            <field name="second_end_hour" widget="float_time" invisible="not second_period"/>
+                            <field name="second_thursday_start" widget="float_time" invisible="not second_period"/>
+                            <field name="second_thursday_end" widget="float_time" invisible="not second_period"/>
+                        </group>
+                    </group>
+
+                    <!-- buttons -->
+                    <footer>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary"/>
+                        <button name="action_reset_contracts" type="object" string="Reset Contracts" class="btn-secondary"
+                                confirm="This will restore the original Multi-Shifts / Work Entry Source values on ALL contracts changed by this wizard. Continue?"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_auto_generate_shifts" model="ir.actions.act_window">
+            <field name="name">Auto Generate Shifts</field>
+            <field name="res_model">auto.generate.shifts.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_auto_generate_shifts_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Menu: inside the Planning app -->
+        <menuitem id="menu_generate_shifts" name="Generate Shifts"
+                  parent="planning.planning_menu_root"
+                  action="action_auto_generate_shifts"
+                  groups="fs_hr_shifts.group_attendance_sheet_manager"
+                  sequence="60"/>
+    </data>
+</odoo>

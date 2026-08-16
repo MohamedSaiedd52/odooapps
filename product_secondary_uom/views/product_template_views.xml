@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_secondary_uom" model="ir.ui.view">
+        <field name="name">product.template.form.secondary.uom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Odoo 17's product form has no uom_span element, so the inline
+                 "/ secondary uom" next to the price is 18/19 only. -->
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="secondary_uom_id" groups="uom.group_uom" options="{'no_create': True}"/>
+                <!-- same group as secondary_uom_id: Odoo 17 refuses a modifier
+                     that reads a field restricted to a group the element lacks -->
+                <field name="conversion_factor" groups="uom.group_uom" invisible="not secondary_uom_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_tree_secondary_uom" model="ir.ui.view">
+        <field name="name">product.template.tree.secondary.uom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="uom_id" position="after">
+                <field name="secondary_uom_id" optional="hide" groups="uom.group_uom"/>
+                <field name="conversion_factor" optional="hide"/>
+            </field>
+        </field>
+    </record>
+</odoo>

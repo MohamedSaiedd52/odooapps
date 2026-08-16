@@ -1,0 +1,106 @@
+<section style="max-width: 980px; margin: 0 auto; padding: 24px 16px; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #212529;">
+
+    <!-- ═══════════════ Header ═══════════════ -->
+    <div style="text-align: center; padding: 36px 20px; background: linear-gradient(135deg, #714B67 0%, #4d3246 100%); border-radius: 12px; color: #ffffff;">
+        <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 700;">MS Salesperson Report &amp; Filter</h1>
+        <p style="margin: 0 0 18px; font-size: 18px; opacity: .9;">
+            See who really sold it &mdash; track the salesperson on the <b>invoice</b>, not only on the sales order.
+        </p>
+        <div>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 17</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 18</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Odoo 19</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">LGPL-3</span>
+            <span style="display: inline-block; background: #ffffff22; border: 1px solid #ffffff55; border-radius: 20px; padding: 4px 14px; margin: 3px; font-size: 13px;">Community &amp; Enterprise</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Why ═══════════════ -->
+    <div style="padding: 28px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67; margin-bottom: 10px;">Why this module?</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            The standard <b>Sales Analysis</b> report always shows the salesperson taken from the
+            <b>sales order</b> (<code>user_id</code>). In many companies, however, the salesperson recorded on the
+            <b>customer invoice</b> (<code>invoice_user_id</code>) is a different person &mdash; invoices get reassigned,
+            commissions are paid on invoiced (not ordered) revenue, or the accounting team books the invoice
+            under another user. This module lets managers <b>report and filter on the invoice salesperson</b>
+            and compare both views side by side.
+        </p>
+        <ul style="font-size: 15px; line-height: 1.9;">
+            <li><b>Sales Analysis report:</b> a new field <i>&ldquo;Salesperson (Invoice)&rdquo;</i> &mdash; taken from the first posted
+                customer invoice linked to the sales order &mdash; available as a pivot row and a Group&nbsp;By option.</li>
+            <li><b>Journal Items (Accounting):</b> a new filter <i>&ldquo;My Sales (by Invoice)&rdquo;</i> &mdash; instantly shows the
+                journal entries of the invoices you are responsible for.</li>
+        </ul>
+    </div>
+
+    <!-- ═══════════════ Feature 1 ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">1&nbsp;&middot;&nbsp;Invoice Salesperson in the Sales Analysis report</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Open <b>Sales &rarr; Reporting &rarr; Sales</b> and switch to the pivot view. Every period now breaks down
+            by the salesperson on the <b>posted customer invoice</b>. Orders that are not invoiced yet appear under
+            <i>None</i>, so you can also spot uninvoiced revenue at a glance.
+        </p>
+        <img src="sales_pivot.png" alt="Sales Analysis pivot broken down by invoice salesperson"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 24px;"/>
+        <p style="font-size: 15px; line-height: 1.7;">
+            The same field is available in the search panel as a dedicated <b>Group&nbsp;By</b> option, right below the
+            standard <i>Salesperson</i> &mdash; so you can compare &ldquo;who took the order&rdquo; vs &ldquo;who invoiced it&rdquo; in two clicks.
+        </p>
+        <img src="sales_groupby.png" alt="New Group By option in the Sales Analysis search panel"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ Feature 2 ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">2&nbsp;&middot;&nbsp;&ldquo;My Sales (by Invoice)&rdquo; filter in Journal Items</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            In <b>Accounting &rarr; Journal Items</b> the module adds a one-click filter that keeps only the journal
+            entries of <b>customer invoices and credit notes where you are the invoice salesperson</b>
+            (<code>move_id.invoice_user_id&nbsp;=&nbsp;current user</code>).
+        </p>
+        <img src="journal_filter_menu.png" alt="New filter in the Journal Items filter menu"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 24px;"/>
+        <p style="font-size: 15px; line-height: 1.7;">
+            One click and the list shrinks to your own invoice lines &mdash; perfect for reviewing your receivables,
+            checking commissions, or reconciling your customers.
+        </p>
+        <img src="journal_filtered.png" alt="Journal Items filtered to the current user's invoice entries"
+             style="width: 100%; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin: 10px 0 8px;"/>
+    </div>
+
+    <!-- ═══════════════ How it works ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">How it works (technical)</h2>
+        <ul style="font-size: 15px; line-height: 1.9;">
+            <li>Adds <code>invoice_user_id</code> (Many2one &rarr; <code>res.users</code>) to the <code>sale.report</code> SQL model
+                via the standard <code>_select_additional_fields()</code> hook &mdash; no core model is modified.</li>
+            <li>The value is resolved by a correlated subquery: the <b>first posted customer invoice / credit note</b>
+                (earliest invoice date) whose origin matches the sale order, in the same company.</li>
+            <li>The Journal Items filter is a plain search-view inheritance on
+                <code>account.view_account_move_line_filter</code> &mdash; zero performance impact.</li>
+            <li>No new tables, no cron jobs, no JavaScript &mdash; safe to install and uninstall at any time.</li>
+        </ul>
+    </div>
+
+    <!-- ═══════════════ Compatibility ═══════════════ -->
+    <div style="padding: 20px 8px 8px;">
+        <h2 style="font-size: 24px; color: #714B67;">Compatibility</h2>
+        <p style="font-size: 15px; line-height: 1.7;">
+            Tested on <b>Odoo 17, 18 and 19</b> (Community and Enterprise).
+            Depends only on the standard <code>sale</code> and <code>account</code> modules.
+        </p>
+    </div>
+
+    <!-- ═══════════════ Support ═══════════════ -->
+    <div style="text-align: center; margin: 28px 0 8px; padding: 26px; background: #f8f4f7; border: 1px solid #e6dbe3; border-radius: 12px;">
+        <h2 style="font-size: 22px; color: #714B67; margin: 0 0 8px;">Support</h2>
+        <p style="font-size: 15px; margin: 0 0 14px;">MohamedSaied &mdash; questions, custom work and support:</p>
+        <a href="https://wa.me/201013907174" target="_blank"
+           style="display: inline-block; background: #25D366; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; padding: 10px 26px; border-radius: 28px;">
+            WhatsApp: +20&nbsp;101&nbsp;390&nbsp;7174
+        </a>
+    </div>
+
+</section>
