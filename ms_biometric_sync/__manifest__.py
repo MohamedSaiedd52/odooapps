@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Biometric Device Attendance Sync',
+    'name': 'ZKTeco Biometric Attendance Sync | ZK Fingerprint Attendance Machine | Biometric Device Integration',
     'version': '19.0.1.0.0',
-    'summary': 'Sync employee attendance from fingerprint & biometric machines (ZKTeco) straight to Odoo Attendance in real time.',
+    'summary': 'ZKTeco / ZK biometric fingerprint attendance machine integration: sync punches from the device to Odoo Attendance in real time.',
     'category': 'Human Resources/Attendances',
     'author': 'Mohamed Saied',
     'depends': ['base', 'hr', 'hr_attendance'],
