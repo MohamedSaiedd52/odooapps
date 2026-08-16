@@ -72,7 +72,7 @@
 Perfect for enterprise e-commerce businesses requiring the most advanced Shopify-Odoo integration with cutting-edge features and modern design.
     ''',
     'author': 'Mohamed Saied',
-    'website': 'https://coa-egy.odoo.com/coa',
+ 
     'category': 'eCommerce',
     'depends': [
         'base',

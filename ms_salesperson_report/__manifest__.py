@@ -20,7 +20,7 @@ Features:
      حتى يمكن الفلترة بسهولة على مستوى المندوب.
     """,
     'author': 'Mohamed Saied',
-    'website': 'https://wa.me/201013907174',
+ 
     'license': 'LGPL-3',
     'depends': [
         'sale',

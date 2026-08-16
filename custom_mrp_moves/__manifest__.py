@@ -12,7 +12,7 @@ default picking type location.
     """,
 
     'author': 'Mohamed Saied',
-    'website': "https://www.yourcompany.com",
+
 
     'category': 'Manufacturing',
     'version': '19.0.1.0.0',

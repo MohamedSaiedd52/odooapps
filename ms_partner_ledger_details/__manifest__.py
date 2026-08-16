@@ -28,10 +28,10 @@ How it works (framework-safe):
 Requires: Odoo Enterprise (account_reports).
 
 Developed by MohamedSaied
-WhatsApp: +20 101 390 7174
+
     """,
     'author': 'Mohamed Saied',
-    'website': 'https://wa.me/201013907174',
+  
     'category': 'Accounting',
     'version': '19.0.1.0.0',
     'license': 'OPL-1',

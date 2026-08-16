@@ -4,7 +4,7 @@
     'category': 'Manufacturing',
     'summary': 'Compare planned BOM quantities with actual material consumption per Manufacturing Order - waste & overuse analysis.',
     'author': 'Mohamed Saied',
-    'website': 'https://wa.me/201013907174',
+
     'license': 'LGPL-3',
     'depends': ['mrp', 'stock'],
     'data': [
