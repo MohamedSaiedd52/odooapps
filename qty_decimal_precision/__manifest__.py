@@ -1,8 +1,8 @@
 {
-    'name': 'Quantity Decimal Precision',
+    'name': 'Quantity Decimal Precision Control',
     'version': '17.0.1.0.0',
-    'category': 'Sales/Purchase',
-    'summary': 'Limit quantity decimal places to 2 in Sales and Purchase Orders',
+    'category': 'Sales',
+    'summary': 'Limit quantity decimal places on Sale & Purchase order lines - clean, configurable rounding precision.',
     'description': """
         This module limits the quantity field decimal precision to 2 decimal places
         in Sales Orders and Purchase Orders.

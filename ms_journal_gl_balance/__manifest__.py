@@ -1,5 +1,5 @@
 {
-    'name': 'MS Journal Dashboard – GL Balance',
+    'name': 'Journal Dashboard GL Balance',
     'version': '17.0.1.0.0',
     'summary': (
         'Show the General Ledger balance on the bank/cash journal dashboard '
@@ -17,4 +17,5 @@
     'price': 25.0,
     'currency': 'USD',
     'images': ['static/description/banner.gif'],
+    'summary': 'Show the real General Ledger balance on bank & cash journal cards in the Accounting dashboard.',
 }

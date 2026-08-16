@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Custom MRP Moves - BOM Source Location",
+    'name': 'BOM Component Source Location',
 
-    'summary': "Consume manufacturing components from a specific source location per BOM line",
+    'summary': 'Consume manufacturing components from a specific stock location per BOM line - control raw material sourcing in MRP.',
 
     'description': """
 Adds a Source Location on BOM lines and Manufacturing Order components.
@@ -14,7 +14,7 @@ default picking type location.
     'author': 'Mohamed Saied',
     'website': "https://www.yourcompany.com",
 
-    'category': 'Manufacturing/Manufacturing',
+    'category': 'Manufacturing',
     'version': '17.0.1.0.0',
     'license': 'LGPL-3',
 

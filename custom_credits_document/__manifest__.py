@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "custom_credits_document",
+    'name': 'Letter of Credit Management (LC)',
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': 'Manage documentary letters of credit (LC): bank, amount, currency, bank expenses & automatic journal entries.',
 
     'description': """
 Long description of module's purpose

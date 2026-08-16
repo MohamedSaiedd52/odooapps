@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Stock Negative Quantity Block',
+    'name': 'Prevent Negative Stock',
     'version': '17.0.1.0.0',
-    'summary': 'Refuse to validate a transfer that would create negative stock',
+    'summary': 'Block transfers & validations that would create negative inventory quantities - per-location negative stock control.',
     'description': """
 Stock Negative Quantity Block
 =============================
@@ -27,7 +27,7 @@ and a clear error lists every product that would end up negative.
   the shortage is logged in the order chatter.
 """,
     'author': 'Mohamed Saied',
-    'category': 'Inventory/Inventory',
+    'category': 'Inventory',
     'depends': ['stock', 'sale_stock'],
     'data': [
         'views/stock_location_views.xml',

@@ -1,8 +1,8 @@
 {
-    'name': 'Custom Ledger Currency Total',
+    'name': 'Ledger Currency Totals - Partner & General Ledger',
     'version': '17.0.1.0.0',
     'category': 'Accounting',
-    'summary': 'Sum Amount Currency in Partner and General Ledger Reports',
+    'summary': 'Add amount-currency totals to the Partner Ledger & General Ledger reports. Multi-currency ledger totals.',
     'depends': ['account_reports'],
     'data': ['views/account_move_line_views.xml',],
     'installable': True,

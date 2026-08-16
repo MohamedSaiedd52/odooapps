@@ -2,8 +2,8 @@
 {
     'name': 'AVCO Vendor Return at Original Cost',
     'version': '17.0.1.0.0',
-    'category': 'Inventory/Inventory',
-    'summary': 'Value vendor returns at the original receipt cost instead of the current average cost',
+    'category': 'Accounting',
+    'summary': 'Fix AVCO inventory valuation on purchase returns: value vendor returns at the original receipt cost, no average distortion.',
     'description': """
 Values outgoing return moves (returns to vendor) of Average Cost (AVCO)
 products at the unit cost of the original receipt layer instead of the

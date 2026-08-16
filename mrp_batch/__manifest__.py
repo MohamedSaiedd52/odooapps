@@ -1,8 +1,8 @@
 {
-    'name': 'Manufacturing Order Batch',
+    'name': 'Manufacturing Batch Orders',
     'version': '17.0.1.0.0',
     'category': 'Manufacturing',
-    'summary': 'Separate batch manufacturing orders with dedicated sequence and product filter',
+    'summary': 'Batch manufacturing orders with dedicated sequence & product filters - plan and track batch production in MRP.',
     'depends': ['mrp'],
     'data': [
         'data/mrp_batch_data.xml',

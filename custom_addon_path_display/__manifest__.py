@@ -2,8 +2,8 @@
 {
     'name': 'Module Path Display',
     'version': '1.0',
-    'category': 'Tools',
-    'summary': 'Display module path in the ir.module.module form',
+    'category': 'Technical',
+    'summary': 'Show each installed module folder path in the Apps list - developer & sysadmin tool.',
     'author': 'Mohamed Saied',
     'depends': ['base', 'web'],
     'data': [
