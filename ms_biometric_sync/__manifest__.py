@@ -5,6 +5,7 @@
     'summary': 'ZKTeco / ZK biometric fingerprint attendance machine integration: sync punches from the device to Odoo Attendance in real time.',
     'category': 'Human Resources/Attendances',
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'depends': ['base', 'hr', 'hr_attendance'],
     'data': [
         'security/ir.model.access.csv',

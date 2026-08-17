@@ -6,6 +6,7 @@
     "version": "18.0.1.0.0",
     "category": 'Extra Tools',
     "author": 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     "website": "https://irio-solutions.com",
     "license": "OPL-1",
     "price": 78.16,

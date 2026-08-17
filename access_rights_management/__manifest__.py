@@ -4,6 +4,7 @@
     'version': '18.0.2.3.1',
     'sequence': 5,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'maintainer': 'MS — IT Department',
     'license': 'LGPL-3',
     'price': 60.0,

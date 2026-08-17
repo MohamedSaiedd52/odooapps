@@ -2,6 +2,7 @@
     'name': 'POS Analytic Account & Tags',
     'category': 'Point of Sale',
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'depends': ['point_of_sale', 'analytic', 'account'],
     'data': [
         'views/res_config_settings_views.xml',

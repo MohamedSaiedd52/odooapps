@@ -15,6 +15,7 @@ Website Cash on Delivery (COD)
     'category': 'eCommerce',
     'version': '18.0.1.0.0',
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'license': 'OPL-1',
     'price': 35.0,
     'currency': 'USD',

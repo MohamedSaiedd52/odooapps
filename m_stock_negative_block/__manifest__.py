@@ -27,6 +27,7 @@ and a clear error lists every product that would end up negative.
   the shortage is logged in the order chatter.
 """,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'category': 'Inventory',
     'depends': ['stock', 'sale_stock'],
     'data': [

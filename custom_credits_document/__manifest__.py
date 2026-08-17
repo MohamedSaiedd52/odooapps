@@ -9,6 +9,8 @@ Long description of module's purpose
     """,
 
     'author': 'Mohamed Saied',
+
+    'support': 'MohamedSaiedd53@gmail.com',
     
 
     # Categories can be used to filter modules in modules listing
