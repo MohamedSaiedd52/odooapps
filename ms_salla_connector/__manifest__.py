@@ -14,6 +14,7 @@ Salla Connector
 """,
     'category': 'eCommerce',
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'license': 'OPL-1',
     'price': 79.0,
     'currency': 'USD',

@@ -21,6 +21,7 @@ partners selected in the report:
 * one A4-landscape page per selected partner.
 """,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
 
     'license': 'LGPL-3',
 

@@ -13,6 +13,8 @@ default picking type location.
 
     'author': 'Mohamed Saied',
 
+    'support': 'MohamedSaiedd53@gmail.com',
+
 
     'category': 'Manufacturing',
     'version': '19.0.1.0.0',

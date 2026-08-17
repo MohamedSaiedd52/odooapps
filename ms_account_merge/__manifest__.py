@@ -45,6 +45,7 @@ One codebase for Odoo 17, 18 and 19:
   (groups_id was renamed to group_ids in Odoo 19).
 """,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
  
     'license': 'LGPL-3',
     'depends': ['account'],

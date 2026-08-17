@@ -72,6 +72,7 @@
 Perfect for enterprise e-commerce businesses requiring the most advanced Shopify-Odoo integration with cutting-edge features and modern design.
     ''',
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
  
     'category': 'eCommerce',
     'depends': [

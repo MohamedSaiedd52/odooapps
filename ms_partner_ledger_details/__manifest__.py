@@ -31,6 +31,7 @@ Developed by MohamedSaied
 
     """,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
   
     'category': 'Accounting',
     'version': '19.0.1.0.0',

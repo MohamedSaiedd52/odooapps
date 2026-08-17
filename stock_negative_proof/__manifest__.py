@@ -1,7 +1,9 @@
 {
     "name": 'Stock Negative Proof - Negative Stock Blocker',
     "summary": 'Guarantee inventory transfers never end in negative stock quantities - validation guard per product & location.',
+    "version": "19.0.1.0.0",
     "author": 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     "category": 'Inventory',
     "depends": ["stock"],
     "license": "LGPL-3",

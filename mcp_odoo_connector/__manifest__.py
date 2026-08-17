@@ -2,6 +2,7 @@
     'name': 'MCP Server - AI Assistant Integration',
     'version': '19.0.2.0.0',
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'category': 'Productivity',
     'summary': 'Model Context Protocol server: connect Claude, ChatGPT & AI agents to Odoo securely. AI automation & chatbot toolkit.',
     'price': 30.0,

@@ -3,6 +3,7 @@
     "summary": 'Stock card per product & location: opening, in, out & closing balance in PDF, Excel XLSX and HTML.',
     "category": 'Inventory',
     "author": 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     "license": "LGPL-3",
     "version": "19.0.1.0.0",
     "depends": ["base", "web", "stock"],

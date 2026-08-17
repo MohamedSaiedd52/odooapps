@@ -17,6 +17,7 @@ Features:
 The secondary UoM is completely independent - no automatic conversion.
     """,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'license': 'LGPL-3',
     'depends': [
         'product',
