@@ -8,6 +8,7 @@
         in Sales Orders and Purchase Orders.
     """,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'depends': ['sale', 'purchase'],
     'data': [
         'report/sale_report_templates.xml',

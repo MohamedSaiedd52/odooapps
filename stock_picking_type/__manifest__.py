@@ -17,6 +17,7 @@ Features:
 Ideal for companies with multiple warehouses.
 """,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'maintainer': 'Mohamed Saied <mohamedsaiedd53@gmail.com>',
     'license': 'LGPL-3',
     'version': '17.0.1.0.0',

@@ -8,6 +8,7 @@
 automatic payroll deduction of installments, journal entry creation on loan
 approval, a journal entries smart button, and an installment delay wizard.""",
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'maintainer': 'Mohamed Saied',
     'depends': [
         'hr',

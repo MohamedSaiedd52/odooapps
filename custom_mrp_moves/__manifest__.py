@@ -13,6 +13,8 @@ default picking type location.
 
     'author': 'Mohamed Saied',
 
+    'support': 'MohamedSaiedd53@gmail.com',
+
     'category': 'Manufacturing',
     'version': '17.0.1.0.0',
     'license': 'LGPL-3',

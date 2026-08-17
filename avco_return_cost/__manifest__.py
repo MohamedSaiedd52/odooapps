@@ -13,6 +13,7 @@ left in the Stock Interim (Received) account when goods bought at
 different prices are returned without lot tracking.
 """,
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'license': 'LGPL-3',
     'depends': ['purchase_stock'],
     'data': [],

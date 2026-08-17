@@ -11,5 +11,6 @@
     "price": 15,
     "currency": "USD",
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'images': ['static/description/banner.gif'],
 }

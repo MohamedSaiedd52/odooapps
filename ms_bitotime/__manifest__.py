@@ -3,6 +3,7 @@
     'version': '17.0.3.0.0',
     'category': 'Human Resources/Attendances',
     'author': 'Mohamed Saied',
+    'support': 'MohamedSaiedd53@gmail.com',
     'depends': ['base', 'hr', 'hr_attendance', 'mail', 'base_sparse_field'],
     'external_dependencies': {'python': ['requests']},
     'data': [
