@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_hijri" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@name='invoice_date']" position="inside">
+            <div class="text-muted small" t-if="o.hijri_invoice_date">
+                <span t-out="o.hijri_invoice_date"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[@name='due_date']" position="inside">
+            <div class="text-muted small" t-if="o.hijri_invoice_date_due">
+                <span t-out="o.hijri_invoice_date_due"/>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="report_saleorder_document_hijri" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='informations_date']" position="inside">
+            <div class="text-muted small" t-if="doc.hijri_date_order">
+                <span t-out="doc.hijri_date_order"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
