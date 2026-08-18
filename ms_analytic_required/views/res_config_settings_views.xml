@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ms_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ms.analytic.required</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="Analytic Requirement" name="ms_analytic_required_block" groups="analytic.group_analytic_accounting">
+                    <setting id="ms_analytic_policy_default_setting"
+                             string="Default Analytic Requirement"
+                             help="Applied to every account without a specific policy. Each account can override it from the Chart of Accounts.">
+                        <field name="ms_analytic_policy_default" class="o_light_label"/>
+                    </setting>
+                    <setting id="ms_analytic_full_coverage_setting"
+                             string="Require 100% Analytic Coverage"
+                             help="When analytics are required on a journal item, the distribution must also cover the full 100% of the amount.">
+                        <field name="ms_analytic_full_coverage"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
