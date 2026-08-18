@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ms_hijri_converter_wizard_form" model="ir.ui.view">
+        <field name="name">ms.hijri.converter.wizard.form</field>
+        <field name="model">ms.hijri.converter.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Hijri Date Converter">
+                <group>
+                    <group string="Gregorian to Hijri" name="g2h">
+                        <field name="gregorian_date"/>
+                        <field name="hijri_result_latin"/>
+                        <field name="hijri_result_arabic"/>
+                        <field name="hijri_result_numeric"/>
+                    </group>
+                    <group string="Hijri to Gregorian" name="h2g">
+                        <field name="hijri_year"/>
+                        <field name="hijri_month"/>
+                        <field name="hijri_day"/>
+                        <field name="hijri_error" invisible="not hijri_error"
+                               class="text-danger" string="Note"/>
+                        <field name="gregorian_result" invisible="hijri_error"/>
+                        <field name="gregorian_weekday" invisible="hijri_error"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ms_hijri_converter_wizard" model="ir.actions.act_window">
+        <field name="name">Hijri Date Converter</field>
+        <field name="res_model">ms.hijri.converter.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_ms_hijri_settings" model="ir.actions.act_window">
+        <field name="name">Hijri Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'module': 'ms_hijri_date', 'bin_size': False}</field>
+    </record>
+
+    <menuitem id="menu_ms_hijri_root" name="Hijri" sequence="86"
+              web_icon="ms_hijri_date,static/description/icon.png"/>
+    <menuitem id="menu_ms_hijri_converter" name="Date Converter"
+              parent="menu_ms_hijri_root" action="action_ms_hijri_converter_wizard"
+              sequence="10"/>
+    <menuitem id="menu_ms_hijri_settings" name="Settings"
+              parent="menu_ms_hijri_root" action="action_ms_hijri_settings"
+              sequence="20" groups="base.group_system"/>
+</odoo>

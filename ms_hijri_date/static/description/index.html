@@ -1,0 +1,103 @@
+<div style="max-width:1100px;margin:0 auto;font-family:Arial,Helvetica,sans-serif;color:#243342;">
+
+    <div style="text-align:center;margin:18px 0 6px;">
+        <img src="banner.gif" alt="Hijri Date Everywhere" style="max-width:100%;border-radius:10px;"/>
+    </div>
+
+    <div style="text-align:center;padding:18px 10px 4px;">
+        <h1 style="margin:0;font-size:34px;color:#4b2e83;">Hijri Date Everywhere</h1>
+        <p style="font-size:18px;color:#5a6b7b;margin:10px auto 0;max-width:780px;">
+            Hijri (Islamic) dates beside every Gregorian date &mdash; on invoices, payments and
+            quotations, on their PDF reports, and in a live two-way date converter.
+            Works on Odoo 17, 18 and 19, Community &amp; Enterprise. No external libraries, no JavaScript.
+        </p>
+    </div>
+
+    <div style="margin:26px 0 8px;">
+        <table style="width:100%;border-collapse:separate;border-spacing:10px;">
+            <tr>
+                <td style="width:33%;background:#f6f3fb;border-radius:10px;padding:16px;vertical-align:top;">
+                    <p style="font-size:17px;font-weight:bold;color:#4b2e83;margin:0 0 6px;">On the documents</p>
+                    <p style="margin:0;color:#5a6b7b;">Invoice, payment and sale order forms show the Hijri
+                    date right beside the Gregorian one &mdash; computed automatically, always in sync.</p>
+                </td>
+                <td style="width:33%;background:#f6f3fb;border-radius:10px;padding:16px;vertical-align:top;">
+                    <p style="font-size:17px;font-weight:bold;color:#4b2e83;margin:0 0 6px;">On the PDFs too</p>
+                    <p style="margin:0;color:#5a6b7b;">Invoice and quotation PDF reports print the Hijri date
+                    under each Gregorian date &mdash; ready for customers and authorities.</p>
+                </td>
+                <td style="width:33%;background:#f6f3fb;border-radius:10px;padding:16px;vertical-align:top;">
+                    <p style="font-size:17px;font-weight:bold;color:#4b2e83;margin:0 0 6px;">Moon-sighting aware</p>
+                    <p style="margin:0;color:#5a6b7b;">A per-company adjustment of &plusmn;3 days aligns the
+                    computed date with local moon sighting or the Umm al-Qura calendar.</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin:30px 0;">
+        <h2 style="font-size:24px;color:#4b2e83;margin:0 0 4px;">Pick your format, set your adjustment</h2>
+        <p style="color:#5a6b7b;margin:0 0 12px;">Latin transliteration, Arabic script or numeric &mdash; per company,
+        with a live &ldquo;today&rdquo; preview while you configure.</p>
+        <img src="screens/01_settings_block_annotated.png" alt="Hijri settings"
+             style="width:100%;border:1px solid #e2e6ea;border-radius:10px;"/>
+    </div>
+
+    <div style="margin:30px 0;">
+        <h2 style="font-size:24px;color:#4b2e83;margin:0 0 4px;">Hijri date on every invoice</h2>
+        <p style="color:#5a6b7b;margin:0 0 12px;">The invoice form shows the Hijri date under the invoice date.
+        Payments and quotations get the same treatment.</p>
+        <img src="screens/02_invoice_form_annotated.png" alt="Invoice form with Hijri date"
+             style="width:100%;border:1px solid #e2e6ea;border-radius:10px;"/>
+    </div>
+
+    <div style="margin:30px 0;">
+        <h2 style="font-size:24px;color:#4b2e83;margin:0 0 4px;">Printed on the PDF reports</h2>
+        <p style="color:#5a6b7b;margin:0 0 12px;">Invoice date and due date both carry their Hijri equivalent
+        on the printed document.</p>
+        <img src="screens/03_invoice_report_annotated.png" alt="Invoice PDF with Hijri dates"
+             style="width:100%;border:1px solid #e2e6ea;border-radius:10px;"/>
+    </div>
+
+    <div style="margin:30px 0;">
+        <h2 style="font-size:24px;color:#4b2e83;margin:0 0 4px;">Live two-way converter</h2>
+        <p style="color:#5a6b7b;margin:0 0 12px;">Convert as you type: Gregorian to Hijri in three formats at once,
+        and Hijri to Gregorian with the weekday. Impossible days get a friendly note instead of an error.</p>
+        <img src="screens/04_wizard_g2h_annotated.png" alt="Gregorian to Hijri converter"
+             style="width:100%;border:1px solid #e2e6ea;border-radius:10px;margin-bottom:12px;"/>
+        <img src="screens/05_wizard_h2g_annotated.png" alt="Hijri to Gregorian converter"
+             style="width:100%;border:1px solid #e2e6ea;border-radius:10px;"/>
+    </div>
+
+    <div style="margin:30px 0;">
+        <h2 style="font-size:24px;color:#4b2e83;margin:0 0 4px;">Sales orders included</h2>
+        <p style="color:#5a6b7b;margin:0 0 12px;">The order date in Hijri, converted in the user&rsquo;s timezone.</p>
+        <img src="screens/06_so_form_annotated.png" alt="Sale order with Hijri date"
+             style="width:100%;border:1px solid #e2e6ea;border-radius:10px;"/>
+    </div>
+
+    <div style="margin:30px 0;background:#f6f3fb;border-radius:10px;padding:18px 22px;">
+        <h2 style="font-size:22px;color:#4b2e83;margin:0 0 10px;">For developers: one-line extension point</h2>
+        <p style="color:#5a6b7b;margin:0 0 8px;">Need a Hijri date on any other model? Inherit the bundled mixin
+        and add a computed Char field that calls <span style="font-family:monospace;background:#eee9f6;padding:1px 5px;border-radius:4px;">self._hijri_format(record.date)</span>.
+        The tabular conversion engine (Julian Day Numbers, 30-year leap cycle) is pure Python with zero dependencies
+        and is round-trip safe across the &plusmn;3-day adjustment.</p>
+    </div>
+
+    <div style="margin:30px 0;">
+        <h2 style="font-size:22px;color:#4b2e83;margin:0 0 10px;">What you get</h2>
+        <ul style="color:#5a6b7b;line-height:1.9;margin:0;padding-left:22px;">
+            <li>Hijri dates on invoice, payment and sale order forms and their PDF reports</li>
+            <li>Live two-way Gregorian &harr; Hijri converter with weekday and validation</li>
+            <li>Three display formats: Latin, Arabic script, numeric &mdash; per company</li>
+            <li>Moon-sighting / Umm al-Qura adjustment (&plusmn;3 days), round-trip safe</li>
+            <li>Timezone-aware conversion for datetime fields</li>
+            <li>Developer mixin to add Hijri dates to any model in one line</li>
+            <li>No JavaScript, no external Python packages &mdash; installs anywhere</li>
+        </ul>
+    </div>
+
+    <p style="text-align:center;color:#8a97a5;font-size:13px;margin:26px 0 18px;">
+        Supports Odoo 17 / 18 / 19 &bull; Community &amp; Enterprise &bull; &copy; Mohamed Saied
+    </p>
+</div>
